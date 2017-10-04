@@ -1,37 +1,30 @@
 package Diseño;
 
-import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.xml.bind.ParseConversionEvent;
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 public final class Ventas extends javax.swing.JFrame {
 
     Conexion conn = new Conexion();
     Connection cn = conn.getConnection();
     DecimalFormat df = new DecimalFormat("#.00");
-  
+
     DefaultTableModel model;
     float cobrar = 0;
-    int filas = 0;
-     Icon ua; 
+    int filas = -1;
+    Icon ua;
 
     public Ventas() {
         initComponents();
-        
         tablaVentas();
-        
     }
 
     void tablaVentas() {
@@ -39,86 +32,75 @@ public final class Ventas extends javax.swing.JFrame {
         modelo.addColumn("Codigo");
         modelo.addColumn("Precio");
         modelo.addColumn("Cantidad");
-        
-
         tablaVenta.setModel(modelo);
     }
 
-     
-    void agregar(){ 
-     int x = tablaVenta.getRowCount();
-     
-      
-          if (buscar.getText().equals("")) {
-
+    void agregar() {
+        int x = tablaVenta.getRowCount();
+        if (buscar.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "No a ingresado ningun producto", "Mensaje", JOptionPane.OK_OPTION);
-
         } else {
 
-            String sql = "SELECT nombre,precio FROM producto";
+            String sql = "SELECT nombre,precio,cantidad FROM producto";
             Statement st;
-          
+
             int cantidad = 1;
             String datos[] = new String[5];
-            String cant = String.valueOf(cantidad);
 
             try {
 
                 st = cn.createStatement();
                 ResultSet rs = st.executeQuery(sql);
-                    
+
                 while (rs.next()) {
+                    
                     datos[0] = rs.getString(1);
                     datos[1] = rs.getString(2);
-                    datos[2] = cant;
-                    
+                    datos[2] = rs.getString(3);
+
                     if (buscar.getText().equals(datos[0])) {
-                       
+                        model = (DefaultTableModel) tablaVenta.getModel();
+                        int exist = Integer.parseInt(datos[2]);
                         
-           
-                                       
-                            model = (DefaultTableModel) tablaVenta.getModel();
-                            model.addRow(new Object[filas]);
-                                
-                            for (int k = 0; k < tablaVenta.getColumnCount() - 1; k++) {
-
-                                model.setValueAt(datos[0], filas, 0);
-                                model.setValueAt(datos[1], filas, 1);
-                                model.setValueAt(datos[2], filas, 2);
-                               
-
+                        if (filas == -1) {
+                            model.addRow(new Object[]{datos[0], datos[1], cantidad});
+                        } else {
+                            
+                            boolean variable = false;
+                            
+                            for (int i = 0; i < model.getRowCount(); i++) {
+                                Object producto = model.getValueAt(i, 0);
+                                int cant = (int) model.getValueAt(i, 2);
+                                if (buscar.getText().equals(producto)) {
+                                    if (exist == cant) {
+                                        JOptionPane.showMessageDialog(null, "producto agotado", "Mensaje", JOptionPane.OK_OPTION);
+                                    } else {
+                                        model.setValueAt((cant + 1), i, 2);
+                                    }
+                                    variable = true;
+                                }
                             }
-                            filas++;
-                            x=x+2;
-                            System.out.println(x);
-                            break;
-                           
-                        
-                    }
-                } 
-                if(x == tablaVenta.getRowCount()){
-                         JOptionPane.showMessageDialog(null, "Producto no encontrado", "Mensaje", JOptionPane.OK_OPTION);
-                        
+                            if (variable == false) {
+                                model.addRow(new Object[]{datos[0], datos[1], cantidad});
+                            }
+
+                        }
+                        filas++;
+                        x = x + 2;
+                        break;
 
                     }
-                   
+                }
 
-            
-
+                if (x == tablaVenta.getRowCount()) {
+                    JOptionPane.showMessageDialog(null, "Producto no encontrado", "Mensaje", JOptionPane.OK_OPTION);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            }
- 
-
-        
-
-
-        
+        }
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -280,10 +262,16 @@ public final class Ventas extends javax.swing.JFrame {
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Vaciar carrito");
         jButton5.setBorder(null);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         agregar.setBackground(new java.awt.Color(46, 204, 113));
         agregar.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         agregar.setForeground(new java.awt.Color(255, 255, 255));
+        agregar.setMnemonic('a');
         agregar.setText("Agregar");
         agregar.setBorder(null);
         agregar.setMaximumSize(new java.awt.Dimension(90, 36));
@@ -401,7 +389,7 @@ public final class Ventas extends javax.swing.JFrame {
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         agregar();
-       
+
     }//GEN-LAST:event_agregarActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -420,20 +408,25 @@ public final class Ventas extends javax.swing.JFrame {
     }//GEN-LAST:event_jBcorteCajaActionPerformed
 
     private void agregarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_agregarKeyPressed
-     
+
     }//GEN-LAST:event_agregarKeyPressed
 
     private void jPVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPVentaKeyPressed
-       
+
     }//GEN-LAST:event_jPVentaKeyPressed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
- 
+
     }//GEN-LAST:event_formKeyPressed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buscarActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        model.setRowCount(0);        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -451,22 +444,16 @@ public final class Ventas extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Ventas().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Ventas().setVisible(true);
         });
     }
 
