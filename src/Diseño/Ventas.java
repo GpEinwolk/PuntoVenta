@@ -36,6 +36,7 @@ public final class Ventas extends javax.swing.JFrame {
     }
 
     void agregar() {
+
         int x = tablaVenta.getRowCount();
         if (buscar.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "No a ingresado ningun producto", "Mensaje", JOptionPane.OK_OPTION);
@@ -53,21 +54,24 @@ public final class Ventas extends javax.swing.JFrame {
                 ResultSet rs = st.executeQuery(sql);
 
                 while (rs.next()) {
-                    
+
                     datos[0] = rs.getString(1);
                     datos[1] = rs.getString(2);
                     datos[2] = rs.getString(3);
 
                     if (buscar.getText().equals(datos[0])) {
                         model = (DefaultTableModel) tablaVenta.getModel();
+
                         int exist = Integer.parseInt(datos[2]);
-                        
+
                         if (filas == -1) {
                             model.addRow(new Object[]{datos[0], datos[1], cantidad});
+                            cobrar = cobrar + Float.parseFloat(datos[1]);
+                            jLabel1.setText("$" + String.valueOf(cobrar));
                         } else {
-                            
+
                             boolean variable = false;
-                            
+
                             for (int i = 0; i < model.getRowCount(); i++) {
                                 Object producto = model.getValueAt(i, 0);
                                 int cant = (int) model.getValueAt(i, 2);
@@ -76,12 +80,16 @@ public final class Ventas extends javax.swing.JFrame {
                                         JOptionPane.showMessageDialog(null, "producto agotado", "Mensaje", JOptionPane.OK_OPTION);
                                     } else {
                                         model.setValueAt((cant + 1), i, 2);
+                                        cobrar = cobrar + Float.parseFloat(datos[1]);
+                                        jLabel1.setText("$" + String.valueOf(cobrar));
                                     }
                                     variable = true;
                                 }
                             }
                             if (variable == false) {
                                 model.addRow(new Object[]{datos[0], datos[1], cantidad});
+                                cobrar = cobrar + Float.parseFloat(datos[1]);
+                                jLabel1.setText("$" + String.valueOf(cobrar));
                             }
 
                         }
@@ -123,6 +131,7 @@ public final class Ventas extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         buscar = new javax.swing.JTextField();
+        borrarProducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -316,11 +325,23 @@ public final class Ventas extends javax.swing.JFrame {
             }
         });
 
+        buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         buscar.setMaximumSize(new java.awt.Dimension(90, 36));
         buscar.setMinimumSize(new java.awt.Dimension(90, 36));
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarActionPerformed(evt);
+            }
+        });
+
+        borrarProducto.setBackground(new java.awt.Color(231, 76, 60));
+        borrarProducto.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
+        borrarProducto.setForeground(new java.awt.Color(255, 255, 255));
+        borrarProducto.setText("Eliminar");
+        borrarProducto.setBorder(null);
+        borrarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarProductoActionPerformed(evt);
             }
         });
 
@@ -346,6 +367,8 @@ public final class Ventas extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(jPVentaLayout.createSequentialGroup()
                         .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(borrarProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -367,10 +390,12 @@ public final class Ventas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(borrarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton2)
                         .addComponent(jLabel1)))
@@ -397,7 +422,11 @@ public final class Ventas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        buscarProductos ventanaBuscar = new buscarProductos(this, false);
+        ventanaBuscar.setTitle("Buscar Productos");
+        ventanaBuscar.setLocationRelativeTo(null);
+        ventanaBuscar.setVisible(true);
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jBcorteCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcorteCajaActionPerformed
@@ -425,8 +454,33 @@ public final class Ventas extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        model.setRowCount(0);        
+        try {
+
+            model.setRowCount(0);
+            cobrar = 0;
+            jLabel1.setText("$" + String.valueOf(cobrar));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "El carrito esta vacio", "Mensaje", JOptionPane.OK_OPTION);
+
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void borrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarProductoActionPerformed
+        // TODO add your handling code here:
+        try {
+            DefaultTableModel dtm = (DefaultTableModel) tablaVenta.getModel();
+            int canti = (int) dtm.getValueAt(tablaVenta.getSelectedRow(), 2);
+            float precio = Float.parseFloat((String) dtm.getValueAt(tablaVenta.getSelectedRow(), 1));
+            float quitarprecio = canti * precio;
+            cobrar = cobrar - quitarprecio;
+            jLabel1.setText("$" + String.valueOf(cobrar));
+            dtm.removeRow(tablaVenta.getSelectedRow());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Producto no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
+
+        }
+
+    }//GEN-LAST:event_borrarProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -448,7 +502,7 @@ public final class Ventas extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -459,7 +513,8 @@ public final class Ventas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar;
-    private javax.swing.JTextField buscar;
+    private javax.swing.JButton borrarProducto;
+    public static javax.swing.JTextField buscar;
     private javax.swing.JButton jBcorteCaja;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
