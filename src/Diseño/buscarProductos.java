@@ -12,7 +12,10 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -22,6 +25,7 @@ public class buscarProductos extends javax.swing.JDialog {
 
     Conexion conn = new Conexion();
     Connection cn = conn.getConnection();
+    TableRowSorter<TableModel> tr;
 
     /**
      * Creates new form buscarProductos
@@ -30,6 +34,7 @@ public class buscarProductos extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         tablaProductos();
+        
     }
 
     void tablaProductos() {
@@ -39,8 +44,9 @@ public class buscarProductos extends javax.swing.JDialog {
         modelo.addColumn("Codigo");
         modelo.addColumn("Precio");
         modelo.addColumn("Cantidad");
+        modelo.addColumn("Descripción");
 
-        String sql = "SELECT nombre,precio,cantidad FROM producto";
+        String sql = "SELECT nombre,precio,cantidad,espef FROM producto";
         Statement st;
         try {
             jTable1.setModel(modelo);
@@ -50,11 +56,14 @@ public class buscarProductos extends javax.swing.JDialog {
                 datos[0] = rs.getString(1);
                 datos[1] = rs.getString(2);
                 datos[2] = rs.getString(3);
-                modelo.addRow(new Object[]{datos[0], datos[1], datos[2]});
+                datos[3] = rs.getString(4);
+                modelo.addRow(new Object[]{datos[0], datos[1], datos[2], datos[3]});
             }
         } catch (SQLException ex) {
             Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
         }
+        tr=new TableRowSorter<>(modelo);
+        jTable1.setRowSorter(tr);
     }
 
     /**
@@ -70,6 +79,7 @@ public class buscarProductos extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        campo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -92,6 +102,12 @@ public class buscarProductos extends javax.swing.JDialog {
             }
         });
 
+        campo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -103,6 +119,8 @@ public class buscarProductos extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jButton1)
+                        .addGap(46, 46, 46)
+                        .addComponent(campo, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -110,7 +128,9 @@ public class buscarProductos extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                 .addContainerGap())
@@ -140,11 +160,22 @@ public class buscarProductos extends javax.swing.JDialog {
             String codigo = (String) dtm.getValueAt(jTable1.getSelectedRow(), 0);
             this.dispose();
             Ventas.buscar.setText(codigo);
+            Ventas.agregar();
             } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Producto no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void campoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoKeyReleased
+        // TODO add your handling code here:
+        String filtro=campo.getText();
+        if(!filtro.equals("")){
+            tr.setRowFilter(RowFilter.regexFilter(filtro));
+        }else{
+            tr.setRowFilter(null);
+        }
+    }//GEN-LAST:event_campoKeyReleased
 
     /**
      * @param args the command line arguments
@@ -189,6 +220,7 @@ public class buscarProductos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField campo;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
