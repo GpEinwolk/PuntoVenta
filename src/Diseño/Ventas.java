@@ -13,13 +13,13 @@ import javax.swing.table.DefaultTableModel;
 
 public final class Ventas extends javax.swing.JFrame {
 
-    Conexion conn = new Conexion();
-    Connection cn = conn.getConnection();
+    public static Conexion conn = new Conexion();
+    public static Connection cn = conn.getConnection();
     DecimalFormat df = new DecimalFormat("#.00");
 
-    DefaultTableModel model;
-    float cobrar = 0;
-    int filas = -1;
+    public static DefaultTableModel model;
+    public static float cobrar = 0;
+    public static int filas = -1;
     Icon ua;
 
     public Ventas() {
@@ -34,8 +34,7 @@ public final class Ventas extends javax.swing.JFrame {
         modelo.addColumn("Cantidad");
         tablaVenta.setModel(modelo);
     }
-
-    void agregar() {
+   public static void agregar() {
 
         int x = tablaVenta.getRowCount();
         if (buscar.getText().equals("")) {
@@ -520,7 +519,7 @@ public final class Ventas extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
+    public static javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -530,6 +529,6 @@ public final class Ventas extends javax.swing.JFrame {
     private javax.swing.JPanel jPcontenedor;
     private javax.swing.JPanel jPrincipal;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tablaVenta;
+    public static javax.swing.JTable tablaVenta;
     // End of variables declaration//GEN-END:variables
 }
