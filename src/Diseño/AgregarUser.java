@@ -52,9 +52,7 @@ public class AgregarUser extends javax.swing.JDialog {
         agregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(850, 260));
         setMinimumSize(new java.awt.Dimension(850, 260));
-        setPreferredSize(new java.awt.Dimension(850, 260));
         setResizable(false);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 

@@ -258,6 +258,11 @@ public final class Ventas extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Cobrar");
         jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel11.setBackground(new java.awt.Color(251, 251, 251));
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
@@ -480,6 +485,12 @@ public final class Ventas extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_borrarProductoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       Ventas vnt = new Ventas();
+       Cobrar c = new Cobrar(vnt,true);
+       c.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

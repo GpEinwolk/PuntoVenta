@@ -488,6 +488,18 @@ public final class Interface extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         añadirUsuario = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenu9 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
 
@@ -1092,7 +1104,7 @@ public final class Interface extends javax.swing.JFrame {
                                         .addGroup(jPcorteCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jPcorteCajaLayout.createSequentialGroup()
                                                 .addComponent(jLabel19)
-                                                .addGap(291, 291, 291))
+                                                .addGap(294, 294, 294))
                                             .addGroup(jPcorteCajaLayout.createSequentialGroup()
                                                 .addGroup(jPcorteCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                     .addComponent(jPdineroCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1824,6 +1836,52 @@ public final class Interface extends javax.swing.JFrame {
         jMenu2.setForeground(new java.awt.Color(255, 255, 255));
         jMenu2.setText("Catalogos");
         jMenu2.setOpaque(true);
+
+        jMenu5.setText("Productos");
+
+        jMenuItem5.setText("Agregar");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem5);
+
+        jMenuItem6.setText("Modificar");
+        jMenu5.add(jMenuItem6);
+
+        jMenu2.add(jMenu5);
+
+        jMenu6.setText("Servicios");
+
+        jMenuItem2.setText("jMenuItem2");
+        jMenu6.add(jMenuItem2);
+
+        jMenuItem7.setText("jMenuItem7");
+        jMenu6.add(jMenuItem7);
+
+        jMenu2.add(jMenu6);
+
+        jMenu7.setText("Provedores");
+
+        jMenu8.setText("jMenu8");
+        jMenu7.add(jMenu8);
+
+        jMenuItem8.setText("jMenuItem8");
+        jMenu7.add(jMenuItem8);
+
+        jMenu2.add(jMenu7);
+
+        jMenu9.setText("Cliente");
+
+        jMenuItem9.setText("jMenuItem9");
+        jMenu9.add(jMenuItem9);
+
+        jMenuItem10.setText("jMenuItem10");
+        jMenu9.add(jMenuItem10);
+
+        jMenu2.add(jMenu9);
+
         jMenuBar2.add(jMenu2);
 
         jMenu3.setBackground(new java.awt.Color(30, 30, 30));
@@ -1890,7 +1948,7 @@ public final class Interface extends javax.swing.JFrame {
     private void jSModUtilidStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSModUtilidStateChanged
                 
        if (jSModUtilid!=null&& !txtModCosto.getText().isEmpty()) {
-        float costo = 0;
+       float costo = 0;
        costo = Float.parseFloat(txtModCosto.getText());
        float utilidad = 0;
        utilidad = (float) jSModUtilid.getValue();
@@ -2011,6 +2069,10 @@ public final class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tablaDatosProductoMouseClicked
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -2128,7 +2190,19 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPVentas;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
