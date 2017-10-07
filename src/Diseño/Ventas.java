@@ -247,14 +247,15 @@ public final class Ventas extends javax.swing.JFrame {
         tablaVenta.setSelectionBackground(new java.awt.Color(62, 226, 141));
         jScrollPane2.setViewportView(tablaVenta);
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 50)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(39, 174, 96));
+        jLabel1.setBackground(new java.awt.Color(40, 41, 41));
+        jLabel1.setFont(new java.awt.Font("Calibri Light", 0, 50)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 153, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("$0.00");
         jLabel1.setOpaque(true);
 
-        jButton2.setBackground(new java.awt.Color(46, 204, 113));
-        jButton2.setFont(new java.awt.Font("Calibri", 0, 48)); // NOI18N
+        jButton2.setBackground(new java.awt.Color(29, 184, 83));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Cobrar");
         jButton2.setBorder(null);
@@ -270,8 +271,8 @@ public final class Ventas extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Busque el producto");
 
-        jButton5.setBackground(new java.awt.Color(231, 76, 60));
-        jButton5.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
+        jButton5.setBackground(new java.awt.Color(192, 57, 43));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Vaciar carrito");
         jButton5.setBorder(null);
@@ -338,8 +339,8 @@ public final class Ventas extends javax.swing.JFrame {
             }
         });
 
-        borrarProducto.setBackground(new java.awt.Color(231, 76, 60));
-        borrarProducto.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
+        borrarProducto.setBackground(new java.awt.Color(192, 57, 43));
+        borrarProducto.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         borrarProducto.setForeground(new java.awt.Color(255, 255, 255));
         borrarProducto.setText("Eliminar");
         borrarProducto.setBorder(null);
@@ -372,9 +373,9 @@ public final class Ventas extends javax.swing.JFrame {
                     .addGroup(jPVentaLayout.createSequentialGroup()
                         .addComponent(jButton5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(borrarProducto)
+                        .addComponent(borrarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -385,7 +386,7 @@ public final class Ventas extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(agregar, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
@@ -394,15 +395,15 @@ public final class Ventas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(borrarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2)
-                        .addComponent(jLabel1)))
+                    .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(borrarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
