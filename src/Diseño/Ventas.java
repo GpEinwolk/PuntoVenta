@@ -34,7 +34,8 @@ public final class Ventas extends javax.swing.JFrame {
         modelo.addColumn("Cantidad");
         tablaVenta.setModel(modelo);
     }
-   public static void agregar() {
+
+    public static void agregar() {
 
         int x = tablaVenta.getRowCount();
         if (buscar.getText().equals("")) {
@@ -44,7 +45,7 @@ public final class Ventas extends javax.swing.JFrame {
             String sql = "SELECT nombre,precio,cantidad FROM producto";
             Statement st;
 
-            int cantidad = 1;
+            int cantidad = (int) jSpinner1.getValue();
             String datos[] = new String[5];
 
             try {
@@ -63,9 +64,10 @@ public final class Ventas extends javax.swing.JFrame {
 
                         int exist = Integer.parseInt(datos[2]);
 
-                        if (filas == -1) {
+                        if (model.getRowCount() == 0) {
                             model.addRow(new Object[]{datos[0], datos[1], cantidad});
                             cobrar = cobrar + Float.parseFloat(datos[1]);
+                            cobrar = cobrar*cantidad;
                             jLabel1.setText("$" + String.valueOf(cobrar));
                         } else {
 
@@ -73,13 +75,13 @@ public final class Ventas extends javax.swing.JFrame {
 
                             for (int i = 0; i < model.getRowCount(); i++) {
                                 Object producto = model.getValueAt(i, 0);
-                                int cant = (int) model.getValueAt(i, 2);
+                                int cant = (int) model.getValueAt(i, 2) + (int) jSpinner1.getValue();
                                 if (buscar.getText().equals(producto)) {
-                                    if (exist == cant) {
+                                    if (exist <= cant) {
                                         JOptionPane.showMessageDialog(null, "producto agotado", "Mensaje", JOptionPane.OK_OPTION);
                                     } else {
-                                        model.setValueAt((cant + 1), i, 2);
-                                        cobrar = cobrar + Float.parseFloat(datos[1]);
+                                        model.setValueAt(cant, i, 2);
+                                        cobrar = cobrar + (Float.parseFloat(datos[1])*cantidad);
                                         jLabel1.setText("$" + String.valueOf(cobrar));
                                     }
                                     variable = true;
@@ -87,7 +89,7 @@ public final class Ventas extends javax.swing.JFrame {
                             }
                             if (variable == false) {
                                 model.addRow(new Object[]{datos[0], datos[1], cantidad});
-                                cobrar = cobrar + Float.parseFloat(datos[1]);
+                                cobrar = cobrar + (Float.parseFloat(datos[1])*cantidad);
                                 jLabel1.setText("$" + String.valueOf(cobrar));
                             }
 
@@ -131,6 +133,7 @@ public final class Ventas extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         buscar = new javax.swing.JTextField();
         borrarProducto = new javax.swing.JButton();
+        jSpinner1 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -350,6 +353,9 @@ public final class Ventas extends javax.swing.JFrame {
             }
         });
 
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jSpinner1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         javax.swing.GroupLayout jPVentaLayout = new javax.swing.GroupLayout(jPVenta);
         jPVenta.setLayout(jPVentaLayout);
         jPVentaLayout.setHorizontalGroup(
@@ -362,7 +368,9 @@ public final class Ventas extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPVentaLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                        .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSpinner1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -374,7 +382,7 @@ public final class Ventas extends javax.swing.JFrame {
                         .addComponent(jButton5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(borrarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -386,16 +394,20 @@ public final class Ventas extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(agregar, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPVentaLayout.createSequentialGroup()
+                        .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -419,6 +431,7 @@ public final class Ventas extends javax.swing.JFrame {
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         agregar();
+
 
     }//GEN-LAST:event_agregarActionPerformed
 
@@ -488,9 +501,13 @@ public final class Ventas extends javax.swing.JFrame {
     }//GEN-LAST:event_borrarProductoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       Ventas vnt = new Ventas();
-       Cobrar c = new Cobrar(vnt,true);
-       c.setVisible(true);
+        Cobrar ventanaCobrar = new Cobrar(this, false);
+        ventanaCobrar.setLocationRelativeTo(null);
+        ventanaCobrar.setVisible(true);
+        System.out.println(cobrar);
+//        Ventas vnt = new Ventas();
+//        Cobrar c = new Cobrar(vnt, true);
+//        c.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -541,6 +558,7 @@ public final class Ventas extends javax.swing.JFrame {
     private javax.swing.JPanel jPcontenedor;
     private javax.swing.JPanel jPrincipal;
     private javax.swing.JScrollPane jScrollPane2;
+    private static javax.swing.JSpinner jSpinner1;
     public static javax.swing.JTable tablaVenta;
     // End of variables declaration//GEN-END:variables
 }

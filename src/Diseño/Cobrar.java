@@ -2,18 +2,17 @@ package Diseño;
 
 public class Cobrar extends javax.swing.JDialog {
 
-    
     public Cobrar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
+
     public Cobrar(Ventas vnt, boolean modal) {
         super(vnt, modal);
         initComponents();
         this.setTitle("Vender");
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -27,7 +26,7 @@ public class Cobrar extends javax.swing.JDialog {
         agregar1 = new javax.swing.JButton();
         agregar2 = new javax.swing.JButton();
         jPContenedor = new javax.swing.JPanel();
-        jPtarjeta = new javax.swing.JPanel();
+        Tarjeta = new javax.swing.JPanel();
         jPef1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -36,7 +35,7 @@ public class Cobrar extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jMixto = new javax.swing.JPanel();
+        Mixto = new javax.swing.JPanel();
         jPef2 = new javax.swing.JPanel();
         jPef3 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -61,7 +60,7 @@ public class Cobrar extends javax.swing.JDialog {
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jPefectivo = new javax.swing.JPanel();
+        Efectivo = new javax.swing.JPanel();
         jPef = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -199,9 +198,9 @@ public class Cobrar extends javax.swing.JDialog {
         jPContenedor.setPreferredSize(new java.awt.Dimension(464, 524));
         jPContenedor.setLayout(new java.awt.CardLayout());
 
-        jPtarjeta.setBackground(new java.awt.Color(40, 41, 41));
-        jPtarjeta.setPreferredSize(new java.awt.Dimension(464, 524));
-        jPtarjeta.setLayout(new java.awt.GridBagLayout());
+        Tarjeta.setBackground(new java.awt.Color(40, 41, 41));
+        Tarjeta.setPreferredSize(new java.awt.Dimension(464, 524));
+        Tarjeta.setLayout(new java.awt.GridBagLayout());
 
         jPef1.setLayout(new javax.swing.BoxLayout(jPef1, javax.swing.BoxLayout.Y_AXIS));
 
@@ -213,6 +212,12 @@ public class Cobrar extends javax.swing.JDialog {
         jLabel7.setName(""); // NOI18N
 
         jTextField2.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        jTextField2.setText("0.00");
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -286,15 +291,15 @@ public class Cobrar extends javax.swing.JDialog {
 
         jPef1.add(jPanel8);
 
-        jPtarjeta.add(jPef1, new java.awt.GridBagConstraints());
+        Tarjeta.add(jPef1, new java.awt.GridBagConstraints());
 
-        jPContenedor.add(jPtarjeta, "card2");
+        jPContenedor.add(Tarjeta, "card2");
 
-        jMixto.setBackground(new java.awt.Color(40, 41, 41));
-        jMixto.setMaximumSize(new java.awt.Dimension(464, 524));
-        jMixto.setMinimumSize(new java.awt.Dimension(464, 524));
-        jMixto.setPreferredSize(new java.awt.Dimension(464, 524));
-        jMixto.setLayout(new java.awt.GridBagLayout());
+        Mixto.setBackground(new java.awt.Color(40, 41, 41));
+        Mixto.setMaximumSize(new java.awt.Dimension(464, 524));
+        Mixto.setMinimumSize(new java.awt.Dimension(464, 524));
+        Mixto.setPreferredSize(new java.awt.Dimension(464, 524));
+        Mixto.setLayout(new java.awt.GridBagLayout());
 
         jPef2.setBackground(new java.awt.Color(40, 41, 41));
         jPef2.setLayout(new javax.swing.BoxLayout(jPef2, javax.swing.BoxLayout.Y_AXIS));
@@ -346,6 +351,12 @@ public class Cobrar extends javax.swing.JDialog {
         jLabel21.setName(""); // NOI18N
 
         jTextField5.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        jTextField5.setText("0.00");
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField5KeyReleased(evt);
+            }
+        });
 
         jLabel22.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
@@ -392,6 +403,12 @@ public class Cobrar extends javax.swing.JDialog {
         jLabel26.setName(""); // NOI18N
 
         jTextField6.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        jTextField6.setText("0.00");
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField6KeyReleased(evt);
+            }
+        });
 
         jLabel27.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
@@ -533,18 +550,18 @@ public class Cobrar extends javax.swing.JDialog {
 
         jPef2.add(jPef4);
 
-        jMixto.add(jPef2, new java.awt.GridBagConstraints());
+        Mixto.add(jPef2, new java.awt.GridBagConstraints());
 
-        jPContenedor.add(jMixto, "card2");
+        jPContenedor.add(Mixto, "card2");
 
-        jPefectivo.setBackground(new java.awt.Color(40, 41, 41));
-        jPefectivo.setPreferredSize(new java.awt.Dimension(464, 524));
+        Efectivo.setBackground(new java.awt.Color(40, 41, 41));
+        Efectivo.setPreferredSize(new java.awt.Dimension(464, 524));
         java.awt.GridBagLayout jPanel2Layout = new java.awt.GridBagLayout();
         jPanel2Layout.columnWidths = new int[] {3};
         jPanel2Layout.rowHeights = new int[] {3};
         jPanel2Layout.columnWeights = new double[] {3.0};
         jPanel2Layout.rowWeights = new double[] {3.0};
-        jPefectivo.setLayout(jPanel2Layout);
+        Efectivo.setLayout(jPanel2Layout);
 
         jPef.setLayout(new javax.swing.BoxLayout(jPef, javax.swing.BoxLayout.Y_AXIS));
 
@@ -556,6 +573,12 @@ public class Cobrar extends javax.swing.JDialog {
         jLabel1.setName(""); // NOI18N
 
         jTextField1.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        jTextField1.setText("0.00");
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -640,9 +663,9 @@ public class Cobrar extends javax.swing.JDialog {
 
         jPef.add(jPanel6);
 
-        jPefectivo.add(jPef, new java.awt.GridBagConstraints());
+        Efectivo.add(jPef, new java.awt.GridBagConstraints());
 
-        jPContenedor.add(jPefectivo, "card2");
+        jPContenedor.add(Efectivo, "card2");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -670,11 +693,29 @@ public class Cobrar extends javax.swing.JDialog {
     }//GEN-LAST:event_atrasActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-       
+
     }//GEN-LAST:event_agregarActionPerformed
 
     private void jCobroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCobroActionPerformed
         // TODO add your handling code here:
+        String panel = (String) jCobro.getSelectedItem();
+        jPContenedor.removeAll();
+        switch (panel) {
+            case "Tarjeta":
+                jPContenedor.add(Tarjeta);
+                break;
+            case "Mixto":
+                jPContenedor.add(Mixto);
+                break;
+
+            default:
+                jPContenedor.add(Efectivo);
+                ;
+                break;
+        }
+        jPContenedor.updateUI();
+        jPContenedor.repaint();
+
     }//GEN-LAST:event_jCobroActionPerformed
 
     private void agregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar1ActionPerformed
@@ -684,6 +725,58 @@ public class Cobrar extends javax.swing.JDialog {
     private void agregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_agregar2ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+        float pago = Float.parseFloat(jTextField1.getText());
+        float cambio = pago - Ventas.cobrar;
+        if(pago<=Ventas.cobrar){
+        jLabel4.setText("Falta:");
+        cambio= cambio*(-1);
+        jLabel2.setText(String.valueOf(cambio));
+        }else{
+        jLabel4.setText("Cambio:");
+        jLabel2.setText(String.valueOf(cambio));
+     
+ }   
+        
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        // TODO add your handling code here:
+        float pago = Float.parseFloat(jTextField2.getText());
+        float cambio = pago - Ventas.cobrar;
+        if (pago <= Ventas.cobrar) {
+            jLabel11.setText("Falta:");
+            cambio = cambio * (-1);
+            jLabel9.setText(String.valueOf(cambio));
+        } else {
+            jLabel11.setText("Cambio:");
+            jLabel9.setText(String.valueOf(cambio));
+
+        }
+        
+    }//GEN-LAST:event_jTextField2KeyReleased
+
+    private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
+        // TODO add your handling code here:
+        float pago = Float.parseFloat(jTextField5.getText());
+        float cambio = pago - Ventas.cobrar;
+        if(pago<=Ventas.cobrar){
+        jLabel35.setText("Falta:");
+        cambio= cambio*(-1);
+        jLabel33.setText(String.valueOf(cambio));
+        }else{
+        jLabel35.setText("Cambio:");
+        jLabel33.setText(String.valueOf(cambio));
+     
+ }
+        
+    }//GEN-LAST:event_jTextField5KeyReleased
+
+    private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6KeyReleased
 
     /**
      * @param args the command line arguments
@@ -729,6 +822,9 @@ public class Cobrar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Efectivo;
+    private javax.swing.JPanel Mixto;
+    private javax.swing.JPanel Tarjeta;
     private javax.swing.JButton agregar;
     private javax.swing.JButton agregar1;
     private javax.swing.JButton agregar2;
@@ -755,7 +851,6 @@ public class Cobrar extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jMixto;
     private javax.swing.JPanel jPContenedor;
     private javax.swing.JPanel jPMenu;
     private javax.swing.JPanel jPanel11;
@@ -775,8 +870,6 @@ public class Cobrar extends javax.swing.JDialog {
     private javax.swing.JPanel jPef4;
     private javax.swing.JPanel jPef5;
     private javax.swing.JPanel jPef6;
-    private javax.swing.JPanel jPefectivo;
-    private javax.swing.JPanel jPtarjeta;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;

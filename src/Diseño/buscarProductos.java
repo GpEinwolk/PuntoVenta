@@ -5,15 +5,20 @@
  */
 package Diseño;
 
+import java.awt.Component;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -34,7 +39,7 @@ public class buscarProductos extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         tablaProductos();
-        
+
     }
 
     void tablaProductos() {
@@ -62,8 +67,22 @@ public class buscarProductos extends javax.swing.JDialog {
         } catch (SQLException ex) {
             Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        tr=new TableRowSorter<>(modelo);
+        tr = new TableRowSorter<>(modelo);
         jTable1.setRowSorter(tr);
+        TableColumnModel columnModel = jTable1.getColumnModel();
+        for (int col = 0; col < jTable1.getColumnCount(); col++) {
+
+            int maxwidth = 0;
+            for (int row = 0; row < jTable1.getRowCount(); row++) {
+                TableCellRenderer rend = jTable1.getCellRenderer(row, col);
+                Object value = jTable1.getValueAt(row, col);
+                Component comp = rend.getTableCellRendererComponent(jTable1, value, false, false, row, col);
+                maxwidth = Math.max(comp.getPreferredSize().width, maxwidth);
+            }
+            TableColumn column = columnModel.getColumn(col);
+            column.setPreferredWidth(maxwidth);
+            pack();
+        }
     }
 
     /**
@@ -80,8 +99,10 @@ public class buscarProductos extends javax.swing.JDialog {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         campo = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 400));
 
         jPanel1.setBackground(new java.awt.Color(40, 41, 41));
 
@@ -95,6 +116,9 @@ public class buscarProductos extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(jTable1);
 
+        jButton1.setBackground(new java.awt.Color(46, 204, 113));
+        jButton1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,6 +132,9 @@ public class buscarProductos extends javax.swing.JDialog {
             }
         });
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Filtrar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -115,24 +142,27 @@ public class buscarProductos extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jButton1)
-                        .addGap(46, 46, 46)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(campo, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(48, 48, 48))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2)
+                    .addComponent(campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -156,23 +186,26 @@ public class buscarProductos extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-            String codigo = (String) dtm.getValueAt(jTable1.getSelectedRow(), 0);
-            this.dispose();
-            Ventas.buscar.setText(codigo);
-            Ventas.agregar();
-            } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Producto no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        String codigo = (String) dtm.getValueAt(jTable1.getSelectedRow(), 0);
+        this.dispose();
+        Ventas.buscar.setText(codigo);
+        Ventas.agregar();
+            
+        
+        } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Producto no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
 
-        }
+            }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void campoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoKeyReleased
         // TODO add your handling code here:
-        String filtro=campo.getText();
-        if(!filtro.equals("")){
+        String filtro = "(?i)" + campo.getText();
+        if (!filtro.equals("")) {
             tr.setRowFilter(RowFilter.regexFilter(filtro));
-        }else{
+        } else {
             tr.setRowFilter(null);
         }
     }//GEN-LAST:event_campoKeyReleased
@@ -222,6 +255,7 @@ public class buscarProductos extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField campo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
