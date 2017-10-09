@@ -26,7 +26,7 @@ public class Cobrar extends javax.swing.JDialog {
         agregar1 = new javax.swing.JButton();
         agregar2 = new javax.swing.JButton();
         jPContenedor = new javax.swing.JPanel();
-        Tarjeta = new javax.swing.JPanel();
+        jPtarjeta = new javax.swing.JPanel();
         jPef1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -35,7 +35,7 @@ public class Cobrar extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        Mixto = new javax.swing.JPanel();
+        jMixto = new javax.swing.JPanel();
         jPef2 = new javax.swing.JPanel();
         jPef3 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -52,15 +52,12 @@ public class Cobrar extends javax.swing.JDialog {
         jTextField6 = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
         jPef6 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        Efectivo = new javax.swing.JPanel();
+        jPefectivo = new javax.swing.JPanel();
         jPef = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -72,7 +69,6 @@ public class Cobrar extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(737, 524));
         setMinimumSize(new java.awt.Dimension(737, 524));
         setResizable(false);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
@@ -198,9 +194,9 @@ public class Cobrar extends javax.swing.JDialog {
         jPContenedor.setPreferredSize(new java.awt.Dimension(464, 524));
         jPContenedor.setLayout(new java.awt.CardLayout());
 
-        Tarjeta.setBackground(new java.awt.Color(40, 41, 41));
-        Tarjeta.setPreferredSize(new java.awt.Dimension(464, 524));
-        Tarjeta.setLayout(new java.awt.GridBagLayout());
+        jPtarjeta.setBackground(new java.awt.Color(40, 41, 41));
+        jPtarjeta.setPreferredSize(new java.awt.Dimension(464, 524));
+        jPtarjeta.setLayout(new java.awt.GridBagLayout());
 
         jPef1.setLayout(new javax.swing.BoxLayout(jPef1, javax.swing.BoxLayout.Y_AXIS));
 
@@ -212,12 +208,6 @@ public class Cobrar extends javax.swing.JDialog {
         jLabel7.setName(""); // NOI18N
 
         jTextField2.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jTextField2.setText("0.00");
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField2KeyReleased(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -246,7 +236,7 @@ public class Cobrar extends javax.swing.JDialog {
 
         jLabel9.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel9.setText("0.00");
+        jLabel9.setText(String.valueOf(Ventas.cobrar));
         jLabel9.setMaximumSize(new java.awt.Dimension(84, 30));
         jLabel9.setMinimumSize(new java.awt.Dimension(84, 30));
         jLabel9.setPreferredSize(new java.awt.Dimension(84, 30));
@@ -291,15 +281,15 @@ public class Cobrar extends javax.swing.JDialog {
 
         jPef1.add(jPanel8);
 
-        Tarjeta.add(jPef1, new java.awt.GridBagConstraints());
+        jPtarjeta.add(jPef1, new java.awt.GridBagConstraints());
 
-        jPContenedor.add(Tarjeta, "card2");
+        jPContenedor.add(jPtarjeta, "card2");
 
-        Mixto.setBackground(new java.awt.Color(40, 41, 41));
-        Mixto.setMaximumSize(new java.awt.Dimension(464, 524));
-        Mixto.setMinimumSize(new java.awt.Dimension(464, 524));
-        Mixto.setPreferredSize(new java.awt.Dimension(464, 524));
-        Mixto.setLayout(new java.awt.GridBagLayout());
+        jMixto.setBackground(new java.awt.Color(40, 41, 41));
+        jMixto.setMaximumSize(new java.awt.Dimension(464, 524));
+        jMixto.setMinimumSize(new java.awt.Dimension(464, 524));
+        jMixto.setPreferredSize(new java.awt.Dimension(464, 524));
+        jMixto.setLayout(new java.awt.GridBagLayout());
 
         jPef2.setBackground(new java.awt.Color(40, 41, 41));
         jPef2.setLayout(new javax.swing.BoxLayout(jPef2, javax.swing.BoxLayout.Y_AXIS));
@@ -446,26 +436,26 @@ public class Cobrar extends javax.swing.JDialog {
 
         jPanel16.setBackground(new java.awt.Color(69, 69, 69));
 
-        jLabel28.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel28.setText("0.00");
-        jLabel28.setMaximumSize(new java.awt.Dimension(84, 30));
-        jLabel28.setMinimumSize(new java.awt.Dimension(84, 30));
-        jLabel28.setPreferredSize(new java.awt.Dimension(84, 30));
+        jLabel33.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel33.setText("0.00");
+        jLabel33.setMaximumSize(new java.awt.Dimension(84, 30));
+        jLabel33.setMinimumSize(new java.awt.Dimension(84, 30));
+        jLabel33.setPreferredSize(new java.awt.Dimension(84, 30));
 
-        jLabel29.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel29.setText("$");
-        jLabel29.setMaximumSize(new java.awt.Dimension(84, 30));
-        jLabel29.setMinimumSize(new java.awt.Dimension(84, 30));
-        jLabel29.setPreferredSize(new java.awt.Dimension(84, 30));
+        jLabel35.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel35.setText("Cambio:");
+        jLabel35.setMaximumSize(new java.awt.Dimension(84, 30));
+        jLabel35.setMinimumSize(new java.awt.Dimension(84, 30));
+        jLabel35.setPreferredSize(new java.awt.Dimension(84, 30));
 
-        jLabel30.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel30.setText("Restante:");
-        jLabel30.setMaximumSize(new java.awt.Dimension(84, 30));
-        jLabel30.setMinimumSize(new java.awt.Dimension(84, 30));
-        jLabel30.setPreferredSize(new java.awt.Dimension(84, 30));
+        jLabel34.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel34.setText("$");
+        jLabel34.setMaximumSize(new java.awt.Dimension(84, 30));
+        jLabel34.setMinimumSize(new java.awt.Dimension(84, 30));
+        jLabel34.setPreferredSize(new java.awt.Dimension(84, 30));
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -473,21 +463,22 @@ public class Cobrar extends javax.swing.JDialog {
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+            .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                        .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -497,49 +488,15 @@ public class Cobrar extends javax.swing.JDialog {
 
         jPanel18.setBackground(new java.awt.Color(69, 69, 69));
 
-        jLabel33.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel33.setText("0.00");
-        jLabel33.setMaximumSize(new java.awt.Dimension(84, 30));
-        jLabel33.setMinimumSize(new java.awt.Dimension(84, 30));
-        jLabel33.setPreferredSize(new java.awt.Dimension(84, 30));
-
-        jLabel34.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel34.setText("$");
-        jLabel34.setMaximumSize(new java.awt.Dimension(84, 30));
-        jLabel34.setMinimumSize(new java.awt.Dimension(84, 30));
-        jLabel34.setPreferredSize(new java.awt.Dimension(84, 30));
-
-        jLabel35.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel35.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel35.setText("Cambio:");
-        jLabel35.setMaximumSize(new java.awt.Dimension(84, 30));
-        jLabel35.setMinimumSize(new java.awt.Dimension(84, 30));
-        jLabel35.setPreferredSize(new java.awt.Dimension(84, 30));
-
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+            .addGap(0, 201, Short.MAX_VALUE)
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPef6.add(jPanel18);
@@ -550,18 +507,18 @@ public class Cobrar extends javax.swing.JDialog {
 
         jPef2.add(jPef4);
 
-        Mixto.add(jPef2, new java.awt.GridBagConstraints());
+        jMixto.add(jPef2, new java.awt.GridBagConstraints());
 
-        jPContenedor.add(Mixto, "card2");
+        jPContenedor.add(jMixto, "card2");
 
-        Efectivo.setBackground(new java.awt.Color(40, 41, 41));
-        Efectivo.setPreferredSize(new java.awt.Dimension(464, 524));
+        jPefectivo.setBackground(new java.awt.Color(40, 41, 41));
+        jPefectivo.setPreferredSize(new java.awt.Dimension(464, 524));
         java.awt.GridBagLayout jPanel2Layout = new java.awt.GridBagLayout();
         jPanel2Layout.columnWidths = new int[] {3};
         jPanel2Layout.rowHeights = new int[] {3};
         jPanel2Layout.columnWeights = new double[] {3.0};
         jPanel2Layout.rowWeights = new double[] {3.0};
-        Efectivo.setLayout(jPanel2Layout);
+        jPefectivo.setLayout(jPanel2Layout);
 
         jPef.setLayout(new javax.swing.BoxLayout(jPef, javax.swing.BoxLayout.Y_AXIS));
 
@@ -663,9 +620,9 @@ public class Cobrar extends javax.swing.JDialog {
 
         jPef.add(jPanel6);
 
-        Efectivo.add(jPef, new java.awt.GridBagConstraints());
+        jPefectivo.add(jPef, new java.awt.GridBagConstraints());
 
-        jPContenedor.add(Efectivo, "card2");
+        jPContenedor.add(jPefectivo, "card2");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -702,14 +659,14 @@ public class Cobrar extends javax.swing.JDialog {
         jPContenedor.removeAll();
         switch (panel) {
             case "Tarjeta":
-                jPContenedor.add(Tarjeta);
+                jPContenedor.add(jPtarjeta);
                 break;
             case "Mixto":
-                jPContenedor.add(Mixto);
+                jPContenedor.add(jMixto);
                 break;
 
             default:
-                jPContenedor.add(Efectivo);
+                jPContenedor.add(jPefectivo);
                 ;
                 break;
         }
@@ -726,56 +683,45 @@ public class Cobrar extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_agregar2ActionPerformed
 
+    private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
+        // TODO add your handling code here:
+        cobroMixto();
+    }//GEN-LAST:event_jTextField5KeyReleased
+
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         // TODO add your handling code here:
         float pago = Float.parseFloat(jTextField1.getText());
-        float cambio = pago - Ventas.cobrar;
-        if(pago<=Ventas.cobrar){
-        jLabel4.setText("Falta:");
-        cambio= cambio*(-1);
-        jLabel2.setText(String.valueOf(cambio));
-        }else{
-        jLabel4.setText("Cambio:");
-        jLabel2.setText(String.valueOf(cambio));
-     
- }   
-        
+        float cambio = pago - Ventas.cobrar;        
+
+        if (pago>=Ventas.cobrar) {
+            jLabel4.setText("Cambio:");
+            jLabel2.setText(String.valueOf(cambio));
+        } else {
+            jLabel4.setText("Falta:");
+            cambio = cambio * (-1);
+            jLabel2.setText(String.valueOf(cambio));
+        }
     }//GEN-LAST:event_jTextField1KeyReleased
 
-    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
-        // TODO add your handling code here:
-        float pago = Float.parseFloat(jTextField2.getText());
+    void cobroMixto() {
+        float efectivo = Float.parseFloat(jTextField5.getText());
+        float tarjeta = Float.parseFloat(jTextField6.getText());
+        float pago = tarjeta + efectivo;
         float cambio = pago - Ventas.cobrar;
-        if (pago <= Ventas.cobrar) {
-            jLabel11.setText("Falta:");
-            cambio = cambio * (-1);
-            jLabel9.setText(String.valueOf(cambio));
+        if (pago>=Ventas.cobrar) {
+            jLabel35.setText("Cambio:");
+            jLabel33.setText(String.valueOf(cambio));
         } else {
-            jLabel11.setText("Cambio:");
-            jLabel9.setText(String.valueOf(cambio));
+            jLabel35.setText("Falta:");
+            cambio = cambio * (-1);
+            jLabel33.setText(String.valueOf(cambio));
 
         }
-        
-    }//GEN-LAST:event_jTextField2KeyReleased
 
-    private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
-        // TODO add your handling code here:
-        float pago = Float.parseFloat(jTextField5.getText());
-        float cambio = pago - Ventas.cobrar;
-        if(pago<=Ventas.cobrar){
-        jLabel35.setText("Falta:");
-        cambio= cambio*(-1);
-        jLabel33.setText(String.valueOf(cambio));
-        }else{
-        jLabel35.setText("Cambio:");
-        jLabel33.setText(String.valueOf(cambio));
-     
- }
-        
-    }//GEN-LAST:event_jTextField5KeyReleased
-
+    }
     private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
         // TODO add your handling code here:
+        cobroMixto();
     }//GEN-LAST:event_jTextField6KeyReleased
 
     /**
@@ -822,9 +768,6 @@ public class Cobrar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Efectivo;
-    private javax.swing.JPanel Mixto;
-    private javax.swing.JPanel Tarjeta;
     private javax.swing.JButton agregar;
     private javax.swing.JButton agregar1;
     private javax.swing.JButton agregar2;
@@ -839,10 +782,7 @@ public class Cobrar extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
@@ -851,6 +791,7 @@ public class Cobrar extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jMixto;
     private javax.swing.JPanel jPContenedor;
     private javax.swing.JPanel jPMenu;
     private javax.swing.JPanel jPanel11;
@@ -870,6 +811,8 @@ public class Cobrar extends javax.swing.JDialog {
     private javax.swing.JPanel jPef4;
     private javax.swing.JPanel jPef5;
     private javax.swing.JPanel jPef6;
+    private javax.swing.JPanel jPefectivo;
+    private javax.swing.JPanel jPtarjeta;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
