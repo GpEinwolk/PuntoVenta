@@ -1381,6 +1381,11 @@ public final class Interface extends javax.swing.JFrame {
         txtNombre.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(51, 51, 51));
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
 
         txtCosto.setBackground(new java.awt.Color(251, 251, 251));
         txtCosto.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -2016,6 +2021,8 @@ public final class Interface extends javax.swing.JFrame {
                 txtModArea.setText(tablaDatosModificar.getValueAt(fila, 7).toString());
                 Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)tablaDatosModificar.getValueAt(fila, 8));
                 modFecha.setDate(date);
+                garantMod.setSelectedItem(tablaDatosModificar.getValueAt(fila,9));
+                System.out.println(tablaDatosModificar.getValueAt(fila,9));
             } catch (NumberFormatException | ParseException e) {
             }
 
@@ -2079,7 +2086,12 @@ public final class Interface extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreKeyTyped
 
    
     public static void main(String args[]) {
