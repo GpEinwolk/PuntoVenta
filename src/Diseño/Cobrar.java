@@ -219,7 +219,7 @@ public class Cobrar extends javax.swing.JDialog {
 
         jLabel2.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel2.setText("0.00");
+        jLabel2.setText(String.valueOf(Ventas.cobrar));
         jLabel2.setMaximumSize(new java.awt.Dimension(84, 30));
         jLabel2.setMinimumSize(new java.awt.Dimension(84, 30));
         jLabel2.setPreferredSize(new java.awt.Dimension(84, 30));
@@ -483,7 +483,7 @@ public class Cobrar extends javax.swing.JDialog {
 
         jLabel36.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel36.setText("0.00");
+        jLabel36.setText(String.valueOf(Ventas.cobrar));
         jLabel36.setMaximumSize(new java.awt.Dimension(84, 30));
         jLabel36.setMinimumSize(new java.awt.Dimension(84, 30));
         jLabel36.setPreferredSize(new java.awt.Dimension(84, 30));
@@ -820,6 +820,17 @@ public class Cobrar extends javax.swing.JDialog {
 
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
         // TODO add your handling code here:
+        float pago = Float.parseFloat(jTextField3.getText());
+        float cambio = pago - Ventas.cobrar;        
+
+        if (pago>=Ventas.cobrar) {
+            jLabel15.setText("Cambio:");
+            jLabel13.setText(String.valueOf(cambio));
+        } else {
+            jLabel15.setText("Falta:");
+            cambio = cambio * (-1);
+            jLabel13.setText(String.valueOf(cambio));
+        }
     }//GEN-LAST:event_jTextField3KeyReleased
 
     /**
