@@ -31,6 +31,7 @@ public class buscarProductos extends javax.swing.JDialog {
     Conexion conn = new Conexion();
     Connection cn = conn.getConnection();
     TableRowSorter<TableModel> tr;
+    DefaultTableModel modelo = new DefaultTableModel();
 
     /**
      * Creates new form buscarProductos
@@ -43,7 +44,6 @@ public class buscarProductos extends javax.swing.JDialog {
     }
 
     void tablaProductos() {
-        DefaultTableModel modelo = new DefaultTableModel();
         String datos[] = new String[5];
 
         modelo.addColumn("Codigo");
@@ -186,8 +186,7 @@ public class buscarProductos extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-        String codigo = (String) dtm.getValueAt(jTable1.getSelectedRow(), 0);
+        String codigo = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         this.dispose();
         Ventas.buscar.setText(codigo);
         Ventas.agregar();
