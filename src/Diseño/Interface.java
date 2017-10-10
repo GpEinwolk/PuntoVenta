@@ -277,17 +277,18 @@ public final class Interface extends javax.swing.JFrame {
         ///////////////////////////////////////////////////
         //////////////////////////////////////////////////
         /////////////////////////////////////////////////
-        String sql = "SELECT idgarantia FROM garantia";
+        String sql = "SELECT idgarantia,tipo FROM garantia";
         Statement cp;
-        String index = Integer.toString(garantMod.getSelectedIndex() + 1);
+        String index = garantMod.getSelectedItem().toString();
         String id = "";
 
         try {
             cp = cn.createStatement();
             ResultSet rc = cp.executeQuery(sql);
+            
             while (rc.next()) {
-                if (index.equals(rc.getString("idgarantia"))) {
-                    id = index;
+                if (index.equals(rc.getString("tipo"))) {
+                    id = rc.getString("idgarantia");
                 }
 
             }

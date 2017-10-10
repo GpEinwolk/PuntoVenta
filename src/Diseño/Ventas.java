@@ -1,5 +1,6 @@
 package Diseño;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -336,9 +337,9 @@ public final class Ventas extends javax.swing.JFrame {
         buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         buscar.setMaximumSize(new java.awt.Dimension(90, 36));
         buscar.setMinimumSize(new java.awt.Dimension(90, 36));
-        buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarActionPerformed(evt);
+        buscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                buscarKeyPressed(evt);
             }
         });
 
@@ -466,10 +467,6 @@ public final class Ventas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formKeyPressed
 
-    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buscarActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         try {
@@ -509,6 +506,14 @@ public final class Ventas extends javax.swing.JFrame {
 //        Cobrar c = new Cobrar(vnt, true);
 //        c.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void buscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){  
+           agregar();
+           buscar.setText("");
+        }
+    }//GEN-LAST:event_buscarKeyPressed
 
     /**
      * @param args the command line arguments

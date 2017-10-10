@@ -275,6 +275,7 @@ public class Garant extends javax.swing.JDialog {
         // TODO add your handling code here:
         try {
             String tipo = (String) tablaDatos.getValueAt(tablaDatos.getSelectedRow(), 0);
+            System.out.println(tipo);
             PreparedStatement pps = cn.prepareStatement("DELETE FROM garantia WHERE tipo = '" + tipo + "'");
             pps.executeUpdate();
             mostrarTabla();
