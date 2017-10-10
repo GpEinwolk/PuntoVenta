@@ -1,4 +1,3 @@
-
 package Diseño;
 
 import java.awt.Color;
@@ -25,53 +24,48 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
 public final class Interface extends javax.swing.JFrame {
-     Icon ua; 
-     Icon nv; 
-     Conexion conn = new Conexion();
-     Connection cn = conn.getConnection();
-     DecimalFormat df = new DecimalFormat("#.00");
-    
-    
-    
+
+    Icon ua;
+    Icon nv;
+    Conexion conn = new Conexion();
+    Connection cn = conn.getConnection();
+    DecimalFormat df = new DecimalFormat("#.00");
+
     public Interface() {
         initComponents();
         InicioSesion log = new InicioSesion();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("Punto de Venta");
-       
-        
+
         Calendar actual = new GregorianCalendar();
         fecha.setCalendar(actual);
         mostrarComboProducto();
-        mostrarTablaProducto(); 
-        mostrarTablaModificar(); 
+        mostrarTablaProducto();
+        mostrarTablaModificar();
         mostrarComboProductoMod();
-        
+
     }
-    
-    public void cerrar(){
-    Object [] opciones ={"Aceptar","Cancelar"};
-    int eleccion = JOptionPane.showOptionDialog(rootPane,"Desea cerrar la aplicacion","Mensaje de Confirmacion",
-    JOptionPane.YES_NO_OPTION,
-    JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
-    if (eleccion == JOptionPane.YES_OPTION)
-    {
-         
-        try {
-          PreparedStatement  pps = cn.prepareStatement("UPDATE login SET fechaSal=CURRENT_TIMESTAMP WHERE idlogin=(SELECT AUTO_INCREMENT -1 AS LastId FROM information_schema.tables WHERE TABLE_SCHEMA='puntovent' AND TABLE_NAME='login')");
-             pps.executeUpdate();
-             System.exit(0);
-        } catch (SQLException ex) {
-            Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+
+    public void cerrar() {
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "Desea cerrar la aplicacion", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+
+            try {
+                PreparedStatement pps = cn.prepareStatement("UPDATE login SET fechaSal=CURRENT_TIMESTAMP WHERE idlogin=(SELECT AUTO_INCREMENT -1 AS LastId FROM information_schema.tables WHERE TABLE_SCHEMA='puntovent' AND TABLE_NAME='login')");
+                pps.executeUpdate();
+                System.exit(0);
+            } catch (SQLException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
         }
-            
-             
-    
-    }else{
     }
-    }
-          
-    void mostrarTablaModificar(){
+
+    void mostrarTablaModificar() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
@@ -83,87 +77,81 @@ public final class Interface extends javax.swing.JFrame {
         modelo.addColumn("Caracteristicas");
         modelo.addColumn("Fecha de entrada");
         modelo.addColumn("Garantia");
-        
+
         tablaDatosModificar.setModel(modelo);
-        String sql="SELECT producto.idproducto,producto.nombre,producto.codigo,producto.cantidad,producto.costo,producto.precio,producto.utilidad,producto.espef,producto.fechaIng,garantia.tipo FROM producto,garantia WHERE producto.garantia_idgarantia = garantia.idgarantia";
-        
-        String datos[]=new String[10];
+        String sql = "SELECT producto.idproducto,producto.nombre,producto.codigo,producto.cantidad,producto.costo,producto.precio,producto.utilidad,producto.espef,producto.fechaIng,garantia.tipo FROM producto,garantia WHERE producto.garantia_idgarantia = garantia.idgarantia";
+
+        String datos[] = new String[10];
         Statement st;
-        
-         try {
-             st = cn.createStatement();
-             ResultSet rs  = st.executeQuery(sql);
-             while (rs.next()) {
-                 datos[0]=rs.getString(1);
-                 datos[1]=rs.getString(2);
-                 datos[2]=rs.getString(3);
-                 datos[3]=rs.getString(4);
-                 datos[4]=rs.getString(5);
-                 datos[5]=rs.getString(6);
-                 datos[6]=rs.getString(7);
-                 datos[7]=rs.getString(8);
-                 datos[8]=rs.getString(9);
-                 datos[9]=rs.getString(10);
-                 modelo.addRow(datos);
-                 
-             }
-             
-             tablaDatosModificar.setModel(modelo);
-            
-         } catch (SQLException ex) {
-             Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
-         }
-     }
-    
-    void mostrarComboProducto(){
+
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
+                datos[5] = rs.getString(6);
+                datos[6] = rs.getString(7);
+                datos[7] = rs.getString(8);
+                datos[8] = rs.getString(9);
+                datos[9] = rs.getString(10);
+                modelo.addRow(datos);
+
+            }
+
+            tablaDatosModificar.setModel(modelo);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void mostrarComboProducto() {
         garant.removeAllItems();
-        String sql="SELECT tipo FROM garantia";
-        
+        String sql = "SELECT tipo FROM garantia";
+
         Statement st;
-        
-         try {
-             st = cn.createStatement();
-             ResultSet rs  = st.executeQuery(sql);
-             while (rs.next()) {
-                 garant.addItem(rs.getString("tipo"));
-                 
-             }
-             
-            
-         } catch (SQLException ex) {
-             Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         
-         
-         
+
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                garant.addItem(rs.getString("tipo"));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-      
-    void mostrarComboProductoMod(){
+
+    void mostrarComboProductoMod() {
         garantMod.removeAllItems();
-        String sql="SELECT tipo FROM garantia";
-        
+        String sql = "SELECT tipo FROM garantia";
+
         Statement st;
-        
-         try {
-             st = cn.createStatement();
-             ResultSet rs  = st.executeQuery(sql);
-             while (rs.next()) {
-                 garantMod.addItem(rs.getString("tipo"));
-                 
-             }
-             
-            
-         } catch (SQLException ex) {
-             Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         
-         
-         
+
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                garantMod.addItem(rs.getString("tipo"));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    
-    void mostrarTablaProducto(){
+
+    void mostrarTablaProducto() {
         DefaultTableModel modelo = new DefaultTableModel();
-        
+
         modelo.addColumn("Nombre");
         modelo.addColumn("Codigo");
         modelo.addColumn("Cantidad");
@@ -173,110 +161,99 @@ public final class Interface extends javax.swing.JFrame {
         modelo.addColumn("Caracteristicas");
         modelo.addColumn("Fecha de entrada");
         modelo.addColumn("Garantia");
-        
+
         tablaDatosProducto.setModel(modelo);
-        String sql="SELECT producto.nombre,producto.codigo,producto.cantidad,producto.costo,producto.precio,producto.utilidad,producto.espef,producto.fechaIng,garantia.tipo FROM producto,garantia WHERE producto.garantia_idgarantia = garantia.idgarantia";
-        
-        String datos[]=new String[9];
+        String sql = "SELECT producto.nombre,producto.codigo,producto.cantidad,producto.costo,producto.precio,producto.utilidad,producto.espef,producto.fechaIng,garantia.tipo FROM producto,garantia WHERE producto.garantia_idgarantia = garantia.idgarantia";
+
+        String datos[] = new String[9];
         Statement st;
-        
-         try {
-             st = cn.createStatement();
-             ResultSet rs  = st.executeQuery(sql);
-             while (rs.next()) {
-                 datos[0]=rs.getString(1);
-                 datos[1]=rs.getString(2);
-                 datos[2]=rs.getString(3);
-                 datos[3]=rs.getString(4);
-                 datos[4]=rs.getString(5);
-                 datos[5]=rs.getString(6);
-                 datos[6]=rs.getString(7);
-                 datos[7]=rs.getString(8);
-                 datos[8]=rs.getString(9);
-                 modelo.addRow(datos);
-                 
-             }
-             
-             tablaDatosProducto.setModel(modelo);
-            
-         } catch (SQLException ex) {
-             Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
-         }
-     }
-    
-    void guardarDatosProducto(){
-          if(txtNombre.getText().equals("")||txtCant.getText().equals("")
-               ||txtCosto.getText().equals("")||txtPrecio.getText().equals("")||txtCaract.getText().equals("")){
-           
-           nv = new ImageIcon("src/img/cart (13).png");
-             JOptionPane.showMessageDialog(null,"Debe llenar todos los campos","Mensaje",JOptionPane.OK_OPTION,nv);
-             
-       } else{    
-     
-           
-            try {    
+
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
+                datos[5] = rs.getString(6);
+                datos[6] = rs.getString(7);
+                datos[7] = rs.getString(8);
+                datos[8] = rs.getString(9);
+                modelo.addRow(datos);
+
+            }
+
+            tablaDatosProducto.setModel(modelo);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void guardarDatosProducto() {
+        if (txtNombre.getText().equals("") || txtCant.getText().equals("")
+                || txtCosto.getText().equals("") || txtPrecio.getText().equals("") || txtCaract.getText().equals("")) {
+
+            nv = new ImageIcon("src/img/cart (13).png");
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Mensaje", JOptionPane.OK_OPTION, nv);
+
+        } else {
+
+            try {
                 ///////////////////////////////////////////////////
                 //////////////////////////////////////////////////
                 /////////////////////////////////////////////////
-                String sql="SELECT idgarantia FROM garantia";
+                String sql = "SELECT idgarantia FROM garantia";
                 Statement cp;
-                String index = Integer.toString(garant.getSelectedIndex()+1);
+                String index = Integer.toString(garant.getSelectedIndex() + 1);
                 String txtid = "";
-                
-                
-                
+
                 ///////////////////////////////////////////////////
                 //////////////////////////////////////////////////
                 /////////////////////////////////////////////////
-                
                 java.util.Date date = new java.util.Date();
-                java.text.SimpleDateFormat sdf=new java.text.SimpleDateFormat("yyyy-MM-dd");
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
                 date = fecha.getDate();
                 String fe = sdf.format(date);
-                
-                
-                
+
                 int cantidad = Integer.parseInt(txtCant.getText());
                 double costo = Double.parseDouble(txtCosto.getText());
                 double precio = Double.parseDouble(txtPrecio.getText());
                 double utilidad = Double.parseDouble(jSutilid.getValue().toString());
                 boolean servicio = false;
-                
+
                 ///////////////////////////////////////////////////////////////////////////
                 //////////////////////////////////////////////////////////////////////////
                 //////////////////////////////////////////////////////////////////////////
-                
-                
                 try {
                     cp = cn.createStatement();
-                    ResultSet rc  = cp.executeQuery(sql);
+                    ResultSet rc = cp.executeQuery(sql);
                     while (rc.next()) {
                         if (index.equals(rc.getString("idgarantia"))) {
                             txtid = index;
                         }
-                        
+
                     }
-                    
-                    
+
                 } catch (SQLException ex) {
                     Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                
-               
+
                 PreparedStatement pps = cn.prepareStatement("INSERT INTO producto(nombre,codigo,cantidad,costo,precio,utilidad,espef,fechaIng,servicio,garantia_idgarantia) VALUES(?,?,?,?,?,?,?,?,?,?)");
-                pps.setString(1,txtNombre.getText());
-                pps.setString(2,txtCodigo.getText());
-                pps.setInt(3,cantidad);
-                pps.setDouble(4,costo);
-                pps.setDouble(5,precio);
-                pps.setDouble(6,utilidad);
-                pps.setString(7,txtCaract.getText());
-                pps.setString(8,fe);
-                pps.setBoolean(9,servicio);
-                pps.setInt(10,Integer.parseInt(txtid));
+                pps.setString(1, txtNombre.getText());
+                pps.setString(2, txtCodigo.getText());
+                pps.setInt(3, cantidad);
+                pps.setDouble(4, costo);
+                pps.setDouble(5, precio);
+                pps.setDouble(6, utilidad);
+                pps.setString(7, txtCaract.getText());
+                pps.setString(8, fe);
+                pps.setBoolean(9, servicio);
+                pps.setInt(10, Integer.parseInt(txtid));
                 pps.executeUpdate();
-                
+
                 txtNombre.setText(null);
                 txtCodigo.setText(null);
                 txtCant.setText(null);
@@ -285,90 +262,75 @@ public final class Interface extends javax.swing.JFrame {
                 txtCaract.setText("");
                 jSutilid.setValue(0.0f);
                 ua = new ImageIcon("src/img/cart (5).png");
-                
-                JOptionPane.showMessageDialog(null,"Producto agregado exitosamente","Mensaje",JOptionPane.OK_OPTION,ua);
-                
-                
-                
-                
+
+                JOptionPane.showMessageDialog(null, "Producto agregado exitosamente", "Mensaje", JOptionPane.OK_OPTION, ua);
+
             } catch (SQLException ex) {
-             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
-         }
-            
-            
-             
-             
-         } 
-         }   
-    
-    void modificarProducto(){
-        
-       ///////////////////////////////////////////////////
-       //////////////////////////////////////////////////
-       /////////////////////////////////////////////////
-        String sql="SELECT idgarantia FROM garantia";
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }
+
+    void modificarProducto() {
+
+        ///////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        /////////////////////////////////////////////////
+        String sql = "SELECT idgarantia FROM garantia";
         Statement cp;
-        String index = Integer.toString(garantMod.getSelectedIndex()+1);
+        String index = Integer.toString(garantMod.getSelectedIndex() + 1);
         String id = "";
-          
+
         try {
-             cp = cn.createStatement();
-             ResultSet rc  = cp.executeQuery(sql);
-             while (rc.next()) {
-                 if (index.equals(rc.getString("idgarantia"))) {
-                     id = index;
-                 }
-                 
-             }
-             
-            
-         } catch (SQLException ex) {
-             Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        
-        java.util.Date date = new java.util.Date(); 
-        java.text.SimpleDateFormat sdf=new java.text.SimpleDateFormat("yyyy-MM-dd");
+            cp = cn.createStatement();
+            ResultSet rc = cp.executeQuery(sql);
+            while (rc.next()) {
+                if (index.equals(rc.getString("idgarantia"))) {
+                    id = index;
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        java.util.Date date = new java.util.Date();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
         date = modFecha.getDate();
         String fe = sdf.format(date);
-        
-        
-        
+
         int cantidad = Integer.parseInt(txtModCant.getText());
-        double costo = Double.parseDouble(txtModCosto.getText());     
+        double costo = Double.parseDouble(txtModCosto.getText());
         double precio = Double.parseDouble(txtModPrecio.getText());
         double utilidad = Double.parseDouble(jSModUtilid.getValue().toString());
         int servicio = 0;
-        
-     ///////////////////////////////////////////////////////////////////////////
-     //////////////////////////////////////////////////////////////////////////    
-     //////////////////////////////////////////////////////////////////////////
-        try {
-             PreparedStatement pps = cn.prepareStatement("UPDATE producto SET nombre='"+txtModNombre.getText()+"',codigo='"+txtModCodigo.getText()+"',cantidad='"+cantidad+"',costo='"+costo+"',precio='"+precio+"',utilidad='"+utilidad+"',espef='"+txtModArea.getText()+"',fechaIng='"+fe+"',servicio='"+servicio+"',garantia_idgarantia='"+id+"' WHERE idproducto="+txtID.getText()+"");
-             pps.executeUpdate();
-             mostrarTablaModificar();
-             nv = new ImageIcon("src/img/cart (5).png");
-             JOptionPane.showMessageDialog(null,"Datos actulizados exitosamente","Mensaje",JOptionPane.OK_OPTION,nv);
-         } catch (SQLException ex) {
-             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        
-    }
-  
-    
-   
 
-   
+        ///////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////    
+        //////////////////////////////////////////////////////////////////////////
+        try {
+            PreparedStatement pps = cn.prepareStatement("UPDATE producto SET nombre='" + txtModNombre.getText() + "',codigo='" + txtModCodigo.getText() + "',cantidad='" + cantidad + "',costo='" + costo + "',precio='" + precio + "',utilidad='" + utilidad + "',espef='" + txtModArea.getText() + "',fechaIng='" + fe + "',servicio='" + servicio + "',garantia_idgarantia='" + id + "' WHERE idproducto=" + txtID.getText() + "");
+            pps.executeUpdate();
+            mostrarTablaModificar();
+            nv = new ImageIcon("src/img/cart (5).png");
+            JOptionPane.showMessageDialog(null, "Datos actulizados exitosamente", "Mensaje", JOptionPane.OK_OPTION, nv);
+        } catch (SQLException ex) {
+            Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         masterPanel = new javax.swing.JPanel();
         jPrincipal = new javax.swing.JPanel();
-        jBcompras = new javax.swing.JButton();
         jBcorteCaja = new javax.swing.JButton();
         jlabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jBModificarProduct = new javax.swing.JButton();
         jPcontenedor = new javax.swing.JPanel();
         jPcorteCaja = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -455,7 +417,6 @@ public final class Interface extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         txtModArea = new javax.swing.JTextArea();
         txtID = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPcompras = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
@@ -520,21 +481,6 @@ public final class Interface extends javax.swing.JFrame {
         jPrincipal.setMinimumSize(new java.awt.Dimension(300, 613));
         jPrincipal.setPreferredSize(new java.awt.Dimension(300, 613));
 
-        jBcompras.setBackground(new java.awt.Color(30, 30, 30));
-        jBcompras.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jBcompras.setForeground(new java.awt.Color(130, 129, 128));
-        jBcompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cart (10).png"))); // NOI18N
-        jBcompras.setText("Compras");
-        jBcompras.setBorder(null);
-        jBcompras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBcompras.setFocusPainted(false);
-        jBcompras.setSelected(true);
-        jBcompras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBcomprasActionPerformed(evt);
-            }
-        });
-
         jBcorteCaja.setBackground(new java.awt.Color(30, 30, 30));
         jBcorteCaja.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jBcorteCaja.setForeground(new java.awt.Color(130, 129, 128));
@@ -565,21 +511,6 @@ public final class Interface extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Punto de Venta Beta 2.0 ");
 
-        jBModificarProduct.setBackground(new java.awt.Color(30, 30, 30));
-        jBModificarProduct.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jBModificarProduct.setForeground(new java.awt.Color(130, 129, 128));
-        jBModificarProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/presentation (2).png"))); // NOI18N
-        jBModificarProduct.setText("Modificar un producto");
-        jBModificarProduct.setBorder(null);
-        jBModificarProduct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBModificarProduct.setFocusPainted(false);
-        jBModificarProduct.setSelected(true);
-        jBModificarProduct.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBModificarProductActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPrincipalLayout = new javax.swing.GroupLayout(jPrincipal);
         jPrincipal.setLayout(jPrincipalLayout);
         jPrincipalLayout.setHorizontalGroup(
@@ -590,11 +521,8 @@ public final class Interface extends javax.swing.JFrame {
                     .addComponent(jlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPrincipalLayout.createSequentialGroup()
-                        .addGroup(jPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBcorteCaja)
-                            .addComponent(jBcompras)
-                            .addComponent(jBModificarProduct))
-                        .addGap(0, 48, Short.MAX_VALUE)))
+                        .addComponent(jBcorteCaja)
+                        .addGap(0, 115, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPrincipalLayout.setVerticalGroup(
@@ -606,11 +534,7 @@ public final class Interface extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jBcorteCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBcompras, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBModificarProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
 
         masterPanel.add(jPrincipal);
@@ -1126,7 +1050,7 @@ public final class Interface extends javax.swing.JFrame {
                                             .addComponent(jPVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(jLabel75)
                                     .addComponent(jLabel76))
-                                .addGap(0, 132, Short.MAX_VALUE))))
+                                .addGap(0, 60, Short.MAX_VALUE))))
                     .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(13, 13, 13))
         );
@@ -1163,7 +1087,7 @@ public final class Interface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel76)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1359,12 +1283,6 @@ public final class Interface extends javax.swing.JFrame {
         txtID.setBackground(new java.awt.Color(40, 41, 41));
         txtID.setForeground(new java.awt.Color(40, 41, 41));
         txtID.setText("0");
-
-        jLabel15.setBackground(new java.awt.Color(40, 41, 41));
-        jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Si modificas un produco debes volver a seleccionar su tipo de garantia");
-        jLabel15.setOpaque(true);
 
         jPcompras.setBackground(new java.awt.Color(40, 41, 41));
         jPcompras.setAutoscrolls(true);
@@ -1693,9 +1611,7 @@ public final class Interface extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPmodificarLayout.createSequentialGroup()
                         .addComponent(actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPmodificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator1))
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1803,8 +1719,7 @@ public final class Interface extends javax.swing.JFrame {
                                 .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPmodificarLayout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(25, 25, 25)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPmodificarLayout.createSequentialGroup()
                         .addComponent(jLabel70)
@@ -1831,7 +1746,7 @@ public final class Interface extends javax.swing.JFrame {
 
         jMenu1.setBackground(new java.awt.Color(30, 30, 30));
         jMenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu1.setText("Archivio");
+        jMenu1.setText("Archivo");
         jMenu1.setOpaque(true);
 
         añadirUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user (1).png"))); // NOI18N
@@ -1861,6 +1776,11 @@ public final class Interface extends javax.swing.JFrame {
         jMenu5.add(jMenuItem5);
 
         jMenuItem6.setText("Modificar");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem6);
 
         jMenu2.add(jMenu5);
@@ -1915,60 +1835,36 @@ public final class Interface extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBcomprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcomprasActionPerformed
-     jPcontenedor.removeAll();
-     jPcontenedor.repaint();
-     jPcontenedor.revalidate();
-     jPcontenedor.add(jPcompras);
-     jPcontenedor.repaint();
-     jPcontenedor.revalidate();
-     mostrarTablaProducto();
-      
-      
-    }//GEN-LAST:event_jBcomprasActionPerformed
-
     private void jBcorteCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcorteCajaActionPerformed
-     jPcontenedor.removeAll();
-     jPcontenedor.repaint();
-     jPcontenedor.revalidate();
-     jPcontenedor.add(jPcorteCaja);
-     jPcontenedor.repaint();
-     jPcontenedor.revalidate();
-     mostrarTablaProducto();
+        jPcontenedor.removeAll();
+        jPcontenedor.repaint();
+        jPcontenedor.revalidate();
+        jPcontenedor.add(jPcorteCaja);
+        jPcontenedor.repaint();
+        jPcontenedor.revalidate();
+        mostrarTablaProducto();
     }//GEN-LAST:event_jBcorteCajaActionPerformed
 
-    private void jBModificarProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarProductActionPerformed
-     jPcontenedor.removeAll();
-     jPcontenedor.repaint();
-     jPcontenedor.revalidate();
-     jPcontenedor.add(jPmodificar);
-     jPcontenedor.repaint();
-     jPcontenedor.revalidate();
-     mostrarTablaModificar();
-     mostrarComboProductoMod();
-     
-    }//GEN-LAST:event_jBModificarProductActionPerformed
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        
+
         cerrar();
     }//GEN-LAST:event_formWindowClosing
 
     private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
-         modificarProducto();
+        modificarProducto();
     }//GEN-LAST:event_actualizarActionPerformed
 
     private void jSModUtilidStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSModUtilidStateChanged
-                
-       if (jSModUtilid!=null&& !txtModCosto.getText().isEmpty()) {
-       float costo = 0;
-       costo = Float.parseFloat(txtModCosto.getText());
-       float utilidad = 0;
-       utilidad = (float) jSModUtilid.getValue();
-       float total= costo + (costo*(utilidad/100));
-       String precio = String.valueOf(total);
-       txtModPrecio.setText(precio);
-          }
+
+        if (jSModUtilid != null && !txtModCosto.getText().isEmpty()) {
+            float costo = 0;
+            costo = Float.parseFloat(txtModCosto.getText());
+            float utilidad = 0;
+            utilidad = (float) jSModUtilid.getValue();
+            float total = costo + (costo * (utilidad / 100));
+            String precio = String.valueOf(total);
+            txtModPrecio.setText(precio);
+        }
     }//GEN-LAST:event_jSModUtilidStateChanged
 
     private void garantModItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_garantModItemStateChanged
@@ -1980,7 +1876,7 @@ public final class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_garantModAncestorAdded
 
     private void garantModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_garantModMouseClicked
-    mostrarComboProductoMod();       
+        mostrarComboProductoMod();
     }//GEN-LAST:event_garantModMouseClicked
 
     private void garantModMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_garantModMousePressed
@@ -1992,12 +1888,12 @@ public final class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_garantModActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-         String id= txtID.getText();
+        String id = txtID.getText();
         if (id.equals("")) {
 
-        }else{
+        } else {
             try {
-                PreparedStatement pps = cn.prepareStatement("DELETE FROM producto WHERE idproducto='"+id+"'");
+                PreparedStatement pps = cn.prepareStatement("DELETE FROM producto WHERE idproducto='" + id + "'");
                 pps.executeUpdate();
                 mostrarTablaModificar();
             } catch (SQLException ex) {
@@ -2009,7 +1905,7 @@ public final class Interface extends javax.swing.JFrame {
     private void tablaDatosModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDatosModificarMouseClicked
         int fila = tablaDatosModificar.getSelectedRow();
 
-        if (fila>=0) {
+        if (fila >= 0) {
             try {
                 txtID.setText(tablaDatosModificar.getValueAt(fila, 0).toString());
                 txtModNombre.setText(tablaDatosModificar.getValueAt(fila, 1).toString());
@@ -2019,10 +1915,10 @@ public final class Interface extends javax.swing.JFrame {
                 txtModPrecio.setText(tablaDatosModificar.getValueAt(fila, 5).toString());
                 jSModUtilid.setValue(Float.parseFloat(tablaDatosModificar.getValueAt(fila, 6).toString()));
                 txtModArea.setText(tablaDatosModificar.getValueAt(fila, 7).toString());
-                Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)tablaDatosModificar.getValueAt(fila, 8));
+                Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String) tablaDatosModificar.getValueAt(fila, 8));
                 modFecha.setDate(date);
-                garantMod.setSelectedItem(tablaDatosModificar.getValueAt(fila,9));
-                System.out.println(tablaDatosModificar.getValueAt(fila,9));
+                garantMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 9));
+                System.out.println(tablaDatosModificar.getValueAt(fila, 9));
             } catch (NumberFormatException | ParseException e) {
             }
 
@@ -2030,15 +1926,15 @@ public final class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaDatosModificarMouseClicked
 
     private void añadirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirUsuarioActionPerformed
-       Interface inter = new Interface();
-       AgregarUser ag = new AgregarUser(inter,true);
-       ag.setVisible(true);
-      
+        Interface inter = new Interface();
+        AgregarUser ag = new AgregarUser(inter, true);
+        ag.setVisible(true);
+
     }//GEN-LAST:event_añadirUsuarioActionPerformed
 
     private void agregarGarantiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarGarantiaActionPerformed
         Interface inter = new Interface();
-        Garant gant = new Garant(inter,true);
+        Garant gant = new Garant(inter, true);
         gant.setVisible(true);
     }//GEN-LAST:event_agregarGarantiaActionPerformed
 
@@ -2051,7 +1947,7 @@ public final class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_garantMousePressed
 
     private void garantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_garantMouseClicked
-       mostrarComboProducto();
+        mostrarComboProducto();
     }//GEN-LAST:event_garantMouseClicked
 
     private void garantAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_garantAncestorAdded
@@ -2063,16 +1959,16 @@ public final class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_garantItemStateChanged
 
     private void jSutilidStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSutilidStateChanged
-               
-       if (jSutilid!=null&& !txtCosto.getText().isEmpty()) {
-        float costo = 0;
-       costo = Float.parseFloat(txtCosto.getText());
-       float utilidad = 0;
-       utilidad = (float) jSutilid.getValue();
-       float total= costo + (costo*(utilidad/100));
-       String precio = String.valueOf(total);
-       txtPrecio.setText(precio);
-          }
+
+        if (jSutilid != null && !txtCosto.getText().isEmpty()) {
+            float costo = 0;
+            costo = Float.parseFloat(txtCosto.getText());
+            float utilidad = 0;
+            utilidad = (float) jSutilid.getValue();
+            float total = costo + (costo * (utilidad / 100));
+            String precio = String.valueOf(total);
+            txtPrecio.setText(precio);
+        }
     }//GEN-LAST:event_jSutilidStateChanged
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
@@ -2086,14 +1982,28 @@ public final class Interface extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        
+        jPcontenedor.removeAll();
+        jPcontenedor.add(jPcompras);
+        jPcontenedor.updateUI();
+        jPcontenedor.repaint();
+        mostrarTablaProducto();
+
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreKeyTyped
 
-   
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        jPcontenedor.removeAll();
+        jPcontenedor.add(jPmodificar);
+        mostrarTablaModificar();
+        jPcontenedor.updateUI();
+        jPcontenedor.repaint();
+        mostrarComboProductoMod();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -2135,10 +2045,7 @@ public final class Interface extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JComboBox<String> garant;
     private javax.swing.JComboBox<String> garantMod;
-    private javax.swing.JButton jBModificarProduct;
-    private javax.swing.JButton jBcompras;
     private javax.swing.JButton jBcorteCaja;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;

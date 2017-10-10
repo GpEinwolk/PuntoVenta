@@ -1,4 +1,3 @@
-
 package Diseño;
 
 import java.sql.Connection;
@@ -13,54 +12,52 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
-
 public class Garant extends javax.swing.JDialog {
 
-     Icon ua; 
-     Icon nv; 
-     Conexion conn = new Conexion();
-     Connection cn = conn.getConnection();
-     
+    Icon ua;
+    Icon nv;
+    Conexion conn = new Conexion();
+    Connection cn = conn.getConnection();
+
     public Garant(Interface inter, boolean modal) {
         super(inter, modal);
         initComponents();
         mostrarTabla();
     }
 
-   
-    void mostrarTabla(){
+    void mostrarTabla() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Nombre");
         tablaDatos.setModel(modelo);
-        String sql="SELECT tipo FROM garantia";
-        
-        String datos[]=new String[1];
+        String sql = "SELECT tipo FROM garantia";
+
+        String datos[] = new String[1];
         Statement st;
-        
-         try {
-             st = cn.createStatement();
-             ResultSet rs  = st.executeQuery(sql);
-             while (rs.next()) {
-                 datos[0]=rs.getString(1);
-                 modelo.addRow(datos);
-                 
-             }
-             
-             tablaDatos.setModel(modelo);
-            
-         } catch (SQLException ex) {
-             Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        
-        
+
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = rs.getString(1);
+                modelo.addRow(datos);
+
+            }
+
+            tablaDatos.setModel(modelo);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-            
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jBAgregar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -69,7 +66,7 @@ public class Garant extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaDatos = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        jbEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(413, 311));
@@ -91,13 +88,29 @@ public class Garant extends javax.swing.JDialog {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        jButton1.setBackground(new java.awt.Color(69, 69, 69));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Salir");
+        jButton1.setBorder(null);
+        jButton1.setFocusPainted(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -105,7 +118,9 @@ public class Garant extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addGap(100, 100, 100)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel1);
@@ -167,15 +182,16 @@ public class Garant extends javax.swing.JDialog {
         tablaDatos.setSelectionBackground(new java.awt.Color(62, 226, 141));
         jScrollPane2.setViewportView(tablaDatos);
 
-        jButton1.setBackground(new java.awt.Color(69, 69, 69));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Salir");
-        jButton1.setBorder(null);
-        jButton1.setFocusPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbEliminar.setBackground(new java.awt.Color(231, 76, 60));
+        jbEliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jbEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        jbEliminar.setText("Eliminar");
+        jbEliminar.setBorder(null);
+        jbEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbEliminar.setFocusPainted(false);
+        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbEliminarActionPerformed(evt);
             }
         });
 
@@ -194,9 +210,9 @@ public class Garant extends javax.swing.JDialog {
                         .addComponent(jLabel9)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -211,9 +227,9 @@ public class Garant extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -227,20 +243,19 @@ public class Garant extends javax.swing.JDialog {
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
 
-        if(txtNombre.getText().equals("")){
+        if (txtNombre.getText().equals("")) {
             nv = new ImageIcon("src/img/error (1).png");
-            JOptionPane.showMessageDialog(null,"Debe llenar todos los campos","Mensaje",JOptionPane.OK_OPTION,nv);
-        } else{
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Mensaje", JOptionPane.OK_OPTION, nv);
+        } else {
             try {
                 PreparedStatement pps = cn.prepareStatement("INSERT INTO garantia(tipo) VALUES(?)");
-                pps.setString(1,txtNombre.getText());
+                pps.setString(1, txtNombre.getText());
 
                 pps.executeUpdate();
                 ua = new ImageIcon("src/img/success (1).png");
-                JOptionPane.showMessageDialog(null,"Garantia agregada exitosamente","Mensaje",JOptionPane.OK_OPTION,ua);
+                JOptionPane.showMessageDialog(null, "Garantia agregada exitosamente", "Mensaje", JOptionPane.OK_OPTION, ua);
                 txtNombre.setText(null);
                 mostrarTabla();
-               
 
             } catch (SQLException ex) {
                 Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
@@ -253,8 +268,20 @@ public class Garant extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        // TODO add your handling code here:
+        try {
+            String tipo = (String) tablaDatos.getValueAt(tablaDatos.getSelectedRow(), 0);
+            PreparedStatement pps = cn.prepareStatement("DELETE FROM garantia WHERE tipo = '" + tipo + "'");
+            pps.executeUpdate();
+            mostrarTabla();
+        } catch (SQLException ex) {
+            Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,6 +335,7 @@ public class Garant extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbEliminar;
     private javax.swing.JTable tablaDatos;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
