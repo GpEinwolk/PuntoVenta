@@ -150,8 +150,6 @@ public final class Interface extends javax.swing.JFrame {
 
     void mostrarTablaProducto() {
         DefaultTableModel modelo = new DefaultTableModel();
-        System.out.println("holi");
-
         modelo.addColumn("Nombre");
         modelo.addColumn("Codigo");
         modelo.addColumn("Cantidad");
