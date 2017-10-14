@@ -74,11 +74,10 @@ public final class Interface extends javax.swing.JFrame {
         modelo.addColumn("Precio");
         modelo.addColumn("Utilidad %");
         modelo.addColumn("Caracteristicas");
-        modelo.addColumn("Fecha de entrada");
         modelo.addColumn("Garantia");
 
         tablaDatosModificar.setModel(modelo);
-        String sql = "SELECT producto.idproducto,producto.nombre,producto.codigo,producto.cantidad,producto.costo,producto.precio,producto.utilidad,producto.espef,producto.fechaIng,garantia.tipo FROM producto,garantia WHERE producto.garantia_idgarantia = garantia.idgarantia";
+        String sql = "SELECT producto.idproducto,producto.nombre,producto.codigo,producto.stock,producto.costo,producto.precio,producto.utilidad,producto.espef,garantia.tipo FROM producto,garantia WHERE producto.garantia_idgarantia = garantia.idgarantia";
 
         String datos[] = new String[10];
         Statement st;
@@ -96,7 +95,6 @@ public final class Interface extends javax.swing.JFrame {
                 datos[6] = rs.getString(7);
                 datos[7] = rs.getString(8);
                 datos[8] = rs.getString(9);
-                datos[9] = rs.getString(10);
                 modelo.addRow(datos);
 
             }
@@ -157,11 +155,10 @@ public final class Interface extends javax.swing.JFrame {
         modelo.addColumn("Precio");
         modelo.addColumn("Utilidad %");
         modelo.addColumn("Caracteristicas");
-        modelo.addColumn("Fecha de entrada");
         modelo.addColumn("Garantia");
 
         tablaDatosProducto.setModel(modelo);
-        String sql = "SELECT producto.nombre,producto.codigo,producto.cantidad,producto.costo,producto.precio,producto.utilidad,producto.espef,producto.fechaIng,garantia.tipo FROM producto,garantia WHERE producto.garantia_idgarantia = garantia.idgarantia";
+        String sql = "SELECT producto.nombre,producto.codigo,producto.stock,producto.costo,producto.precio,producto.utilidad,producto.espef,garantia.tipo FROM producto,garantia WHERE producto.garantia_idgarantia = garantia.idgarantia";
 
         String datos[] = new String[9];
         Statement st;
@@ -178,7 +175,6 @@ public final class Interface extends javax.swing.JFrame {
                 datos[5] = rs.getString(6);
                 datos[6] = rs.getString(7);
                 datos[7] = rs.getString(8);
-                datos[8] = rs.getString(9);
                 modelo.addRow(datos);
 
             }
