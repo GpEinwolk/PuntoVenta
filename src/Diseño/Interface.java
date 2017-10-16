@@ -37,11 +37,13 @@ public final class Interface extends javax.swing.JFrame {
         this.setTitle("Punto de Venta");
 
         Calendar actual = new GregorianCalendar();
-        fecha.setCalendar(actual);
+        //fecha.setCalendar(actual);
+        
         mostrarComboProducto();
         mostrarTablaProducto();
         mostrarTablaModificar();
         mostrarComboProductoMod();
+        comboAlmacen();
 
     }
 
@@ -69,15 +71,16 @@ public final class Interface extends javax.swing.JFrame {
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
         modelo.addColumn("Codigo");
-        modelo.addColumn("Cantidad");
+        modelo.addColumn("Stock");
         modelo.addColumn("Costo");
         modelo.addColumn("Precio");
         modelo.addColumn("Utilidad %");
         modelo.addColumn("Caracteristicas");
         modelo.addColumn("Garantia");
+        modelo.addColumn("Almacen");
 
         tablaDatosModificar.setModel(modelo);
-        String sql = "SELECT producto.idproducto,producto.nombre,producto.codigo,producto.stock,producto.costo,producto.precio,producto.utilidad,producto.espef,garantia.tipo FROM producto,garantia WHERE producto.garantia_idgarantia = garantia.idgarantia";
+        String sql = "SELECT producto.idproducto,producto.nombre,producto.codigo,producto.stock,producto.costo,producto.precio,producto.utilidad,producto.espef,garantia.tipo,almacen.nombre FROM producto,garantia,almacen WHERE producto.garantia_idgarantia = garantia.idgarantia AND producto.almacen_idalmacen = almacen.idalmacen";
 
         String datos[] = new String[10];
         Statement st;
@@ -95,6 +98,7 @@ public final class Interface extends javax.swing.JFrame {
                 datos[6] = rs.getString(7);
                 datos[7] = rs.getString(8);
                 datos[8] = rs.getString(9);
+                datos[9] = rs.getString(10);
                 modelo.addRow(datos);
 
             }
@@ -105,7 +109,27 @@ public final class Interface extends javax.swing.JFrame {
             Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+private void comboAlmacen(){
+    
+        almacenMod.removeAllItems();
+        almacen.removeAllItems();
+        String sql = "SELECT nombre FROM almacen";
 
+        Statement st;
+
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                almacenMod.addItem(rs.getString("nombre"));
+                almacen.addItem(rs.getString("nombre"));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     void mostrarComboProducto() {
         garant.removeAllItems();
         String sql = "SELECT tipo FROM garantia";
@@ -156,11 +180,12 @@ public final class Interface extends javax.swing.JFrame {
         modelo.addColumn("Utilidad %");
         modelo.addColumn("Caracteristicas");
         modelo.addColumn("Garantia");
+        modelo.addColumn("Almacen");
 
         tablaDatosProducto.setModel(modelo);
-        String sql = "SELECT producto.nombre,producto.codigo,producto.stock,producto.costo,producto.precio,producto.utilidad,producto.espef,garantia.tipo FROM producto,garantia WHERE producto.garantia_idgarantia = garantia.idgarantia";
+        String sql = "SELECT producto.nombre,producto.codigo,producto.stock,producto.costo,producto.precio,producto.utilidad,producto.espef,garantia.tipo,almacen.nombre FROM producto,garantia,almacen WHERE producto.garantia_idgarantia = garantia.idgarantia AND producto.almacen_idalmacen=almacen.idalmacen";
 
-        String datos[] = new String[9];
+        String datos[] = new String[10];
         Statement st;
 
         try {
@@ -175,6 +200,7 @@ public final class Interface extends javax.swing.JFrame {
                 datos[5] = rs.getString(6);
                 datos[6] = rs.getString(7);
                 datos[7] = rs.getString(8);
+                datos[8] = rs.getString(9);
                 modelo.addRow(datos);
 
             }
@@ -209,7 +235,7 @@ public final class Interface extends javax.swing.JFrame {
                 /////////////////////////////////////////////////
                 java.util.Date date = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-                date = fecha.getDate();
+              //  date = fecha.getDate();
                 String fe = sdf.format(date);
 
                 int cantidad = Integer.parseInt(txtCant.getText());
@@ -262,7 +288,7 @@ public final class Interface extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
         }
     }
 
@@ -275,6 +301,10 @@ public final class Interface extends javax.swing.JFrame {
         Statement cp;
         String index = garantMod.getSelectedItem().toString();
         String id = "";
+        String sql2 = "SELECT idalmacen,nombre FROM almacen";
+        Statement cp2;
+        String index2 = almacenMod.getSelectedItem().toString();
+        String id2 = "";
 
         try {
             cp = cn.createStatement();
@@ -290,10 +320,24 @@ public final class Interface extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            cp2 = cn.createStatement();
+            ResultSet rc = cp2.executeQuery(sql2);
+            
+            while (rc.next()) {
+                if (index2.equals(rc.getString("nombre"))) {
+                    id2 = rc.getString("idalmacen");
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         java.util.Date date = new java.util.Date();
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-        date = modFecha.getDate();
+      //  date = modFecha.getDate();
         String fe = sdf.format(date);
 
         int cantidad = Integer.parseInt(txtModCant.getText());
@@ -306,13 +350,27 @@ public final class Interface extends javax.swing.JFrame {
         //////////////////////////////////////////////////////////////////////////    
         //////////////////////////////////////////////////////////////////////////
         try {
-            PreparedStatement pps = cn.prepareStatement("UPDATE producto SET nombre='" + txtModNombre.getText() + "',codigo='" + txtModCodigo.getText() + "',cantidad='" + cantidad + "',costo='" + costo + "',precio='" + precio + "',utilidad='" + utilidad + "',espef='" + txtModArea.getText() + "',fechaIng='" + fe + "',servicio='" + servicio + "',garantia_idgarantia='" + id + "' WHERE idproducto=" + txtID.getText() + "");
+            System.out.println("UPDATE producto SET nombre='" 
+                    + txtModNombre.getText() + "',codigo='" + txtModCodigo.getText() 
+                    + "',stock='" + cantidad + "',costo='" + costo + "',precio='" 
+                    + precio + "',utilidad='" + utilidad + "',espef='" + txtModArea.getText() 
+                    + "',servicio='" + servicio + "',garantia_idgarantia='" + id 
+                    + "',almacen_idalmacen='" + id2 
+                    + "' WHERE idproducto=" + txtID.getText() + "");
+            PreparedStatement pps = cn.prepareStatement("UPDATE producto SET nombre='" 
+                    + txtModNombre.getText() + "',codigo='" + txtModCodigo.getText() 
+                    + "',stock='" + cantidad + "',costo='" + costo + "',precio='" 
+                    + precio + "',utilidad='" + utilidad + "',espef='" + txtModArea.getText() 
+                    + "',servicio='" + servicio + "',garantia_idgarantia='" + id 
+                    + "',almacen_idalmacen='" + id2 
+                    + "' WHERE idproducto=" + txtID.getText() + "");
             pps.executeUpdate();
             mostrarTablaModificar();
             nv = new ImageIcon("src/img/cart (5).png");
             JOptionPane.showMessageDialog(null, "Datos actulizados exitosamente", "Mensaje", JOptionPane.OK_OPTION, nv);
         } catch (SQLException ex) {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
 
     }
@@ -406,13 +464,13 @@ public final class Interface extends javax.swing.JFrame {
         garantMod = new javax.swing.JComboBox<>();
         eliminar = new javax.swing.JButton();
         jLabel78 = new javax.swing.JLabel();
-        modFecha = new com.toedter.calendar.JDateChooser();
         txtModCodigo = new javax.swing.JTextField();
         jLabel79 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
         txtModArea = new javax.swing.JTextArea();
         txtID = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        almacenMod = new javax.swing.JComboBox<>();
         jPcompras = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -434,28 +492,29 @@ public final class Interface extends javax.swing.JFrame {
         garant = new javax.swing.JComboBox<>();
         agregarGarantia = new javax.swing.JButton();
         jLabel84 = new javax.swing.JLabel();
-        fecha = new com.toedter.calendar.JDateChooser();
         txtCodigo = new javax.swing.JTextField();
         jLabel85 = new javax.swing.JLabel();
         jScrollPane11 = new javax.swing.JScrollPane();
         txtCaract = new javax.swing.JTextArea();
         txtID1 = new javax.swing.JLabel();
+        almacen = new javax.swing.JComboBox<>();
+        agregarAlmacen = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         añadirUsuario = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        prodAgre = new javax.swing.JMenuItem();
+        pordMod = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        serAgre = new javax.swing.JMenuItem();
+        serMod = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        provAgre = new javax.swing.JMenuItem();
+        provMod = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        clieAgre = new javax.swing.JMenuItem();
+        clieMod = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
 
@@ -1123,7 +1182,7 @@ public final class Interface extends javax.swing.JFrame {
         jLabel34.setBackground(new java.awt.Color(40, 41, 41));
         jLabel34.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel34.setText("Fecha de ingreso");
+        jLabel34.setText("Almacen");
         jLabel34.setOpaque(true);
 
         jLabel69.setBackground(new java.awt.Color(40, 41, 41));
@@ -1212,31 +1271,9 @@ public final class Interface extends javax.swing.JFrame {
 
         garantMod.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         garantMod.setForeground(new java.awt.Color(51, 51, 51));
-        garantMod.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                garantModItemStateChanged(evt);
-            }
-        });
-        garantMod.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                garantModAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         garantMod.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 garantModMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                garantModMousePressed(evt);
-            }
-        });
-        garantMod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                garantModActionPerformed(evt);
             }
         });
 
@@ -1258,8 +1295,6 @@ public final class Interface extends javax.swing.JFrame {
         jLabel78.setText("Tipo de garantia");
         jLabel78.setOpaque(true);
 
-        modFecha.setDateFormatString("yyyy/MM/d");
-
         txtModCodigo.setBackground(new java.awt.Color(251, 251, 251));
         txtModCodigo.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtModCodigo.setForeground(new java.awt.Color(51, 51, 51));
@@ -1278,6 +1313,14 @@ public final class Interface extends javax.swing.JFrame {
         txtID.setBackground(new java.awt.Color(40, 41, 41));
         txtID.setForeground(new java.awt.Color(40, 41, 41));
         txtID.setText("0");
+
+        almacenMod.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        almacenMod.setForeground(new java.awt.Color(51, 51, 51));
+        almacenMod.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                almacenModMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPmodificarLayout = new javax.swing.GroupLayout(jPmodificar);
         jPmodificar.setLayout(jPmodificarLayout);
@@ -1325,9 +1368,9 @@ public final class Interface extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPmodificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                            .addComponent(modFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel78, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(garantMod, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(garantMod, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(almacenMod, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPmodificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane9)
@@ -1351,15 +1394,13 @@ public final class Interface extends javax.swing.JFrame {
                                 .addComponent(txtModNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPmodificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(txtModCant, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPmodificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPmodificarLayout.createSequentialGroup()
-                                        .addComponent(jLabel34)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(modFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPmodificarLayout.createSequentialGroup()
-                                        .addComponent(jLabel79)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtModCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPmodificarLayout.createSequentialGroup()
+                                    .addComponent(jLabel79)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPmodificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtModCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(almacenMod, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(24, 24, 24)
                         .addGroup(jPmodificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPmodificarLayout.createSequentialGroup()
@@ -1400,7 +1441,7 @@ public final class Interface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1446,7 +1487,7 @@ public final class Interface extends javax.swing.JFrame {
         jLabel36.setBackground(new java.awt.Color(40, 41, 41));
         jLabel36.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel36.setText("Fecha de ingreso");
+        jLabel36.setText("Almacen");
         jLabel36.setOpaque(true);
 
         jLabel72.setBackground(new java.awt.Color(40, 41, 41));
@@ -1581,8 +1622,6 @@ public final class Interface extends javax.swing.JFrame {
         jLabel84.setText("Tipo de garantia");
         jLabel84.setOpaque(true);
 
-        fecha.setDateFormatString("yyyy/MM/d");
-
         txtCodigo.setBackground(new java.awt.Color(251, 251, 251));
         txtCodigo.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtCodigo.setForeground(new java.awt.Color(51, 51, 51));
@@ -1602,6 +1641,51 @@ public final class Interface extends javax.swing.JFrame {
         txtID1.setForeground(new java.awt.Color(40, 41, 41));
         txtID1.setText("0");
 
+        almacen.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        almacen.setForeground(new java.awt.Color(51, 51, 51));
+        almacen.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                almacenItemStateChanged(evt);
+            }
+        });
+        almacen.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                almacenAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        almacen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                almacenMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                almacenMousePressed(evt);
+            }
+        });
+        almacen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                almacenActionPerformed(evt);
+            }
+        });
+
+        agregarAlmacen.setBackground(new java.awt.Color(29, 184, 83));
+        agregarAlmacen.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        agregarAlmacen.setForeground(new java.awt.Color(255, 255, 255));
+        agregarAlmacen.setText("Agregar un almacen");
+        agregarAlmacen.setBorder(null);
+        agregarAlmacen.setFocusPainted(false);
+        agregarAlmacen.setMaximumSize(new java.awt.Dimension(220, 25));
+        agregarAlmacen.setMinimumSize(new java.awt.Dimension(220, 25));
+        agregarAlmacen.setPreferredSize(new java.awt.Dimension(220, 25));
+        agregarAlmacen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarAlmacenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPcomprasLayout = new javax.swing.GroupLayout(jPcompras);
         jPcompras.setLayout(jPcomprasLayout);
         jPcomprasLayout.setHorizontalGroup(
@@ -1610,15 +1694,11 @@ public final class Interface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel82, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPcomprasLayout.createSequentialGroup()
-                        .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(503, 503, 503)
-                        .addComponent(txtID1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(agregarGarantia, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane10)
                     .addGroup(jPcomprasLayout.createSequentialGroup()
-                        .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPcomprasLayout.createSequentialGroup()
+                        .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(agregar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPcomprasLayout.createSequentialGroup()
                                 .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtCosto)
                                     .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1629,7 +1709,7 @@ public final class Interface extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jSutilid))
                                     .addComponent(jLabel83)))
-                            .addGroup(jPcomprasLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPcomprasLayout.createSequentialGroup()
                                 .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                                     .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1638,22 +1718,30 @@ public final class Interface extends javax.swing.JFrame {
                                     .addComponent(txtCant)
                                     .addComponent(jLabel81, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                            .addComponent(jLabel85, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCodigo))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                            .addComponent(fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel84, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(garant, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPcomprasLayout.createSequentialGroup()
+                                .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtPrecio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                    .addComponent(jLabel85, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtCodigo))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                                    .addComponent(jLabel84, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(garant, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(almacen, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPcomprasLayout.createSequentialGroup()
+                                .addComponent(txtID1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(agregarAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane11)
-                            .addComponent(jLabel80, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane10))
+                            .addComponent(jLabel80, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                            .addGroup(jPcomprasLayout.createSequentialGroup()
+                                .addGap(0, 21, Short.MAX_VALUE)
+                                .addComponent(agregarGarantia, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPcomprasLayout.setVerticalGroup(
@@ -1672,15 +1760,13 @@ public final class Interface extends javax.swing.JFrame {
                                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPcomprasLayout.createSequentialGroup()
-                                        .addComponent(jLabel36)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPcomprasLayout.createSequentialGroup()
-                                        .addComponent(jLabel85)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPcomprasLayout.createSequentialGroup()
+                                    .addComponent(jLabel85)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(almacen, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(24, 24, 24)
                         .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPcomprasLayout.createSequentialGroup()
@@ -1712,13 +1798,14 @@ public final class Interface extends javax.swing.JFrame {
                             .addComponent(txtID1)
                             .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(agregarGarantia, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(agregarAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPcomprasLayout.createSequentialGroup()
                         .addComponent(jLabel80)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1754,51 +1841,61 @@ public final class Interface extends javax.swing.JFrame {
 
         jMenu5.setText("Productos");
 
-        jMenuItem5.setText("Agregar");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        prodAgre.setText("Agregar");
+        prodAgre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                prodAgreActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem5);
+        jMenu5.add(prodAgre);
 
-        jMenuItem6.setText("Modificar");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        pordMod.setText("Modificar");
+        pordMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                pordModActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem6);
+        jMenu5.add(pordMod);
 
         jMenu2.add(jMenu5);
 
         jMenu6.setText("Servicios");
 
-        jMenuItem2.setText("jMenuItem2");
-        jMenu6.add(jMenuItem2);
+        serAgre.setText("Agregar");
+        jMenu6.add(serAgre);
 
-        jMenuItem7.setText("jMenuItem7");
-        jMenu6.add(jMenuItem7);
+        serMod.setText("Modificar");
+        jMenu6.add(serMod);
 
         jMenu2.add(jMenu6);
 
         jMenu7.setText("Provedores");
 
-        jMenu8.setText("jMenu8");
-        jMenu7.add(jMenu8);
+        provAgre.setText("Agregar");
+        jMenu7.add(provAgre);
 
-        jMenuItem8.setText("jMenuItem8");
-        jMenu7.add(jMenuItem8);
+        provMod.setText("Modificar");
+        provMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                provModActionPerformed(evt);
+            }
+        });
+        jMenu7.add(provMod);
 
         jMenu2.add(jMenu7);
 
         jMenu9.setText("Cliente");
 
-        jMenuItem9.setText("jMenuItem9");
-        jMenu9.add(jMenuItem9);
+        clieAgre.setText("Agregar");
+        jMenu9.add(clieAgre);
 
-        jMenuItem10.setText("jMenuItem10");
-        jMenu9.add(jMenuItem10);
+        clieMod.setText("Modificar");
+        clieMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clieModActionPerformed(evt);
+            }
+        });
+        jMenu9.add(clieMod);
 
         jMenu2.add(jMenu9);
 
@@ -1854,25 +1951,9 @@ public final class Interface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jSModUtilidStateChanged
 
-    private void garantModItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_garantModItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_garantModItemStateChanged
-
-    private void garantModAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_garantModAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_garantModAncestorAdded
-
     private void garantModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_garantModMouseClicked
         mostrarComboProductoMod();
     }//GEN-LAST:event_garantModMouseClicked
-
-    private void garantModMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_garantModMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_garantModMousePressed
-
-    private void garantModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_garantModActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_garantModActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         String id = txtID.getText();
@@ -1902,10 +1983,10 @@ public final class Interface extends javax.swing.JFrame {
                 txtModPrecio.setText(tablaDatosModificar.getValueAt(fila, 5).toString());
                 jSModUtilid.setValue(Float.parseFloat(tablaDatosModificar.getValueAt(fila, 6).toString()));
                 txtModArea.setText(tablaDatosModificar.getValueAt(fila, 7).toString());
-                Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String) tablaDatosModificar.getValueAt(fila, 8));
-                modFecha.setDate(date);
-                garantMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 9));
-            } catch (NumberFormatException | ParseException e) {
+               garantMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 8));
+               almacenMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 9));
+                
+            } catch (Exception e) {
             }
 
         }
@@ -1966,7 +2047,7 @@ public final class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tablaDatosProductoMouseClicked
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void prodAgreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodAgreActionPerformed
         // TODO add your handling code here:
         jPcontenedor.removeAll();
         jPcontenedor.add(jPcompras);
@@ -1974,13 +2055,13 @@ public final class Interface extends javax.swing.JFrame {
         jPcontenedor.repaint();
         mostrarTablaProducto();
 
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_prodAgreActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreKeyTyped
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void pordModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pordModActionPerformed
         // TODO add your handling code here:
         jPcontenedor.removeAll();
         jPcontenedor.add(jPmodificar);
@@ -1988,7 +2069,47 @@ public final class Interface extends javax.swing.JFrame {
         jPcontenedor.updateUI();
         jPcontenedor.repaint();
         mostrarComboProductoMod();
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_pordModActionPerformed
+
+    private void almacenModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenModMouseClicked
+        // TODO add your handling code here:
+        comboAlmacen();
+    }//GEN-LAST:event_almacenModMouseClicked
+
+    private void almacenItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_almacenItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_almacenItemStateChanged
+
+    private void almacenAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_almacenAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_almacenAncestorAdded
+
+    private void almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_almacenMouseClicked
+    
+    private void almacenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_almacenMousePressed
+
+    private void almacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_almacenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_almacenActionPerformed
+
+    private void agregarAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarAlmacenActionPerformed
+        Interface inter = new Interface();
+        Almacen alm = new Almacen(inter, true);
+        alm.setVisible(true);
+    }//GEN-LAST:event_agregarAlmacenActionPerformed
+
+    private void clieModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clieModActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clieModActionPerformed
+
+    private void provModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provModActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_provModActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -2025,10 +2146,14 @@ public final class Interface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizar;
     private javax.swing.JButton agregar;
+    private javax.swing.JButton agregarAlmacen;
     private javax.swing.JButton agregarGarantia;
+    private javax.swing.JComboBox<String> almacen;
+    private javax.swing.JComboBox<String> almacenMod;
     private javax.swing.JMenuItem añadirUsuario;
+    private javax.swing.JMenuItem clieAgre;
+    private javax.swing.JMenuItem clieMod;
     private javax.swing.JButton eliminar;
-    private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JComboBox<String> garant;
     private javax.swing.JComboBox<String> garantMod;
     private javax.swing.JButton jBcorteCaja;
@@ -2106,16 +2231,8 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPVentas;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2143,7 +2260,12 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel jlabel;
     private javax.swing.JPanel masterPanel;
-    private com.toedter.calendar.JDateChooser modFecha;
+    private javax.swing.JMenuItem pordMod;
+    private javax.swing.JMenuItem prodAgre;
+    private javax.swing.JMenuItem provAgre;
+    private javax.swing.JMenuItem provMod;
+    private javax.swing.JMenuItem serAgre;
+    private javax.swing.JMenuItem serMod;
     private javax.swing.JTable tablaDatosModificar;
     private javax.swing.JTable tablaDatosProducto;
     private javax.swing.JTextField txtCant;
