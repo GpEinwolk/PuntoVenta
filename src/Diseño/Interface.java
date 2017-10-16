@@ -48,6 +48,7 @@ public final class Interface extends javax.swing.JFrame {
     }
 
     public void cerrar() {
+        
         Object[] opciones = {"Aceptar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(rootPane, "Desea cerrar la aplicacion", "Mensaje de Confirmacion",
                 JOptionPane.YES_NO_OPTION,
@@ -2139,6 +2140,7 @@ private void comboAlmacen(){
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Interface().setVisible(true);
+                System.out.println(true);
             }
         });
     }
