@@ -24,6 +24,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
 public final class Interface extends javax.swing.JFrame {
+
     Icon ua;
     Icon nv;
     Conexion conn = new Conexion();
@@ -38,7 +39,7 @@ public final class Interface extends javax.swing.JFrame {
 
         Calendar actual = new GregorianCalendar();
         //fecha.setCalendar(actual);
-        
+
         mostrarComboProducto();
         mostrarTablaProducto();
         mostrarTablaModificar();
@@ -48,7 +49,7 @@ public final class Interface extends javax.swing.JFrame {
     }
 
     public void cerrar() {
-        
+
         Object[] opciones = {"Aceptar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(rootPane, "Desea cerrar la aplicacion", "Mensaje de Confirmacion",
                 JOptionPane.YES_NO_OPTION,
@@ -110,8 +111,9 @@ public final class Interface extends javax.swing.JFrame {
             Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-private void comboAlmacen(){
-    
+
+    private void comboAlmacen() {
+
         almacenMod.removeAllItems();
         almacen.removeAllItems();
         String sql = "SELECT nombre FROM almacen";
@@ -131,6 +133,7 @@ private void comboAlmacen(){
             Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     void mostrarComboProducto() {
         garant.removeAllItems();
         String sql = "SELECT tipo FROM garantia";
@@ -236,7 +239,7 @@ private void comboAlmacen(){
                 /////////////////////////////////////////////////
                 java.util.Date date = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-              //  date = fecha.getDate();
+                //  date = fecha.getDate();
                 String fe = sdf.format(date);
 
                 int cantidad = Integer.parseInt(txtCant.getText());
@@ -289,7 +292,7 @@ private void comboAlmacen(){
             } catch (SQLException ex) {
                 Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
     }
 
@@ -310,7 +313,7 @@ private void comboAlmacen(){
         try {
             cp = cn.createStatement();
             ResultSet rc = cp.executeQuery(sql);
-            
+
             while (rc.next()) {
                 if (index.equals(rc.getString("tipo"))) {
                     id = rc.getString("idgarantia");
@@ -324,7 +327,7 @@ private void comboAlmacen(){
         try {
             cp2 = cn.createStatement();
             ResultSet rc = cp2.executeQuery(sql2);
-            
+
             while (rc.next()) {
                 if (index2.equals(rc.getString("nombre"))) {
                     id2 = rc.getString("idalmacen");
@@ -338,7 +341,7 @@ private void comboAlmacen(){
 
         java.util.Date date = new java.util.Date();
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-      //  date = modFecha.getDate();
+        //  date = modFecha.getDate();
         String fe = sdf.format(date);
 
         int cantidad = Integer.parseInt(txtModCant.getText());
@@ -351,19 +354,19 @@ private void comboAlmacen(){
         //////////////////////////////////////////////////////////////////////////    
         //////////////////////////////////////////////////////////////////////////
         try {
-            System.out.println("UPDATE producto SET nombre='" 
-                    + txtModNombre.getText() + "',codigo='" + txtModCodigo.getText() 
-                    + "',stock='" + cantidad + "',costo='" + costo + "',precio='" 
-                    + precio + "',utilidad='" + utilidad + "',espef='" + txtModArea.getText() 
-                    + "',servicio='" + servicio + "',garantia_idgarantia='" + id 
-                    + "',almacen_idalmacen='" + id2 
+            System.out.println("UPDATE producto SET nombre='"
+                    + txtModNombre.getText() + "',codigo='" + txtModCodigo.getText()
+                    + "',stock='" + cantidad + "',costo='" + costo + "',precio='"
+                    + precio + "',utilidad='" + utilidad + "',espef='" + txtModArea.getText()
+                    + "',servicio='" + servicio + "',garantia_idgarantia='" + id
+                    + "',almacen_idalmacen='" + id2
                     + "' WHERE idproducto=" + txtID.getText() + "");
-            PreparedStatement pps = cn.prepareStatement("UPDATE producto SET nombre='" 
-                    + txtModNombre.getText() + "',codigo='" + txtModCodigo.getText() 
-                    + "',stock='" + cantidad + "',costo='" + costo + "',precio='" 
-                    + precio + "',utilidad='" + utilidad + "',espef='" + txtModArea.getText() 
-                    + "',servicio='" + servicio + "',garantia_idgarantia='" + id 
-                    + "',almacen_idalmacen='" + id2 
+            PreparedStatement pps = cn.prepareStatement("UPDATE producto SET nombre='"
+                    + txtModNombre.getText() + "',codigo='" + txtModCodigo.getText()
+                    + "',stock='" + cantidad + "',costo='" + costo + "',precio='"
+                    + precio + "',utilidad='" + utilidad + "',espef='" + txtModArea.getText()
+                    + "',servicio='" + servicio + "',garantia_idgarantia='" + id
+                    + "',almacen_idalmacen='" + id2
                     + "' WHERE idproducto=" + txtID.getText() + "");
             pps.executeUpdate();
             mostrarTablaModificar();
@@ -1577,31 +1580,9 @@ private void comboAlmacen(){
 
         garant.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         garant.setForeground(new java.awt.Color(51, 51, 51));
-        garant.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                garantItemStateChanged(evt);
-            }
-        });
-        garant.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                garantAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         garant.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 garantMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                garantMousePressed(evt);
-            }
-        });
-        garant.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                garantActionPerformed(evt);
             }
         });
 
@@ -1644,31 +1625,9 @@ private void comboAlmacen(){
 
         almacen.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         almacen.setForeground(new java.awt.Color(51, 51, 51));
-        almacen.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                almacenItemStateChanged(evt);
-            }
-        });
-        almacen.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                almacenAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         almacen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 almacenMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                almacenMousePressed(evt);
-            }
-        });
-        almacen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                almacenActionPerformed(evt);
             }
         });
 
@@ -1692,57 +1651,61 @@ private void comboAlmacen(){
         jPcomprasLayout.setHorizontalGroup(
             jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPcomprasLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel82, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane10)
                     .addGroup(jPcomprasLayout.createSequentialGroup()
-                        .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(agregar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPcomprasLayout.createSequentialGroup()
-                                .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCosto)
-                                    .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPcomprasLayout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSutilid))
-                                    .addComponent(jLabel83)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPcomprasLayout.createSequentialGroup()
-                                .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCant)
-                                    .addComponent(jLabel81, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPcomprasLayout.createSequentialGroup()
-                                .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtPrecio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                                    .addComponent(jLabel85, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtCodigo))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                                    .addComponent(jLabel84, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(garant, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(almacen, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPcomprasLayout.createSequentialGroup()
-                                .addComponent(txtID1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(agregarAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
                         .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane11)
-                            .addComponent(jLabel80, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                            .addComponent(jLabel82, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPcomprasLayout.createSequentialGroup()
-                                .addGap(0, 21, Short.MAX_VALUE)
-                                .addComponent(agregarGarantia, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(agregar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPcomprasLayout.createSequentialGroup()
+                                        .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtCosto)
+                                            .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(jPcomprasLayout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jSutilid))
+                                            .addComponent(jLabel83)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPcomprasLayout.createSequentialGroup()
+                                        .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                            .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtCant)
+                                            .addComponent(jLabel81, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPcomprasLayout.createSequentialGroup()
+                                        .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtPrecio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                            .addComponent(jLabel85, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtCodigo))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                                            .addComponent(jLabel84, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(garant, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(almacen, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(jPcomprasLayout.createSequentialGroup()
+                                        .addComponent(txtID1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(agregarAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPcomprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane11)
+                                    .addComponent(jLabel80, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                                    .addGroup(jPcomprasLayout.createSequentialGroup()
+                                        .addGap(0, 21, Short.MAX_VALUE)
+                                        .addComponent(agregarGarantia, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jPcomprasLayout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addComponent(jScrollPane10)))
                 .addContainerGap())
         );
         jPcomprasLayout.setVerticalGroup(
@@ -1805,9 +1768,8 @@ private void comboAlmacen(){
                         .addComponent(jLabel80)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(17, 17, 17)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE))
         );
 
         jPcontenedor.add(jPcompras, "card4");
@@ -1931,7 +1893,6 @@ private void comboAlmacen(){
     }//GEN-LAST:event_jBcorteCajaActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-
         cerrar();
     }//GEN-LAST:event_formWindowClosing
 
@@ -1984,9 +1945,9 @@ private void comboAlmacen(){
                 txtModPrecio.setText(tablaDatosModificar.getValueAt(fila, 5).toString());
                 jSModUtilid.setValue(Float.parseFloat(tablaDatosModificar.getValueAt(fila, 6).toString()));
                 txtModArea.setText(tablaDatosModificar.getValueAt(fila, 7).toString());
-               garantMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 8));
-               almacenMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 9));
-                
+                garantMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 8));
+                almacenMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 9));
+
             } catch (Exception e) {
             }
 
@@ -2006,25 +1967,9 @@ private void comboAlmacen(){
         gant.setVisible(true);
     }//GEN-LAST:event_agregarGarantiaActionPerformed
 
-    private void garantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_garantActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_garantActionPerformed
-
-    private void garantMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_garantMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_garantMousePressed
-
     private void garantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_garantMouseClicked
         mostrarComboProducto();
     }//GEN-LAST:event_garantMouseClicked
-
-    private void garantAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_garantAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_garantAncestorAdded
-
-    private void garantItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_garantItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_garantItemStateChanged
 
     private void jSutilidStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSutilidStateChanged
 
@@ -2077,26 +2022,10 @@ private void comboAlmacen(){
         comboAlmacen();
     }//GEN-LAST:event_almacenModMouseClicked
 
-    private void almacenItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_almacenItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_almacenItemStateChanged
-
-    private void almacenAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_almacenAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_almacenAncestorAdded
-
     private void almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenMouseClicked
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_almacenMouseClicked
-    
-    private void almacenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_almacenMousePressed
 
-    private void almacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_almacenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_almacenActionPerformed
+    }//GEN-LAST:event_almacenMouseClicked
 
     private void agregarAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarAlmacenActionPerformed
         Interface inter = new Interface();
