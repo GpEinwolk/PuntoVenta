@@ -354,13 +354,6 @@ public final class Interface extends javax.swing.JFrame {
         //////////////////////////////////////////////////////////////////////////    
         //////////////////////////////////////////////////////////////////////////
         try {
-            System.out.println("UPDATE producto SET nombre='"
-                    + txtModNombre.getText() + "',codigo='" + txtModCodigo.getText()
-                    + "',stock='" + cantidad + "',costo='" + costo + "',precio='"
-                    + precio + "',utilidad='" + utilidad + "',espef='" + txtModArea.getText()
-                    + "',servicio='" + servicio + "',garantia_idgarantia='" + id
-                    + "',almacen_idalmacen='" + id2
-                    + "' WHERE idproducto=" + txtID.getText() + "");
             PreparedStatement pps = cn.prepareStatement("UPDATE producto SET nombre='"
                     + txtModNombre.getText() + "',codigo='" + txtModCodigo.getText()
                     + "',stock='" + cantidad + "',costo='" + costo + "',precio='"
