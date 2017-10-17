@@ -2231,7 +2231,7 @@ public final class Interface extends javax.swing.JFrame {
         jLabel99.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel99.setForeground(new java.awt.Color(255, 255, 255));
         jLabel99.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel99.setText("Agregar un Proveedor");
+        jLabel99.setText("Agregar un Cliente");
 
         txtID3.setBackground(new java.awt.Color(40, 41, 41));
         txtID3.setForeground(new java.awt.Color(40, 41, 41));
@@ -2642,6 +2642,11 @@ public final class Interface extends javax.swing.JFrame {
         jMenu7.setText("Provedores");
 
         provAgre.setText("Agregar");
+        provAgre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                provAgreActionPerformed(evt);
+            }
+        });
         jMenu7.add(provAgre);
 
         provMod.setText("Modificar");
@@ -2657,6 +2662,11 @@ public final class Interface extends javax.swing.JFrame {
         jMenu9.setText("Cliente");
 
         clieAgre.setText("Agregar");
+        clieAgre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clieAgreActionPerformed(evt);
+            }
+        });
         jMenu9.add(clieAgre);
 
         clieMod.setText("Modificar");
@@ -2975,6 +2985,22 @@ public final class Interface extends javax.swing.JFrame {
     private void agregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_agregar2ActionPerformed
+
+    private void provAgreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provAgreActionPerformed
+       
+        jPcontenedor.removeAll();
+        jPcontenedor.add(jPproveedor);
+        jPcontenedor.updateUI();
+        jPcontenedor.repaint();
+        
+    }//GEN-LAST:event_provAgreActionPerformed
+
+    private void clieAgreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clieAgreActionPerformed
+       jPcontenedor.removeAll();
+        jPcontenedor.add(jPcliente);
+        jPcontenedor.updateUI();
+        jPcontenedor.repaint();
+    }//GEN-LAST:event_clieAgreActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
