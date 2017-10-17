@@ -18,6 +18,8 @@ public class Garant extends javax.swing.JDialog {
     Icon nv;
     Conexion conn = new Conexion();
     Connection cn = conn.getConnection();
+    
+   
 
     public Garant(Interface inter, boolean modal) {
         super(inter, modal);
