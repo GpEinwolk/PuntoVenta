@@ -566,6 +566,16 @@ public final class Interface extends javax.swing.JFrame {
         txtCallePro = new javax.swing.JTextField();
         jLabel133 = new javax.swing.JLabel();
         txtCodPro = new javax.swing.JFormattedTextField();
+        jPmodificarCP = new javax.swing.JPanel();
+        jLabel134 = new javax.swing.JLabel();
+        txtNombrePro1 = new javax.swing.JTextField();
+        jLabel135 = new javax.swing.JLabel();
+        txtID5 = new javax.swing.JLabel();
+        jLabel147 = new javax.swing.JLabel();
+        jLabel148 = new javax.swing.JLabel();
+        agregar4 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tablaBusCP = new javax.swing.JTable();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         añadirUsuario = new javax.swing.JMenuItem();
@@ -2187,7 +2197,7 @@ public final class Interface extends javax.swing.JFrame {
                                 .addGroup(jPclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel109, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtNintCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtID3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -2561,9 +2571,6 @@ public final class Interface extends javax.swing.JFrame {
             .addGroup(jPproveedorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPproveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel129, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel117, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel130, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPproveedorLayout.createSequentialGroup()
                         .addGroup(jPproveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPproveedorLayout.createSequentialGroup()
@@ -2628,8 +2635,14 @@ public final class Interface extends javax.swing.JFrame {
                                 .addGroup(jPproveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel127, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtNintPro, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addComponent(txtID4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtID4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPproveedorLayout.createSequentialGroup()
+                        .addGroup(jPproveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel117, javax.swing.GroupLayout.PREFERRED_SIZE, 966, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel130, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel129, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPproveedorLayout.setVerticalGroup(
@@ -2709,6 +2722,134 @@ public final class Interface extends javax.swing.JFrame {
         );
 
         jPcontenedor.add(jPproveedor, "card4");
+
+        jPmodificarCP.setBackground(new java.awt.Color(40, 41, 41));
+        jPmodificarCP.setAutoscrolls(true);
+        jPmodificarCP.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        jPmodificarCP.setMinimumSize(new java.awt.Dimension(985, 613));
+
+        jLabel134.setBackground(new java.awt.Color(40, 41, 41));
+        jLabel134.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel134.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel134.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel134.setText("Codigo/Nombre de la Empresa/Razon Social/Persona Fisica");
+        jLabel134.setOpaque(true);
+
+        txtNombrePro1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        txtNombrePro1.setForeground(new java.awt.Color(51, 51, 51));
+        txtNombrePro1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNombrePro1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        txtNombrePro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombrePro1ActionPerformed(evt);
+            }
+        });
+        txtNombrePro1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombrePro1KeyTyped(evt);
+            }
+        });
+
+        jLabel135.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        jLabel135.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel135.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel135.setText("Modificar un Proveedor o Cliente");
+
+        txtID5.setBackground(new java.awt.Color(40, 41, 41));
+        txtID5.setForeground(new java.awt.Color(40, 41, 41));
+        txtID5.setText("0");
+
+        jLabel147.setBackground(new java.awt.Color(40, 41, 41));
+        jLabel147.setFont(new java.awt.Font("Century Gothic", 0, 22)); // NOI18N
+        jLabel147.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel147.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel147.setText("BUSCAR");
+        jLabel147.setOpaque(true);
+
+        jLabel148.setBackground(new java.awt.Color(40, 41, 41));
+        jLabel148.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel148.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel148.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel148.setText("por codigo o nombre ");
+        jLabel148.setOpaque(true);
+
+        agregar4.setBackground(new java.awt.Color(29, 184, 83));
+        agregar4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        agregar4.setForeground(new java.awt.Color(255, 255, 255));
+        agregar4.setText("Actualizar");
+        agregar4.setBorder(null);
+        agregar4.setFocusPainted(false);
+        agregar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregar4ActionPerformed(evt);
+            }
+        });
+
+        tablaBusCP = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        tablaBusCP.setBackground(new java.awt.Color(251, 251, 251));
+        tablaBusCP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tablaBusCP.setForeground(new java.awt.Color(51, 51, 51));
+        tablaBusCP.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tablaBusCP.setGridColor(new java.awt.Color(255, 255, 255));
+        tablaBusCP.setSelectionBackground(new java.awt.Color(62, 226, 141));
+        jScrollPane4.setViewportView(tablaBusCP);
+
+        javax.swing.GroupLayout jPmodificarCPLayout = new javax.swing.GroupLayout(jPmodificarCP);
+        jPmodificarCP.setLayout(jPmodificarCPLayout);
+        jPmodificarCPLayout.setHorizontalGroup(
+            jPmodificarCPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPmodificarCPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPmodificarCPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel134, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPmodificarCPLayout.createSequentialGroup()
+                        .addGroup(jPmodificarCPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtID5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel135, javax.swing.GroupLayout.PREFERRED_SIZE, 966, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel148, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel147, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPmodificarCPLayout.createSequentialGroup()
+                                .addGap(233, 233, 233)
+                                .addComponent(txtNombrePro1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(agregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+        jPmodificarCPLayout.setVerticalGroup(
+            jPmodificarCPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPmodificarCPLayout.createSequentialGroup()
+                .addComponent(jLabel135)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel147)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel148)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel134)
+                .addGap(10, 10, 10)
+                .addGroup(jPmodificarCPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombrePro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
+                .addComponent(txtID5)
+                .addContainerGap())
+        );
+
+        jPcontenedor.add(jPmodificarCP, "card4");
 
         masterPanel.add(jPcontenedor);
 
@@ -2964,12 +3105,11 @@ public final class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_pordModActionPerformed
 
     private void almacenModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenModMouseClicked
-        // TODO add your handling code here:
-        comboAlmacen();
+             comboAlmacen();
     }//GEN-LAST:event_almacenModMouseClicked
 
     private void almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenMouseClicked
-        // TODO add your handling code here:
+   
 
     }//GEN-LAST:event_almacenMouseClicked
 
@@ -2980,39 +3120,39 @@ public final class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarAlmacenActionPerformed
 
     private void clieModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clieModActionPerformed
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_clieModActionPerformed
 
     private void provModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provModActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_provModActionPerformed
 
     private void txtNombreCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtNombreCActionPerformed
 
     private void txtNombreCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCKeyTyped
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtNombreCKeyTyped
 
     private void txtRFCClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRFCClienteActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtRFCClienteActionPerformed
 
     private void txtDirClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDirClienteKeyTyped
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_txtDirClienteKeyTyped
 
     private void txtColClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColClienteKeyTyped
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtColClienteKeyTyped
 
     private void txtPDclienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPDclienteKeyTyped
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtPDclienteKeyTyped
 
     private void txtNextClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNextClienteActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtNextClienteActionPerformed
 
     private void paisClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paisClienteMouseClicked
@@ -3167,6 +3307,18 @@ public final class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCalleProActionPerformed
 
+    private void txtNombrePro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombrePro1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombrePro1ActionPerformed
+
+    private void txtNombrePro1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePro1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombrePro1KeyTyped
+
+    private void agregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregar4ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -3205,6 +3357,7 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JButton agregar;
     private javax.swing.JButton agregar2;
     private javax.swing.JButton agregar3;
+    private javax.swing.JButton agregar4;
     private javax.swing.JButton agregarAlmacen;
     private javax.swing.JButton agregarGarantia;
     private javax.swing.JComboBox<String> almacen;
@@ -3254,6 +3407,10 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel131;
     private javax.swing.JLabel jLabel132;
     private javax.swing.JLabel jLabel133;
+    private javax.swing.JLabel jLabel134;
+    private javax.swing.JLabel jLabel135;
+    private javax.swing.JLabel jLabel147;
+    private javax.swing.JLabel jLabel148;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -3346,6 +3503,7 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JPanel jPdatos;
     private javax.swing.JPanel jPdineroCaja;
     private javax.swing.JPanel jPmodificar;
+    private javax.swing.JPanel jPmodificarCP;
     private javax.swing.JPanel jPproveedor;
     private javax.swing.JPanel jPrincipal;
     private javax.swing.JSpinner jSModUtilid;
@@ -3353,6 +3511,7 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
@@ -3369,6 +3528,7 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem provMod;
     private javax.swing.JMenuItem serAgre;
     private javax.swing.JMenuItem serMod;
+    public static javax.swing.JTable tablaBusCP;
     private javax.swing.JTable tablaDatosModificar;
     private javax.swing.JTable tablaDatosProducto;
     private javax.swing.JFormattedTextField txtCPPro;
@@ -3391,6 +3551,7 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JLabel txtID1;
     private javax.swing.JLabel txtID3;
     private javax.swing.JLabel txtID4;
+    private javax.swing.JLabel txtID5;
     private javax.swing.JTextArea txtModArea;
     private javax.swing.JTextField txtModCant;
     private javax.swing.JTextField txtModCodigo;
@@ -3404,6 +3565,7 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombreC;
     private javax.swing.JTextField txtNombrePro;
+    private javax.swing.JTextField txtNombrePro1;
     private javax.swing.JTextField txtPDPro;
     private javax.swing.JTextField txtPDcliente;
     private javax.swing.JTextField txtPrecio;
