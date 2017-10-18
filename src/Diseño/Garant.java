@@ -28,12 +28,14 @@ public class Garant extends javax.swing.JDialog {
     }
 
     void mostrarTabla() {
+        
         DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Codigo");
         modelo.addColumn("Nombre");
         tablaDatos.setModel(modelo);
-        String sql = "SELECT tipo FROM garantia";
+        String sql = "SELECT codigo,nombre FROM garantia";
 
-        String datos[] = new String[1];
+        String datos[] = new String[2];
         Statement st;
 
         try {
@@ -41,7 +43,8 @@ public class Garant extends javax.swing.JDialog {
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 datos[0] = rs.getString(1);
-                modelo.addRow(datos);
+                datos[1] = rs.getString(2);
+                modelo.addRow(datos);              
 
             }
 
@@ -64,14 +67,14 @@ public class Garant extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jBAgregar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaDatos = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         jbEliminar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        txtNombre1 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -158,14 +161,14 @@ public class Garant extends javax.swing.JDialog {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Haga clic para agregar tipo de garantia");
 
-        txtNombre.setBackground(new java.awt.Color(40, 41, 41));
-        txtNombre.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
-        txtNombre.setBorder(null);
-        txtNombre.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+        txtCodigo.setBackground(new java.awt.Color(40, 41, 41));
+        txtCodigo.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        txtCodigo.setForeground(new java.awt.Color(255, 255, 255));
+        txtCodigo.setBorder(null);
+        txtCodigo.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
+                txtCodigoActionPerformed(evt);
             }
         });
 
@@ -208,14 +211,14 @@ public class Garant extends javax.swing.JDialog {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Nombre");
 
-        txtNombre1.setBackground(new java.awt.Color(40, 41, 41));
-        txtNombre1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        txtNombre1.setForeground(new java.awt.Color(255, 255, 255));
-        txtNombre1.setBorder(null);
-        txtNombre1.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtNombre1.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.setBackground(new java.awt.Color(40, 41, 41));
+        txtNombre.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombre.setBorder(null);
+        txtNombre.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombre1ActionPerformed(evt);
+                txtNombreActionPerformed(evt);
             }
         });
 
@@ -228,13 +231,13 @@ public class Garant extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNombre)
+                    .addComponent(txtCodigo)
                     .addComponent(jSeparator1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtNombre1)
+                    .addComponent(txtNombre)
                     .addComponent(jSeparator2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,13 +252,13 @@ public class Garant extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -297,12 +300,14 @@ public class Garant extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Mensaje", JOptionPane.OK_OPTION, nv);
         } else {
             try {
-                PreparedStatement pps = cn.prepareStatement("INSERT INTO garantia(tipo) VALUES(?)");
-                pps.setString(1, txtNombre.getText());
+                PreparedStatement pps = cn.prepareStatement("INSERT INTO garantia(codigo,nombre) VALUES(?,?)");
+                pps.setString(1, txtCodigo.getText());
+                pps.setString(2, txtNombre.getText());
 
                 pps.executeUpdate();
                 ua = new ImageIcon("src/img/success (1).png");
-                JOptionPane.showMessageDialog(null, "Garantia agregada exitosamente", "Mensaje", JOptionPane.OK_OPTION, ua);
+                JOptionPane.showMessageDialog(null, "Almacen agregado exitosamente", "Mensaje", JOptionPane.OK_OPTION, ua);
+                txtCodigo.setText(null);
                 txtNombre.setText(null);
                 mostrarTabla();
 
@@ -312,9 +317,9 @@ public class Garant extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jBAgregarActionPerformed
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
@@ -323,8 +328,8 @@ public class Garant extends javax.swing.JDialog {
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         // TODO add your handling code here:
         try {
-            String tipo = (String) tablaDatos.getValueAt(tablaDatos.getSelectedRow(), 0);
-            PreparedStatement pps = cn.prepareStatement("DELETE FROM garantia WHERE tipo = '" + tipo + "'");
+            String nombre = (String) tablaDatos.getValueAt(tablaDatos.getSelectedRow(), 1);
+            PreparedStatement pps = cn.prepareStatement("DELETE FROM garantia WHERE nombre = '" + nombre + "'");
             pps.executeUpdate();
             mostrarTabla();
         } catch (SQLException ex) {
@@ -332,9 +337,9 @@ public class Garant extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
 
-    private void txtNombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombre1ActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombre1ActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -393,7 +398,7 @@ public class Garant extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton jbEliminar;
     private javax.swing.JTable tablaDatos;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtNombre1;
     // End of variables declaration//GEN-END:variables
 }

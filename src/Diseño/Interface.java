@@ -1,18 +1,12 @@
 package Diseño;
 
-import java.awt.Color;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +14,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
 public final class Interface extends javax.swing.JFrame {
@@ -82,7 +75,7 @@ public final class Interface extends javax.swing.JFrame {
         modelo.addColumn("Almacen");
 
         tablaDatosModificar.setModel(modelo);
-        String sql = "SELECT producto.idproducto,producto.nombre,producto.codigo,producto.stock,producto.costo,producto.precio,producto.utilidad,producto.espef,garantia.tipo,almacen.nombre FROM producto,garantia,almacen WHERE producto.garantia_idgarantia = garantia.idgarantia AND producto.almacen_idalmacen = almacen.idalmacen";
+        String sql = "SELECT producto.idproducto,producto.nombre,producto.codigo,producto.stock,producto.costo,producto.precio,producto.utilidad,producto.espef,garantia.nombre,almacen.nombre FROM producto,garantia,almacen WHERE producto.garantia_idgarantia = garantia.idgarantia AND producto.almacen_idalmacen = almacen.idalmacen";
 
         String datos[] = new String[10];
         Statement st;
@@ -136,7 +129,7 @@ public final class Interface extends javax.swing.JFrame {
 
     void mostrarComboProducto() {
         garant.removeAllItems();
-        String sql = "SELECT tipo FROM garantia";
+        String sql = "SELECT nombre FROM garantia";
 
         Statement st;
 
@@ -144,7 +137,7 @@ public final class Interface extends javax.swing.JFrame {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                garant.addItem(rs.getString("tipo"));
+                garant.addItem(rs.getString("nombre"));
 
             }
 
@@ -156,7 +149,7 @@ public final class Interface extends javax.swing.JFrame {
 
     void mostrarComboProductoMod() {
         garantMod.removeAllItems();
-        String sql = "SELECT tipo FROM garantia";
+        String sql = "SELECT nombre FROM garantia";
 
         Statement st;
 
@@ -164,7 +157,7 @@ public final class Interface extends javax.swing.JFrame {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                garantMod.addItem(rs.getString("tipo"));
+                garantMod.addItem(rs.getString("nombre"));
 
             }
 
@@ -187,7 +180,7 @@ public final class Interface extends javax.swing.JFrame {
         modelo.addColumn("Almacen");
 
         tablaDatosProducto.setModel(modelo);
-        String sql = "SELECT producto.nombre,producto.codigo,producto.stock,producto.costo,producto.precio,producto.utilidad,producto.espef,garantia.tipo,almacen.nombre FROM producto,garantia,almacen WHERE producto.garantia_idgarantia = garantia.idgarantia AND producto.almacen_idalmacen=almacen.idalmacen";
+        String sql = "SELECT producto.nombre,producto.codigo,producto.stock,producto.costo,producto.precio,producto.utilidad,producto.espef,garantia.nombre,almacen.nombre FROM producto,garantia,almacen WHERE producto.garantia_idgarantia = garantia.idgarantia AND producto.almacen_idalmacen=almacen.idalmacen";
 
         String datos[] = new String[10];
         Statement st;
@@ -226,17 +219,11 @@ public final class Interface extends javax.swing.JFrame {
         } else {
 
             try {
-                ///////////////////////////////////////////////////
-                //////////////////////////////////////////////////
-                /////////////////////////////////////////////////
-                String sql = "SELECT idgarantia FROM garantia";
+                String sql = "SELECT idgarantia,idalmacen FROM garantia,almacen ";
                 Statement cp;
                 String index = Integer.toString(garant.getSelectedIndex() + 1);
+                
                 String txtid = "";
-
-                ///////////////////////////////////////////////////
-                //////////////////////////////////////////////////
-                /////////////////////////////////////////////////
                 java.util.Date date = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
                 //  date = fecha.getDate();
@@ -247,10 +234,7 @@ public final class Interface extends javax.swing.JFrame {
                 double precio = Double.parseDouble(txtPrecio.getText());
                 double utilidad = Double.parseDouble(jSutilid.getValue().toString());
                 boolean servicio = false;
-
-                ///////////////////////////////////////////////////////////////////////////
-                //////////////////////////////////////////////////////////////////////////
-                //////////////////////////////////////////////////////////////////////////
+                
                 try {
                     cp = cn.createStatement();
                     ResultSet rc = cp.executeQuery(sql);
@@ -276,6 +260,7 @@ public final class Interface extends javax.swing.JFrame {
                 pps.setString(8, fe);
                 pps.setBoolean(9, servicio);
                 pps.setInt(10, Integer.parseInt(txtid));
+                System.out.println(pps);
                 pps.executeUpdate();
 
                 txtNombre.setText(null);
@@ -301,7 +286,7 @@ public final class Interface extends javax.swing.JFrame {
         ///////////////////////////////////////////////////
         //////////////////////////////////////////////////
         /////////////////////////////////////////////////
-        String sql = "SELECT idgarantia,tipo FROM garantia";
+        String sql = "SELECT idgarantia,nombre FROM garantia";
         Statement cp;
         String index = garantMod.getSelectedItem().toString();
         String id = "";
@@ -315,7 +300,7 @@ public final class Interface extends javax.swing.JFrame {
             ResultSet rc = cp.executeQuery(sql);
 
             while (rc.next()) {
-                if (index.equals(rc.getString("tipo"))) {
+                if (index.equals(rc.getString("nombre"))) {
                     id = rc.getString("idgarantia");
                 }
 
@@ -1538,6 +1523,7 @@ public final class Interface extends javax.swing.JFrame {
         txtNombre.setBackground(new java.awt.Color(251, 251, 251));
         txtNombre.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(51, 51, 51));
+        txtNombre.setText("Toshiba");
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1548,6 +1534,7 @@ public final class Interface extends javax.swing.JFrame {
         txtCosto.setBackground(new java.awt.Color(251, 251, 251));
         txtCosto.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtCosto.setForeground(new java.awt.Color(51, 51, 51));
+        txtCosto.setText("5000");
         txtCosto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         txtPrecio.setBackground(new java.awt.Color(251, 251, 251));
@@ -1576,6 +1563,7 @@ public final class Interface extends javax.swing.JFrame {
         txtCant.setBackground(new java.awt.Color(251, 251, 251));
         txtCant.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtCant.setForeground(new java.awt.Color(51, 51, 51));
+        txtCant.setText("15");
         txtCant.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jLabel80.setBackground(new java.awt.Color(40, 41, 41));
@@ -1612,11 +1600,6 @@ public final class Interface extends javax.swing.JFrame {
         ));
         tablaDatosProducto.setGridColor(new java.awt.Color(255, 255, 255));
         tablaDatosProducto.setSelectionBackground(new java.awt.Color(62, 226, 141));
-        tablaDatosProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaDatosProductoMouseClicked(evt);
-            }
-        });
         jScrollPane10.setViewportView(tablaDatosProducto);
 
         agregar.setBackground(new java.awt.Color(29, 184, 83));
@@ -1680,6 +1663,7 @@ public final class Interface extends javax.swing.JFrame {
         txtCodigo.setBackground(new java.awt.Color(251, 251, 251));
         txtCodigo.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtCodigo.setForeground(new java.awt.Color(51, 51, 51));
+        txtCodigo.setText("01030507");
         txtCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jLabel85.setBackground(new java.awt.Color(40, 41, 41));
@@ -1690,6 +1674,7 @@ public final class Interface extends javax.swing.JFrame {
 
         txtCaract.setColumns(20);
         txtCaract.setRows(5);
+        txtCaract.setText("home");
         jScrollPane11.setViewportView(txtCaract);
 
         txtID1.setBackground(new java.awt.Color(40, 41, 41));
@@ -1838,7 +1823,8 @@ public final class Interface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE))
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPcontenedor.add(jPcompras, "card4");
@@ -3076,10 +3062,6 @@ public final class Interface extends javax.swing.JFrame {
         mostrarTablaProducto();
     }//GEN-LAST:event_agregarActionPerformed
 
-    private void tablaDatosProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDatosProductoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tablaDatosProductoMouseClicked
-
     private void prodAgreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prodAgreActionPerformed
         // TODO add your handling code here:
         jPcontenedor.removeAll();
@@ -3347,7 +3329,6 @@ public final class Interface extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Interface().setVisible(true);
-                System.out.println(true);
             }
         });
     }
