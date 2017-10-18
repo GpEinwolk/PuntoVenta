@@ -14,7 +14,10 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public final class Interface extends javax.swing.JFrame {
 
@@ -23,6 +26,8 @@ public final class Interface extends javax.swing.JFrame {
     Conexion conn = new Conexion();
     Connection cn = conn.getConnection();
     DecimalFormat df = new DecimalFormat("#.00");
+    DefaultTableModel modelCP ;
+    TableRowSorter<TableModel> tr;
 
     public Interface() {
         initComponents();
@@ -38,7 +43,7 @@ public final class Interface extends javax.swing.JFrame {
         mostrarTablaModificar();
         mostrarComboProductoMod();
         comboAlmacen();
-
+        modelCP = (DefaultTableModel) tablaBusCP.getModel();
     }
 
     public void cerrar() {
@@ -222,8 +227,10 @@ public final class Interface extends javax.swing.JFrame {
                 String sql = "SELECT idgarantia,idalmacen FROM garantia,almacen ";
                 Statement cp;
                 String index = Integer.toString(garant.getSelectedIndex() + 1);
+                String index2 = Integer.toString(almacen.getSelectedIndex() + 1);
                 
                 String txtid = "";
+                String almacenID = "";
                 java.util.Date date = new java.util.Date();
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
                 //  date = fecha.getDate();
@@ -244,12 +251,19 @@ public final class Interface extends javax.swing.JFrame {
                         }
 
                     }
+                    while (rc.next()) {
+                        if (index2.equals(rc.getString("idalmacen"))) {
+                            almacenID = index2;
+                            System.out.println(index2);
+                        }
+
+                    }
 
                 } catch (SQLException ex) {
                     Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                PreparedStatement pps = cn.prepareStatement("INSERT INTO producto(nombre,codigo,stock,costo,precio,utilidad,espef,servicio,garantia_idgarantia) VALUES(?,?,?,?,?,?,?,?,?,?)");
+                PreparedStatement pps = cn.prepareStatement("INSERT INTO producto(nombre, codigo, stock, costo, precio, utilidad, espef, servicio, garantia_idgarantia, almacen_idalmacen) VALUES(?,?,?,?,?,?,?,?,?,?)");
                 pps.setString(1, txtNombre.getText());
                 pps.setString(2, txtCodigo.getText());
                 pps.setInt(3, cantidad);
@@ -257,9 +271,9 @@ public final class Interface extends javax.swing.JFrame {
                 pps.setDouble(5, precio);
                 pps.setDouble(6, utilidad);
                 pps.setString(7, txtCaract.getText());
-                pps.setString(8, fe);
-                pps.setBoolean(9, servicio);
-                pps.setInt(10, Integer.parseInt(txtid));
+                pps.setBoolean(8, servicio);
+                pps.setInt(9,Integer.parseInt(txtid));
+                pps.setInt(10,Integer.parseInt(txtid));
                 System.out.println(pps);
                 pps.executeUpdate();
 
@@ -2279,11 +2293,6 @@ public final class Interface extends javax.swing.JFrame {
         txtNombrePro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         txtNombrePro.setForeground(new java.awt.Color(51, 51, 51));
         txtNombrePro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtNombrePro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreProActionPerformed(evt);
-            }
-        });
         txtNombrePro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreProKeyTyped(evt);
@@ -2314,20 +2323,10 @@ public final class Interface extends javax.swing.JFrame {
         txtRFCPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtRFCPro.setForeground(new java.awt.Color(51, 51, 51));
         txtRFCPro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtRFCPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRFCProActionPerformed(evt);
-            }
-        });
 
         txtDirPro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         txtDirPro.setForeground(new java.awt.Color(51, 51, 51));
         txtDirPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtDirPro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDirProKeyTyped(evt);
-            }
-        });
 
         jLabel120.setBackground(new java.awt.Color(40, 41, 41));
         jLabel120.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2341,11 +2340,6 @@ public final class Interface extends javax.swing.JFrame {
         txtColPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtColProActionPerformed(evt);
-            }
-        });
-        txtColPro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtColProKeyTyped(evt);
             }
         });
 
@@ -2364,20 +2358,10 @@ public final class Interface extends javax.swing.JFrame {
         txtPDPro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         txtPDPro.setForeground(new java.awt.Color(51, 51, 51));
         txtPDPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtPDPro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPDProKeyTyped(evt);
-            }
-        });
 
         txtNextPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtNextPro.setForeground(new java.awt.Color(51, 51, 51));
         txtNextPro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtNextPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNextProActionPerformed(evt);
-            }
-        });
 
         jLabel123.setBackground(new java.awt.Color(40, 41, 41));
         jLabel123.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2453,16 +2437,6 @@ public final class Interface extends javax.swing.JFrame {
         txtCorreoPro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         txtCorreoPro.setForeground(new java.awt.Color(51, 51, 51));
         txtCorreoPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtCorreoPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoProActionPerformed(evt);
-            }
-        });
-        txtCorreoPro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCorreoProKeyTyped(evt);
-            }
-        });
 
         jLabel128.setBackground(new java.awt.Color(40, 41, 41));
         jLabel128.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2524,16 +2498,6 @@ public final class Interface extends javax.swing.JFrame {
         txtCallePro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         txtCallePro.setForeground(new java.awt.Color(51, 51, 51));
         txtCallePro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtCallePro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCalleProActionPerformed(evt);
-            }
-        });
-        txtCallePro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCalleProKeyTyped(evt);
-            }
-        });
 
         jLabel133.setBackground(new java.awt.Color(40, 41, 41));
         jLabel133.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2725,14 +2689,9 @@ public final class Interface extends javax.swing.JFrame {
         txtNombrePro1.setForeground(new java.awt.Color(51, 51, 51));
         txtNombrePro1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNombrePro1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtNombrePro1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombrePro1ActionPerformed(evt);
-            }
-        });
         txtNombrePro1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombrePro1KeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombrePro1KeyReleased(evt);
             }
         });
 
@@ -2784,9 +2743,17 @@ public final class Interface extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "Codigo", "Nombre", "RFC"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tablaBusCP.setGridColor(new java.awt.Color(255, 255, 255));
         tablaBusCP.setSelectionBackground(new java.awt.Color(62, 226, 141));
         jScrollPane4.setViewportView(tablaBusCP);
@@ -3102,11 +3069,31 @@ public final class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarAlmacenActionPerformed
 
     private void clieModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clieModActionPerformed
-     
+        modificarclipro();  
     }//GEN-LAST:event_clieModActionPerformed
+public void modificarclipro(){
+        jPcontenedor.removeAll();
+        jPcontenedor.add(jPmodificarCP);
+        jPcontenedor.updateUI();
+        jPcontenedor.repaint();
+        
+        String sql = "SELECT codigo,nombreC,RFC FROM clipro";
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                modelCP.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3)});
+            }
+        tr = new TableRowSorter<>(modelCP);
+        tablaBusCP.setRowSorter(tr);
+        } catch (SQLException ex) {
+            Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
 
     private void provModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provModActionPerformed
-        
+              modificarclipro();
     }//GEN-LAST:event_provModActionPerformed
 
     private void txtNombreCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCActionPerformed
@@ -3205,37 +3192,13 @@ public final class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoClienteActionPerformed
 
-    private void txtNombreProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreProActionPerformed
-
     private void txtNombreProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreProKeyTyped
 
-    private void txtRFCProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRFCProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRFCProActionPerformed
-
-    private void txtDirProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDirProKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDirProKeyTyped
-
     private void txtColProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColProActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtColProActionPerformed
-
-    private void txtColProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColProKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtColProKeyTyped
-
-    private void txtPDProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPDProKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPDProKeyTyped
-
-    private void txtNextProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNextProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNextProActionPerformed
 
     private void paisProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paisProMouseClicked
         // TODO add your handling code here:
@@ -3257,14 +3220,6 @@ public final class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNintProActionPerformed
 
-    private void txtCorreoProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoProActionPerformed
-
-    private void txtCorreoProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoProKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoProKeyTyped
-
     private void giroProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_giroProMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_giroProMouseClicked
@@ -3277,29 +3232,23 @@ public final class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_agregar3ActionPerformed
 
-    private void txtCalleProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCalleProKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCalleProKeyTyped
-
     private void txtCodProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodProActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodProActionPerformed
 
-    private void txtCalleProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCalleProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCalleProActionPerformed
-
-    private void txtNombrePro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombrePro1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombrePro1ActionPerformed
-
-    private void txtNombrePro1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePro1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombrePro1KeyTyped
-
     private void agregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_agregar4ActionPerformed
+
+    private void txtNombrePro1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePro1KeyReleased
+        // TODO add your handling code here:
+        String filtro = "(?i)" + txtNombrePro1.getText();
+        if (!filtro.equals("")) {
+            tr.setRowFilter(RowFilter.regexFilter(filtro));
+        } else {
+            tr.setRowFilter(null);
+        }
+    }//GEN-LAST:event_txtNombrePro1KeyReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
