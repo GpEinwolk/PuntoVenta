@@ -563,7 +563,7 @@ public final class Interface extends javax.swing.JFrame {
         txtID5 = new javax.swing.JLabel();
         jLabel147 = new javax.swing.JLabel();
         jLabel148 = new javax.swing.JLabel();
-        agregar4 = new javax.swing.JButton();
+        botonActualizar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaBusCP = new javax.swing.JTable();
         jMenuBar2 = new javax.swing.JMenuBar();
@@ -1529,11 +1529,6 @@ public final class Interface extends javax.swing.JFrame {
         txtNombre.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(51, 51, 51));
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
-            }
-        });
 
         txtCosto.setBackground(new java.awt.Color(251, 251, 251));
         txtCosto.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -1844,16 +1839,6 @@ public final class Interface extends javax.swing.JFrame {
         txtNombreC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         txtNombreC.setForeground(new java.awt.Color(51, 51, 51));
         txtNombreC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtNombreC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreCActionPerformed(evt);
-            }
-        });
-        txtNombreC.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreCKeyTyped(evt);
-            }
-        });
 
         jLabel99.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel99.setForeground(new java.awt.Color(255, 255, 255));
@@ -1880,21 +1865,11 @@ public final class Interface extends javax.swing.JFrame {
         txtRFCCliente.setForeground(new java.awt.Color(51, 51, 51));
         txtRFCCliente.setText("");
         txtRFCCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtRFCCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRFCClienteActionPerformed(evt);
-            }
-        });
 
         txtDirCliente.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         txtDirCliente.setForeground(new java.awt.Color(51, 51, 51));
         txtDirCliente.setText(" ");
         txtDirCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtDirCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDirClienteKeyTyped(evt);
-            }
-        });
 
         jLabel102.setBackground(new java.awt.Color(40, 41, 41));
         jLabel102.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -1906,16 +1881,6 @@ public final class Interface extends javax.swing.JFrame {
         txtColCliente.setForeground(new java.awt.Color(51, 51, 51));
         txtColCliente.setText("");
         txtColCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtColCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtColClienteActionPerformed(evt);
-            }
-        });
-        txtColCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtColClienteKeyTyped(evt);
-            }
-        });
 
         jLabel103.setBackground(new java.awt.Color(40, 41, 41));
         jLabel103.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -1933,11 +1898,6 @@ public final class Interface extends javax.swing.JFrame {
         txtPDcliente.setForeground(new java.awt.Color(51, 51, 51));
         txtPDcliente.setText("");
         txtPDcliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtPDcliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPDclienteKeyTyped(evt);
-            }
-        });
 
         txtNextCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtNextCliente.setForeground(new java.awt.Color(51, 51, 51));
@@ -1957,11 +1917,6 @@ public final class Interface extends javax.swing.JFrame {
         paisCliente.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         paisCliente.setForeground(new java.awt.Color(51, 51, 51));
         paisCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mexico" }));
-        paisCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                paisClienteMouseClicked(evt);
-            }
-        });
 
         jLabel106.setBackground(new java.awt.Color(40, 41, 41));
         jLabel106.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -1972,16 +1927,6 @@ public final class Interface extends javax.swing.JFrame {
         estadoCliente.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         estadoCliente.setForeground(new java.awt.Color(51, 51, 51));
         estadoCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
-        estadoCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                estadoClienteMouseClicked(evt);
-            }
-        });
-        estadoCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                estadoClienteActionPerformed(evt);
-            }
-        });
 
         jLabel107.setBackground(new java.awt.Color(40, 41, 41));
         jLabel107.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -1992,11 +1937,6 @@ public final class Interface extends javax.swing.JFrame {
         txtCPcliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtCPcliente.setForeground(new java.awt.Color(51, 51, 51));
         txtCPcliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtCPcliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCPclienteActionPerformed(evt);
-            }
-        });
 
         jLabel108.setBackground(new java.awt.Color(40, 41, 41));
         jLabel108.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2008,11 +1948,6 @@ public final class Interface extends javax.swing.JFrame {
         txtNintCliente.setForeground(new java.awt.Color(51, 51, 51));
         txtNintCliente.setText(null);
         txtNintCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtNintCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNintClienteActionPerformed(evt);
-            }
-        });
 
         jLabel109.setBackground(new java.awt.Color(40, 41, 41));
         jLabel109.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2024,16 +1959,6 @@ public final class Interface extends javax.swing.JFrame {
         txtCorreoCliente.setForeground(new java.awt.Color(51, 51, 51));
         txtCorreoCliente.setText("");
         txtCorreoCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtCorreoCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoClienteActionPerformed(evt);
-            }
-        });
-        txtCorreoCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCorreoClienteKeyTyped(evt);
-            }
-        });
 
         jLabel110.setBackground(new java.awt.Color(40, 41, 41));
         jLabel110.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2096,11 +2021,6 @@ public final class Interface extends javax.swing.JFrame {
         txtCalleCliente.setForeground(new java.awt.Color(51, 51, 51));
         txtCalleCliente.setText("");
         txtCalleCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtCalleCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCalleClienteKeyTyped(evt);
-            }
-        });
 
         jLabel115.setBackground(new java.awt.Color(40, 41, 41));
         jLabel115.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2111,11 +2031,6 @@ public final class Interface extends javax.swing.JFrame {
         txtCodCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtCodCliente.setForeground(new java.awt.Color(51, 51, 51));
         txtCodCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtCodCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodClienteActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPclienteLayout = new javax.swing.GroupLayout(jPcliente);
         jPcliente.setLayout(jPclienteLayout);
@@ -2505,17 +2420,12 @@ public final class Interface extends javax.swing.JFrame {
         jLabel133.setBackground(new java.awt.Color(40, 41, 41));
         jLabel133.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel133.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel133.setText("Codigo de Cliente* ");
+        jLabel133.setText("Codigo de Proveedor* ");
         jLabel133.setOpaque(true);
 
         txtCodPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtCodPro.setForeground(new java.awt.Color(51, 51, 51));
         txtCodPro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtCodPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodProActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPproveedorLayout = new javax.swing.GroupLayout(jPproveedor);
         jPproveedor.setLayout(jPproveedorLayout);
@@ -2721,15 +2631,15 @@ public final class Interface extends javax.swing.JFrame {
         jLabel148.setText("por codigo o nombre ");
         jLabel148.setOpaque(true);
 
-        agregar4.setBackground(new java.awt.Color(29, 184, 83));
-        agregar4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        agregar4.setForeground(new java.awt.Color(255, 255, 255));
-        agregar4.setText("Actualizar");
-        agregar4.setBorder(null);
-        agregar4.setFocusPainted(false);
-        agregar4.addActionListener(new java.awt.event.ActionListener() {
+        botonActualizar.setBackground(new java.awt.Color(29, 184, 83));
+        botonActualizar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        botonActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        botonActualizar.setText("Actualizar");
+        botonActualizar.setBorder(null);
+        botonActualizar.setFocusPainted(false);
+        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregar4ActionPerformed(evt);
+                botonActualizarActionPerformed(evt);
             }
         });
 
@@ -2779,7 +2689,7 @@ public final class Interface extends javax.swing.JFrame {
                                 .addGap(233, 233, 233)
                                 .addComponent(txtNombrePro1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(agregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -2796,7 +2706,7 @@ public final class Interface extends javax.swing.JFrame {
                 .addComponent(jLabel134)
                 .addGap(10, 10, 10)
                 .addGroup(jPmodificarCPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(agregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNombrePro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
@@ -3041,10 +2951,6 @@ public final class Interface extends javax.swing.JFrame {
 
     }//GEN-LAST:event_prodAgreActionPerformed
 
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreKeyTyped
-
     private void pordModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pordModActionPerformed
         // TODO add your handling code here:
         jPcontenedor.removeAll();
@@ -3073,6 +2979,7 @@ public final class Interface extends javax.swing.JFrame {
         modificarclipro();
     }//GEN-LAST:event_clieModActionPerformed
     public void modificarclipro() {
+        modelCP.setNumRows(0);
         jPcontenedor.removeAll();
         jPcontenedor.add(jPmodificarCP);
         jPcontenedor.updateUI();
@@ -3096,57 +3003,9 @@ public final class Interface extends javax.swing.JFrame {
         modificarclipro();
     }//GEN-LAST:event_provModActionPerformed
 
-    private void txtNombreCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCActionPerformed
-
-    }//GEN-LAST:event_txtNombreCActionPerformed
-
-    private void txtNombreCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCKeyTyped
-
-    }//GEN-LAST:event_txtNombreCKeyTyped
-
-    private void txtRFCClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRFCClienteActionPerformed
-
-    }//GEN-LAST:event_txtRFCClienteActionPerformed
-
-    private void txtDirClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDirClienteKeyTyped
-
-    }//GEN-LAST:event_txtDirClienteKeyTyped
-
-    private void txtColClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColClienteKeyTyped
-
-    }//GEN-LAST:event_txtColClienteKeyTyped
-
-    private void txtPDclienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPDclienteKeyTyped
-
-    }//GEN-LAST:event_txtPDclienteKeyTyped
-
     private void txtNextClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNextClienteActionPerformed
 
     }//GEN-LAST:event_txtNextClienteActionPerformed
-
-    private void paisClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paisClienteMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_paisClienteMouseClicked
-
-    private void estadoClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estadoClienteMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_estadoClienteMouseClicked
-
-    private void estadoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_estadoClienteActionPerformed
-
-    private void txtCPclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPclienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCPclienteActionPerformed
-
-    private void txtNintClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNintClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNintClienteActionPerformed
-
-    private void txtCorreoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoClienteKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoClienteKeyTyped
 
     private void giroClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_giroClienteMouseClicked
         // TODO add your handling code here:
@@ -3180,22 +3039,6 @@ public final class Interface extends javax.swing.JFrame {
         jPcontenedor.updateUI();
         jPcontenedor.repaint();
     }//GEN-LAST:event_clieAgreActionPerformed
-
-    private void txtCalleClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCalleClienteKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCalleClienteKeyTyped
-
-    private void txtCodClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodClienteActionPerformed
-
-    private void txtColClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtColClienteActionPerformed
-
-    private void txtCorreoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoClienteActionPerformed
 
     private void txtNombreProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProKeyTyped
         // TODO add your handling code here:
@@ -3297,13 +3140,21 @@ public final class Interface extends javax.swing.JFrame {
         }
 
     }
-    private void txtCodProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodProActionPerformed
-
-    private void agregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_agregar4ActionPerformed
+    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
+        // TODO add your handling code here:        
+//        try {
+        String codigo = (String) tablaBusCP.getValueAt(tablaBusCP.getSelectedRow(), 0);
+        editarClipro editarCP = new editarClipro(this, false,codigo);
+        editarCP.setTitle("Editar Cliente/Proveedor");
+        editarCP.setLocationRelativeTo(null);
+        editarCP.setVisible(true);
+//            
+//        
+//        } catch (Exception e) {
+//                JOptionPane.showMessageDialog(null, "Cliente/Proveedor no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
+//
+//            }
+    }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void txtNombrePro1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePro1KeyReleased
         // TODO add your handling code here:
@@ -3352,12 +3203,12 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JButton agregar;
     private javax.swing.JButton agregar2;
     private javax.swing.JButton agregar3;
-    private javax.swing.JButton agregar4;
     private javax.swing.JButton agregarAlmacen;
     private javax.swing.JButton agregarGarantia;
     private javax.swing.JComboBox<String> almacen;
     private javax.swing.JComboBox<String> almacenMod;
     private javax.swing.JMenuItem añadirUsuario;
+    private javax.swing.JButton botonActualizar;
     private javax.swing.JMenuItem clieAgre;
     private javax.swing.JMenuItem clieMod;
     private javax.swing.JButton eliminar;
