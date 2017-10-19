@@ -1941,7 +1941,6 @@ public final class Interface extends javax.swing.JFrame {
 
         txtNextCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtNextCliente.setForeground(new java.awt.Color(51, 51, 51));
-        txtNextCliente.setText("");
         txtNextCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtNextCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1992,7 +1991,6 @@ public final class Interface extends javax.swing.JFrame {
 
         txtCPcliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtCPcliente.setForeground(new java.awt.Color(51, 51, 51));
-        txtCPcliente.setText("");
         txtCPcliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtCPcliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2008,7 +2006,7 @@ public final class Interface extends javax.swing.JFrame {
 
         txtNintCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtNintCliente.setForeground(new java.awt.Color(51, 51, 51));
-        txtNintCliente.setText("");
+        txtNintCliente.setText(null);
         txtNintCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtNintCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2318,10 +2316,12 @@ public final class Interface extends javax.swing.JFrame {
 
         txtRFCPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtRFCPro.setForeground(new java.awt.Color(51, 51, 51));
+        txtRFCPro.setText("");
         txtRFCPro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         txtDirPro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         txtDirPro.setForeground(new java.awt.Color(51, 51, 51));
+        txtDirPro.setText("");
         txtDirPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jLabel120.setBackground(new java.awt.Color(40, 41, 41));
@@ -2332,6 +2332,7 @@ public final class Interface extends javax.swing.JFrame {
 
         txtColPro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         txtColPro.setForeground(new java.awt.Color(51, 51, 51));
+        txtColPro.setText("");
         txtColPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtColPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2353,10 +2354,12 @@ public final class Interface extends javax.swing.JFrame {
 
         txtPDPro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         txtPDPro.setForeground(new java.awt.Color(51, 51, 51));
+        txtPDPro.setText("");
         txtPDPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         txtNextPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtNextPro.setForeground(new java.awt.Color(51, 51, 51));
+        txtNextPro.setText(null);
         txtNextPro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         jLabel123.setBackground(new java.awt.Color(40, 41, 41));
@@ -2402,6 +2405,7 @@ public final class Interface extends javax.swing.JFrame {
 
         txtCPPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtCPPro.setForeground(new java.awt.Color(51, 51, 51));
+        txtCPPro.setText(null);
         txtCPPro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtCPPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2417,6 +2421,7 @@ public final class Interface extends javax.swing.JFrame {
 
         txtNintPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtNintPro.setForeground(new java.awt.Color(51, 51, 51));
+        txtNintPro.setText(null);
         txtNintPro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtNintPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2432,6 +2437,7 @@ public final class Interface extends javax.swing.JFrame {
 
         txtCorreoPro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         txtCorreoPro.setForeground(new java.awt.Color(51, 51, 51));
+        txtCorreoPro.setText("");
         txtCorreoPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jLabel128.setBackground(new java.awt.Color(40, 41, 41));
@@ -2493,6 +2499,7 @@ public final class Interface extends javax.swing.JFrame {
 
         txtCallePro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         txtCallePro.setForeground(new java.awt.Color(51, 51, 51));
+        txtCallePro.setText("");
         txtCallePro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jLabel133.setBackground(new java.awt.Color(40, 41, 41));
@@ -3241,18 +3248,15 @@ public final class Interface extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Mensaje", JOptionPane.OK_OPTION, nv);
 
         } else {
-            int interior = Integer.parseInt(txtNintPro.getText());
-            int exterior = Integer.parseInt(txtNextPro.getText());
-            int cp = Integer.parseInt(txtCPPro.getText());
             PreparedStatement pps = cn.prepareStatement("INSERT INTO clipro(codigo,nombreC, direccion, calle, noInt, noExt, colonia, cp, ciudad, estado, pais, rfc,correo,tipo) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pps.setString(1, txtCodPro.getText());
             pps.setString(2, txtNombrePro.getText());
             pps.setString(3, txtDirPro.getText());
             pps.setString(4, txtCallePro.getText());
-            pps.setInt(5, interior);
-            pps.setInt(6, exterior);
+            pps.setInt(5, Integer.parseInt(txtNextPro.getText()+0));
+            pps.setInt(6, Integer.parseInt(txtNextPro.getText()+0));
             pps.setString(7, txtColPro.getText());
-            pps.setInt(8, Integer.parseInt(txtCPPro.getText()));
+            pps.setInt(8, Integer.parseInt(txtCPPro.getText()+0));
             pps.setString(9, txtPDPro.getText());
             pps.setString(10,(String) estadoPro.getSelectedItem());
             pps.setString(11,(String) paisPro.getSelectedItem());
@@ -3276,16 +3280,17 @@ public final class Interface extends javax.swing.JFrame {
             pps.setString(2, txtNombreC.getText());
             pps.setString(3, txtDirCliente.getText());
             pps.setString(4, txtCalleCliente.getText());
-            pps.setInt(5, Integer.parseInt(txtNintCliente.getText()));
-            pps.setInt(6, Integer.parseInt(txtNextCliente.getText()));
+            pps.setInt(5, Integer.parseInt(txtNintCliente.getText()+0));
+            pps.setInt(6, Integer.parseInt(txtNextCliente.getText()+0));
             pps.setString(7, txtColCliente.getText());
-            pps.setInt(8, Integer.parseInt(txtCPcliente.getText()));
+            pps.setInt(8,Integer.parseInt(txtCPcliente.getText()+0));
             pps.setString(9, txtPDcliente.getText());
             pps.setString(10,(String) estadoCliente.getSelectedItem());
             pps.setString(11,(String) paisCliente.getSelectedItem());
             pps.setString(12,txtRFCCliente.getText());
             pps.setString(13,txtCorreoCliente.getText());
             pps.setInt(14,tipo);
+            System.out.println(pps);
             ua = new ImageIcon("src/img/success.png");
             JOptionPane.showMessageDialog(null, "Proveedor agregado exitosamente", "Mensaje", JOptionPane.OK_OPTION, ua);
             pps.executeUpdate();
