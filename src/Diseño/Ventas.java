@@ -43,7 +43,7 @@ public final class Ventas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No a ingresado ningun producto", "Mensaje", JOptionPane.OK_OPTION);
         } else {
 
-            String sql = "SELECT nombre,precio,cantidad FROM producto";
+            String sql = "SELECT nombre,precio,stock FROM producto";
             Statement st;
 
             int cantidad = (int) jSpinner1.getValue();
@@ -340,6 +340,8 @@ public final class Ventas extends javax.swing.JFrame {
             }
         });
 
+        buscar.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        buscar.setBorder(null);
         buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         buscar.setMaximumSize(new java.awt.Dimension(90, 36));
         buscar.setMinimumSize(new java.awt.Dimension(90, 36));
@@ -360,7 +362,9 @@ public final class Ventas extends javax.swing.JFrame {
             }
         });
 
+        jSpinner1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jSpinner1.setBorder(null);
         jSpinner1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPVentaLayout = new javax.swing.GroupLayout(jPVenta);
@@ -444,7 +448,6 @@ public final class Ventas extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         Ventas vent = new Ventas();
-        
         buscarProductos bp = new buscarProductos(vent,true);
         bp.setVisible(true);
     

@@ -33,14 +33,12 @@ public class buscarProductos extends javax.swing.JDialog {
     TableRowSorter<TableModel> tr;
     DefaultTableModel modelo = new DefaultTableModel();
 
-    /**
-     * Creates new form buscarProductos
-     */
-    public buscarProductos(Ventas inter, boolean modal) {
-        super(inter, modal);
+   
+    
+    public buscarProductos(Ventas vent, boolean modal) {
+        super(vent, modal);
         initComponents();
         this.setTitle("Buscar un producto");
-        initComponents();
         tablaProductos();
 
     }
@@ -50,10 +48,10 @@ public class buscarProductos extends javax.swing.JDialog {
 
         modelo.addColumn("Codigo");
         modelo.addColumn("Precio");
-        modelo.addColumn("Cantidad");
+        modelo.addColumn("Existencias");
         modelo.addColumn("Descripción");
 
-        String sql = "SELECT nombre,precio,cantidad,espef FROM producto";
+        String sql = "SELECT nombre,precio,stock,espef FROM producto";
         Statement st;
         try {
             jTable1.setModel(modelo);
@@ -111,6 +109,8 @@ public class buscarProductos extends javax.swing.JDialog {
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 400));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 400));
 
+        jScrollPane2.setBorder(null);
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -131,6 +131,7 @@ public class buscarProductos extends javax.swing.JDialog {
             }
         });
 
+        campo.setBorder(null);
         campo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoActionPerformed(evt);
@@ -152,12 +153,15 @@ public class buscarProductos extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(campo, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(172, 172, 172)
-                .addComponent(jButton1)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 270, Short.MAX_VALUE)
+                        .addComponent(campo, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(172, 172, 172)
+                        .addComponent(jButton1)))
                 .addContainerGap())
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -172,7 +176,8 @@ public class buscarProductos extends javax.swing.JDialog {
                     .addComponent(campo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addComponent(jLabel10)
