@@ -26,7 +26,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Daniel
  */
-public class buscarProductos extends javax.swing.JDialog {
+public class BuscarProductos extends javax.swing.JDialog {
 
     Conexion conn = new Conexion();
     Connection cn = conn.getConnection();
@@ -35,7 +35,7 @@ public class buscarProductos extends javax.swing.JDialog {
 
    
     
-    public buscarProductos(Ventas vent, boolean modal) {
+    public BuscarProductos(Ventas vent, boolean modal) {
         super(vent, modal);
         initComponents();
         this.setTitle("Buscar un producto");
@@ -249,20 +249,21 @@ public class buscarProductos extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(buscarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(buscarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(buscarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(buscarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                buscarProductos dialog = new buscarProductos((Ventas) new javax.swing.JFrame(), true);
+                BuscarProductos dialog = new BuscarProductos((Ventas) new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

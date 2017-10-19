@@ -448,7 +448,7 @@ public final class Ventas extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         Ventas vent = new Ventas();
-        buscarProductos bp = new buscarProductos(vent,true);
+        BuscarProductos bp = new BuscarProductos(vent,true);
         bp.setVisible(true);
     
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -495,7 +495,7 @@ public final class Ventas extends javax.swing.JFrame {
             cobrar = cobrar - quitarprecio;
             jLabel1.setText("$" + String.valueOf(cobrar));
             dtm.removeRow(tablaVenta.getSelectedRow());
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Producto no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
 
         }
