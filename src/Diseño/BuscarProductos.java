@@ -26,7 +26,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Daniel
  */
-public class BuscarProductos extends javax.swing.JDialog {
+public final class BuscarProductos extends javax.swing.JDialog {
 
     Conexion conn = new Conexion();
     Connection cn = conn.getConnection();
