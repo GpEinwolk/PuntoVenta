@@ -6,18 +6,22 @@
 package Diseño;
 
 import static Diseño.Ventas.cn;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Daniel
  */
 public class editarClipro extends javax.swing.JDialog {
+
+    String code;
 
     /**
      * Creates new form editarClipro
@@ -29,6 +33,7 @@ public class editarClipro extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         llenarCampos(Codigo);
+        code = Codigo;
     }
 
     private editarClipro(JFrame jFrame, boolean b) {
@@ -245,7 +250,7 @@ public class editarClipro extends javax.swing.JDialog {
 
         giroCliente.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         giroCliente.setForeground(new java.awt.Color(51, 51, 51));
-        giroCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Servicio de Software" }));
+        giroCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otros servicios", "Arrendamiento inmobiliario", "Cafetería", "Cancelería​", "Carnicería", "Carpintería y mueblería", "Farmacias", "Ferretería", "Gimnasio​", "Jarciería", "Lavandería y tintorería​", "Manufactura​​", "Panadería​", "Papelería", "Peluquería", "Productor agrícola", "Productor ganadero​", "Servicios administrativos", "Servicios de albañilería​", "Servicios de alquiler de luz y sonido", "Servicio de cerrajería​", "Servicios de comercio exterior​", "Servicios de comisión", "Servicios de espectáculos públicos", "Servicios de estacionamiento público", "Servicios hospitalarios​", "Servicios de laboratorio clínicos​", "Servicios de pintura​​", "Servicios de publicidad", "Servicios de seguros", "Servicios de topografía​", "Servicios fotográficos​", "Servicios profesionales contables", "Servicios y productos de ortopedia", "Taller mecánico", "Vulcanizadora", "Taller de hojalatería y pintura", "Refaccionaria automotriz", "Tatuajes y perforaciones​", "Tortillería", "Venta de productos de telefonía celular", "Venta de billetes de lotería​", "Veterinaria", "Zapaterías​" }));
 
         botonEditar.setBackground(new java.awt.Color(29, 184, 83));
         botonEditar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -316,8 +321,8 @@ public class editarClipro extends javax.swing.JDialog {
                                                 .addComponent(txtRFCCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jLabel101)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(giroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
+                                                .addComponent(giroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(txtDirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtCalleCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(txtNombreC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -463,8 +468,53 @@ public class editarClipro extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNextClienteActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-
+        editarClipro();
     }//GEN-LAST:event_botonEditarActionPerformed
+    private void editarClipro() {
+        int next;
+        int nint;
+        int cp;
+        if ("".equals(txtNextCliente.getText())) {
+            next = 0;
+        } else {
+            next = Integer.parseInt(txtNextCliente.getText());
+        }
+        if ("".equals(txtNintCliente.getText())) {
+            nint = 0;
+        } else {
+            nint = Integer.parseInt(txtNintCliente.getText());
+        }
+        if ("".equals(txtCPcliente.getText())) {
+            cp = 0;
+        } else {
+            cp = Integer.parseInt(txtCPcliente.getText());
+        }
+        String sql = "UPDATE clipro SET "
+                + "   codigo = '" + txtCodCliente.getText()
+                + "', nombreC = '" + txtNombreC.getText()
+                + "', giro = '" + (String) giroCliente.getSelectedItem()
+                + "', direccion = '" + txtDirCliente.getText()
+                + "', calle = '" + txtCalleCliente.getText()
+                + "', noInt = '" + nint
+                + "', noExt = '" + next
+                + "', colonia = '" + txtColCliente.getText()
+                + "', cp = '" + cp
+                + "', ciudad = '" + txtPDcliente.getText()
+                + "', estado = '" + (String) estadoCliente.getSelectedItem()
+                + "', pais = '" + (String) paisCliente.getSelectedItem()
+                + "', rfc = '" + txtRFCCliente.getText()
+                + "', correo = '" + txtCorreoCliente.getText()
+                + "' WHERE clipro.codigo = '" + code + "'";
+        try {
+            PreparedStatement pps = cn.prepareStatement(sql);
+            pps.executeUpdate();
+            pps.close();
+            JOptionPane.showMessageDialog(null, "Cliente/Proveedor editado con exito", "Mensaje", JOptionPane.OK_OPTION);
+            this.dispose();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -555,28 +605,30 @@ public class editarClipro extends javax.swing.JDialog {
             while (rs.next()) {
                 txtCodCliente.setText((String) rs.getObject(2));
                 txtNombreC.setText((String) rs.getObject(3));
-                txtDirCliente.setText((String) rs.getObject(4));
-                txtCalleCliente.setText((String) rs.getObject(5));
-                txtNintCliente.setText(Integer.toString((int) rs.getObject(6)));
-                txtNextCliente.setText(Integer.toString((int) rs.getObject(7)));
-                txtColCliente.setText((String) rs.getObject(8));
-                txtCPcliente.setText(Integer.toString((int) rs.getObject(9)));
-                txtPDcliente.setText((String) rs.getObject(10));
-                estadoCliente.setSelectedItem(rs.getObject(11));
-                paisCliente.setSelectedItem(rs.getObject(12));
-                txtRFCCliente.setText((String) rs.getObject(13));
-                txtCorreoCliente.setText((String) rs.getObject(14));
-                if(rs.getObject(15).equals(1)){
-                jLabel99.setText("Modificar un Cliente");
-                jLabel115.setText("Codigo de Cliente* ");
-                }else{
-                jLabel99.setText("Modificar un Proveedor");
-                jLabel115.setText("Codigo de Proveedor* ");
+                giroCliente.setSelectedItem(rs.getObject(4));
+                txtDirCliente.setText((String) rs.getObject(5));
+                txtCalleCliente.setText((String) rs.getObject(6));
+                txtNintCliente.setText(Integer.toString((int) rs.getObject(7)));
+                txtNextCliente.setText(Integer.toString((int) rs.getObject(8)));
+                txtColCliente.setText((String) rs.getObject(9));
+                txtCPcliente.setText(Integer.toString((int) rs.getObject(10)));
+                txtPDcliente.setText((String) rs.getObject(11));
+                estadoCliente.setSelectedItem(rs.getObject(12));
+                paisCliente.setSelectedItem(rs.getObject(13));
+                txtRFCCliente.setText((String) rs.getObject(14));
+                txtCorreoCliente.setText((String) rs.getObject(15));
+                if (rs.getObject(16).equals(1)) {
+                    jLabel99.setText("Modificar un Cliente");
+                    jLabel115.setText("Codigo de Cliente* ");
+                } else {
+                    jLabel99.setText("Modificar un Proveedor");
+                    jLabel115.setText("Codigo de Proveedor* ");
                 }
-                
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }
 }

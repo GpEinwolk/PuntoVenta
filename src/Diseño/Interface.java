@@ -1988,6 +1988,7 @@ public final class Interface extends javax.swing.JFrame {
 
         giroCliente.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         giroCliente.setForeground(new java.awt.Color(51, 51, 51));
+        giroCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otros servicios", "Arrendamiento inmobiliario", "Cafetería", "Cancelería​", "Carnicería", "Carpintería y mueblería", "Farmacias", "Ferretería", "Gimnasio​", "Jarciería", "Lavandería y tintorería​", "Manufactura​​", "Panadería​", "Papelería", "Peluquería", "Productor agrícola", "Productor ganadero​", "Servicios administrativos", "Servicios de albañilería​", "Servicios de alquiler de luz y sonido", "Servicio de cerrajería​", "Servicios de comercio exterior​", "Servicios de comisión", "Servicios de espectáculos públicos", "Servicios de estacionamiento público", "Servicios hospitalarios​", "Servicios de laboratorio clínicos​", "Servicios de pintura​​", "Servicios de publicidad", "Servicios de seguros", "Servicios de topografía​", "Servicios fotográficos​", "Servicios profesionales contables", "Servicios y productos de ortopedia", "Taller mecánico", "Vulcanizadora", "Taller de hojalatería y pintura", "Refaccionaria automotriz", "Tatuajes y perforaciones​", "Tortillería", "Venta de productos de telefonía celular", "Venta de billetes de lotería​", "Veterinaria", "Zapaterías​" }));
         giroCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 giroClienteMouseClicked(evt);
@@ -2068,8 +2069,8 @@ public final class Interface extends javax.swing.JFrame {
                                                 .addComponent(txtRFCCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jLabel101)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(giroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(giroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(txtDirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtCalleCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(txtNombreC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2383,6 +2384,7 @@ public final class Interface extends javax.swing.JFrame {
 
         giroPro.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         giroPro.setForeground(new java.awt.Color(51, 51, 51));
+        giroPro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otros servicios", "Arrendamiento inmobiliario", "Cafetería", "Cancelería​", "Carnicería", "Carpintería y mueblería", "Farmacias", "Ferretería", "Gimnasio​", "Jarciería", "Lavandería y tintorería​", "Manufactura​​", "Panadería​", "Papelería", "Peluquería", "Productor agrícola", "Productor ganadero​", "Servicios administrativos", "Servicios de albañilería​", "Servicios de alquiler de luz y sonido", "Servicio de cerrajería​", "Servicios de comercio exterior​", "Servicios de comisión", "Servicios de espectáculos públicos", "Servicios de estacionamiento público", "Servicios hospitalarios​", "Servicios de laboratorio clínicos​", "Servicios de pintura​​", "Servicios de publicidad", "Servicios de seguros", "Servicios de topografía​", "Servicios fotográficos​", "Servicios profesionales contables", "Servicios y productos de ortopedia", "Taller mecánico", "Vulcanizadora", "Taller de hojalatería y pintura", "Refaccionaria automotriz", "Tatuajes y perforaciones​", "Tortillería", "Venta de productos de telefonía celular", "Venta de billetes de lotería​", "Veterinaria", "Zapaterías​" }));
         giroPro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 giroProMouseClicked(evt);
@@ -2460,8 +2462,8 @@ public final class Interface extends javax.swing.JFrame {
                                                 .addComponent(txtRFCPro, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jLabel119)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(giroPro, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(giroPro, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(txtDirPro, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtCallePro, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(txtNombrePro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3091,7 +3093,7 @@ public final class Interface extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Mensaje", JOptionPane.OK_OPTION, nv);
 
         } else {
-            PreparedStatement pps = cn.prepareStatement("INSERT INTO clipro(codigo,nombreC, direccion, calle, noInt, noExt, colonia, cp, ciudad, estado, pais, rfc,correo,tipo) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pps = cn.prepareStatement("INSERT INTO clipro(codigo,nombreC, direccion, calle, noInt, noExt, colonia, cp, ciudad, estado, pais, rfc,correo,tipo,giro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pps.setString(1, txtCodPro.getText());
             pps.setString(2, txtNombrePro.getText());
             pps.setString(3, txtDirPro.getText());
@@ -3106,6 +3108,7 @@ public final class Interface extends javax.swing.JFrame {
             pps.setString(12,txtRFCPro.getText());
             pps.setString(13,txtCorreoPro.getText());
             pps.setInt(14,tipo);
+            pps.setString(15,(String) giroPro.getSelectedItem());
             ua = new ImageIcon("src/img/succes.png");
             JOptionPane.showMessageDialog(null, "Proveedor agregado exitosamente", "Mensaje", JOptionPane.OK_OPTION, ua);
             pps.executeUpdate();
@@ -3118,7 +3121,7 @@ public final class Interface extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Mensaje", JOptionPane.OK_OPTION, nv);
 
         } else {
-            PreparedStatement pps = cn.prepareStatement("INSERT INTO clipro(codigo,nombreC, direccion, calle, noInt, noExt, colonia, cp, ciudad, estado, pais, rfc,correo,tipo) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pps = cn.prepareStatement("INSERT INTO clipro(codigo,nombreC, direccion, calle, noInt, noExt, colonia, cp, ciudad, estado, pais, rfc,correo,tipo,giro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pps.setString(1, txtCodCliente.getText());
             pps.setString(2, txtNombreC.getText());
             pps.setString(3, txtDirCliente.getText());
@@ -3133,7 +3136,7 @@ public final class Interface extends javax.swing.JFrame {
             pps.setString(12,txtRFCCliente.getText());
             pps.setString(13,txtCorreoCliente.getText());
             pps.setInt(14,tipo);
-            System.out.println(pps);
+            pps.setString(15,(String) giroCliente.getSelectedItem());
             ua = new ImageIcon("src/img/success.png");
             JOptionPane.showMessageDialog(null, "Proveedor agregado exitosamente", "Mensaje", JOptionPane.OK_OPTION, ua);
             pps.executeUpdate();
@@ -3142,18 +3145,18 @@ public final class Interface extends javax.swing.JFrame {
     }
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         // TODO add your handling code here:        
-//        try {
+        try {
         String codigo = (String) tablaBusCP.getValueAt(tablaBusCP.getSelectedRow(), 0);
         editarClipro editarCP = new editarClipro(this, false,codigo);
         editarCP.setTitle("Editar Cliente/Proveedor");
         editarCP.setLocationRelativeTo(null);
         editarCP.setVisible(true);
-//            
+           
 //        
-//        } catch (Exception e) {
-//                JOptionPane.showMessageDialog(null, "Cliente/Proveedor no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
+        } catch (Exception e) {
+               JOptionPane.showMessageDialog(null, "Cliente/Proveedor no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
 //
-//            }
+            }
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void txtNombrePro1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePro1KeyReleased
