@@ -445,8 +445,7 @@ public final class Ventas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        Ventas vent = new Ventas();
-        BuscarProductos bp = new BuscarProductos(vent,true);
+        BuscarProductos bp = new BuscarProductos(this, false);
         bp.setVisible(true);
     
     }//GEN-LAST:event_jButton9ActionPerformed

@@ -35,8 +35,8 @@ public final class BuscarProductos extends javax.swing.JDialog {
 
    
     
-    public BuscarProductos(Ventas vent, boolean modal) {
-        super(vent, modal);
+    public BuscarProductos(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         this.setTitle("Buscar un producto");
         tablaProductos();
@@ -208,8 +208,9 @@ public final class BuscarProductos extends javax.swing.JDialog {
         // TODO add your handling code here:
         try {
         String codigo = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
-        Ventas.textBuscar.setText("564654");
+        Ventas.textBuscar.setText(codigo);
         this.dispose();
+        Ventas.agregar();
         } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Producto no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
 

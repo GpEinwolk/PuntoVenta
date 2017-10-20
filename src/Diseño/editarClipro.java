@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -86,9 +87,12 @@ public class editarClipro extends javax.swing.JDialog {
         txtCodCliente = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         jPcliente.setBackground(new java.awt.Color(40, 41, 41));
         jPcliente.setAutoscrolls(true);
+        jPcliente.setEnabled(false);
         jPcliente.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         jPcliente.setMinimumSize(new java.awt.Dimension(985, 613));
 
@@ -461,6 +465,7 @@ public class editarClipro extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNextClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNextClienteActionPerformed
@@ -509,7 +514,8 @@ public class editarClipro extends javax.swing.JDialog {
             PreparedStatement pps = cn.prepareStatement(sql);
             pps.executeUpdate();
             pps.close();
-            JOptionPane.showMessageDialog(null, "Cliente/Proveedor editado con exito", "Mensaje", JOptionPane.OK_OPTION);
+            ImageIcon ua = new ImageIcon("src/img/success.png");
+            JOptionPane.showMessageDialog(null, "Proveedor agregado exitosamente", "Mensaje", JOptionPane.OK_OPTION, ua);
             this.dispose();
         } catch (SQLException ex) {
             System.out.println(ex);
