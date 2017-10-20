@@ -1,5 +1,6 @@
 package Diseño;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -83,6 +84,11 @@ public class CorteCaja extends javax.swing.JFrame {
                 txtDineroActionPerformed(evt);
             }
         });
+        txtDinero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDineroKeyPressed(evt);
+            }
+        });
 
         registrarDinero.setBackground(new java.awt.Color(29, 184, 83));
         registrarDinero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -152,6 +158,13 @@ public class CorteCaja extends javax.swing.JFrame {
           Logger.getLogger(CorteCaja.class.getName()).log(Level.SEVERE, null, ex);
       }
     }//GEN-LAST:event_registrarDineroActionPerformed
+
+    private void txtDineroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDineroKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+           registrarDinero.doClick();
+        }
+    }//GEN-LAST:event_txtDineroKeyPressed
 
     /**
      * @param args the command line arguments

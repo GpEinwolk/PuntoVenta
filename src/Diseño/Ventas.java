@@ -31,19 +31,19 @@ public final class Ventas extends javax.swing.JFrame {
     void tablaVentas() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
         modelo.addColumn("Precio");
         modelo.addColumn("Cantidad");
         tablaVenta.setModel(modelo);
     }
 
     public static void agregar() {
-
         int x = tablaVenta.getRowCount();
-        if (buscar.getText().equals("")) {
+        if (textBuscar.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "No a ingresado ningun producto", "Mensaje", JOptionPane.OK_OPTION);
         } else {
 
-            String sql = "SELECT nombre,precio,stock FROM producto";
+            String sql = "SELECT codigo,precio,stock,nombre FROM producto";
             Statement st;
 
             int cantidad = (int) jSpinner1.getValue();
@@ -59,14 +59,14 @@ public final class Ventas extends javax.swing.JFrame {
                     datos[0] = rs.getString(1);
                     datos[1] = rs.getString(2);
                     datos[2] = rs.getString(3);
-
-                    if (buscar.getText().equals(datos[0])) {
+                    datos[3] = rs.getString(4);
+                    if (textBuscar.getText().equals(datos[0])) {
                         model = (DefaultTableModel) tablaVenta.getModel();
 
                         int exist = Integer.parseInt(datos[2]);
 
                         if (model.getRowCount() == 0) {
-                            model.addRow(new Object[]{datos[0], datos[1], cantidad});
+                            model.addRow(new Object[]{datos[3],datos[0], datos[1], cantidad});
                             cobrar = cobrar + Float.parseFloat(datos[1]);
                             cobrar = cobrar*cantidad;
                             jLabel1.setText("$" + String.valueOf(cobrar));
@@ -75,13 +75,13 @@ public final class Ventas extends javax.swing.JFrame {
                             boolean variable = false;
 
                             for (int i = 0; i < model.getRowCount(); i++) {
-                                Object producto = model.getValueAt(i, 0);
-                                int cant = (int) model.getValueAt(i, 2) + (int) jSpinner1.getValue();
-                                if (buscar.getText().equals(producto)) {
+                                Object producto = model.getValueAt(i, 1);
+                                int cant = (int) model.getValueAt(i, 3) + (int) jSpinner1.getValue();
+                                if (textBuscar.getText().equals(producto)) {
                                     if (exist <= cant) {
                                         JOptionPane.showMessageDialog(null, "producto agotado", "Mensaje", JOptionPane.OK_OPTION);
                                     } else {
-                                        model.setValueAt(cant, i, 2);
+                                        model.setValueAt(cant, i, 3);
                                         cobrar = cobrar + (Float.parseFloat(datos[1])*cantidad);
                                         jLabel1.setText("$" + String.valueOf(cobrar));
                                     }
@@ -89,7 +89,7 @@ public final class Ventas extends javax.swing.JFrame {
                                 }
                             }
                             if (variable == false) {
-                                model.addRow(new Object[]{datos[0], datos[1], cantidad});
+                                model.addRow(new Object[]{datos[3],datos[0], datos[1], cantidad});
                                 cobrar = cobrar + (Float.parseFloat(datos[1])*cantidad);
                                 jLabel1.setText("$" + String.valueOf(cobrar));
                             }
@@ -132,7 +132,7 @@ public final class Ventas extends javax.swing.JFrame {
         agregar = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        buscar = new javax.swing.JTextField();
+        textBuscar = new javax.swing.JTextField();
         borrarProducto = new javax.swing.JButton();
         jSpinner1 = new javax.swing.JSpinner();
 
@@ -340,14 +340,14 @@ public final class Ventas extends javax.swing.JFrame {
             }
         });
 
-        buscar.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        buscar.setBorder(null);
-        buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        buscar.setMaximumSize(new java.awt.Dimension(90, 36));
-        buscar.setMinimumSize(new java.awt.Dimension(90, 36));
-        buscar.addKeyListener(new java.awt.event.KeyAdapter() {
+        textBuscar.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        textBuscar.setBorder(null);
+        textBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        textBuscar.setMaximumSize(new java.awt.Dimension(90, 36));
+        textBuscar.setMinimumSize(new java.awt.Dimension(90, 36));
+        textBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                buscarKeyPressed(evt);
+                textBuscarKeyPressed(evt);
             }
         });
 
@@ -379,7 +379,7 @@ public final class Ventas extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPVentaLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                        .addComponent(textBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -410,7 +410,7 @@ public final class Ventas extends javax.swing.JFrame {
                         .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -438,8 +438,6 @@ public final class Ventas extends javax.swing.JFrame {
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         agregar();
-
-
     }//GEN-LAST:event_agregarActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -512,13 +510,13 @@ public final class Ventas extends javax.swing.JFrame {
 //        c.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void buscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarKeyPressed
+    private void textBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscarKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){  
            agregar();
-           buscar.setText("");
+           textBuscar.setText("");
         }
-    }//GEN-LAST:event_buscarKeyPressed
+    }//GEN-LAST:event_textBuscarKeyPressed
 
     /**
      * @param args the command line arguments
@@ -552,7 +550,6 @@ public final class Ventas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar;
     private javax.swing.JButton borrarProducto;
-    public static javax.swing.JTextField buscar;
     private javax.swing.JButton jBcorteCaja;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
@@ -570,6 +567,7 @@ public final class Ventas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private static javax.swing.JSpinner jSpinner1;
     public static javax.swing.JTable tablaVenta;
+    public static javax.swing.JTextField textBuscar;
     // End of variables declaration//GEN-END:variables
 
     private static class bucarProductos {

@@ -47,11 +47,12 @@ public final class BuscarProductos extends javax.swing.JDialog {
         String datos[] = new String[5];
 
         modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
         modelo.addColumn("Precio");
         modelo.addColumn("Existencias");
         modelo.addColumn("Descripción");
 
-        String sql = "SELECT nombre,precio,stock,espef FROM producto";
+        String sql = "SELECT codigo,nombre,precio,stock,espef FROM producto";
         Statement st;
         try {
             jTable1.setModel(modelo);
@@ -62,7 +63,8 @@ public final class BuscarProductos extends javax.swing.JDialog {
                 datos[1] = rs.getString(2);
                 datos[2] = rs.getString(3);
                 datos[3] = rs.getString(4);
-                modelo.addRow(new Object[]{datos[0], datos[1], datos[2], datos[3]});
+                datos[4] = rs.getString(5);
+                modelo.addRow(new Object[]{datos[0], datos[1], datos[2], datos[3], datos[4]});
             }
         } catch (SQLException ex) {
             Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
@@ -206,11 +208,8 @@ public final class BuscarProductos extends javax.swing.JDialog {
         // TODO add your handling code here:
         try {
         String codigo = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
+        Ventas.textBuscar.setText("564654");
         this.dispose();
-        Ventas.buscar.setText(codigo);
-        Ventas.agregar();
-            
-        
         } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Producto no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
 
