@@ -1,5 +1,13 @@
 package Diseño;
 
+import static Diseño.Ventas.conn;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PRStream;
+import com.itextpdf.text.pdf.PdfDictionary;
+import com.itextpdf.text.pdf.PdfName;
+import com.itextpdf.text.pdf.PdfObject;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfStamper;
 import java.awt.print.PrinterJob;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,9 +27,11 @@ import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.ColorSupported;
 import javax.print.attribute.standard.PrinterName;
+import java.io.FileOutputStream;
+import java.sql.Connection;
 
 public class Cobrar extends javax.swing.JDialog {
-
+Connection cn = conn.getConnection();
     public Cobrar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -830,15 +840,13 @@ public class Cobrar extends javax.swing.JDialog {
         try {
             // TODO add your handling code here:
             imprimir();
-        } catch (IOException ex) {
-            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PrintException ex) {
+        } catch (IOException | PrintException ex) {
             Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_agregar1ActionPerformed
 
     private void agregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar2ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_agregar2ActionPerformed
 
     void cobroMixto() {
@@ -1018,10 +1026,25 @@ public class Cobrar extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 
+    private void editarPDF() throws IOException, DocumentException{
+    String src = "archivo.pdf";
+     String dest = "archivo-edit.pdf";
+    PdfReader reader = new PdfReader(src);
+        PdfDictionary dict = reader.getPageN(1);
+        PdfObject object = dict.getDirectObject(PdfName.CONTENTS);
+        if (object instanceof PRStream) {
+            PRStream stream = (PRStream)object;
+            byte[] data = PdfReader.getStreamBytes(stream);
+            stream.setData(new String(data).replace("Titulo", "Grupo Einwolk").getBytes());
+        }
+        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
+        stamper.close();
+        reader.close();
+}
     private void imprimir() throws FileNotFoundException, IOException, PrintException {
         FileInputStream inputStream = null;
         try {
-            inputStream = new FileInputStream("c:/archivo.pdf");
+            inputStream = new FileInputStream("archivo.pdf");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
         }
