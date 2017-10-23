@@ -1,5 +1,25 @@
 package Diseño;
 
+import java.awt.print.PrinterJob;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.print.Doc;
+import javax.print.DocFlavor;
+import javax.print.DocPrintJob;
+import javax.print.PrintException;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.SimpleDoc;
+import javax.print.attribute.AttributeSet;
+import javax.print.attribute.HashAttributeSet;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.ColorSupported;
+import javax.print.attribute.standard.PrinterName;
+
 public class Cobrar extends javax.swing.JDialog {
 
     public Cobrar(java.awt.Frame parent, boolean modal) {
@@ -807,7 +827,14 @@ public class Cobrar extends javax.swing.JDialog {
     }//GEN-LAST:event_jCobroActionPerformed
 
     private void agregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            imprimir();
+        } catch (IOException ex) {
+            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PrintException ex) {
+            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_agregar1ActionPerformed
 
     private void agregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar2ActionPerformed
@@ -816,7 +843,7 @@ public class Cobrar extends javax.swing.JDialog {
 
     void cobroMixto() {
         float tarjeta = Float.parseFloat(jTextField1.getText());
-        float efectivo = Float.parseFloat(jTextField2.getText());        
+        float efectivo = Float.parseFloat(jTextField2.getText());
         float pago = tarjeta + efectivo;
         float cambio = pago - Ventas.cobrar;
         if (pago >= Ventas.cobrar) {
@@ -833,7 +860,7 @@ public class Cobrar extends javax.swing.JDialog {
 
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
         // TODO add your handling code here:
-        
+
         float pago = Float.parseFloat(jTextField3.getText());
         float cambio = pago - Ventas.cobrar;
 
@@ -860,31 +887,29 @@ public class Cobrar extends javax.swing.JDialog {
     private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
         // TODO add your handling code here:
         char caracter = evt.getKeyChar();
-        if(((caracter < '0') ||
-         (caracter > '9')) &&
-         (caracter != '\b' /*corresponde a BACK_SPACE*/))
-      {
-         evt.consume();  // ignorar el evento de teclado
-      }
+        if (((caracter < '0')
+                || (caracter > '9'))
+                && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+            evt.consume();  // ignorar el evento de teclado
+        }
     }//GEN-LAST:event_jTextField3KeyTyped
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         // TODO add your handling code here:
         char caracter = evt.getKeyChar();
-        if(((caracter < '0') ||
-         (caracter > '9')) &&
-         (caracter != '\b' /*corresponde a BACK_SPACE*/))
-      {
-         evt.consume();  // ignorar el evento de teclado
-      }
+        if (((caracter < '0')
+                || (caracter > '9'))
+                && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+            evt.consume();  // ignorar el evento de teclado
+        }
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if(Character.isLetter(c)){
-         evt.consume();  // ignorar el evento de teclado
-      }
+        if (Character.isLetter(c)) {
+            evt.consume();  // ignorar el evento de teclado
+        }
     }//GEN-LAST:event_jTextField2KeyTyped
 
     /**
@@ -992,4 +1017,54 @@ public class Cobrar extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+
+    private void imprimir() throws FileNotFoundException, IOException, PrintException {
+        FileInputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream("c:/archivo.pdf");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Formato de Documento
+        DocFlavor docFormat = DocFlavor.INPUT_STREAM.AUTOSENSE;
+        //Lectura de Documento
+        Doc document = new SimpleDoc(inputStream, docFormat, null);
+        PrinterJob job = PrinterJob.getPrinterJob();
+        job.printDialog();
+        String impresora = job.getPrintService().getName();
+        //Nombre de la impresora
+        String printerName = impresora;
+        //Inclusion del nombre de impresora y sus atributos
+        AttributeSet attributeSet = new HashAttributeSet();
+        attributeSet.add(new PrinterName(printerName, null));
+        attributeSet = new HashAttributeSet();
+        //Soporte de color o no
+        attributeSet.add(ColorSupported.NOT_SUPPORTED);
+        //Busqueda de la impresora por el nombre asignado en attributeSet
+        PrintService[] services = PrintServiceLookup.lookupPrintServices(docFormat, attributeSet);
+        //En caso de que tengamos varias impresoras configuradas
+        PrintService myPrinter = null;
+        for (int i = 0; i < services.length; i++) {
+            if (services[i].getName().equals(printerName)) {
+                myPrinter = services[i];
+                System.out.println("Imprimiendo en : " + services[i].getName());
+                break;
+            }
+        }
+
+        DocPrintJob printJob = myPrinter.createPrintJob();
+        try {
+            //Envio a la impresora
+            PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
+            printJob.print(document, aset);
+        } catch (PrintException ex) {
+            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            inputStream.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
 }

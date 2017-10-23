@@ -28,6 +28,7 @@ public final class Interface extends javax.swing.JFrame {
     DecimalFormat df = new DecimalFormat("#.00");
     DefaultTableModel modelCP;
     TableRowSorter<TableModel> tr;
+    
 
     public Interface() {
         initComponents();
@@ -1383,11 +1384,6 @@ public final class Interface extends javax.swing.JFrame {
 
         almacenMod.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         almacenMod.setForeground(new java.awt.Color(51, 51, 51));
-        almacenMod.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                almacenModMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPmodificarLayout = new javax.swing.GroupLayout(jPmodificar);
         jPmodificar.setLayout(jPmodificarLayout);
@@ -1989,16 +1985,6 @@ public final class Interface extends javax.swing.JFrame {
         giroCliente.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         giroCliente.setForeground(new java.awt.Color(51, 51, 51));
         giroCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otros servicios", "Arrendamiento inmobiliario", "Cafetería", "Cancelería​", "Carnicería", "Carpintería y mueblería", "Farmacias", "Ferretería", "Gimnasio​", "Jarciería", "Lavandería y tintorería​", "Manufactura​​", "Panadería​", "Papelería", "Peluquería", "Productor agrícola", "Productor ganadero​", "Servicios administrativos", "Servicios de albañilería​", "Servicios de alquiler de luz y sonido", "Servicio de cerrajería​", "Servicios de comercio exterior​", "Servicios de comisión", "Servicios de espectáculos públicos", "Servicios de estacionamiento público", "Servicios hospitalarios​", "Servicios de laboratorio clínicos​", "Servicios de pintura​​", "Servicios de publicidad", "Servicios de seguros", "Servicios de topografía​", "Servicios fotográficos​", "Servicios profesionales contables", "Servicios y productos de ortopedia", "Taller mecánico", "Vulcanizadora", "Taller de hojalatería y pintura", "Refaccionaria automotriz", "Tatuajes y perforaciones​", "Tortillería", "Venta de productos de telefonía celular", "Venta de billetes de lotería​", "Veterinaria", "Zapaterías​" }));
-        giroCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                giroClienteMouseClicked(evt);
-            }
-        });
-        giroCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                giroClienteActionPerformed(evt);
-            }
-        });
 
         agregar2.setBackground(new java.awt.Color(29, 184, 83));
         agregar2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -2203,11 +2189,6 @@ public final class Interface extends javax.swing.JFrame {
         txtNombrePro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         txtNombrePro.setForeground(new java.awt.Color(51, 51, 51));
         txtNombrePro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtNombrePro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreProKeyTyped(evt);
-            }
-        });
 
         jLabel117.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel117.setForeground(new java.awt.Color(255, 255, 255));
@@ -2250,11 +2231,6 @@ public final class Interface extends javax.swing.JFrame {
         txtColPro.setForeground(new java.awt.Color(51, 51, 51));
         txtColPro.setText("");
         txtColPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtColPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtColProActionPerformed(evt);
-            }
-        });
 
         jLabel121.setBackground(new java.awt.Color(40, 41, 41));
         jLabel121.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2287,11 +2263,6 @@ public final class Interface extends javax.swing.JFrame {
         paisPro.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         paisPro.setForeground(new java.awt.Color(51, 51, 51));
         paisPro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mexico" }));
-        paisPro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                paisProMouseClicked(evt);
-            }
-        });
 
         jLabel124.setBackground(new java.awt.Color(40, 41, 41));
         jLabel124.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2302,16 +2273,6 @@ public final class Interface extends javax.swing.JFrame {
         estadoPro.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         estadoPro.setForeground(new java.awt.Color(51, 51, 51));
         estadoPro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
-        estadoPro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                estadoProMouseClicked(evt);
-            }
-        });
-        estadoPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                estadoProActionPerformed(evt);
-            }
-        });
 
         jLabel125.setBackground(new java.awt.Color(40, 41, 41));
         jLabel125.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2323,11 +2284,6 @@ public final class Interface extends javax.swing.JFrame {
         txtCPPro.setForeground(new java.awt.Color(51, 51, 51));
         txtCPPro.setText(null);
         txtCPPro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtCPPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCPProActionPerformed(evt);
-            }
-        });
 
         jLabel126.setBackground(new java.awt.Color(40, 41, 41));
         jLabel126.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2339,11 +2295,6 @@ public final class Interface extends javax.swing.JFrame {
         txtNintPro.setForeground(new java.awt.Color(51, 51, 51));
         txtNintPro.setText(null);
         txtNintPro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtNintPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNintProActionPerformed(evt);
-            }
-        });
 
         jLabel127.setBackground(new java.awt.Color(40, 41, 41));
         jLabel127.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2385,16 +2336,6 @@ public final class Interface extends javax.swing.JFrame {
         giroPro.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         giroPro.setForeground(new java.awt.Color(51, 51, 51));
         giroPro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otros servicios", "Arrendamiento inmobiliario", "Cafetería", "Cancelería​", "Carnicería", "Carpintería y mueblería", "Farmacias", "Ferretería", "Gimnasio​", "Jarciería", "Lavandería y tintorería​", "Manufactura​​", "Panadería​", "Papelería", "Peluquería", "Productor agrícola", "Productor ganadero​", "Servicios administrativos", "Servicios de albañilería​", "Servicios de alquiler de luz y sonido", "Servicio de cerrajería​", "Servicios de comercio exterior​", "Servicios de comisión", "Servicios de espectáculos públicos", "Servicios de estacionamiento público", "Servicios hospitalarios​", "Servicios de laboratorio clínicos​", "Servicios de pintura​​", "Servicios de publicidad", "Servicios de seguros", "Servicios de topografía​", "Servicios fotográficos​", "Servicios profesionales contables", "Servicios y productos de ortopedia", "Taller mecánico", "Vulcanizadora", "Taller de hojalatería y pintura", "Refaccionaria automotriz", "Tatuajes y perforaciones​", "Tortillería", "Venta de productos de telefonía celular", "Venta de billetes de lotería​", "Veterinaria", "Zapaterías​" }));
-        giroPro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                giroProMouseClicked(evt);
-            }
-        });
-        giroPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                giroProActionPerformed(evt);
-            }
-        });
 
         agregar3.setBackground(new java.awt.Color(29, 184, 83));
         agregar3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -2963,10 +2904,6 @@ public final class Interface extends javax.swing.JFrame {
         mostrarComboProductoMod();
     }//GEN-LAST:event_pordModActionPerformed
 
-    private void almacenModMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenModMouseClicked
-        comboAlmacen();
-    }//GEN-LAST:event_almacenModMouseClicked
-
     private void almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenMouseClicked
 
     }//GEN-LAST:event_almacenMouseClicked
@@ -3009,14 +2946,6 @@ public final class Interface extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtNextClienteActionPerformed
 
-    private void giroClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_giroClienteMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_giroClienteMouseClicked
-
-    private void giroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giroClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_giroClienteActionPerformed
-
     private void agregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar2ActionPerformed
         try {
             // TODO add your handling code here:
@@ -3041,42 +2970,6 @@ public final class Interface extends javax.swing.JFrame {
         jPcontenedor.updateUI();
         jPcontenedor.repaint();
     }//GEN-LAST:event_clieAgreActionPerformed
-
-    private void txtNombreProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreProKeyTyped
-
-    private void txtColProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtColProActionPerformed
-
-    private void paisProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paisProMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_paisProMouseClicked
-
-    private void estadoProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estadoProMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_estadoProMouseClicked
-
-    private void estadoProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_estadoProActionPerformed
-
-    private void txtCPProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCPProActionPerformed
-
-    private void txtNintProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNintProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNintProActionPerformed
-
-    private void giroProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_giroProMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_giroProMouseClicked
-
-    private void giroProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giroProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_giroProActionPerformed
 
     private void agregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar3ActionPerformed
         try {
