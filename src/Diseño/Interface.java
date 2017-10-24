@@ -370,7 +370,7 @@ public final class Interface extends javax.swing.JFrame {
         masterPanel = new javax.swing.JPanel();
         jPrincipal = new javax.swing.JPanel();
         jBcorteCaja = new javax.swing.JButton();
-        jlabel = new javax.swing.JLabel();
+        jUsuarioA = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPcontenedor = new javax.swing.JPanel();
         jPcorteCaja = new javax.swing.JPanel();
@@ -569,14 +569,23 @@ public final class Interface extends javax.swing.JFrame {
         tablaBusCP = new javax.swing.JTable();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        añadirUsuario = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
+        añadirUsuario = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenu5 = new javax.swing.JMenu();
         prodAgre = new javax.swing.JMenuItem();
         pordMod = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         serAgre = new javax.swing.JMenuItem();
         serMod = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenu7 = new javax.swing.JMenu();
         provAgre = new javax.swing.JMenuItem();
         provMod = new javax.swing.JMenuItem();
@@ -584,7 +593,9 @@ public final class Interface extends javax.swing.JFrame {
         clieAgre = new javax.swing.JMenuItem();
         clieMod = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(30, 30, 30));
@@ -618,14 +629,14 @@ public final class Interface extends javax.swing.JFrame {
             }
         });
 
-        jlabel.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        jlabel.setForeground(new java.awt.Color(255, 255, 255));
-        jlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/analytics (4).png"))); // NOI18N
-        jlabel.setText("USUARIO");
-        jlabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jlabel.setPreferredSize(new java.awt.Dimension(150, 150));
-        jlabel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jUsuarioA.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jUsuarioA.setForeground(new java.awt.Color(255, 255, 255));
+        jUsuarioA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jUsuarioA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/analytics (4).png"))); // NOI18N
+        jUsuarioA.setText("USUARIO");
+        jUsuarioA.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jUsuarioA.setPreferredSize(new java.awt.Dimension(150, 150));
+        jUsuarioA.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -640,18 +651,18 @@ public final class Interface extends javax.swing.JFrame {
             .addGroup(jPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPrincipalLayout.createSequentialGroup()
                         .addComponent(jBcorteCaja)
                         .addGap(0, 115, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(jUsuarioA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPrincipalLayout.setVerticalGroup(
             jPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jUsuarioA, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
@@ -2672,14 +2683,24 @@ public final class Interface extends javax.swing.JFrame {
         jMenu1.setText("Archivo");
         jMenu1.setOpaque(true);
 
-        añadirUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user (1).png"))); // NOI18N
-        añadirUsuario.setText("Añadir Usuario");
-        añadirUsuario.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem3.setText("Cambiar usuario");
+        jMenu1.add(jMenuItem3);
+        jMenu1.add(jSeparator5);
+
+        jMenuItem1.setText("Importar base de datos");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Exportar base de datos");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                añadirUsuarioActionPerformed(evt);
+                jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu1.add(añadirUsuario);
+        jMenu1.add(jMenuItem2);
+        jMenu1.add(jSeparator6);
+
+        jMenuItem4.setText("Cerrar");
+        jMenu1.add(jMenuItem4);
 
         jMenuBar2.add(jMenu1);
 
@@ -2687,6 +2708,20 @@ public final class Interface extends javax.swing.JFrame {
         jMenu2.setForeground(new java.awt.Color(255, 255, 255));
         jMenu2.setText("Catalogos");
         jMenu2.setOpaque(true);
+
+        jMenu8.setText("Usuarios");
+
+        añadirUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user (1).png"))); // NOI18N
+        añadirUsuario.setText("Añadir");
+        añadirUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                añadirUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu8.add(añadirUsuario);
+
+        jMenu2.add(jMenu8);
+        jMenu2.add(jSeparator3);
 
         jMenu5.setText("Productos");
 
@@ -2717,6 +2752,7 @@ public final class Interface extends javax.swing.JFrame {
         jMenu6.add(serMod);
 
         jMenu2.add(jMenu6);
+        jMenu2.add(jSeparator2);
 
         jMenu7.setText("Provedores");
 
@@ -2738,7 +2774,7 @@ public final class Interface extends javax.swing.JFrame {
 
         jMenu2.add(jMenu7);
 
-        jMenu9.setText("Cliente");
+        jMenu9.setText("Clientes");
 
         clieAgre.setText("Agregar");
         clieAgre.addActionListener(new java.awt.event.ActionListener() {
@@ -2764,12 +2800,20 @@ public final class Interface extends javax.swing.JFrame {
         jMenu3.setForeground(new java.awt.Color(255, 255, 255));
         jMenu3.setText("Herramientas");
         jMenu3.setOpaque(true);
+
+        jMenuItem7.setText("Generar Reportes");
+        jMenu3.add(jMenuItem7);
+
         jMenuBar2.add(jMenu3);
 
         jMenu4.setBackground(new java.awt.Color(30, 30, 30));
         jMenu4.setForeground(new java.awt.Color(255, 255, 255));
         jMenu4.setText("Ayuda");
         jMenu4.setOpaque(true);
+
+        jMenuItem6.setText("Informacion");
+        jMenu4.add(jMenuItem6);
+
         jMenuBar2.add(jMenu4);
 
         setJMenuBar(jMenuBar2);
@@ -3062,6 +3106,10 @@ public final class Interface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtNombrePro1KeyReleased
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -3229,8 +3277,15 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPVentas;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -3257,10 +3312,14 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
+    private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JSpinner jSutilid;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JLabel jlabel;
+    private javax.swing.JLabel jUsuarioA;
     private javax.swing.JPanel masterPanel;
     private javax.swing.JComboBox<String> paisCliente;
     private javax.swing.JComboBox<String> paisPro;
