@@ -2881,6 +2881,11 @@ public final class Interface extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Exportar base de datos");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportarBD(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
         jMenu1.add(jSeparator6);
 
@@ -3372,6 +3377,12 @@ public final class Interface extends javax.swing.JFrame {
         guardarDatosProducto();
         mostrarTablaProducto();
     }//GEN-LAST:event_agregarActionPerformed
+
+    private void exportarBD(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportarBD
+        // TODO add your handling code here:
+        exportarBD exp = new exportarBD(this, false);
+        exp.setVisible(true);
+    }//GEN-LAST:event_exportarBD
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
