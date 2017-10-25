@@ -22,10 +22,13 @@ public final class Ventas extends javax.swing.JFrame {
     public static float cobrar = 0;
     public static int filas = -1;
     Icon ua;
+    String Usuario="";
 
-    public Ventas() {
+    public Ventas(String User) {        
+        Usuario=User;
         initComponents();
         tablaVentas();
+        
     }
 
     void tablaVentas() {
@@ -170,7 +173,7 @@ public final class Ventas extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cashier (3).png"))); // NOI18N
-        jLabel2.setText("USUARIO");
+        jLabel2.setText(Usuario);
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel2.setPreferredSize(new java.awt.Dimension(150, 150));
         jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -584,7 +587,7 @@ public final class Ventas extends javax.swing.JFrame {
     }//GEN-LAST:event_jBcorteCaja1ActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        System.exit(0);
+        setExtendedState(Ventas.CROSSHAIR_CURSOR);
     }//GEN-LAST:event_salirActionPerformed
 
     /**
@@ -612,7 +615,6 @@ public final class Ventas extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Ventas().setVisible(true);
         });
     }
 

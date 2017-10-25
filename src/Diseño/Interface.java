@@ -1,5 +1,6 @@
 package Diseño;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -1246,11 +1247,21 @@ public final class Interface extends javax.swing.JFrame {
         txtModCosto.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtModCosto.setForeground(new java.awt.Color(51, 51, 51));
         txtModCosto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        txtModCosto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
+            }
+        });
 
         txtModPrecio.setBackground(new java.awt.Color(251, 251, 251));
         txtModPrecio.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtModPrecio.setForeground(new java.awt.Color(51, 51, 51));
         txtModPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        txtModPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
+            }
+        });
 
         jLabel33.setBackground(new java.awt.Color(40, 41, 41));
         jLabel33.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -1274,6 +1285,11 @@ public final class Interface extends javax.swing.JFrame {
         txtModCant.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtModCant.setForeground(new java.awt.Color(51, 51, 51));
         txtModCant.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        txtModCant.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
+            }
+        });
 
         jLabel70.setBackground(new java.awt.Color(40, 41, 41));
         jLabel70.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -1330,11 +1346,16 @@ public final class Interface extends javax.swing.JFrame {
 
         jSModUtilid.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jSModUtilid.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
-        jSModUtilid.setBorder(null);
+        jSModUtilid.setEditor(new javax.swing.JSpinner.NumberEditor(jSModUtilid, ""));
         jSModUtilid.setOpaque(false);
         jSModUtilid.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSModUtilidStateChanged(evt);
+            }
+        });
+        jSModUtilid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
             }
         });
 
@@ -1378,6 +1399,11 @@ public final class Interface extends javax.swing.JFrame {
         txtModCodigo.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtModCodigo.setForeground(new java.awt.Color(51, 51, 51));
         txtModCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        txtModCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
+            }
+        });
 
         jLabel79.setBackground(new java.awt.Color(40, 41, 41));
         jLabel79.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -1541,11 +1567,21 @@ public final class Interface extends javax.swing.JFrame {
         txtCosto.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtCosto.setForeground(new java.awt.Color(51, 51, 51));
         txtCosto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        txtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
+            }
+        });
 
         txtPrecio.setBackground(new java.awt.Color(251, 251, 251));
         txtPrecio.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtPrecio.setForeground(new java.awt.Color(51, 51, 51));
         txtPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
+            }
+        });
 
         jLabel35.setBackground(new java.awt.Color(40, 41, 41));
         jLabel35.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -1569,6 +1605,11 @@ public final class Interface extends javax.swing.JFrame {
         txtCant.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtCant.setForeground(new java.awt.Color(51, 51, 51));
         txtCant.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        txtCant.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
+            }
+        });
 
         jLabel80.setBackground(new java.awt.Color(40, 41, 41));
         jLabel80.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -1620,11 +1661,15 @@ public final class Interface extends javax.swing.JFrame {
 
         jSutilid.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jSutilid.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
-        jSutilid.setBorder(null);
         jSutilid.setOpaque(false);
         jSutilid.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSutilidStateChanged(evt);
+            }
+        });
+        jSutilid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
             }
         });
 
@@ -1668,6 +1713,11 @@ public final class Interface extends javax.swing.JFrame {
         txtCodigo.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtCodigo.setForeground(new java.awt.Color(51, 51, 51));
         txtCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
+            }
+        });
 
         jLabel85.setBackground(new java.awt.Color(40, 41, 41));
         jLabel85.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -1677,7 +1727,6 @@ public final class Interface extends javax.swing.JFrame {
 
         txtCaract.setColumns(20);
         txtCaract.setRows(5);
-        txtCaract.setText("home");
         jScrollPane11.setViewportView(txtCaract);
 
         txtID1.setBackground(new java.awt.Color(40, 41, 41));
@@ -1909,9 +1958,9 @@ public final class Interface extends javax.swing.JFrame {
         txtNextCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtNextCliente.setForeground(new java.awt.Color(51, 51, 51));
         txtNextCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtNextCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNextClienteActionPerformed(evt);
+        txtNextCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
             }
         });
 
@@ -1944,6 +1993,11 @@ public final class Interface extends javax.swing.JFrame {
         txtCPcliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtCPcliente.setForeground(new java.awt.Color(51, 51, 51));
         txtCPcliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtCPcliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
+            }
+        });
 
         jLabel108.setBackground(new java.awt.Color(40, 41, 41));
         jLabel108.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -1955,6 +2009,11 @@ public final class Interface extends javax.swing.JFrame {
         txtNintCliente.setForeground(new java.awt.Color(51, 51, 51));
         txtNintCliente.setText(null);
         txtNintCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtNintCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
+            }
+        });
 
         jLabel109.setBackground(new java.awt.Color(40, 41, 41));
         jLabel109.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2264,6 +2323,11 @@ public final class Interface extends javax.swing.JFrame {
         txtNextPro.setForeground(new java.awt.Color(51, 51, 51));
         txtNextPro.setText(null);
         txtNextPro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtNextPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
+            }
+        });
 
         jLabel123.setBackground(new java.awt.Color(40, 41, 41));
         jLabel123.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2295,6 +2359,11 @@ public final class Interface extends javax.swing.JFrame {
         txtCPPro.setForeground(new java.awt.Color(51, 51, 51));
         txtCPPro.setText(null);
         txtCPPro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtCPPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
+            }
+        });
 
         jLabel126.setBackground(new java.awt.Color(40, 41, 41));
         jLabel126.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2306,6 +2375,11 @@ public final class Interface extends javax.swing.JFrame {
         txtNintPro.setForeground(new java.awt.Color(51, 51, 51));
         txtNintPro.setText(null);
         txtNintPro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtNintPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validar(evt);
+            }
+        });
 
         jLabel127.setBackground(new java.awt.Color(40, 41, 41));
         jLabel127.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -2684,6 +2758,11 @@ public final class Interface extends javax.swing.JFrame {
         jMenu1.setOpaque(true);
 
         jMenuItem3.setText("Cambiar usuario");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
         jMenu1.add(jSeparator5);
 
@@ -2691,15 +2770,15 @@ public final class Interface extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Exportar base de datos");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
         jMenu1.add(jMenuItem2);
         jMenu1.add(jSeparator6);
 
         jMenuItem4.setText("Cerrar");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuBar2.add(jMenu1);
@@ -2986,10 +3065,6 @@ public final class Interface extends javax.swing.JFrame {
         modificarclipro();
     }//GEN-LAST:event_provModActionPerformed
 
-    private void txtNextClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNextClienteActionPerformed
-
-    }//GEN-LAST:event_txtNextClienteActionPerformed
-
     private void agregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar2ActionPerformed
         try {
             // TODO add your handling code here:
@@ -3030,15 +3105,34 @@ public final class Interface extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Mensaje", JOptionPane.OK_OPTION, nv);
 
         } else {
+            int cp = 0;
+            if ("".equals(txtCPPro.getText())){
+                System.out.println(txtCPPro.getText()+"asdf");
+            }else{
+                System.out.println(txtCPPro.getText()+"holi");
+            cp = Integer.parseInt(txtCPPro.getText());
+            }
+            int Nint = 0;
+            if ("".equals(txtNintPro.getText())){
+            
+            }else{
+            Nint = Integer.parseInt(txtNintPro.getText());
+            }
+            int Next = 0;
+            if ("".equals(txtNextPro.getText())){
+            
+            }else{
+            Next = Integer.parseInt(txtNextPro.getText());
+            }
             PreparedStatement pps = cn.prepareStatement("INSERT INTO clipro(codigo,nombreC, direccion, calle, noInt, noExt, colonia, cp, ciudad, estado, pais, rfc,correo,tipo,giro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pps.setString(1, txtCodPro.getText());
             pps.setString(2, txtNombrePro.getText());
             pps.setString(3, txtDirPro.getText());
             pps.setString(4, txtCallePro.getText());
-            pps.setInt(5, Integer.parseInt(txtNextPro.getText()+0));
-            pps.setInt(6, Integer.parseInt(txtNextPro.getText()+0));
+            pps.setInt(5, Nint);
+            pps.setInt(6, Next);
             pps.setString(7, txtColPro.getText());
-            pps.setInt(8, Integer.parseInt(txtCPPro.getText()+0));
+            pps.setInt(8, cp);
             pps.setString(9, txtPDPro.getText());
             pps.setString(10,(String) estadoPro.getSelectedItem());
             pps.setString(11,(String) paisPro.getSelectedItem());
@@ -3058,15 +3152,30 @@ public final class Interface extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Mensaje", JOptionPane.OK_OPTION, nv);
 
         } else {
+            int cp = 0;
+            if ("".equals(txtCPcliente.getText())){            
+            }else{
+            cp = Integer.parseInt(txtCPcliente.getText());
+            }
+            int Nint = 0;
+            if ("".equals(txtNintCliente.getText())){            
+            }else{
+            Nint = Integer.parseInt(txtNintCliente.getText());
+            }
+            int Next = 0;
+            if ("".equals(txtNextCliente.getText())){            
+            }else{
+            Next = Integer.parseInt(txtNextCliente.getText());
+            }
             PreparedStatement pps = cn.prepareStatement("INSERT INTO clipro(codigo,nombreC, direccion, calle, noInt, noExt, colonia, cp, ciudad, estado, pais, rfc,correo,tipo,giro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pps.setString(1, txtCodCliente.getText());
             pps.setString(2, txtNombreC.getText());
             pps.setString(3, txtDirCliente.getText());
             pps.setString(4, txtCalleCliente.getText());
-            pps.setInt(5, Integer.parseInt(txtNintCliente.getText()+0));
-            pps.setInt(6, Integer.parseInt(txtNextCliente.getText()+0));
+            pps.setInt(5, Nint);
+            pps.setInt(6, Next);
             pps.setString(7, txtColCliente.getText());
-            pps.setInt(8,Integer.parseInt(txtCPcliente.getText()+0));
+            pps.setInt(8,cp);
             pps.setString(9, txtPDcliente.getText());
             pps.setString(10,(String) estadoCliente.getSelectedItem());
             pps.setString(11,(String) paisCliente.getSelectedItem());
@@ -3089,10 +3198,11 @@ public final class Interface extends javax.swing.JFrame {
         editarCP.setLocationRelativeTo(null);
         editarCP.setVisible(true);
            
-//        
+////        
         } catch (Exception e) {
+            System.out.println(e);
                JOptionPane.showMessageDialog(null, "Cliente/Proveedor no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
-//
+////
             }
     }//GEN-LAST:event_botonActualizarActionPerformed
 
@@ -3106,9 +3216,27 @@ public final class Interface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtNombrePro1KeyReleased
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void validar(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_validar
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+        char caracter = evt.getKeyChar();
+        if (((caracter < '0')
+                || (caracter > '9'))
+                && (caracter != '\b')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_validar
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        InicioSesion login = new InicioSesion();
+        setVisible(false);
+        login.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -3373,4 +3501,6 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtRFCCliente;
     private javax.swing.JFormattedTextField txtRFCPro;
     // End of variables declaration//GEN-END:variables
+
+    
 }

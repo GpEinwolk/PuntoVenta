@@ -29,10 +29,15 @@ import javax.print.attribute.standard.ColorSupported;
 import javax.print.attribute.standard.PrinterName;
 import java.io.FileOutputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class Cobrar extends javax.swing.JDialog {
 Connection cn = conn.getConnection();
-    public Cobrar(java.awt.Frame parent, boolean modal) {
+int[] cantidad;
+String[] producto;
+    
+public Cobrar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -41,6 +46,14 @@ Connection cn = conn.getConnection();
         super(vnt, modal);
         initComponents();
         this.setTitle("Vender");
+    }
+
+    public Cobrar(java.awt.Frame parent, boolean modal, int[] cantidad, String[] producto) {
+        super(parent, modal);
+        initComponents();
+        this.cantidad= cantidad;
+        this.producto= producto;
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -837,12 +850,21 @@ Connection cn = conn.getConnection();
     }//GEN-LAST:event_jCobroActionPerformed
 
     private void agregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar1ActionPerformed
-        try {
-            // TODO add your handling code here:
-            imprimir();
-        } catch (IOException | PrintException ex) {
-            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
+    for(int i=0;i<producto.length;i++){
+            System.out.println(producto[i]+""+cantidad[i]);
         }
+        try {
+        PreparedStatement pps = cn.prepareStatement("INSERT INTO `venta` (`fecha`, `cantidad`, `motivo`, `nventa`, `ventacol`, `login_idlogin`, `producto_idproducto`, `clipro_idclipro`) VALUES (?, ?, ?, ?, ?, ?, ?, ?,)");
+        
+    } catch (SQLException ex) {
+        Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
+    }
+//        try {
+//            // TODO add your handling code here:
+//            imprimir();
+//        } catch (IOException | PrintException ex) {
+//            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_agregar1ActionPerformed
 
     private void agregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar2ActionPerformed

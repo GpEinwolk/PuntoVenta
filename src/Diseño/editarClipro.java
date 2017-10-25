@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 public class editarClipro extends javax.swing.JDialog {
 
     String code;
+    String tipo;
 
     /**
      * Creates new form editarClipro
@@ -87,7 +88,6 @@ public class editarClipro extends javax.swing.JDialog {
         txtCodCliente = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setUndecorated(true);
         setResizable(false);
 
         jPcliente.setBackground(new java.awt.Color(40, 41, 41));
@@ -471,7 +471,58 @@ public class editarClipro extends javax.swing.JDialog {
     private void txtNextClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNextClienteActionPerformed
 
     }//GEN-LAST:event_txtNextClienteActionPerformed
+    private void llenarCampos(String codigo) {
+        String sql = "SELECT * FROM clipro WHERE codigo = '" + codigo + "'";
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                txtCodCliente.setText((String) rs.getObject(2));
+                txtNombreC.setText((String) rs.getObject(3));
+                giroCliente.setSelectedItem(rs.getObject(4));
+                txtDirCliente.setText((String) rs.getObject(5));
+                txtCalleCliente.setText((String) rs.getObject(6));
+                String Nint = Integer.toString((int) rs.getObject(7));
+                String Next = Integer.toString((int) rs.getObject(8));
+                if ("0".equals(Nint)) {
+                    txtNintCliente.setText("");
+                } else {
+                    txtNintCliente.setText(Nint);
+                }
+                if ("0".equals(Nint)) {
+                    txtNextCliente.setText("");
+                } else {
+                    txtNextCliente.setText(Next);
+                }
+                txtColCliente.setText((String) rs.getObject(9));
+                String cp = Integer.toString((int) rs.getObject(10));
+                if ("0".equals(cp)) {
+                    txtCPcliente.setText("");
+                } else {
+                    txtCPcliente.setText(cp);
+                }
+                txtPDcliente.setText((String) rs.getObject(11));
+                estadoCliente.setSelectedItem(rs.getObject(12));
+                paisCliente.setSelectedItem(rs.getObject(13));
+                txtRFCCliente.setText((String) rs.getObject(14));
+                txtCorreoCliente.setText((String) rs.getObject(15));
+                if (rs.getObject(16).equals(1)) {
+                    tipo = "Cliente";
+                    jLabel99.setText("Modificar un Cliente");
+                    jLabel115.setText("Codigo de Cliente* ");
+                } else {
+                    jLabel99.setText("Modificar un Proveedor");
+                    jLabel115.setText("Codigo de Proveedor* ");
+                    tipo = "Proveedor";
+                }
 
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
+        }
+    }
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
         editarClipro();
     }//GEN-LAST:event_botonEditarActionPerformed
@@ -515,7 +566,7 @@ public class editarClipro extends javax.swing.JDialog {
             pps.executeUpdate();
             pps.close();
             ImageIcon ua = new ImageIcon("src/img/success.png");
-            JOptionPane.showMessageDialog(null, "Proveedor agregado exitosamente", "Mensaje", JOptionPane.OK_OPTION, ua);
+            JOptionPane.showMessageDialog(null, tipo+" editado exitosamente", "Mensaje", JOptionPane.OK_OPTION, ua);
             this.dispose();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -602,39 +653,4 @@ public class editarClipro extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField txtRFCCliente;
     // End of variables declaration//GEN-END:variables
 
-    private void llenarCampos(String codigo) {
-        String sql = "SELECT * FROM clipro WHERE codigo = '" + codigo + "'";
-        Statement st;
-        try {
-            st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                txtCodCliente.setText((String) rs.getObject(2));
-                txtNombreC.setText((String) rs.getObject(3));
-                giroCliente.setSelectedItem(rs.getObject(4));
-                txtDirCliente.setText((String) rs.getObject(5));
-                txtCalleCliente.setText((String) rs.getObject(6));
-                txtNintCliente.setText(Integer.toString((int) rs.getObject(7)));
-                txtNextCliente.setText(Integer.toString((int) rs.getObject(8)));
-                txtColCliente.setText((String) rs.getObject(9));
-                txtCPcliente.setText(Integer.toString((int) rs.getObject(10)));
-                txtPDcliente.setText((String) rs.getObject(11));
-                estadoCliente.setSelectedItem(rs.getObject(12));
-                paisCliente.setSelectedItem(rs.getObject(13));
-                txtRFCCliente.setText((String) rs.getObject(14));
-                txtCorreoCliente.setText((String) rs.getObject(15));
-                if (rs.getObject(16).equals(1)) {
-                    jLabel99.setText("Modificar un Cliente");
-                    jLabel115.setText("Codigo de Cliente* ");
-                } else {
-                    jLabel99.setText("Modificar un Proveedor");
-                    jLabel115.setText("Codigo de Proveedor* ");
-                }
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(ex);
-        }
-    }
 }

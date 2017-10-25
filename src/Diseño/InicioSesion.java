@@ -73,8 +73,7 @@ public class InicioSesion extends javax.swing.JFrame {
                     PreparedStatement pps = cn.prepareStatement("INSERT INTO login(usuario_idusuario)VALUES(?)");
                     pps.setString(1,id);
                     pps.executeUpdate();
-                    
-                    CorteCaja cc = new CorteCaja();
+                    CorteCaja cc = new CorteCaja(user);
                     this.setVisible(false);
                     cc.setVisible(true);
                     

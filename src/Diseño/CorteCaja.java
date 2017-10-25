@@ -11,7 +11,9 @@ import java.util.logging.Logger;
 public class CorteCaja extends javax.swing.JFrame {
   Conexion conn = new Conexion();
   Connection cn = conn.getConnection();
-    public CorteCaja() {
+  String User = "";
+    public CorteCaja(String user) {
+        User = user;
         initComponents();
     }
 
@@ -79,14 +81,12 @@ public class CorteCaja extends javax.swing.JFrame {
         txtDinero.setForeground(new java.awt.Color(255, 255, 255));
         txtDinero.setBorder(null);
         txtDinero.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtDinero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDineroActionPerformed(evt);
-            }
-        });
         txtDinero.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtDineroKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDineroKeyTyped(evt);
             }
         });
 
@@ -140,17 +140,12 @@ public class CorteCaja extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDineroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDineroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDineroActionPerformed
-
     private void registrarDineroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarDineroActionPerformed
     float dinero= Float.parseFloat(txtDinero.getText());
       try {
           PreparedStatement pps = cn.prepareStatement("UPDATE login SET dineroEnt='"+dinero+"' WHERE idlogin=(SELECT AUTO_INCREMENT -1 AS LastId FROM information_schema.tables WHERE TABLE_SCHEMA='puntovent' AND TABLE_NAME='login')");
-              pps.executeUpdate();       
-          
-                    Ventas vent = new Ventas();
+              pps.executeUpdate();
+                    Ventas vent = new Ventas(User);
                     this.setVisible(false);
                     vent.setVisible(true);
       
@@ -165,6 +160,16 @@ public class CorteCaja extends javax.swing.JFrame {
            registrarDinero.doClick();
         }
     }//GEN-LAST:event_txtDineroKeyPressed
+
+    private void txtDineroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDineroKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if (((caracter < '0')
+                || (caracter > '9'))
+                && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+            evt.consume();  // ignorar el evento de teclado
+        }
+    }//GEN-LAST:event_txtDineroKeyTyped
 
     /**
      * @param args the command line arguments
@@ -197,7 +202,6 @@ public class CorteCaja extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CorteCaja().setVisible(true);
             }
         });
     }
