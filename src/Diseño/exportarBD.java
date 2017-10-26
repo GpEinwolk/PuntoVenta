@@ -39,7 +39,7 @@ public class exportarBD extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         botonSeleccionar = new javax.swing.JButton();
         iconBD = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        botonAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -91,11 +91,11 @@ public class exportarBD extends javax.swing.JDialog {
         iconBD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         iconBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/database  (4).png"))); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(29, 184, 83));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Atras");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonAtras.setBackground(new java.awt.Color(29, 184, 83));
+        botonAtras.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        botonAtras.setForeground(new java.awt.Color(255, 255, 255));
+        botonAtras.setText("Atras");
+        botonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 atras(evt);
             }
@@ -118,7 +118,7 @@ public class exportarBD extends javax.swing.JDialog {
                     .addGroup(panelExportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(textRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1))
+                    .addComponent(botonAtras))
                 .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(panelExportarLayout.createSequentialGroup()
                 .addGap(64, 64, 64)
@@ -140,7 +140,7 @@ public class exportarBD extends javax.swing.JDialog {
                         .addGap(27, 27, 27)
                         .addComponent(botonExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(botonAtras))
                     .addComponent(iconBD, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -248,10 +248,10 @@ public class exportarBD extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonExportar;
     private javax.swing.JButton botonSeleccionar;
     private javax.swing.JLabel iconBD;
-    private javax.swing.JButton jButton1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JPanel panelExportar;

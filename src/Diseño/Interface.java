@@ -2878,6 +2878,11 @@ public final class Interface extends javax.swing.JFrame {
         jMenu1.add(jSeparator5);
 
         jMenuItem1.setText("Importar base de datos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Exportar base de datos");
@@ -3383,6 +3388,12 @@ public final class Interface extends javax.swing.JFrame {
         exportarBD exp = new exportarBD(this, false);
         exp.setVisible(true);
     }//GEN-LAST:event_exportarBD
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        importarBD imp = new importarBD(this, false);
+        imp.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

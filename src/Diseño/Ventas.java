@@ -411,7 +411,7 @@ public final class Ventas extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Ticket");
+        jLabel12.setText("Ticket - no.$nventa");
 
         javax.swing.GroupLayout jPVentaLayout = new javax.swing.GroupLayout(jPVenta);
         jPVenta.setLayout(jPVentaLayout);
