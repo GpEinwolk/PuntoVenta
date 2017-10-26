@@ -2,10 +2,12 @@ package Diseño;
 
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -21,14 +23,15 @@ public final class Ventas extends javax.swing.JFrame {
     public static DefaultTableModel model;
     public static float cobrar = 0;
     public static int filas = -1;
+    public static Vector idProducto = new Vector();;
     Icon ua;
-    String Usuario="";
+    String Usuario = "";
 
-    public Ventas(String User) {        
-        Usuario=User;
+    public Ventas(String User) {
+        Usuario = User;
         initComponents();
         tablaVentas();
-        
+
     }
 
     void tablaVentas() {
@@ -46,54 +49,56 @@ public final class Ventas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No a ingresado ningun producto", "Mensaje", JOptionPane.OK_OPTION);
         } else {
 
-            String sql = "SELECT codigo,precio,stock,nombre FROM producto";
+            String sql = "SELECT codigo,precio,stock,nombre,idproducto FROM producto";
             Statement st;
 
             int cantidad = (int) jSpinner1.getValue();
             String datos[] = new String[5];
 
             try {
-
                 st = cn.createStatement();
                 ResultSet rs = st.executeQuery(sql);
 
                 while (rs.next()) {
-
                     datos[0] = rs.getString(1);
                     datos[1] = rs.getString(2);
                     datos[2] = rs.getString(3);
                     datos[3] = rs.getString(4);
+                    datos[4] = rs.getString(5);
                     if (textBuscar.getText().equals(datos[0])) {
                         model = (DefaultTableModel) tablaVenta.getModel();
-
                         int exist = Integer.parseInt(datos[2]);
-
                         if (model.getRowCount() == 0) {
-                            model.addRow(new Object[]{datos[3],datos[0], datos[1], cantidad});
-                            cobrar = cobrar + Float.parseFloat(datos[1]);
-                            cobrar = cobrar*cantidad;
-                            jLabel1.setText("$" + String.valueOf(cobrar));
+                            int cd = Integer.parseInt(datos[2]);
+                            if (cd == 0) {
+                                JOptionPane.showMessageDialog(null, "producto agotado", "Mensaje", JOptionPane.OK_OPTION);
+                            } else {
+                                model.addRow(new Object[]{datos[0], datos[3], datos[1], cantidad});
+                                idProducto.add(rs.getString(5));
+                                cobrar = cobrar + Float.parseFloat(datos[1]);
+                                cobrar = cobrar * cantidad;
+                                jLabel1.setText("$" + String.valueOf(cobrar));
+                            }
                         } else {
-
                             boolean variable = false;
-
                             for (int i = 0; i < model.getRowCount(); i++) {
-                                Object producto = model.getValueAt(i, 1);
+                                Object producto = model.getValueAt(i, 0);
                                 int cant = (int) model.getValueAt(i, 3) + (int) jSpinner1.getValue();
                                 if (textBuscar.getText().equals(producto)) {
                                     if (exist <= cant) {
                                         JOptionPane.showMessageDialog(null, "producto agotado", "Mensaje", JOptionPane.OK_OPTION);
                                     } else {
                                         model.setValueAt(cant, i, 3);
-                                        cobrar = cobrar + (Float.parseFloat(datos[1])*cantidad);
+                                        cobrar = cobrar + (Float.parseFloat(datos[1]) * cantidad);
                                         jLabel1.setText("$" + String.valueOf(cobrar));
                                     }
                                     variable = true;
                                 }
                             }
                             if (variable == false) {
-                                model.addRow(new Object[]{datos[3],datos[0], datos[1], cantidad});
-                                cobrar = cobrar + (Float.parseFloat(datos[1])*cantidad);
+                                model.addRow(new Object[]{datos[0], datos[3], datos[1], cantidad});
+                                idProducto.add(rs.getString(5));
+                                cobrar = cobrar + (Float.parseFloat(datos[1]) * cantidad);
                                 jLabel1.setText("$" + String.valueOf(cobrar));
                             }
 
@@ -109,6 +114,7 @@ public final class Ventas extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Producto no encontrado", "Mensaje", JOptionPane.OK_OPTION);
                 }
             } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
                 Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -143,11 +149,6 @@ public final class Ventas extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formKeyPressed(evt);
-            }
-        });
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         jPrincipal.setBackground(new java.awt.Color(30, 30, 30));
@@ -275,11 +276,6 @@ public final class Ventas extends javax.swing.JFrame {
         jPVenta.setMinimumSize(new java.awt.Dimension(980, 613));
         jPVenta.setName(""); // NOI18N
         jPVenta.setPreferredSize(new java.awt.Dimension(980, 613));
-        jPVenta.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jPVentaKeyPressed(evt);
-            }
-        });
 
         jLabel10.setBackground(new java.awt.Color(251, 251, 251));
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
@@ -356,11 +352,6 @@ public final class Ventas extends javax.swing.JFrame {
                 agregarActionPerformed(evt);
             }
         });
-        agregar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                agregarKeyPressed(evt);
-            }
-        });
 
         jButton8.setBackground(new java.awt.Color(142, 68, 173));
         jButton8.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -372,11 +363,6 @@ public final class Ventas extends javax.swing.JFrame {
         jButton8.setMaximumSize(new java.awt.Dimension(90, 36));
         jButton8.setMinimumSize(new java.awt.Dimension(90, 36));
         jButton8.setPreferredSize(new java.awt.Dimension(90, 36));
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
 
         jButton9.setBackground(new java.awt.Color(52, 152, 219));
         jButton9.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -500,14 +486,10 @@ public final class Ventas extends javax.swing.JFrame {
         agregar();
     }//GEN-LAST:event_agregarActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
-
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         BuscarProductos bp = new BuscarProductos(this, false);
         bp.setVisible(true);
-    
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jBcorteCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcorteCajaActionPerformed
@@ -517,25 +499,13 @@ public final class Ventas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jBcorteCajaActionPerformed
 
-    private void agregarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_agregarKeyPressed
-
-    }//GEN-LAST:event_agregarKeyPressed
-
-    private void jPVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPVentaKeyPressed
-
-    }//GEN-LAST:event_jPVentaKeyPressed
-
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-
-    }//GEN-LAST:event_formKeyPressed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         try {
-
             model.setRowCount(0);
             cobrar = 0;
             jLabel1.setText("$" + String.valueOf(cobrar));
+            idProducto.removeAllElements();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "El carrito esta vacio", "Mensaje", JOptionPane.OK_OPTION);
@@ -545,6 +515,7 @@ public final class Ventas extends javax.swing.JFrame {
     private void borrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarProductoActionPerformed
         // TODO add your handling code here:
         try {
+            idProducto.removeElementAt(tablaVenta.getSelectedRow());
             DefaultTableModel dtm = (DefaultTableModel) tablaVenta.getModel();
             int canti = (int) dtm.getValueAt(tablaVenta.getSelectedRow(), 3);
             float precio = Float.parseFloat((String) dtm.getValueAt(tablaVenta.getSelectedRow(), 2));
@@ -552,6 +523,7 @@ public final class Ventas extends javax.swing.JFrame {
             cobrar = cobrar - quitarprecio;
             jLabel1.setText("$" + String.valueOf(cobrar));
             dtm.removeRow(tablaVenta.getSelectedRow());
+            
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Producto no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
 
@@ -560,17 +532,27 @@ public final class Ventas extends javax.swing.JFrame {
     }//GEN-LAST:event_borrarProductoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Cobrar ventanaCobrar = new Cobrar(this, false);
+        int fila = tablaVenta.getRowCount();  
+        int[] cantidad = new int[fila];
+        int[] id = new int[fila];
+        String[] insert = new String[fila]; 
+        for (int i=0; i < fila; i++) {
+            cantidad[i] = (int) tablaVenta.getValueAt(i, 3);
+            id[i] = Integer.parseInt((String) idProducto.elementAt(i));
+            String sql ="INSERT INTO `venta` (`idventa`, `fecha`, `cantidad`, `cancelada`, `motivo`, `nventa`, `formaP`, `login_idlogin`, `producto_idproducto`, `clipro_idclipro`) VALUES (NULL, CURRENT_TIMESTAMP, '"+cantidad[i]+"', '0', NULL, '001', ?, '87', '"+id[i]+"', '5');";
+            insert[i]=sql;
+            
+        }
+        Cobrar ventanaCobrar = new Cobrar(this, false,insert);
         ventanaCobrar.setLocationRelativeTo(null);
         ventanaCobrar.setVisible(true);
-        System.out.println(cobrar);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void textBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscarKeyPressed
         // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER){  
-           agregar();
-           textBuscar.setText("");
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            agregar();
+            textBuscar.setText("");
         }
     }//GEN-LAST:event_textBuscarKeyPressed
 
@@ -640,8 +622,4 @@ public final class Ventas extends javax.swing.JFrame {
     public static javax.swing.JTextField textBuscar;
     // End of variables declaration//GEN-END:variables
 
-    private static class bucarProductos {
-
-       
-    }
 }

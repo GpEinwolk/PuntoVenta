@@ -39,7 +39,7 @@ public class InicioSesion extends javax.swing.JFrame {
     }
 
     void inicioS(){
-         String sql="SELECT user, pass, nivel,idusuario FROM usuario";
+         String sql="SELECT user, pass, nivel,idusuario,nombre FROM usuario";
         
         Statement st;   
         
@@ -55,6 +55,7 @@ public class InicioSesion extends javax.swing.JFrame {
                  String pas = rs.getString(2);
                  String nivel = rs.getString(3);
                  String id = rs.getString(4);
+                 String Usuario = rs.getString(5);
                  
                  if(txtUser.getText().equals(user)&&pass.equals(pas)&&nivel.equals("1") ){
                                       
@@ -73,7 +74,7 @@ public class InicioSesion extends javax.swing.JFrame {
                     PreparedStatement pps = cn.prepareStatement("INSERT INTO login(usuario_idusuario)VALUES(?)");
                     pps.setString(1,id);
                     pps.executeUpdate();
-                    CorteCaja cc = new CorteCaja(user);
+                    CorteCaja cc = new CorteCaja(Usuario);
                     this.setVisible(false);
                     cc.setVisible(true);
                     

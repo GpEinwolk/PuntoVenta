@@ -31,13 +31,15 @@ import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Cobrar extends javax.swing.JDialog {
-Connection cn = conn.getConnection();
-int[] cantidad;
-String[] producto;
-    
-public Cobrar(java.awt.Frame parent, boolean modal) {
+
+    Connection cn = conn.getConnection();
+    String[] venta;
+
+    public Cobrar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -48,12 +50,11 @@ public Cobrar(java.awt.Frame parent, boolean modal) {
         this.setTitle("Vender");
     }
 
-    public Cobrar(java.awt.Frame parent, boolean modal, int[] cantidad, String[] producto) {
+    public Cobrar(java.awt.Frame parent, boolean modal, String[] insert) {
         super(parent, modal);
         initComponents();
-        this.cantidad= cantidad;
-        this.producto= producto;
-        
+        venta = insert;
+
     }
 
     @SuppressWarnings("unchecked")
@@ -850,25 +851,22 @@ public Cobrar(java.awt.Frame parent, boolean modal) {
     }//GEN-LAST:event_jCobroActionPerformed
 
     private void agregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar1ActionPerformed
-    for(int i=0;i<producto.length;i++){
-            System.out.println(producto[i]+""+cantidad[i]);
+        for (String venta1 : venta) {
+            PreparedStatement pps;
+            try {
+                pps = cn.prepareStatement(venta1);
+                pps.setString(1, "efectivo");
+                pps.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        try {
-        PreparedStatement pps = cn.prepareStatement("INSERT INTO `venta` (`fecha`, `cantidad`, `motivo`, `nventa`, `ventacol`, `login_idlogin`, `producto_idproducto`, `clipro_idclipro`) VALUES (?, ?, ?, ?, ?, ?, ?, ?,)");
-        
-    } catch (SQLException ex) {
-        Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
-    }
-//        try {
-//            // TODO add your handling code here:
-//            imprimir();
-//        } catch (IOException | PrintException ex) {
-//            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        ImageIcon ua = new ImageIcon("src/img/cart (5).png");
+        JOptionPane.showMessageDialog(null, "Se realizo la venta con exito", "Mensaje", JOptionPane.OK_OPTION, ua);
     }//GEN-LAST:event_agregar1ActionPerformed
 
     private void agregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar2ActionPerformed
-        
+
     }//GEN-LAST:event_agregar2ActionPerformed
 
     void cobroMixto() {
@@ -883,14 +881,11 @@ public Cobrar(java.awt.Frame parent, boolean modal) {
             jLabel35.setText("Falta:");
             cambio = cambio * (-1);
             jLabel33.setText(String.valueOf(cambio));
-
         }
-
     }
 
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
         // TODO add your handling code here:
-
         float pago = Float.parseFloat(jTextField3.getText());
         float cambio = pago - Ventas.cobrar;
 
@@ -1048,21 +1043,22 @@ public Cobrar(java.awt.Frame parent, boolean modal) {
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 
-    private void editarPDF() throws IOException, DocumentException{
-    String src = "archivo.pdf";
-     String dest = "archivo-edit.pdf";
-    PdfReader reader = new PdfReader(src);
+    private void editarPDF() throws IOException, DocumentException {
+        String src = "archivo.pdf";
+        String dest = "archivo-edit.pdf";
+        PdfReader reader = new PdfReader(src);
         PdfDictionary dict = reader.getPageN(1);
         PdfObject object = dict.getDirectObject(PdfName.CONTENTS);
         if (object instanceof PRStream) {
-            PRStream stream = (PRStream)object;
+            PRStream stream = (PRStream) object;
             byte[] data = PdfReader.getStreamBytes(stream);
             stream.setData(new String(data).replace("Titulo", "Grupo Einwolk").getBytes());
         }
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
         stamper.close();
         reader.close();
-}
+    }
+
     private void imprimir() throws FileNotFoundException, IOException, PrintException {
         FileInputStream inputStream = null;
         try {
@@ -1111,5 +1107,5 @@ public Cobrar(java.awt.Frame parent, boolean modal) {
         } catch (IOException ex) {
             Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }
+    }
 }
