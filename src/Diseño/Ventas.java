@@ -537,8 +537,8 @@ public final class Ventas extends javax.swing.JFrame {
             cobrar = 0;
             jLabel1.setText("$" + String.valueOf(cobrar));
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "El carrito esta vacio", "Mensaje", JOptionPane.OK_OPTION);
-
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -546,8 +546,8 @@ public final class Ventas extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             DefaultTableModel dtm = (DefaultTableModel) tablaVenta.getModel();
-            int canti = (int) dtm.getValueAt(tablaVenta.getSelectedRow(), 2);
-            float precio = Float.parseFloat((String) dtm.getValueAt(tablaVenta.getSelectedRow(), 1));
+            int canti = (int) dtm.getValueAt(tablaVenta.getSelectedRow(), 3);
+            float precio = Float.parseFloat((String) dtm.getValueAt(tablaVenta.getSelectedRow(), 2));
             float quitarprecio = canti * precio;
             cobrar = cobrar - quitarprecio;
             jLabel1.setText("$" + String.valueOf(cobrar));
@@ -564,9 +564,6 @@ public final class Ventas extends javax.swing.JFrame {
         ventanaCobrar.setLocationRelativeTo(null);
         ventanaCobrar.setVisible(true);
         System.out.println(cobrar);
-//        Ventas vnt = new Ventas();
-//        Cobrar c = new Cobrar(vnt, true);
-//        c.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void textBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscarKeyPressed
