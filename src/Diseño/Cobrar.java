@@ -702,7 +702,7 @@ public class Cobrar extends javax.swing.JDialog {
         jLabel27.setPreferredSize(new java.awt.Dimension(84, 30));
 
         jTextField2.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jTextField2.setText("0.00");
+        jTextField2.setText(String.valueOf(Ventas.cobrar));
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField2KeyReleased(evt);
@@ -851,18 +851,39 @@ public class Cobrar extends javax.swing.JDialog {
     }//GEN-LAST:event_jCobroActionPerformed
 
     private void agregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar1ActionPerformed
-     cobrar();
+        switch ((String) jCobro.getSelectedItem()) {
+            case "Tarjeta":
+                cobrar();
+                break;
+            case "Mixto":
+                if ("Falta:".equals(jLabel35.getText())) {
+                    ImageIcon ua = new ImageIcon("src/img/error (2).png");
+                    JOptionPane.showMessageDialog(null, "Falta: $" + jLabel35.getText(), "Mensaje", JOptionPane.OK_OPTION, ua);
+                } else {
+                    cobrar();
+                }
+                break;
+            default:
+                if ("Falta:".equals(jLabel15.getText())) {
+                    ImageIcon ua = new ImageIcon("src/img/error (2).png");
+                    JOptionPane.showMessageDialog(null, "Falta: $" + jLabel13.getText(), "Mensaje", JOptionPane.OK_OPTION, ua);
+                } else {
+                    cobrar();
+                }
+                break;
+        }
+
     }//GEN-LAST:event_agregar1ActionPerformed
     void cobrar() {
-        //        
+        String formaP = jCobro.getSelectedItem().toString();
         String sql = "SELECT idlogin FROM login ORDER BY idlogin DESC LIMIT 1";
         Statement cp;
-        String idlogin="";
+        String idlogin = "";
         try {
             cp = cn.createStatement();
-            ResultSet rc = cp.executeQuery(sql);            
+            ResultSet rc = cp.executeQuery(sql);
             while (rc.next()) {
-                    idlogin = rc.getString("idlogin");
+                idlogin = rc.getString("idlogin");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
@@ -873,7 +894,7 @@ public class Cobrar extends javax.swing.JDialog {
             try {
                 pps = cn.prepareStatement(venta1);
                 pps.setString(1, String.valueOf(Ventas.nTicket));
-                pps.setString(2, "efectivo");
+                pps.setString(2, formaP);
                 pps.setInt(3, Integer.parseInt(idlogin));
                 pps.executeUpdate();
 
