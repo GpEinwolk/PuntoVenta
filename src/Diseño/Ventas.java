@@ -2,7 +2,6 @@ package Diseño;
 
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,11 +18,12 @@ public final class Ventas extends javax.swing.JFrame {
     public static Conexion conn = new Conexion();
     public static Connection cn = conn.getConnection();
     DecimalFormat df = new DecimalFormat("#.00");
-
     public static DefaultTableModel model;
     public static float cobrar = 0;
     public static int filas = -1;
-    public static Vector idProducto = new Vector();;
+    public static int nTicket = 1;
+    public static Vector idProducto = new Vector();
+    ;
     Icon ua;
     String Usuario = "";
 
@@ -146,7 +146,7 @@ public final class Ventas extends javax.swing.JFrame {
         textBuscar = new javax.swing.JTextField();
         borrarProducto = new javax.swing.JButton();
         jSpinner1 = new javax.swing.JSpinner();
-        jLabel12 = new javax.swing.JLabel();
+        labelTicket = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
@@ -407,11 +407,11 @@ public final class Ventas extends javax.swing.JFrame {
         jSpinner1.setBorder(null);
         jSpinner1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel12.setBackground(new java.awt.Color(251, 251, 251));
-        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Ticket - no.$nventa");
+        labelTicket.setBackground(new java.awt.Color(251, 251, 251));
+        labelTicket.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        labelTicket.setForeground(new java.awt.Color(255, 255, 255));
+        labelTicket.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTicket.setText("Ticket-"+nTicket);
 
         javax.swing.GroupLayout jPVentaLayout = new javax.swing.GroupLayout(jPVenta);
         jPVenta.setLayout(jPVentaLayout);
@@ -443,12 +443,12 @@ public final class Ventas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelTicket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPVentaLayout.setVerticalGroup(
             jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPVentaLayout.createSequentialGroup()
-                .addComponent(jLabel12)
+                .addComponent(labelTicket)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -501,6 +501,9 @@ public final class Ventas extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        vaciarCarrito();
+    }//GEN-LAST:event_jButton5ActionPerformed
+    public static void vaciarCarrito() {
         try {
             model.setRowCount(0);
             cobrar = 0;
@@ -510,8 +513,7 @@ public final class Ventas extends javax.swing.JFrame {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "El carrito esta vacio", "Mensaje", JOptionPane.OK_OPTION);
         }
-    }//GEN-LAST:event_jButton5ActionPerformed
-
+    }
     private void borrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarProductoActionPerformed
         // TODO add your handling code here:
         try {
@@ -523,7 +525,7 @@ public final class Ventas extends javax.swing.JFrame {
             cobrar = cobrar - quitarprecio;
             jLabel1.setText("$" + String.valueOf(cobrar));
             dtm.removeRow(tablaVenta.getSelectedRow());
-            
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Producto no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
 
@@ -532,18 +534,18 @@ public final class Ventas extends javax.swing.JFrame {
     }//GEN-LAST:event_borrarProductoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int fila = tablaVenta.getRowCount();  
+        int fila = tablaVenta.getRowCount();
         int[] cantidad = new int[fila];
         int[] id = new int[fila];
-        String[] insert = new String[fila]; 
-        for (int i=0; i < fila; i++) {
+        String[] insert = new String[fila];
+        for (int i = 0; i < fila; i++) {
             cantidad[i] = (int) tablaVenta.getValueAt(i, 3);
             id[i] = Integer.parseInt((String) idProducto.elementAt(i));
-            String sql ="INSERT INTO `venta` (`idventa`, `fecha`, `cantidad`, `cancelada`, `motivo`, `nventa`, `formaP`, `login_idlogin`, `producto_idproducto`, `clipro_idclipro`) VALUES (NULL, CURRENT_TIMESTAMP, '"+cantidad[i]+"', '0', NULL, '001', ?, '87', '"+id[i]+"', '5');";
-            insert[i]=sql;
-            
+            String sql = "INSERT INTO `venta` (`idventa`, `fecha`, `cantidad`, `cancelada`, `motivo`, `nventa`, `formaP`, `login_idlogin`, `producto_idproducto`, `clipro_idclipro`) VALUES (NULL, CURRENT_TIMESTAMP, '" + cantidad[i] + "', '0', NULL, ?, ?, ?, '" + id[i] + "', '5');";
+            insert[i] = sql;
+
         }
-        Cobrar ventanaCobrar = new Cobrar(this, false,insert);
+        Cobrar ventanaCobrar = new Cobrar(this, false, insert);
         ventanaCobrar.setLocationRelativeTo(null);
         ventanaCobrar.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -608,7 +610,6 @@ public final class Ventas extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     public static javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
@@ -617,6 +618,7 @@ public final class Ventas extends javax.swing.JFrame {
     private javax.swing.JPanel jPrincipal;
     private javax.swing.JScrollPane jScrollPane2;
     private static javax.swing.JSpinner jSpinner1;
+    public static javax.swing.JLabel labelTicket;
     private javax.swing.JButton salir;
     public static javax.swing.JTable tablaVenta;
     public static javax.swing.JTextField textBuscar;

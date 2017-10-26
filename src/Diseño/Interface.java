@@ -3089,6 +3089,7 @@ public final class Interface extends javax.swing.JFrame {
                 almacenMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 9));
 
             } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
 
         }

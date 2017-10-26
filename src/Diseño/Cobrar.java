@@ -30,7 +30,9 @@ import javax.print.attribute.standard.PrinterName;
 import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -318,7 +320,7 @@ public class Cobrar extends javax.swing.JDialog {
         jLabel8.setName(""); // NOI18N
 
         jTextField3.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jTextField3.setText("0.00");
+        jTextField3.setText(String.valueOf(Ventas.cobrar));
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField3KeyReleased(evt);
@@ -728,11 +730,9 @@ public class Cobrar extends javax.swing.JDialog {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -851,20 +851,43 @@ public class Cobrar extends javax.swing.JDialog {
     }//GEN-LAST:event_jCobroActionPerformed
 
     private void agregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar1ActionPerformed
+     cobrar();
+    }//GEN-LAST:event_agregar1ActionPerformed
+    void cobrar() {
+        //        
+        String sql = "SELECT idlogin FROM login ORDER BY idlogin DESC LIMIT 1";
+        Statement cp;
+        String idlogin="";
+        try {
+            cp = cn.createStatement();
+            ResultSet rc = cp.executeQuery(sql);            
+            while (rc.next()) {
+                    idlogin = rc.getString("idlogin");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         for (String venta1 : venta) {
             PreparedStatement pps;
             try {
                 pps = cn.prepareStatement(venta1);
-                pps.setString(1, "efectivo");
+                pps.setString(1, String.valueOf(Ventas.nTicket));
+                pps.setString(2, "efectivo");
+                pps.setInt(3, Integer.parseInt(idlogin));
                 pps.executeUpdate();
+
             } catch (SQLException ex) {
                 Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         ImageIcon ua = new ImageIcon("src/img/cart (5).png");
         JOptionPane.showMessageDialog(null, "Se realizo la venta con exito", "Mensaje", JOptionPane.OK_OPTION, ua);
-    }//GEN-LAST:event_agregar1ActionPerformed
-
+        Ventas.vaciarCarrito();
+        Ventas.nTicket++;
+        Ventas.labelTicket.setText("Ticket-" + Ventas.nTicket);
+        dispose();
+    }
     private void agregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar2ActionPerformed
 
     }//GEN-LAST:event_agregar2ActionPerformed
@@ -1108,4 +1131,5 @@ public class Cobrar extends javax.swing.JDialog {
             Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }
