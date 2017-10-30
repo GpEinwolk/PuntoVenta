@@ -172,12 +172,12 @@ public class importarBD extends javax.swing.JDialog {
     private void importar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importar
         // TODO add your handling code here:
         String ruta = textRuta.getText();
-        String backus = "";
+        String backup = "";
         if(ruta.trim().length()!=0){
             try{
-                backus = "cmd /c C:\\xampp\\mysql\\bin\\mysql -u"+Conexion.getuser()+" -p"+Conexion.getpassword()+" "+Conexion.getdb()+" < "+ruta;
+                backup = "cmd /c C:\\xampp\\mysql\\bin\\mysql -u"+Conexion.getuser()+" -p"+Conexion.getpassword()+" "+Conexion.getdb()+" < "+ruta;
                 Runtime rt = Runtime.getRuntime();
-                rt.exec(backus);
+                rt.exec(backup);
                 JOptionPane.showMessageDialog(null, "Backup Importado: "+ruta);
                 dispose();
             }catch(Exception ex){

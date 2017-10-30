@@ -10,6 +10,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,7 +26,7 @@ public final class Ventas extends javax.swing.JFrame {
     public static Vector idProducto = new Vector();
     ;
     Icon ua;
-    String Usuario = "";
+    public static String Usuario = "";
 
     public Ventas(String User) {
         Usuario = User;
@@ -34,7 +35,7 @@ public final class Ventas extends javax.swing.JFrame {
 
     }
 
-    void tablaVentas() {
+    public static void tablaVentas() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Codigo");
         modelo.addColumn("Nombre");
@@ -69,8 +70,7 @@ public final class Ventas extends javax.swing.JFrame {
                         model = (DefaultTableModel) tablaVenta.getModel();
                         int exist = Integer.parseInt(datos[2]);
                         if (model.getRowCount() == 0) {
-                            int cd = Integer.parseInt(datos[2]);
-                            if (cd == 0) {
+                            if (exist < cantidad) {
                                 JOptionPane.showMessageDialog(null, "producto agotado", "Mensaje", JOptionPane.OK_OPTION);
                             } else {
                                 model.addRow(new Object[]{datos[0], datos[3], datos[1], cantidad});
@@ -85,7 +85,7 @@ public final class Ventas extends javax.swing.JFrame {
                                 Object producto = model.getValueAt(i, 0);
                                 int cant = (int) model.getValueAt(i, 3) + (int) jSpinner1.getValue();
                                 if (textBuscar.getText().equals(producto)) {
-                                    if (exist <= cant) {
+                                    if (exist < cant) {
                                         JOptionPane.showMessageDialog(null, "producto agotado", "Mensaje", JOptionPane.OK_OPTION);
                                     } else {
                                         model.setValueAt(cant, i, 3);
@@ -96,17 +96,19 @@ public final class Ventas extends javax.swing.JFrame {
                                 }
                             }
                             if (variable == false) {
-                                model.addRow(new Object[]{datos[0], datos[3], datos[1], cantidad});
-                                idProducto.add(rs.getString(5));
-                                cobrar = cobrar + (Float.parseFloat(datos[1]) * cantidad);
-                                jLabel1.setText("$" + String.valueOf(cobrar));
+                                if (exist < cantidad) {
+                                    JOptionPane.showMessageDialog(null, "producto agotado", "Mensaje", JOptionPane.OK_OPTION);
+                                } else {
+                                    model.addRow(new Object[]{datos[0], datos[3], datos[1], cantidad});
+                                    idProducto.add(rs.getString(5));
+                                    cobrar = cobrar + (Float.parseFloat(datos[1]) * cantidad);
+                                    jLabel1.setText("$" + String.valueOf(cobrar));
+                                }
                             }
-
                         }
                         filas++;
                         x = x + 2;
                         break;
-
                     }
                 }
 
@@ -505,18 +507,24 @@ public final class Ventas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
     public static void vaciarCarrito() {
         try {
+            if(model.getRowCount()==0){
+            JOptionPane.showMessageDialog(null, "El carrito esta vacio", "Mensaje", JOptionPane.OK_OPTION);
+            }else{
             model.setRowCount(0);
             cobrar = 0;
             jLabel1.setText("$" + String.valueOf(cobrar));
             idProducto.removeAllElements();
+            }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "El carrito esta vacio", "Mensaje", JOptionPane.OK_OPTION);
         }
     }
     private void borrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarProductoActionPerformed
         // TODO add your handling code here:
         try {
+            if(model.getRowCount()==0){
+            JOptionPane.showMessageDialog(null, "El carrito esta vacio", "Mensaje", JOptionPane.OK_OPTION);
+            }else{
             idProducto.removeElementAt(tablaVenta.getSelectedRow());
             DefaultTableModel dtm = (DefaultTableModel) tablaVenta.getModel();
             int canti = (int) dtm.getValueAt(tablaVenta.getSelectedRow(), 3);
@@ -525,29 +533,28 @@ public final class Ventas extends javax.swing.JFrame {
             cobrar = cobrar - quitarprecio;
             jLabel1.setText("$" + String.valueOf(cobrar));
             dtm.removeRow(tablaVenta.getSelectedRow());
-
-        } catch (NumberFormatException e) {
+            }
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Producto no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
-
         }
 
     }//GEN-LAST:event_borrarProductoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int fila = tablaVenta.getRowCount();
-        int[] cantidad = new int[fila];
-        int[] id = new int[fila];
-        String[] insert = new String[fila];
-        for (int i = 0; i < fila; i++) {
-            cantidad[i] = (int) tablaVenta.getValueAt(i, 3);
-            id[i] = Integer.parseInt((String) idProducto.elementAt(i));
-            String sql = "INSERT INTO `venta` (`idventa`, `fecha`, `cantidad`, `cancelada`, `motivo`, `nventa`, `formaP`, `login_idlogin`, `producto_idproducto`, `clipro_idclipro`) VALUES (NULL, CURRENT_TIMESTAMP, '" + cantidad[i] + "', '0', NULL, ?, ?, ?, '" + id[i] + "', '5');";
-            insert[i] = sql;
-
+        if (fila != 0) {
+            String[] insert = new String[fila];
+            for (int i = 0; i < fila; i++) {
+                String sql = "INSERT INTO `venta` (`idventa`, `fecha`, `cantidad`, `cancelada`, `motivo`, `nventa`, `formaP`, `login_idlogin`, `producto_idproducto`, `clipro_idclipro`) VALUES (NULL, CURRENT_TIMESTAMP, '" + tablaVenta.getValueAt(i, 3) + "', '0', NULL, ?, ?, ?, '" + idProducto.elementAt(i) + "', '5');";
+                insert[i] = sql;
+            }
+            Cobrar ventanaCobrar = new Cobrar(this, false, insert);
+            ventanaCobrar.setLocationRelativeTo(null);
+            ventanaCobrar.setVisible(true);
+        } else {
+            ImageIcon icon = new ImageIcon("src/img/error (2).png");
+            JOptionPane.showMessageDialog(null, "El Carrito esta Vacio", "Mensaje", JOptionPane.OK_OPTION, icon);
         }
-        Cobrar ventanaCobrar = new Cobrar(this, false, insert);
-        ventanaCobrar.setLocationRelativeTo(null);
-        ventanaCobrar.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void textBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscarKeyPressed

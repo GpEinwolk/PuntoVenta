@@ -91,7 +91,7 @@
                               <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="agregar" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="agregar2" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="cobroHoja" min="-2" pref="100" max="-2" attributes="0"/>
                                   <Component id="agregar1" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
                                   <Component id="atras" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
@@ -113,7 +113,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="agregar" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="agregar2" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="cobroHoja" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="atras" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace pref="168" max="32767" attributes="0"/>
@@ -232,7 +232,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregar1ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="agregar2">
+            <Component class="javax.swing.JButton" name="cobroHoja">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="53" green="b8" red="1d" type="rgb"/>
@@ -253,7 +253,7 @@
                 <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregar2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cobroHojaActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

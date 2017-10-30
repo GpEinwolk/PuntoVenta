@@ -2212,6 +2212,9 @@
                       <StringArray count="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="almacen"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
@@ -3010,10 +3013,6 @@
                       </StringArray>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="unidadMMouseClicked"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="unidadMActionPerformed"/>
-                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
@@ -3072,17 +3071,24 @@
                                                       <Component id="jLabel100" min="-2" max="-2" attributes="0"/>
                                                       <Component id="jLabel102" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="txtRFCCliente" min="-2" pref="175" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="txtDirCliente" alignment="0" min="-2" pref="645" max="-2" attributes="0"/>
+                                                              <Component id="txtCalleCliente" alignment="0" min="-2" pref="645" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="comboRFCC" min="-2" pref="131" max="-2" attributes="0"/>
                                                           <EmptySpace max="32767" attributes="0"/>
+                                                          <Component id="txtRFCCliente" min="-2" pref="155" max="-2" attributes="0"/>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                                           <Component id="jLabel101" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="giroCliente" min="-2" pref="319" max="-2" attributes="0"/>
+                                                          <Component id="giroCliente" min="-2" max="-2" attributes="0"/>
                                                       </Group>
-                                                      <Component id="txtDirCliente" alignment="0" min="-2" pref="645" max="-2" attributes="0"/>
-                                                      <Component id="txtCalleCliente" alignment="0" min="-2" pref="645" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <Component id="txtNombreC" alignment="1" min="-2" pref="645" max="-2" attributes="0"/>
@@ -3164,11 +3170,14 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="txtNombreC" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel100" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel101" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtRFCCliente" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                      <Component id="giroCliente" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel100" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel101" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="giroCliente" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="comboRFCC" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="txtRFCCliente" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -3268,6 +3277,9 @@
                       </Border>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreCActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel99">
                   <Properties>
@@ -3334,8 +3346,8 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="&quot;&quot;" type="code"/>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Connection code="new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter(&quot;????######AAA&quot;))" type="code"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="18" style="1"/>
@@ -3749,51 +3761,82 @@
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="44">
+                      <StringArray count="75">
                         <StringItem index="0" value="Otros servicios"/>
-                        <StringItem index="1" value="Arrendamiento inmobiliario"/>
-                        <StringItem index="2" value="Cafeter&#xed;a"/>
-                        <StringItem index="3" value="Canceler&#xed;a&#x200b;"/>
-                        <StringItem index="4" value="Carnicer&#xed;a"/>
-                        <StringItem index="5" value="Carpinter&#xed;a y muebler&#xed;a"/>
-                        <StringItem index="6" value="Farmacias"/>
-                        <StringItem index="7" value="Ferreter&#xed;a"/>
-                        <StringItem index="8" value="Gimnasio&#x200b;"/>
-                        <StringItem index="9" value="Jarcier&#xed;a"/>
-                        <StringItem index="10" value="Lavander&#xed;a y tintorer&#xed;a&#x200b;"/>
-                        <StringItem index="11" value="Manufactura&#x200b;&#x200b;"/>
-                        <StringItem index="12" value="Panader&#xed;a&#x200b;"/>
-                        <StringItem index="13" value="Papeler&#xed;a"/>
-                        <StringItem index="14" value="Peluquer&#xed;a"/>
-                        <StringItem index="15" value="Productor agr&#xed;cola"/>
-                        <StringItem index="16" value="Productor ganadero&#x200b;"/>
-                        <StringItem index="17" value="Servicios administrativos"/>
-                        <StringItem index="18" value="Servicios de alba&#xf1;iler&#xed;a&#x200b;"/>
-                        <StringItem index="19" value="Servicios de alquiler de luz y sonido"/>
-                        <StringItem index="20" value="Servicio de cerrajer&#xed;a&#x200b;"/>
-                        <StringItem index="21" value="Servicios de comercio exterior&#x200b;"/>
-                        <StringItem index="22" value="Servicios de comisi&#xf3;n"/>
-                        <StringItem index="23" value="Servicios de espect&#xe1;culos p&#xfa;blicos"/>
-                        <StringItem index="24" value="Servicios de estacionamiento p&#xfa;blico"/>
-                        <StringItem index="25" value="Servicios hospitalarios&#x200b;"/>
-                        <StringItem index="26" value="Servicios de laboratorio cl&#xed;nicos&#x200b;"/>
-                        <StringItem index="27" value="Servicios de pintura&#x200b;&#x200b;"/>
-                        <StringItem index="28" value="Servicios de publicidad"/>
-                        <StringItem index="29" value="Servicios de seguros"/>
-                        <StringItem index="30" value="Servicios de topograf&#xed;a&#x200b;"/>
-                        <StringItem index="31" value="Servicios fotogr&#xe1;ficos&#x200b;"/>
-                        <StringItem index="32" value="Servicios profesionales contables"/>
-                        <StringItem index="33" value="Servicios y productos de ortopedia"/>
-                        <StringItem index="34" value="Taller mec&#xe1;nico"/>
-                        <StringItem index="35" value="Vulcanizadora"/>
-                        <StringItem index="36" value="Taller de hojalater&#xed;a y pintura"/>
-                        <StringItem index="37" value="Refaccionaria automotriz"/>
-                        <StringItem index="38" value="Tatuajes y perforaciones&#x200b;"/>
-                        <StringItem index="39" value="Tortiller&#xed;a"/>
-                        <StringItem index="40" value="Venta de productos de telefon&#xed;a celular"/>
-                        <StringItem index="41" value="Venta de billetes de loter&#xed;a&#x200b;"/>
-                        <StringItem index="42" value="Veterinaria"/>
-                        <StringItem index="43" value="Zapater&#xed;as&#x200b;"/>
+                        <StringItem index="1" value="Abarrotes"/>
+                        <StringItem index="2" value="Aceros"/>
+                        <StringItem index="3" value="Aduanal"/>
+                        <StringItem index="4" value="Agr&#xed;cola"/>
+                        <StringItem index="5" value="Alimenticio"/>
+                        <StringItem index="6" value="Ambientales"/>
+                        <StringItem index="7" value="Arrendadora"/>
+                        <StringItem index="8" value="Artes gr&#xe1;ficas"/>
+                        <StringItem index="9" value="Ar&#xed;culos de limpieza"/>
+                        <StringItem index="10" value="Art&#xed;culos deportivos"/>
+                        <StringItem index="11" value="Aseguradoras"/>
+                        <StringItem index="12" value="Asilos"/>
+                        <StringItem index="13" value="Asociaci&#xf3;n religiosa"/>
+                        <StringItem index="14" value="Autolavado"/>
+                        <StringItem index="15" value="Automotriz"/>
+                        <StringItem index="16" value="Autoservicio"/>
+                        <StringItem index="17" value="Av&#xed;cola"/>
+                        <StringItem index="18" value="Calzado"/>
+                        <StringItem index="19" value="Carga a&#xe9;rea"/>
+                        <StringItem index="20" value="Clubes Deportivos"/>
+                        <StringItem index="21" value="Comercio"/>
+                        <StringItem index="22" value="Comunicaci&#xf3;n"/>
+                        <StringItem index="23" value="Construcci&#xf3;n"/>
+                        <StringItem index="24" value="Despachos contables"/>
+                        <StringItem index="25" value="Editorial"/>
+                        <StringItem index="26" value="Educaci&#xf3;n"/>
+                        <StringItem index="27" value="Electricidad"/>
+                        <StringItem index="28" value="Empacadoras"/>
+                        <StringItem index="29" value="Equipo d ec&#xf3;mputo"/>
+                        <StringItem index="30" value="Espect&#xe1;culos"/>
+                        <StringItem index="31" value="Farmac&#xe9;uticos"/>
+                        <StringItem index="32" value="Ferretero"/>
+                        <StringItem index="33" value="Financiero"/>
+                        <StringItem index="34" value="Fletes"/>
+                        <StringItem index="35" value="Gasera"/>
+                        <StringItem index="36" value="Gasolinera"/>
+                        <StringItem index="37" value="Gobierno Estatal"/>
+                        <StringItem index="38" value="Gobierno Federal"/>
+                        <StringItem index="39" value="Hojalateria"/>
+                        <StringItem index="40" value="Hoteles y Moteles"/>
+                        <StringItem index="41" value="Impresiones"/>
+                        <StringItem index="42" value="Industria mec&#xe1;nica"/>
+                        <StringItem index="43" value="Industrial"/>
+                        <StringItem index="44" value="Inmobiliaria"/>
+                        <StringItem index="45" value="Joyer&#xed;a"/>
+                        <StringItem index="46" value="Jugueter&#xed;a"/>
+                        <StringItem index="47" value="Librer&#xed;a"/>
+                        <StringItem index="48" value="Manufactura"/>
+                        <StringItem index="49" value="Maquiladora"/>
+                        <StringItem index="50" value="Materiales para la construcci&#xf3;n"/>
+                        <StringItem index="51" value="M&#xe9;dicos"/>
+                        <StringItem index="52" value="Mercer&#xed;a"/>
+                        <StringItem index="53" value="Miscel&#xe1;nea"/>
+                        <StringItem index="54" value="Muebles"/>
+                        <StringItem index="55" value="&#xd3;pticas"/>
+                        <StringItem index="56" value="Pante&#xf3;n"/>
+                        <StringItem index="57" value="Papeler&#xed;a"/>
+                        <StringItem index="58" value="Perfiles de Aluminio"/>
+                        <StringItem index="59" value="Perfumer&#xed;a"/>
+                        <StringItem index="60" value="Pesquero"/>
+                        <StringItem index="61" value="Pieles"/>
+                        <StringItem index="62" value="Pinturas"/>
+                        <StringItem index="63" value="Pl&#xe1;sticos"/>
+                        <StringItem index="64" value="Produccion audiovisual"/>
+                        <StringItem index="65" value="Publicidad"/>
+                        <StringItem index="66" value="Qu&#xed;micos"/>
+                        <StringItem index="67" value="Restaurante"/>
+                        <StringItem index="68" value="Ropa"/>
+                        <StringItem index="69" value="Seguridad Privada"/>
+                        <StringItem index="70" value="Servicio"/>
+                        <StringItem index="71" value="Sider&#xfa;rgico"/>
+                        <StringItem index="72" value="Textiles"/>
+                        <StringItem index="73" value="Transporte"/>
+                        <StringItem index="74" value="Turismo"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -3889,6 +3932,22 @@
                     </Property>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JComboBox" name="comboRFCC">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="Persona f&#xed;sica"/>
+                        <StringItem index="1" value="Persona moral"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="changeRFCC"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPproveedor">
@@ -3942,12 +4001,14 @@
                                                   </Group>
                                                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="txtRFCPro" min="-2" pref="175" max="-2" attributes="0"/>
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <Component id="comboRFC" min="-2" pref="131" max="-2" attributes="0"/>
                                                           <EmptySpace max="32767" attributes="0"/>
+                                                          <Component id="txtRFCPro" min="-2" pref="155" max="-2" attributes="0"/>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                                           <Component id="jLabel119" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="giroPro" min="-2" pref="314" max="-2" attributes="0"/>
+                                                          <Component id="giroPro" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                       <Component id="txtDirPro" alignment="0" min="-2" pref="645" max="-2" attributes="0"/>
                                                       <Component id="txtCallePro" alignment="0" min="-2" pref="645" max="-2" attributes="0"/>
@@ -4040,11 +4101,14 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="txtNombrePro" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel118" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel119" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtRFCPro" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                      <Component id="giroPro" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel118" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel119" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="giroPro" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="comboRFC" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="txtRFCPro" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -4210,8 +4274,8 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="&quot;&quot;" type="code"/>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="????######AAA" subtype="-1" type="5"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="18" style="1"/>
@@ -4625,51 +4689,82 @@
                       <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="44">
+                      <StringArray count="75">
                         <StringItem index="0" value="Otros servicios"/>
-                        <StringItem index="1" value="Arrendamiento inmobiliario"/>
-                        <StringItem index="2" value="Cafeter&#xed;a"/>
-                        <StringItem index="3" value="Canceler&#xed;a&#x200b;"/>
-                        <StringItem index="4" value="Carnicer&#xed;a"/>
-                        <StringItem index="5" value="Carpinter&#xed;a y muebler&#xed;a"/>
-                        <StringItem index="6" value="Farmacias"/>
-                        <StringItem index="7" value="Ferreter&#xed;a"/>
-                        <StringItem index="8" value="Gimnasio&#x200b;"/>
-                        <StringItem index="9" value="Jarcier&#xed;a"/>
-                        <StringItem index="10" value="Lavander&#xed;a y tintorer&#xed;a&#x200b;"/>
-                        <StringItem index="11" value="Manufactura&#x200b;&#x200b;"/>
-                        <StringItem index="12" value="Panader&#xed;a&#x200b;"/>
-                        <StringItem index="13" value="Papeler&#xed;a"/>
-                        <StringItem index="14" value="Peluquer&#xed;a"/>
-                        <StringItem index="15" value="Productor agr&#xed;cola"/>
-                        <StringItem index="16" value="Productor ganadero&#x200b;"/>
-                        <StringItem index="17" value="Servicios administrativos"/>
-                        <StringItem index="18" value="Servicios de alba&#xf1;iler&#xed;a&#x200b;"/>
-                        <StringItem index="19" value="Servicios de alquiler de luz y sonido"/>
-                        <StringItem index="20" value="Servicio de cerrajer&#xed;a&#x200b;"/>
-                        <StringItem index="21" value="Servicios de comercio exterior&#x200b;"/>
-                        <StringItem index="22" value="Servicios de comisi&#xf3;n"/>
-                        <StringItem index="23" value="Servicios de espect&#xe1;culos p&#xfa;blicos"/>
-                        <StringItem index="24" value="Servicios de estacionamiento p&#xfa;blico"/>
-                        <StringItem index="25" value="Servicios hospitalarios&#x200b;"/>
-                        <StringItem index="26" value="Servicios de laboratorio cl&#xed;nicos&#x200b;"/>
-                        <StringItem index="27" value="Servicios de pintura&#x200b;&#x200b;"/>
-                        <StringItem index="28" value="Servicios de publicidad"/>
-                        <StringItem index="29" value="Servicios de seguros"/>
-                        <StringItem index="30" value="Servicios de topograf&#xed;a&#x200b;"/>
-                        <StringItem index="31" value="Servicios fotogr&#xe1;ficos&#x200b;"/>
-                        <StringItem index="32" value="Servicios profesionales contables"/>
-                        <StringItem index="33" value="Servicios y productos de ortopedia"/>
-                        <StringItem index="34" value="Taller mec&#xe1;nico"/>
-                        <StringItem index="35" value="Vulcanizadora"/>
-                        <StringItem index="36" value="Taller de hojalater&#xed;a y pintura"/>
-                        <StringItem index="37" value="Refaccionaria automotriz"/>
-                        <StringItem index="38" value="Tatuajes y perforaciones&#x200b;"/>
-                        <StringItem index="39" value="Tortiller&#xed;a"/>
-                        <StringItem index="40" value="Venta de productos de telefon&#xed;a celular"/>
-                        <StringItem index="41" value="Venta de billetes de loter&#xed;a&#x200b;"/>
-                        <StringItem index="42" value="Veterinaria"/>
-                        <StringItem index="43" value="Zapater&#xed;as&#x200b;"/>
+                        <StringItem index="1" value="Abarrotes"/>
+                        <StringItem index="2" value="Aceros"/>
+                        <StringItem index="3" value="Aduanal"/>
+                        <StringItem index="4" value="Agr&#xed;cola"/>
+                        <StringItem index="5" value="Alimenticio"/>
+                        <StringItem index="6" value="Ambientales"/>
+                        <StringItem index="7" value="Arrendadora"/>
+                        <StringItem index="8" value="Artes gr&#xe1;ficas"/>
+                        <StringItem index="9" value="Ar&#xed;culos de limpieza"/>
+                        <StringItem index="10" value="Art&#xed;culos deportivos"/>
+                        <StringItem index="11" value="Aseguradoras"/>
+                        <StringItem index="12" value="Asilos"/>
+                        <StringItem index="13" value="Asociaci&#xf3;n religiosa"/>
+                        <StringItem index="14" value="Autolavado"/>
+                        <StringItem index="15" value="Automotriz"/>
+                        <StringItem index="16" value="Autoservicio"/>
+                        <StringItem index="17" value="Av&#xed;cola"/>
+                        <StringItem index="18" value="Calzado"/>
+                        <StringItem index="19" value="Carga a&#xe9;rea"/>
+                        <StringItem index="20" value="Clubes Deportivos"/>
+                        <StringItem index="21" value="Comercio"/>
+                        <StringItem index="22" value="Comunicaci&#xf3;n"/>
+                        <StringItem index="23" value="Construcci&#xf3;n"/>
+                        <StringItem index="24" value="Despachos contables"/>
+                        <StringItem index="25" value="Editorial"/>
+                        <StringItem index="26" value="Educaci&#xf3;n"/>
+                        <StringItem index="27" value="Electricidad"/>
+                        <StringItem index="28" value="Empacadoras"/>
+                        <StringItem index="29" value="Equipo d ec&#xf3;mputo"/>
+                        <StringItem index="30" value="Espect&#xe1;culos"/>
+                        <StringItem index="31" value="Farmac&#xe9;uticos"/>
+                        <StringItem index="32" value="Ferretero"/>
+                        <StringItem index="33" value="Financiero"/>
+                        <StringItem index="34" value="Fletes"/>
+                        <StringItem index="35" value="Gasera"/>
+                        <StringItem index="36" value="Gasolinera"/>
+                        <StringItem index="37" value="Gobierno Estatal"/>
+                        <StringItem index="38" value="Gobierno Federal"/>
+                        <StringItem index="39" value="Hojalateria"/>
+                        <StringItem index="40" value="Hoteles y Moteles"/>
+                        <StringItem index="41" value="Impresiones"/>
+                        <StringItem index="42" value="Industria mec&#xe1;nica"/>
+                        <StringItem index="43" value="Industrial"/>
+                        <StringItem index="44" value="Inmobiliaria"/>
+                        <StringItem index="45" value="Joyer&#xed;a"/>
+                        <StringItem index="46" value="Jugueter&#xed;a"/>
+                        <StringItem index="47" value="Librer&#xed;a"/>
+                        <StringItem index="48" value="Manufactura"/>
+                        <StringItem index="49" value="Maquiladora"/>
+                        <StringItem index="50" value="Materiales para la construcci&#xf3;n"/>
+                        <StringItem index="51" value="M&#xe9;dicos"/>
+                        <StringItem index="52" value="Mercer&#xed;a"/>
+                        <StringItem index="53" value="Miscel&#xe1;nea"/>
+                        <StringItem index="54" value="Muebles"/>
+                        <StringItem index="55" value="&#xd3;pticas"/>
+                        <StringItem index="56" value="Pante&#xf3;n"/>
+                        <StringItem index="57" value="Papeler&#xed;a"/>
+                        <StringItem index="58" value="Perfiles de Aluminio"/>
+                        <StringItem index="59" value="Perfumer&#xed;a"/>
+                        <StringItem index="60" value="Pesquero"/>
+                        <StringItem index="61" value="Pieles"/>
+                        <StringItem index="62" value="Pinturas"/>
+                        <StringItem index="63" value="Pl&#xe1;sticos"/>
+                        <StringItem index="64" value="Produccion audiovisual"/>
+                        <StringItem index="65" value="Publicidad"/>
+                        <StringItem index="66" value="Qu&#xed;micos"/>
+                        <StringItem index="67" value="Restaurante"/>
+                        <StringItem index="68" value="Ropa"/>
+                        <StringItem index="69" value="Seguridad Privada"/>
+                        <StringItem index="70" value="Servicio"/>
+                        <StringItem index="71" value="Sider&#xfa;rgico"/>
+                        <StringItem index="72" value="Textiles"/>
+                        <StringItem index="73" value="Transporte"/>
+                        <StringItem index="74" value="Turismo"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -4764,6 +4859,22 @@
                       <Font name="Segoe UI" size="18" style="1"/>
                     </Property>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="comboRFC">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="Persona f&#xed;sica"/>
+                        <StringItem index="1" value="Persona moral"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="rfcChange"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>

@@ -1,6 +1,8 @@
 package Diseño;
 
 import static Diseño.Ventas.conn;
+import static Diseño.Ventas.model;
+import static Diseño.Ventas.tablaVenta;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PRStream;
 import com.itextpdf.text.pdf.PdfDictionary;
@@ -28,34 +30,39 @@ import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.ColorSupported;
 import javax.print.attribute.standard.PrinterName;
 import java.io.FileOutputStream;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class Cobrar extends javax.swing.JDialog {
 
     Connection cn = conn.getConnection();
     String[] venta;
-
-    public Cobrar(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
-
-    public Cobrar(Ventas vnt, boolean modal) {
-        super(vnt, modal);
-        initComponents();
-        this.setTitle("Vender");
-    }
-
+    DefaultTableModel de;
     public Cobrar(java.awt.Frame parent, boolean modal, String[] insert) {
         super(parent, modal);
         initComponents();
         venta = insert;
+        de = (DefaultTableModel) tablaVenta.getModel();
 
     }
 
@@ -70,7 +77,7 @@ public class Cobrar extends javax.swing.JDialog {
         atras = new javax.swing.JButton();
         agregar = new javax.swing.JButton();
         agregar1 = new javax.swing.JButton();
-        agregar2 = new javax.swing.JButton();
+        cobroHoja = new javax.swing.JButton();
         jPContenedor = new javax.swing.JPanel();
         jPefectivo = new javax.swing.JPanel();
         jPef = new javax.swing.JPanel();
@@ -193,16 +200,16 @@ public class Cobrar extends javax.swing.JDialog {
             }
         });
 
-        agregar2.setBackground(new java.awt.Color(29, 184, 83));
-        agregar2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        agregar2.setForeground(new java.awt.Color(255, 255, 255));
-        agregar2.setText("Cobrar + Hoja");
-        agregar2.setBorder(null);
-        agregar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        agregar2.setFocusPainted(false);
-        agregar2.addActionListener(new java.awt.event.ActionListener() {
+        cobroHoja.setBackground(new java.awt.Color(29, 184, 83));
+        cobroHoja.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cobroHoja.setForeground(new java.awt.Color(255, 255, 255));
+        cobroHoja.setText("Cobrar + Hoja");
+        cobroHoja.setBorder(null);
+        cobroHoja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cobroHoja.setFocusPainted(false);
+        cobroHoja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregar2ActionPerformed(evt);
+                cobroHojaActionPerformed(evt);
             }
         });
 
@@ -221,7 +228,7 @@ public class Cobrar extends javax.swing.JDialog {
                         .addGap(77, 77, 77)
                         .addGroup(jPMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(agregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cobroHoja, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(agregar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(atras, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(44, Short.MAX_VALUE))
@@ -238,7 +245,7 @@ public class Cobrar extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(agregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cobroHoja, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(atras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(168, Short.MAX_VALUE))
@@ -851,8 +858,12 @@ public class Cobrar extends javax.swing.JDialog {
     }//GEN-LAST:event_jCobroActionPerformed
 
     private void agregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar1ActionPerformed
-        switch ((String) jCobro.getSelectedItem()) {
+        cobro();
+    }//GEN-LAST:event_agregar1ActionPerformed
+    private void cobro(){
+    switch ((String) jCobro.getSelectedItem()) {
             case "Tarjeta":
+                crearReporte("Tarjeta");
                 cobrar();
                 break;
             case "Mixto":
@@ -860,6 +871,7 @@ public class Cobrar extends javax.swing.JDialog {
                     ImageIcon ua = new ImageIcon("src/img/error (2).png");
                     JOptionPane.showMessageDialog(null, "Falta: $" + jLabel35.getText(), "Mensaje", JOptionPane.OK_OPTION, ua);
                 } else {
+                    crearReporte("Mixto");
                     cobrar();
                 }
                 break;
@@ -868,12 +880,45 @@ public class Cobrar extends javax.swing.JDialog {
                     ImageIcon ua = new ImageIcon("src/img/error (2).png");
                     JOptionPane.showMessageDialog(null, "Falta: $" + jLabel13.getText(), "Mensaje", JOptionPane.OK_OPTION, ua);
                 } else {
+                    crearReporte("Efectivo");
                     cobrar();
                 }
                 break;
         }
+    }    
+    private void crearReporte(String tipoPago) {
+        try {
+            JRTableModelDataSource datasource = new JRTableModelDataSource(model);
+            String reportSource = "report2.jrxml";
+            JasperReport jr = JasperCompileManager.compileReport(reportSource);
+            Map<String, Object> params = new HashMap<>();
+            params.put("nTicket", Ventas.nTicket);
+            params.put("nombreUsuario",Ventas.Usuario);
+            params.put("tipoPago",tipoPago);
+            JasperPrint jp = JasperFillManager.fillReport(jr, params, datasource);
+            JasperExportManager.exportReportToPdfFile( jp, "reporte.pdf");
+        } catch (JRException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void imprimirticket() {
+        JasperReport jasperReport;
+        JasperPrint jasperPrint;
+        Conexion conn = new Conexion();
+        try {
+            //se carga el report
+            URL in = this.getClass().getResource("report1.jasper");
+            jasperReport = (JasperReport) JRLoader.loadObject(in);
+            //se procesa el archivo jasper
+            jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), conn.getConnection());
+            //impresion de reporte
+            // TRUE: muestra la ventana de dialogo "preferencias de impresion"
+            JasperPrintManager.printReport(jasperPrint, true);
+        } catch (JRException ex) {
+            System.err.println("Error iReport: " + ex.getMessage());
+        }
+    }
 
-    }//GEN-LAST:event_agregar1ActionPerformed
     void cobrar() {
         String formaP = jCobro.getSelectedItem().toString();
         String sql = "SELECT idlogin FROM login ORDER BY idlogin DESC LIMIT 1";
@@ -909,9 +954,9 @@ public class Cobrar extends javax.swing.JDialog {
         Ventas.labelTicket.setText("Ticket-" + Ventas.nTicket);
         dispose();
     }
-    private void agregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar2ActionPerformed
-
-    }//GEN-LAST:event_agregar2ActionPerformed
+    private void cobroHojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobroHojaActionPerformed
+    cobro();
+    }//GEN-LAST:event_cobroHojaActionPerformed
 
     void cobroMixto() {
         float tarjeta = Float.parseFloat(jTextField1.getText());
@@ -1006,29 +1051,13 @@ public class Cobrar extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Cobrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Cobrar dialog = new Cobrar(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar;
     private javax.swing.JButton agregar1;
-    private javax.swing.JButton agregar2;
     private javax.swing.JButton atras;
+    private javax.swing.JButton cobroHoja;
     private javax.swing.JComboBox<String> jCobro;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
@@ -1152,5 +1181,7 @@ public class Cobrar extends javax.swing.JDialog {
             Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
 
 }

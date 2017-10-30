@@ -6,6 +6,7 @@
 package Diseño;
 
 import java.awt.Component;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -121,6 +122,11 @@ public final class BuscarProductos extends javax.swing.JDialog {
 
             }
         ));
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                enterTabla(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         jButton1.setBackground(new java.awt.Color(46, 204, 113));
@@ -231,6 +237,13 @@ public final class BuscarProductos extends javax.swing.JDialog {
     private void campoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoActionPerformed
+
+    private void enterTabla(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enterTabla
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+           jButton1.doClick();
+        }
+    }//GEN-LAST:event_enterTabla
 
     /**
      * @param args the command line arguments

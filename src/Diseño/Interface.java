@@ -1,12 +1,12 @@
 package Diseño;
 
-import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
@@ -29,7 +29,6 @@ public final class Interface extends javax.swing.JFrame {
     DecimalFormat df = new DecimalFormat("#.00");
     DefaultTableModel modelCP;
     TableRowSorter<TableModel> tr;
-    
 
     public Interface() {
         initComponents();
@@ -78,13 +77,15 @@ public final class Interface extends javax.swing.JFrame {
         modelo.addColumn("Precio");
         modelo.addColumn("Utilidad %");
         modelo.addColumn("Caracteristicas");
+        modelo.addColumn("Unidad");
+        modelo.addColumn("Codigo Alterno");
         modelo.addColumn("Garantia");
         modelo.addColumn("Almacen");
 
         tablaDatosModificar.setModel(modelo);
-        String sql = "SELECT producto.idproducto,producto.nombre,producto.codigo,producto.stock,producto.costo,producto.precio,producto.utilidad,producto.espef,garantia.nombre,almacen.nombre FROM producto,garantia,almacen WHERE producto.garantia_idgarantia = garantia.idgarantia AND producto.almacen_idalmacen = almacen.idalmacen";
+        String sql = "SELECT producto.idproducto,producto.nombre,producto.codigo,producto.stock,producto.costo,producto.precio,producto.utilidad,producto.espef,producto.unidadM,producto.codigoA,garantia.nombre,almacen.nombre FROM producto,garantia,almacen WHERE producto.garantia_idgarantia = garantia.idgarantia AND producto.almacen_idalmacen = almacen.idalmacen";
 
-        String datos[] = new String[10];
+        String datos[] = new String[12];
         Statement st;
 
         try {
@@ -101,6 +102,8 @@ public final class Interface extends javax.swing.JFrame {
                 datos[7] = rs.getString(8);
                 datos[8] = rs.getString(9);
                 datos[9] = rs.getString(10);
+                datos[10] = rs.getString(11);
+                datos[11] = rs.getString(12);
                 modelo.addRow(datos);
 
             }
@@ -183,13 +186,15 @@ public final class Interface extends javax.swing.JFrame {
         modelo.addColumn("Precio");
         modelo.addColumn("Utilidad %");
         modelo.addColumn("Caracteristicas");
+        modelo.addColumn("unidad");
+        modelo.addColumn("codigoA");
         modelo.addColumn("Garantia");
         modelo.addColumn("Almacen");
 
         tablaDatosProducto.setModel(modelo);
-        String sql = "SELECT producto.nombre,producto.codigo,producto.stock,producto.costo,producto.precio,producto.utilidad,producto.espef,garantia.nombre,almacen.nombre FROM producto,garantia,almacen WHERE producto.garantia_idgarantia = garantia.idgarantia AND producto.almacen_idalmacen=almacen.idalmacen";
+        String sql = "SELECT producto.nombre,producto.codigo,producto.stock,producto.costo,producto.precio,producto.utilidad,producto.espef,producto.unidadM,codigoA,garantia.nombre,almacen.nombre FROM producto,garantia,almacen WHERE producto.garantia_idgarantia = garantia.idgarantia AND producto.almacen_idalmacen=almacen.idalmacen";
 
-        String datos[] = new String[10];
+        String datos[] = new String[11];
         Statement st;
 
         try {
@@ -205,6 +210,8 @@ public final class Interface extends javax.swing.JFrame {
                 datos[6] = rs.getString(7);
                 datos[7] = rs.getString(8);
                 datos[8] = rs.getString(9);
+                datos[9] = rs.getString(10);
+                datos[10] = rs.getString(11);
                 modelo.addRow(datos);
 
             }
@@ -230,6 +237,14 @@ public final class Interface extends javax.swing.JFrame {
                 Statement cp;
                 String index = Integer.toString(garant.getSelectedIndex() + 1);
                 String index2 = Integer.toString(almacen.getSelectedIndex() + 1);
+                String uniM = "";
+                if (unidadM.getSelectedIndex() == 0) {
+                    System.out.println(unidadM.getSelectedIndex());
+                    uniM = "pza";
+                } else {
+                    System.out.println(unidadM.getSelectedIndex());
+                    uniM = "kg";
+                }
 
                 String txtid = "";
                 String almacenID = "";
@@ -264,17 +279,19 @@ public final class Interface extends javax.swing.JFrame {
                     Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                PreparedStatement pps = cn.prepareStatement("INSERT INTO producto(nombre, codigo, stock, costo, precio, utilidad, espef, servicio, garantia_idgarantia, almacen_idalmacen) VALUES(?,?,?,?,?,?,?,?,?,?)");
+                PreparedStatement pps = cn.prepareStatement("INSERT INTO producto(nombre, codigo, codigoA, stock, costo, precio, utilidad, espef, servicio,unidadM, garantia_idgarantia, almacen_idalmacen) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
                 pps.setString(1, txtNombre.getText());
                 pps.setString(2, txtCodigo.getText());
-                pps.setInt(3, cantidad);
-                pps.setDouble(4, costo);
-                pps.setDouble(5, precio);
-                pps.setDouble(6, utilidad);
-                pps.setString(7, txtCaract.getText());
-                pps.setBoolean(8, servicio);
-                pps.setInt(9, Integer.parseInt(txtid));
-                pps.setInt(10, Integer.parseInt(txtid));
+                pps.setString(3, txtcodigoA.getText());
+                pps.setInt(4, cantidad);
+                pps.setDouble(5, costo);
+                pps.setDouble(6, precio);
+                pps.setDouble(7, utilidad);
+                pps.setString(8, txtCaract.getText());
+                pps.setBoolean(9, servicio);
+                pps.setString(10, uniM);
+                pps.setInt(11, Integer.parseInt(txtid));
+                pps.setInt(12, Integer.parseInt(txtid));
                 pps.executeUpdate();
 
                 txtNombre.setText(null);
@@ -283,6 +300,7 @@ public final class Interface extends javax.swing.JFrame {
                 txtCosto.setText(null);
                 txtPrecio.setText(null);
                 txtCaract.setText("");
+                txtcodigoA.setText("");
                 jSutilid.setValue(0.0f);
                 ua = new ImageIcon("src/img/cart (5).png");
 
@@ -304,6 +322,12 @@ public final class Interface extends javax.swing.JFrame {
         Statement cp2;
         String index2 = almacenMod.getSelectedItem().toString();
         String id2 = "";
+        String uniM = "";
+        if (unidadMod.getSelectedIndex() == 0) {
+            uniM = "pza";
+        } else {
+            uniM = "kg";
+        }
 
         try {
             cp = cn.createStatement();
@@ -348,11 +372,12 @@ public final class Interface extends javax.swing.JFrame {
         try {
             PreparedStatement pps = cn.prepareStatement("UPDATE producto SET nombre='"
                     + txtModNombre.getText() + "',codigo='" + txtModCodigo.getText()
-                    + "',stock='" + cantidad + "',costo='" + costo + "',precio='"
-                    + precio + "',utilidad='" + utilidad + "',espef='" + txtModArea.getText()
-                    + "',servicio='" + servicio + "',garantia_idgarantia='" + id
-                    + "',almacen_idalmacen='" + id2
-                    + "' WHERE idproducto=" + txtID.getText() + "");
+                    + "',stock='" + cantidad + "',costo='" + costo
+                    + "',precio='" + precio + "',utilidad='" + utilidad
+                    + "',espef='" + txtModArea.getText() + "',codigoA='" + txtModcodigoA.getText()
+                    + "',servicio='" + servicio + "',unidadM='" + uniM
+                    + "',garantia_idgarantia='" + id + "',almacen_idalmacen='" + id2
+                    + "' WHERE idproducto=" + txtID.getText());
             pps.executeUpdate();
             mostrarTablaModificar();
             nv = new ImageIcon("src/img/cart (5).png");
@@ -361,7 +386,6 @@ public final class Interface extends javax.swing.JFrame {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex);
         }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -529,6 +553,7 @@ public final class Interface extends javax.swing.JFrame {
         txtCalleCliente = new javax.swing.JTextField();
         jLabel115 = new javax.swing.JLabel();
         txtCodCliente = new javax.swing.JFormattedTextField();
+        comboRFCC = new javax.swing.JComboBox<>();
         jPproveedor = new javax.swing.JPanel();
         jLabel116 = new javax.swing.JLabel();
         txtNombrePro = new javax.swing.JTextField();
@@ -564,6 +589,7 @@ public final class Interface extends javax.swing.JFrame {
         txtCallePro = new javax.swing.JTextField();
         jLabel133 = new javax.swing.JLabel();
         txtCodPro = new javax.swing.JFormattedTextField();
+        comboRFC = new javax.swing.JComboBox<>();
         jPmodificarCP = new javax.swing.JPanel();
         jLabel134 = new javax.swing.JLabel();
         txtNombrePro1 = new javax.swing.JTextField();
@@ -1427,6 +1453,11 @@ public final class Interface extends javax.swing.JFrame {
 
         almacenMod.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         almacenMod.setForeground(new java.awt.Color(51, 51, 51));
+        almacenMod.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                almacen(evt);
+            }
+        });
 
         txtModcodigoA.setBackground(new java.awt.Color(251, 251, 251));
         txtModcodigoA.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -1839,16 +1870,6 @@ public final class Interface extends javax.swing.JFrame {
         unidadM.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         unidadM.setForeground(new java.awt.Color(51, 51, 51));
         unidadM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Por unidad - Pza", "A Granel (Usa Decimales)" }));
-        unidadM.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                unidadMMouseClicked(evt);
-            }
-        });
-        unidadM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                unidadMActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPcomprasLayout = new javax.swing.GroupLayout(jPcompras);
         jPcompras.setLayout(jPcomprasLayout);
@@ -2006,6 +2027,11 @@ public final class Interface extends javax.swing.JFrame {
         txtNombreC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         txtNombreC.setForeground(new java.awt.Color(51, 51, 51));
         txtNombreC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        txtNombreC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreCActionPerformed(evt);
+            }
+        });
 
         jLabel99.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jLabel99.setForeground(new java.awt.Color(255, 255, 255));
@@ -2030,7 +2056,11 @@ public final class Interface extends javax.swing.JFrame {
 
         txtRFCCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtRFCCliente.setForeground(new java.awt.Color(51, 51, 51));
-        txtRFCCliente.setText("");
+        try {
+            txtRFCCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????######AAA")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txtRFCCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         txtDirCliente.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -2165,7 +2195,7 @@ public final class Interface extends javax.swing.JFrame {
 
         giroCliente.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         giroCliente.setForeground(new java.awt.Color(51, 51, 51));
-        giroCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otros servicios", "Arrendamiento inmobiliario", "Cafetería", "Cancelería​", "Carnicería", "Carpintería y mueblería", "Farmacias", "Ferretería", "Gimnasio​", "Jarciería", "Lavandería y tintorería​", "Manufactura​​", "Panadería​", "Papelería", "Peluquería", "Productor agrícola", "Productor ganadero​", "Servicios administrativos", "Servicios de albañilería​", "Servicios de alquiler de luz y sonido", "Servicio de cerrajería​", "Servicios de comercio exterior​", "Servicios de comisión", "Servicios de espectáculos públicos", "Servicios de estacionamiento público", "Servicios hospitalarios​", "Servicios de laboratorio clínicos​", "Servicios de pintura​​", "Servicios de publicidad", "Servicios de seguros", "Servicios de topografía​", "Servicios fotográficos​", "Servicios profesionales contables", "Servicios y productos de ortopedia", "Taller mecánico", "Vulcanizadora", "Taller de hojalatería y pintura", "Refaccionaria automotriz", "Tatuajes y perforaciones​", "Tortillería", "Venta de productos de telefonía celular", "Venta de billetes de lotería​", "Veterinaria", "Zapaterías​" }));
+        giroCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otros servicios", "Abarrotes", "Aceros", "Aduanal", "Agrícola", "Alimenticio", "Ambientales", "Arrendadora", "Artes gráficas", "Arículos de limpieza", "Artículos deportivos", "Aseguradoras", "Asilos", "Asociación religiosa", "Autolavado", "Automotriz", "Autoservicio", "Avícola", "Calzado", "Carga aérea", "Clubes Deportivos", "Comercio", "Comunicación", "Construcción", "Despachos contables", "Editorial", "Educación", "Electricidad", "Empacadoras", "Equipo d ecómputo", "Espectáculos", "Farmacéuticos", "Ferretero", "Financiero", "Fletes", "Gasera", "Gasolinera", "Gobierno Estatal", "Gobierno Federal", "Hojalateria", "Hoteles y Moteles", "Impresiones", "Industria mecánica", "Industrial", "Inmobiliaria", "Joyería", "Juguetería", "Librería", "Manufactura", "Maquiladora", "Materiales para la construcción", "Médicos", "Mercería", "Miscelánea", "Muebles", "Ópticas", "Panteón", "Papelería", "Perfiles de Aluminio", "Perfumería", "Pesquero", "Pieles", "Pinturas", "Plásticos", "Produccion audiovisual", "Publicidad", "Químicos", "Restaurante", "Ropa", "Seguridad Privada", "Servicio", "Siderúrgico", "Textiles", "Transporte", "Turismo" }));
 
         agregar2.setBackground(new java.awt.Color(29, 184, 83));
         agregar2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -2200,6 +2230,13 @@ public final class Interface extends javax.swing.JFrame {
         txtCodCliente.setForeground(new java.awt.Color(51, 51, 51));
         txtCodCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
+        comboRFCC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Persona física", "Persona moral" }));
+        comboRFCC.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                changeRFCC(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPclienteLayout = new javax.swing.GroupLayout(jPcliente);
         jPcliente.setLayout(jPclienteLayout);
         jPclienteLayout.setHorizontalGroup(
@@ -2230,16 +2267,21 @@ public final class Interface extends javax.swing.JFrame {
                                             .addComponent(jLabel114)
                                             .addComponent(jLabel100)
                                             .addComponent(jLabel102))
-                                        .addGap(10, 10, 10)
-                                        .addGroup(jPclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addGroup(jPclienteLayout.createSequentialGroup()
-                                                .addComponent(txtRFCCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(10, 10, 10)
+                                                .addGroup(jPclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtDirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtCalleCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(jPclienteLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(comboRFCC, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtRFCCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
                                                 .addComponent(jLabel101)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(giroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(txtDirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtCalleCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(giroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addComponent(txtNombreC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPclienteLayout.createSequentialGroup()
                                         .addComponent(jLabel106)
@@ -2300,11 +2342,13 @@ public final class Interface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel100)
-                            .addComponent(jLabel101)
-                            .addComponent(txtRFCCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(giroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel100)
+                                .addComponent(jLabel101)
+                                .addComponent(giroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboRFCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtRFCCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPclienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPclienteLayout.createSequentialGroup()
@@ -2394,7 +2438,11 @@ public final class Interface extends javax.swing.JFrame {
 
         txtRFCPro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
         txtRFCPro.setForeground(new java.awt.Color(51, 51, 51));
-        txtRFCPro.setText("");
+        try {
+            txtRFCPro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????######AAA")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txtRFCPro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         txtDirPro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -2531,7 +2579,7 @@ public final class Interface extends javax.swing.JFrame {
 
         giroPro.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         giroPro.setForeground(new java.awt.Color(51, 51, 51));
-        giroPro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otros servicios", "Arrendamiento inmobiliario", "Cafetería", "Cancelería​", "Carnicería", "Carpintería y mueblería", "Farmacias", "Ferretería", "Gimnasio​", "Jarciería", "Lavandería y tintorería​", "Manufactura​​", "Panadería​", "Papelería", "Peluquería", "Productor agrícola", "Productor ganadero​", "Servicios administrativos", "Servicios de albañilería​", "Servicios de alquiler de luz y sonido", "Servicio de cerrajería​", "Servicios de comercio exterior​", "Servicios de comisión", "Servicios de espectáculos públicos", "Servicios de estacionamiento público", "Servicios hospitalarios​", "Servicios de laboratorio clínicos​", "Servicios de pintura​​", "Servicios de publicidad", "Servicios de seguros", "Servicios de topografía​", "Servicios fotográficos​", "Servicios profesionales contables", "Servicios y productos de ortopedia", "Taller mecánico", "Vulcanizadora", "Taller de hojalatería y pintura", "Refaccionaria automotriz", "Tatuajes y perforaciones​", "Tortillería", "Venta de productos de telefonía celular", "Venta de billetes de lotería​", "Veterinaria", "Zapaterías​" }));
+        giroPro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otros servicios", "Abarrotes", "Aceros", "Aduanal", "Agrícola", "Alimenticio", "Ambientales", "Arrendadora", "Artes gráficas", "Arículos de limpieza", "Artículos deportivos", "Aseguradoras", "Asilos", "Asociación religiosa", "Autolavado", "Automotriz", "Autoservicio", "Avícola", "Calzado", "Carga aérea", "Clubes Deportivos", "Comercio", "Comunicación", "Construcción", "Despachos contables", "Editorial", "Educación", "Electricidad", "Empacadoras", "Equipo d ecómputo", "Espectáculos", "Farmacéuticos", "Ferretero", "Financiero", "Fletes", "Gasera", "Gasolinera", "Gobierno Estatal", "Gobierno Federal", "Hojalateria", "Hoteles y Moteles", "Impresiones", "Industria mecánica", "Industrial", "Inmobiliaria", "Joyería", "Juguetería", "Librería", "Manufactura", "Maquiladora", "Materiales para la construcción", "Médicos", "Mercería", "Miscelánea", "Muebles", "Ópticas", "Panteón", "Papelería", "Perfiles de Aluminio", "Perfumería", "Pesquero", "Pieles", "Pinturas", "Plásticos", "Produccion audiovisual", "Publicidad", "Químicos", "Restaurante", "Ropa", "Seguridad Privada", "Servicio", "Siderúrgico", "Textiles", "Transporte", "Turismo" }));
 
         agregar3.setBackground(new java.awt.Color(29, 184, 83));
         agregar3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -2566,6 +2614,13 @@ public final class Interface extends javax.swing.JFrame {
         txtCodPro.setForeground(new java.awt.Color(51, 51, 51));
         txtCodPro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
+        comboRFC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Persona física", "Persona moral" }));
+        comboRFC.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rfcChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPproveedorLayout = new javax.swing.GroupLayout(jPproveedor);
         jPproveedor.setLayout(jPproveedorLayout);
         jPproveedorLayout.setHorizontalGroup(
@@ -2595,12 +2650,14 @@ public final class Interface extends javax.swing.JFrame {
                                             .addComponent(jLabel120))
                                         .addGap(10, 10, 10)
                                         .addGroup(jPproveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPproveedorLayout.createSequentialGroup()
-                                                .addComponent(txtRFCPro, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPproveedorLayout.createSequentialGroup()
+                                                .addComponent(comboRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtRFCPro, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
                                                 .addComponent(jLabel119)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(giroPro, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(giroPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(txtDirPro, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtCallePro, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(txtNombrePro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2669,11 +2726,13 @@ public final class Interface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtNombrePro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPproveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel118)
-                            .addComponent(jLabel119)
-                            .addComponent(txtRFCPro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(giroPro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPproveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPproveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel118)
+                                .addComponent(jLabel119)
+                                .addComponent(giroPro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtRFCPro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPproveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPproveedorLayout.createSequentialGroup()
@@ -3038,10 +3097,10 @@ public final class Interface extends javax.swing.JFrame {
 
     private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
         modificarProducto();
+        mostrarTablaModificar();
     }//GEN-LAST:event_actualizarActionPerformed
 
     private void jSModUtilidStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSModUtilidStateChanged
-
         if (jSModUtilid != null && !txtModCosto.getText().isEmpty()) {
             float costo = 0;
             costo = Float.parseFloat(txtModCosto.getText());
@@ -3060,7 +3119,6 @@ public final class Interface extends javax.swing.JFrame {
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         String id = txtID.getText();
         if (id.equals("")) {
-
         } else {
             try {
                 PreparedStatement pps = cn.prepareStatement("DELETE FROM producto WHERE idproducto='" + id + "'");
@@ -3074,7 +3132,6 @@ public final class Interface extends javax.swing.JFrame {
 
     private void tablaDatosModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDatosModificarMouseClicked
         int fila = tablaDatosModificar.getSelectedRow();
-
         if (fila >= 0) {
             try {
                 txtID.setText(tablaDatosModificar.getValueAt(fila, 0).toString());
@@ -3085,11 +3142,23 @@ public final class Interface extends javax.swing.JFrame {
                 txtModPrecio.setText(tablaDatosModificar.getValueAt(fila, 5).toString());
                 jSModUtilid.setValue(Float.parseFloat(tablaDatosModificar.getValueAt(fila, 6).toString()));
                 txtModArea.setText(tablaDatosModificar.getValueAt(fila, 7).toString());
-                garantMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 8));
-                almacenMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 9));
+                if("pza".equals(tablaDatosModificar.getValueAt(fila, 8).toString())){
+                unidadMod.setSelectedIndex(0);
+                }else{
+                unidadMod.setSelectedIndex(1);
+                }
+                if(tablaDatosModificar.getValueAt(fila, 9).toString()!=null){
+                    txtModcodigoA.setText(tablaDatosModificar.getValueAt(fila, 9).toString());
+                }else{
+                txtModcodigoA.setText("");
+                }                
+                garantMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 10));
+                almacenMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 11));
 
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
+                System.out.println("Error");
                 System.out.println(e.getMessage());
+                
             }
 
         }
@@ -3160,12 +3229,10 @@ public final class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_agregar2ActionPerformed
 
     private void provAgreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provAgreActionPerformed
-
         jPcontenedor.removeAll();
         jPcontenedor.add(jPproveedor);
         jPcontenedor.updateUI();
         jPcontenedor.repaint();
-
     }//GEN-LAST:event_provAgreActionPerformed
 
     private void clieAgreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clieAgreActionPerformed
@@ -3191,23 +3258,23 @@ public final class Interface extends javax.swing.JFrame {
 
         } else {
             int cp = 0;
-            if ("".equals(txtCPPro.getText())){
-                System.out.println(txtCPPro.getText()+"asdf");
-            }else{
-                System.out.println(txtCPPro.getText()+"holi");
-            cp = Integer.parseInt(txtCPPro.getText());
+            if ("".equals(txtCPPro.getText())) {
+                System.out.println(txtCPPro.getText() + "asdf");
+            } else {
+                System.out.println(txtCPPro.getText() + "holi");
+                cp = Integer.parseInt(txtCPPro.getText());
             }
             int Nint = 0;
-            if ("".equals(txtNintPro.getText())){
-            
-            }else{
-            Nint = Integer.parseInt(txtNintPro.getText());
+            if ("".equals(txtNintPro.getText())) {
+
+            } else {
+                Nint = Integer.parseInt(txtNintPro.getText());
             }
             int Next = 0;
-            if ("".equals(txtNextPro.getText())){
-            
-            }else{
-            Next = Integer.parseInt(txtNextPro.getText());
+            if ("".equals(txtNextPro.getText())) {
+
+            } else {
+                Next = Integer.parseInt(txtNextPro.getText());
             }
             PreparedStatement pps = cn.prepareStatement("INSERT INTO clipro(codigo,nombreC, direccion, calle, noInt, noExt, colonia, cp, ciudad, estado, pais, rfc,correo,tipo,giro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pps.setString(1, txtCodPro.getText());
@@ -3219,38 +3286,38 @@ public final class Interface extends javax.swing.JFrame {
             pps.setString(7, txtColPro.getText());
             pps.setInt(8, cp);
             pps.setString(9, txtPDPro.getText());
-            pps.setString(10,(String) estadoPro.getSelectedItem());
-            pps.setString(11,(String) paisPro.getSelectedItem());
-            pps.setString(12,txtRFCPro.getText());
-            pps.setString(13,txtCorreoPro.getText());
-            pps.setInt(14,tipo);
-            pps.setString(15,(String) giroPro.getSelectedItem());
+            pps.setString(10, (String) estadoPro.getSelectedItem());
+            pps.setString(11, (String) paisPro.getSelectedItem());
+            pps.setString(12, txtRFCPro.getText());
+            pps.setString(13, txtCorreoPro.getText());
+            pps.setInt(14, tipo);
+            pps.setString(15, (String) giroPro.getSelectedItem());
             ua = new ImageIcon("src/img/succes.png");
             JOptionPane.showMessageDialog(null, "Proveedor agregado exitosamente", "Mensaje", JOptionPane.OK_OPTION, ua);
             pps.executeUpdate();
         }
 
     }
+
     void agregarcliente(int tipo) throws SQLException {
         if (txtCodCliente.getText().equals("") || txtNombreC.getText().equals("")) {
             nv = new ImageIcon("src/img/cart (13).png");
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Mensaje", JOptionPane.OK_OPTION, nv);
-
         } else {
             int cp = 0;
-            if ("".equals(txtCPcliente.getText())){            
-            }else{
-            cp = Integer.parseInt(txtCPcliente.getText());
+            if ("".equals(txtCPcliente.getText())) {
+            } else {
+                cp = Integer.parseInt(txtCPcliente.getText());
             }
             int Nint = 0;
-            if ("".equals(txtNintCliente.getText())){            
-            }else{
-            Nint = Integer.parseInt(txtNintCliente.getText());
+            if ("".equals(txtNintCliente.getText())) {
+            } else {
+                Nint = Integer.parseInt(txtNintCliente.getText());
             }
             int Next = 0;
-            if ("".equals(txtNextCliente.getText())){            
-            }else{
-            Next = Integer.parseInt(txtNextCliente.getText());
+            if ("".equals(txtNextCliente.getText())) {
+            } else {
+                Next = Integer.parseInt(txtNextCliente.getText());
             }
             PreparedStatement pps = cn.prepareStatement("INSERT INTO clipro(codigo,nombreC, direccion, calle, noInt, noExt, colonia, cp, ciudad, estado, pais, rfc,correo,tipo,giro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pps.setString(1, txtCodCliente.getText());
@@ -3260,14 +3327,14 @@ public final class Interface extends javax.swing.JFrame {
             pps.setInt(5, Nint);
             pps.setInt(6, Next);
             pps.setString(7, txtColCliente.getText());
-            pps.setInt(8,cp);
+            pps.setInt(8, cp);
             pps.setString(9, txtPDcliente.getText());
-            pps.setString(10,(String) estadoCliente.getSelectedItem());
-            pps.setString(11,(String) paisCliente.getSelectedItem());
-            pps.setString(12,txtRFCCliente.getText());
-            pps.setString(13,txtCorreoCliente.getText());
-            pps.setInt(14,tipo);
-            pps.setString(15,(String) giroCliente.getSelectedItem());
+            pps.setString(10, (String) estadoCliente.getSelectedItem());
+            pps.setString(11, (String) paisCliente.getSelectedItem());
+            pps.setString(12, txtRFCCliente.getText());
+            pps.setString(13, txtCorreoCliente.getText());
+            pps.setInt(14, tipo);
+            pps.setString(15, (String) giroCliente.getSelectedItem());
             ua = new ImageIcon("src/img/success.png");
             JOptionPane.showMessageDialog(null, "Proveedor agregado exitosamente", "Mensaje", JOptionPane.OK_OPTION, ua);
             pps.executeUpdate();
@@ -3277,18 +3344,15 @@ public final class Interface extends javax.swing.JFrame {
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         // TODO add your handling code here:        
         try {
-        String codigo = (String) tablaBusCP.getValueAt(tablaBusCP.getSelectedRow(), 0);
-        editarClipro editarCP = new editarClipro(this, false,codigo);
-        editarCP.setTitle("Editar Cliente/Proveedor");
-        editarCP.setLocationRelativeTo(null);
-        editarCP.setVisible(true);
-           
-////        
+            String codigo = (String) tablaBusCP.getValueAt(tablaBusCP.getSelectedRow(), 0);
+            editarClipro editarCP = new editarClipro(this, false, codigo);
+            editarCP.setTitle("Editar Cliente/Proveedor");
+            editarCP.setLocationRelativeTo(null);
+            editarCP.setVisible(true);
         } catch (Exception e) {
             System.out.println(e);
-               JOptionPane.showMessageDialog(null, "Cliente/Proveedor no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
-////
-            }
+            JOptionPane.showMessageDialog(null, "Cliente/Proveedor no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void txtNombrePro1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePro1KeyReleased
@@ -3334,14 +3398,6 @@ public final class Interface extends javax.swing.JFrame {
     private void unidadModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unidadModActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_unidadModActionPerformed
-
-    private void unidadMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unidadMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_unidadMActionPerformed
-
-    private void unidadMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unidadMMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_unidadMMouseClicked
 
     private void txtcodigoAvalidar(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcodigoAvalidar
         // TODO add your handling code here:
@@ -3396,6 +3452,48 @@ public final class Interface extends javax.swing.JFrame {
         imp.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void almacen(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacen
+        // TODO add your handling code here:
+        comboAlmacen();
+    }//GEN-LAST:event_almacen
+
+    private void rfcChange(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rfcChange
+        // TODO add your handling code here:
+        try {
+            if (comboRFC.getSelectedIndex() == 0) {
+                txtRFCPro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????######AAA")));
+                System.out.println("Persona Fisica");
+                
+            } else {
+                System.out.println("Persona Moral");
+                txtRFCPro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????######AA-A")));
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_rfcChange
+
+    private void changeRFCC(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_changeRFCC
+        // TODO add your handling code here:
+        
+                try {
+            if (comboRFCC.getSelectedIndex() == 0) {
+                txtRFCCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????######AAA")));
+                System.out.println("Persona Fisica");
+                
+            } else {
+                System.out.println("Persona Moral");
+                txtRFCCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????######AA-A")));
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_changeRFCC
+
+    private void txtNombreCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreCActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -3441,6 +3539,8 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JButton botonActualizar;
     private javax.swing.JMenuItem clieAgre;
     private javax.swing.JMenuItem clieMod;
+    private javax.swing.JComboBox<String> comboRFC;
+    private javax.swing.JComboBox<String> comboRFCC;
     private javax.swing.JButton eliminar;
     private javax.swing.JComboBox<String> estadoCliente;
     private javax.swing.JComboBox<String> estadoPro;
@@ -3666,5 +3766,4 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> unidadMod;
     // End of variables declaration//GEN-END:variables
 
-    
 }
