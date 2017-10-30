@@ -956,6 +956,13 @@ public class Cobrar extends javax.swing.JDialog {
     }
     private void cobroHojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobroHojaActionPerformed
     cobro();
+        try {
+            imprimir();
+        } catch (IOException ex) {
+            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PrintException ex) {
+            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_cobroHojaActionPerformed
 
     void cobroMixto() {
@@ -972,7 +979,55 @@ public class Cobrar extends javax.swing.JDialog {
             jLabel33.setText(String.valueOf(cambio));
         }
     }
+    private void imprimir() throws FileNotFoundException, IOException, PrintException {
+        FileInputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream("reporte.pdf");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Formato de Documento
+        DocFlavor docFormat = DocFlavor.INPUT_STREAM.AUTOSENSE;
+        //Lectura de Documento
+        Doc document = new SimpleDoc(inputStream, docFormat, null);
+        PrinterJob job = PrinterJob.getPrinterJob();
+        job.printDialog();
+        String impresora = job.getPrintService().getName();
+        //Nombre de la impresora
+        String printerName = impresora;
+        //Inclusion del nombre de impresora y sus atributos
+        AttributeSet attributeSet = new HashAttributeSet();
+        attributeSet.add(new PrinterName(printerName, null));
+        attributeSet = new HashAttributeSet();
+        //Soporte de color o no
+        attributeSet.add(ColorSupported.NOT_SUPPORTED);
+        //Busqueda de la impresora por el nombre asignado en attributeSet
+        PrintService[] services = PrintServiceLookup.lookupPrintServices(docFormat, attributeSet);
+        //En caso de que tengamos varias impresoras configuradas
+        PrintService myPrinter = null;
+        for (int i = 0; i < services.length; i++) {
+            if (services[i].getName().equals(printerName)) {
+                myPrinter = services[i];
+                System.out.println("Imprimiendo en : " + services[i].getName());
+                break;
+            }
+        }
 
+        DocPrintJob printJob = myPrinter.createPrintJob();
+        try {
+            //Envio a la impresora
+            PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
+            printJob.print(document, aset);
+        } catch (PrintException ex) {
+            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            inputStream.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
         // TODO add your handling code here:
         float pago = Float.parseFloat(jTextField3.getText());
@@ -1132,55 +1187,7 @@ public class Cobrar extends javax.swing.JDialog {
         reader.close();
     }
 
-    private void imprimir() throws FileNotFoundException, IOException, PrintException {
-        FileInputStream inputStream = null;
-        try {
-            inputStream = new FileInputStream("archivo.pdf");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //Formato de Documento
-        DocFlavor docFormat = DocFlavor.INPUT_STREAM.AUTOSENSE;
-        //Lectura de Documento
-        Doc document = new SimpleDoc(inputStream, docFormat, null);
-        PrinterJob job = PrinterJob.getPrinterJob();
-        job.printDialog();
-        String impresora = job.getPrintService().getName();
-        //Nombre de la impresora
-        String printerName = impresora;
-        //Inclusion del nombre de impresora y sus atributos
-        AttributeSet attributeSet = new HashAttributeSet();
-        attributeSet.add(new PrinterName(printerName, null));
-        attributeSet = new HashAttributeSet();
-        //Soporte de color o no
-        attributeSet.add(ColorSupported.NOT_SUPPORTED);
-        //Busqueda de la impresora por el nombre asignado en attributeSet
-        PrintService[] services = PrintServiceLookup.lookupPrintServices(docFormat, attributeSet);
-        //En caso de que tengamos varias impresoras configuradas
-        PrintService myPrinter = null;
-        for (int i = 0; i < services.length; i++) {
-            if (services[i].getName().equals(printerName)) {
-                myPrinter = services[i];
-                System.out.println("Imprimiendo en : " + services[i].getName());
-                break;
-            }
-        }
-
-        DocPrintJob printJob = myPrinter.createPrintJob();
-        try {
-            //Envio a la impresora
-            PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
-            printJob.print(document, aset);
-        } catch (PrintException ex) {
-            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            inputStream.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
 
 
 

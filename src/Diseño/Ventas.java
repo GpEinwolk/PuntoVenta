@@ -57,6 +57,7 @@ public final class Ventas extends javax.swing.JFrame {
             String datos[] = new String[5];
 
             try {
+                
                 st = cn.createStatement();
                 ResultSet rs = st.executeQuery(sql);
 
@@ -542,11 +543,31 @@ public final class Ventas extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int fila = tablaVenta.getRowCount();
+        String query = "SELECT COUNT(*) FROM venta";
+        Statement st;
+        int count = 0;                
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            while (rs.next()) {
+                    count = rs.getInt(1);
+            }
+            System.out.println(count);
+        } catch (SQLException ex) {
+            Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (count!=0){
+        count++;
+        }else{
+        count=1;
+        }
         if (fila != 0) {
             String[] insert = new String[fila];
             for (int i = 0; i < fila; i++) {
-                String sql = "INSERT INTO `venta` (`idventa`, `fecha`, `cantidad`, `cancelada`, `motivo`, `nventa`, `formaP`, `login_idlogin`, `producto_idproducto`, `clipro_idclipro`) VALUES (NULL, CURRENT_TIMESTAMP, '" + tablaVenta.getValueAt(i, 3) + "', '0', NULL, ?, ?, ?, '" + idProducto.elementAt(i) + "', '5');";
+                String sql = "INSERT INTO `venta` (`idventa`, `fecha`, `cantidad`, `cancelada`, `motivo`, `nventa`, `formaP`, `login_idlogin`, `producto_idproducto`, `clipro_idclipro`,`numeroVenta`) VALUES (NULL, CURRENT_TIMESTAMP, '" + tablaVenta.getValueAt(i, 3) + "', '0', NULL, ?, ?, ?, '" + idProducto.elementAt(i) + "', '1', '" + count + "');";
                 insert[i] = sql;
+                System.out.println(sql);
             }
             Cobrar ventanaCobrar = new Cobrar(this, false, insert);
             ventanaCobrar.setLocationRelativeTo(null);
