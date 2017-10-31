@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte de Venta" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7445c8f6-6fb7-4c52-87de-f7ec8d42f6f8">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="183"/>
-	<property name="ireport.y" value="188"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -29,13 +29,10 @@
 		<band height="133" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="572" height="95" backcolor="#000000" uuid="247d1d7d-8de0-46ca-af9b-f9030577ef81"/>
-				<staticText>
-					<reportElement x="16" y="12" width="493" height="68" forecolor="#FFFFFF" uuid="69640a15-6674-4edd-b36b-755673626888"/>
-					<textElement>
-						<font size="54"/>
-					</textElement>
-					<text><![CDATA[Logo de la empresa]]></text>
-				</staticText>
+				<image>
+					<reportElement x="0" y="-1" width="572" height="95" uuid="a7abc60a-9e29-4f7e-8081-714f278847ce"/>
+					<imageExpression><![CDATA["src\\img\\LOGO BLANCO.png"]]></imageExpression>
+				</image>
 			</frame>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="100" width="537" height="33" forecolor="#000000" backcolor="#009999" uuid="e713abec-b26c-45b9-85d9-6a04585d8779"/>
@@ -61,7 +58,7 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="72" splitType="Stretch">
+		<band height="74" splitType="Stretch">
 			<staticText>
 				<reportElement x="16" y="49" width="100" height="20" uuid="bf537f66-e0f2-469e-931a-cd20b4387d94"/>
 				<text><![CDATA[Codigo]]></text>
@@ -90,12 +87,12 @@
 				<reportElement x="13" y="48" width="467" height="1" uuid="703fa257-006f-4bb7-aca2-e2dfdd821389"/>
 			</line>
 			<line>
-				<reportElement x="13" y="71" width="466" height="1" uuid="0270726e-378a-45be-a216-6b25a23f09b9"/>
+				<reportElement x="13" y="72" width="466" height="1" uuid="0d2684ba-fae2-448f-8536-290848e09393"/>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="59" splitType="Stretch">
+		<band height="27" splitType="Stretch">
 			<textField>
 				<reportElement x="16" y="6" width="100" height="20" uuid="5b3b5264-1db6-4433-9177-99f84ad58f79"/>
 				<textFieldExpression><![CDATA[$F{Codigo}]]></textFieldExpression>
@@ -113,22 +110,22 @@
 				<textFieldExpression><![CDATA[$F{Precio}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="125" y="-24" width="1" height="50" uuid="cf9c6be0-966c-43df-8363-1601d6614746"/>
+				<reportElement x="125" y="-25" width="1" height="51" uuid="cf9c6be0-966c-43df-8363-1601d6614746"/>
 			</line>
 			<line>
 				<reportElement x="12" y="26" width="467" height="1" uuid="001297e4-b1c4-446d-be79-a829bc8ad073"/>
 			</line>
 			<line>
-				<reportElement x="243" y="-24" width="1" height="50" uuid="80ef13d4-7b89-44a1-9d41-0af8b15d029f"/>
+				<reportElement x="243" y="-25" width="1" height="51" uuid="80ef13d4-7b89-44a1-9d41-0af8b15d029f"/>
 			</line>
 			<line>
-				<reportElement x="479" y="-23" width="1" height="49" uuid="e9a168b7-753a-48c8-ac58-54c00efaee7c"/>
+				<reportElement x="479" y="-25" width="1" height="52" uuid="e9a168b7-753a-48c8-ac58-54c00efaee7c"/>
 			</line>
 			<line>
-				<reportElement x="12" y="-24" width="1" height="50" uuid="d00ea96c-0472-47d3-959b-35705bfd99d7"/>
+				<reportElement x="12" y="-25" width="1" height="52" uuid="d00ea96c-0472-47d3-959b-35705bfd99d7"/>
 			</line>
 			<line>
-				<reportElement x="360" y="-23" width="1" height="49" uuid="2b0cbeb6-cd96-4b11-8e63-bc818a356025"/>
+				<reportElement x="360" y="-25" width="1" height="51" uuid="2b0cbeb6-cd96-4b11-8e63-bc818a356025"/>
 			</line>
 		</band>
 	</detail>

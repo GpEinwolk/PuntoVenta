@@ -553,7 +553,6 @@ public final class Ventas extends javax.swing.JFrame {
             while (rs.next()) {
                     count = rs.getInt(1);
             }
-            System.out.println(count);
         } catch (SQLException ex) {
             Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -567,7 +566,6 @@ public final class Ventas extends javax.swing.JFrame {
             for (int i = 0; i < fila; i++) {
                 String sql = "INSERT INTO `venta` (`idventa`, `fecha`, `cantidad`, `cancelada`, `motivo`, `nventa`, `formaP`, `login_idlogin`, `producto_idproducto`, `clipro_idclipro`,`numeroVenta`) VALUES (NULL, CURRENT_TIMESTAMP, '" + tablaVenta.getValueAt(i, 3) + "', '0', NULL, ?, ?, ?, '" + idProducto.elementAt(i) + "', '1', '" + count + "');";
                 insert[i] = sql;
-                System.out.println(sql);
             }
             Cobrar ventanaCobrar = new Cobrar(this, false, insert);
             ventanaCobrar.setLocationRelativeTo(null);
