@@ -600,6 +600,31 @@ public final class Interface extends javax.swing.JFrame {
         botonActualizar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaBusCP = new javax.swing.JTable();
+        jPAinv = new javax.swing.JPanel();
+        jLabel136 = new javax.swing.JLabel();
+        txtNombrePro2 = new javax.swing.JTextField();
+        jLabel137 = new javax.swing.JLabel();
+        txtID6 = new javax.swing.JLabel();
+        jLabel149 = new javax.swing.JLabel();
+        jLabel150 = new javax.swing.JLabel();
+        botonActualizar1 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tablaBusCP1 = new javax.swing.JTable();
+        jSutilid1 = new javax.swing.JSpinner();
+        jLabel88 = new javax.swing.JLabel();
+        almacen1 = new javax.swing.JComboBox<>();
+        jLabel68 = new javax.swing.JLabel();
+        jPAinvC = new javax.swing.JPanel();
+        jLabel140 = new javax.swing.JLabel();
+        txtNombrePro4 = new javax.swing.JTextField();
+        jLabel141 = new javax.swing.JLabel();
+        txtID8 = new javax.swing.JLabel();
+        jLabel153 = new javax.swing.JLabel();
+        jLabel154 = new javax.swing.JLabel();
+        botonActualizar3 = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tablaBusCP3 = new javax.swing.JTable();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -625,6 +650,10 @@ public final class Interface extends javax.swing.JFrame {
         jMenu9 = new javax.swing.JMenu();
         clieAgre = new javax.swing.JMenuItem();
         clieMod = new javax.swing.JMenuItem();
+        jMenu10 = new javax.swing.JMenu();
+        jMenu11 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -2915,6 +2944,335 @@ public final class Interface extends javax.swing.JFrame {
 
         jPcontenedor.add(jPmodificarCP, "card4");
 
+        jPAinv.setBackground(new java.awt.Color(40, 41, 41));
+        jPAinv.setAutoscrolls(true);
+        jPAinv.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        jPAinv.setMinimumSize(new java.awt.Dimension(985, 613));
+
+        jLabel136.setBackground(new java.awt.Color(40, 41, 41));
+        jLabel136.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel136.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel136.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel136.setText("Codigo/Nombre del Producto/Codigo Alternativo");
+        jLabel136.setOpaque(true);
+
+        txtNombrePro2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        txtNombrePro2.setForeground(new java.awt.Color(51, 51, 51));
+        txtNombrePro2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNombrePro2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        txtNombrePro2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombrePro2KeyReleased(evt);
+            }
+        });
+
+        jLabel137.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        jLabel137.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel137.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel137.setText("Agregar Compra");
+
+        txtID6.setBackground(new java.awt.Color(40, 41, 41));
+        txtID6.setForeground(new java.awt.Color(40, 41, 41));
+        txtID6.setText("0");
+
+        jLabel149.setBackground(new java.awt.Color(40, 41, 41));
+        jLabel149.setFont(new java.awt.Font("Century Gothic", 0, 22)); // NOI18N
+        jLabel149.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel149.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel149.setText("BUSCAR");
+        jLabel149.setOpaque(true);
+
+        jLabel150.setBackground(new java.awt.Color(40, 41, 41));
+        jLabel150.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel150.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel150.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel150.setText("por codigo o nombre ");
+        jLabel150.setOpaque(true);
+
+        botonActualizar1.setBackground(new java.awt.Color(29, 184, 83));
+        botonActualizar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        botonActualizar1.setForeground(new java.awt.Color(255, 255, 255));
+        botonActualizar1.setText("Comprar");
+        botonActualizar1.setBorder(null);
+        botonActualizar1.setFocusPainted(false);
+        botonActualizar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizar1ActionPerformed(evt);
+            }
+        });
+
+        tablaBusCP = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        tablaBusCP1.setBackground(new java.awt.Color(251, 251, 251));
+        tablaBusCP1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tablaBusCP1.setForeground(new java.awt.Color(51, 51, 51));
+        tablaBusCP1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo", "Nombre", "RFC"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaBusCP1.setGridColor(new java.awt.Color(255, 255, 255));
+        tablaBusCP1.setSelectionBackground(new java.awt.Color(62, 226, 141));
+        jScrollPane5.setViewportView(tablaBusCP1);
+
+        jSutilid1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jSutilid1.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
+        jSutilid1.setOpaque(false);
+        jSutilid1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSutilid1StateChanged(evt);
+            }
+        });
+        jSutilid1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jSutilid1validar(evt);
+            }
+        });
+
+        jLabel88.setBackground(new java.awt.Color(40, 41, 41));
+        jLabel88.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel88.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel88.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel88.setText("Cantidad");
+        jLabel88.setOpaque(true);
+
+        almacen1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        almacen1.setForeground(new java.awt.Color(51, 51, 51));
+        almacen1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                almacen1MouseClicked(evt);
+            }
+        });
+
+        jLabel68.setBackground(new java.awt.Color(40, 41, 41));
+        jLabel68.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel68.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel68.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel68.setText("Distribuidor");
+        jLabel68.setOpaque(true);
+
+        javax.swing.GroupLayout jPAinvLayout = new javax.swing.GroupLayout(jPAinv);
+        jPAinv.setLayout(jPAinvLayout);
+        jPAinvLayout.setHorizontalGroup(
+            jPAinvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPAinvLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPAinvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel136, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPAinvLayout.createSequentialGroup()
+                        .addGroup(jPAinvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtID6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel137, javax.swing.GroupLayout.PREFERRED_SIZE, 966, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel150, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel149, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPAinvLayout.createSequentialGroup()
+                                .addGroup(jPAinvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPAinvLayout.createSequentialGroup()
+                                        .addGroup(jPAinvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPAinvLayout.createSequentialGroup()
+                                                .addGap(233, 233, 233)
+                                                .addComponent(jLabel88, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jSutilid1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPAinvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(almacen1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel68, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPAinvLayout.createSequentialGroup()
+                                        .addGap(233, 233, 233)
+                                        .addComponent(txtNombrePro2, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonActualizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPAinvLayout.setVerticalGroup(
+            jPAinvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAinvLayout.createSequentialGroup()
+                .addComponent(jLabel137)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel149)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel150)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel136)
+                .addGap(10, 10, 10)
+                .addGroup(jPAinvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombrePro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonActualizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPAinvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAinvLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel68)
+                        .addGap(38, 38, 38))
+                    .addGroup(jPAinvLayout.createSequentialGroup()
+                        .addGroup(jPAinvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPAinvLayout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel88))
+                            .addGroup(jPAinvLayout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(jSutilid1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPAinvLayout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(almacen1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(7, 7, 7)))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtID6)
+                .addContainerGap())
+        );
+
+        jPcontenedor.add(jPAinv, "card4");
+
+        jPAinvC.setBackground(new java.awt.Color(40, 41, 41));
+        jPAinvC.setAutoscrolls(true);
+        jPAinvC.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        jPAinvC.setMinimumSize(new java.awt.Dimension(985, 613));
+
+        jLabel140.setBackground(new java.awt.Color(40, 41, 41));
+        jLabel140.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel140.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel140.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel140.setText("Codigo/Nombre del Producto/Codigo Alternativo");
+        jLabel140.setOpaque(true);
+
+        txtNombrePro4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        txtNombrePro4.setForeground(new java.awt.Color(51, 51, 51));
+        txtNombrePro4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNombrePro4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        txtNombrePro4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombrePro4KeyReleased(evt);
+            }
+        });
+
+        jLabel141.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        jLabel141.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel141.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel141.setText("Cancelar Compra");
+
+        txtID8.setBackground(new java.awt.Color(40, 41, 41));
+        txtID8.setForeground(new java.awt.Color(40, 41, 41));
+        txtID8.setText("0");
+
+        jLabel153.setBackground(new java.awt.Color(40, 41, 41));
+        jLabel153.setFont(new java.awt.Font("Century Gothic", 0, 22)); // NOI18N
+        jLabel153.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel153.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel153.setText("BUSCAR");
+        jLabel153.setOpaque(true);
+
+        jLabel154.setBackground(new java.awt.Color(40, 41, 41));
+        jLabel154.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel154.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel154.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel154.setText("por codigo o nombre ");
+        jLabel154.setOpaque(true);
+
+        botonActualizar3.setBackground(new java.awt.Color(29, 184, 83));
+        botonActualizar3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        botonActualizar3.setForeground(new java.awt.Color(255, 255, 255));
+        botonActualizar3.setText("Cancelar");
+        botonActualizar3.setBorder(null);
+        botonActualizar3.setFocusPainted(false);
+        botonActualizar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizar3ActionPerformed(evt);
+            }
+        });
+
+        tablaBusCP = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        tablaBusCP3.setBackground(new java.awt.Color(251, 251, 251));
+        tablaBusCP3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tablaBusCP3.setForeground(new java.awt.Color(51, 51, 51));
+        tablaBusCP3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo", "Nombre", "RFC"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaBusCP3.setGridColor(new java.awt.Color(255, 255, 255));
+        tablaBusCP3.setSelectionBackground(new java.awt.Color(62, 226, 141));
+        jScrollPane7.setViewportView(tablaBusCP3);
+
+        javax.swing.GroupLayout jPAinvCLayout = new javax.swing.GroupLayout(jPAinvC);
+        jPAinvC.setLayout(jPAinvCLayout);
+        jPAinvCLayout.setHorizontalGroup(
+            jPAinvCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPAinvCLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPAinvCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel140, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPAinvCLayout.createSequentialGroup()
+                        .addGroup(jPAinvCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtID8, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel141, javax.swing.GroupLayout.PREFERRED_SIZE, 966, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel154, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel153, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPAinvCLayout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNombrePro4, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonActualizar3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPAinvCLayout.setVerticalGroup(
+            jPAinvCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAinvCLayout.createSequentialGroup()
+                .addComponent(jLabel141)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel153)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel154)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel140)
+                .addGap(10, 10, 10)
+                .addGroup(jPAinvCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombrePro4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonActualizar3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtID8)
+                .addContainerGap())
+        );
+
+        jPcontenedor.add(jPAinvC, "card4");
+
         masterPanel.add(jPcontenedor);
 
         getContentPane().add(masterPanel);
@@ -3053,7 +3411,33 @@ public final class Interface extends javax.swing.JFrame {
 
         jMenu2.add(jMenu9);
 
+        jMenu10.setText("jMenu10");
+        jMenu2.add(jMenu10);
+
         jMenuBar2.add(jMenu2);
+
+        jMenu11.setBackground(new java.awt.Color(30, 30, 30));
+        jMenu11.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu11.setText("Compras");
+        jMenu11.setOpaque(true);
+
+        jMenuItem8.setText("Agregar compra");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem8);
+
+        jMenuItem9.setText("Cancelar compra");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem9);
+
+        jMenuBar2.add(jMenu11);
 
         jMenu3.setBackground(new java.awt.Color(30, 30, 30));
         jMenu3.setForeground(new java.awt.Color(255, 255, 255));
@@ -3494,6 +3878,49 @@ public final class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreCActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        jPcontenedor.removeAll();
+        jPcontenedor.add(jPAinv);
+              jPcontenedor.updateUI();
+        jPcontenedor.repaint();
+        
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void txtNombrePro2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePro2KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombrePro2KeyReleased
+
+    private void botonActualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonActualizar1ActionPerformed
+
+    private void jSutilid1validar(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSutilid1validar
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSutilid1validar
+
+    private void jSutilid1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSutilid1StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSutilid1StateChanged
+
+    private void almacen1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacen1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_almacen1MouseClicked
+
+    private void botonActualizar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonActualizar3ActionPerformed
+
+    private void txtNombrePro4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePro4KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombrePro4KeyReleased
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+       jPcontenedor.removeAll();
+       jPcontenedor.add(jPAinvC);
+       jPcontenedor.updateUI();
+       jPcontenedor.repaint();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -3534,9 +3961,12 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JButton agregarAlmacen;
     private javax.swing.JButton agregarGarantia;
     private javax.swing.JComboBox<String> almacen;
+    private javax.swing.JComboBox<String> almacen1;
     private javax.swing.JComboBox<String> almacenMod;
     private javax.swing.JMenuItem añadirUsuario;
     private javax.swing.JButton botonActualizar;
+    private javax.swing.JButton botonActualizar1;
+    private javax.swing.JButton botonActualizar3;
     private javax.swing.JMenuItem clieAgre;
     private javax.swing.JMenuItem clieMod;
     private javax.swing.JComboBox<String> comboRFC;
@@ -3549,6 +3979,7 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> giroCliente;
     private javax.swing.JComboBox<String> giroPro;
     private javax.swing.JButton jBcorteCaja;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
@@ -3585,8 +4016,16 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel133;
     private javax.swing.JLabel jLabel134;
     private javax.swing.JLabel jLabel135;
+    private javax.swing.JLabel jLabel136;
+    private javax.swing.JLabel jLabel137;
+    private javax.swing.JLabel jLabel140;
+    private javax.swing.JLabel jLabel141;
     private javax.swing.JLabel jLabel147;
     private javax.swing.JLabel jLabel148;
+    private javax.swing.JLabel jLabel149;
+    private javax.swing.JLabel jLabel150;
+    private javax.swing.JLabel jLabel153;
+    private javax.swing.JLabel jLabel154;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -3640,6 +4079,7 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel72;
@@ -3658,9 +4098,12 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel87;
+    private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -3676,6 +4119,10 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JPanel jPAinv;
+    private javax.swing.JPanel jPAinvC;
     private javax.swing.JPanel jPVentas;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -3699,6 +4146,8 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JPopupMenu.Separator jSeparator2;
@@ -3706,6 +4155,7 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JSpinner jSutilid;
+    private javax.swing.JSpinner jSutilid1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel jUsuarioA;
@@ -3719,6 +4169,8 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem serAgre;
     private javax.swing.JMenuItem serMod;
     public static javax.swing.JTable tablaBusCP;
+    public static javax.swing.JTable tablaBusCP1;
+    private javax.swing.JTable tablaBusCP3;
     private javax.swing.JTable tablaDatosModificar;
     private javax.swing.JTable tablaDatosProducto;
     private javax.swing.JFormattedTextField txtCPPro;
@@ -3741,6 +4193,8 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JLabel txtID3;
     private javax.swing.JLabel txtID4;
     private javax.swing.JLabel txtID5;
+    private javax.swing.JLabel txtID6;
+    private javax.swing.JLabel txtID8;
     private javax.swing.JTextArea txtModArea;
     private javax.swing.JTextField txtModCant;
     private javax.swing.JTextField txtModCodigo;
@@ -3756,6 +4210,8 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombreC;
     private javax.swing.JTextField txtNombrePro;
     private javax.swing.JTextField txtNombrePro1;
+    private javax.swing.JTextField txtNombrePro2;
+    private javax.swing.JTextField txtNombrePro4;
     private javax.swing.JTextField txtPDPro;
     private javax.swing.JTextField txtPDcliente;
     private javax.swing.JTextField txtPrecio;
