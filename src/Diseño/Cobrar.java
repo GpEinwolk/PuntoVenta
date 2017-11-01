@@ -834,13 +834,6 @@ public class Cobrar extends javax.swing.JDialog {
 
     private void cobroTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobroTicketActionPerformed
         cobro("ticket");
-        try {
-        imprimir("ticket");
-        } catch (IOException ex) {
-            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PrintException ex) {
-            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_cobroTicketActionPerformed
 
     private void jCobroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCobroActionPerformed
@@ -899,7 +892,7 @@ public class Cobrar extends javax.swing.JDialog {
         try {
             JRTableModelDataSource datasource = new JRTableModelDataSource(model);
             String reportSource = tipo + ".jrxml";
-            System.out.println(tipo+".jrxml");
+            System.out.println(tipo + ".jrxml");
             JasperReport jr = JasperCompileManager.compileReport(reportSource);
             Map<String, Object> params = new HashMap<>();
             System.out.println(Ventas.nTicket);
@@ -908,29 +901,22 @@ public class Cobrar extends javax.swing.JDialog {
             params.put("tipoPago", tipoPago);
             params.put("total", total);
             JasperPrint jp = JasperFillManager.fillReport(jr, params, datasource);
-            System.out.println(tipo+".pdf");
-            JasperExportManager.exportReportToPdfFile(jp, tipo + ".pdf");
+            switch (tipo) {
+                case "ticket":
+                    JasperPrintManager.printReport(jp, true);
+                    break;
+                case "hoja":
+                    JasperPrintManager.printReport(jp, true);
+                    break;
+                default:
+                    JasperExportManager.exportReportToPdfFile(jp, tipo + ".pdf");
+                    break;
+
+            }
+            
         } catch (JRException e) {
             System.out.println(e);
             System.out.println(e.getMessage());
-        }
-    }
-
-    public void imprimirticket() {
-        JasperReport jasperReport;
-        JasperPrint jasperPrint;
-        Conexion conn = new Conexion();
-        try {
-            //se carga el report
-            URL in = this.getClass().getResource("report1.jasper");
-            jasperReport = (JasperReport) JRLoader.loadObject(in);
-            //se procesa el archivo jasper
-            jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), conn.getConnection());
-            //impresion de reporte
-            // TRUE: muestra la ventana de dialogo "preferencias de impresion"
-            JasperPrintManager.printReport(jasperPrint, true);
-        } catch (JRException ex) {
-            System.err.println("Error iReport: " + ex.getMessage());
         }
     }
 
@@ -997,7 +983,7 @@ public class Cobrar extends javax.swing.JDialog {
 
     private void imprimir(String Tipo) throws FileNotFoundException, IOException, PrintException {
         FileInputStream inputStream = null;
-        String tipo = Tipo+".pdf";
+        String tipo = Tipo + ".pdf";
         System.out.println(tipo);
         try {
             inputStream = new FileInputStream(tipo);

@@ -564,7 +564,7 @@ public final class Ventas extends javax.swing.JFrame {
         if (fila != 0) {
             String[] insert = new String[fila];
             for (int i = 0; i < fila; i++) {
-                String sql = "INSERT INTO `venta` (`idventa`, `fecha`, `cantidad`, `cancelada`, `motivo`, `nventa`, `formaP`, `login_idlogin`, `producto_idproducto`, `clipro_idclipro`,`numeroVenta`) VALUES (NULL, CURRENT_TIMESTAMP, '" + tablaVenta.getValueAt(i, 3) + "', '0', NULL, ?, ?, ?, '" + idProducto.elementAt(i) + "', '1', '" + count + "');";
+                String sql = "INSERT INTO `venta` (`idventa`, `fecha`, `cantidad`, `cancelada`, `motivo`, `nventa`, `formaP`, `login_idlogin`, `producto_idproducto`, `clipro_idclipro`,`ventacol`) VALUES (NULL, CURRENT_TIMESTAMP, '" + tablaVenta.getValueAt(i, 3) + "', '0', NULL, ?, ?, ?, '" + idProducto.elementAt(i) + "', '5', '" + count + "');";
                 insert[i] = sql;
             }
             Cobrar ventanaCobrar = new Cobrar(this, false, insert);
