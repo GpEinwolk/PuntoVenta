@@ -2,8 +2,6 @@
 
 <Form version="1.6" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
-    </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -2987,7 +2985,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="almacenMouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="almacen"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -5223,17 +5221,17 @@
                                                           <EmptySpace min="-2" pref="233" max="-2" attributes="0"/>
                                                           <Component id="jLabel88" min="-2" pref="134" max="-2" attributes="0"/>
                                                       </Group>
-                                                      <Component id="jSutilid1" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
+                                                      <Component id="spinnerCantidad" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace max="32767" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="almacen1" max="32767" attributes="0"/>
+                                                      <Component id="comboDistribuidor" max="32767" attributes="0"/>
                                                       <Component id="jLabel68" pref="315" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace min="-2" pref="233" max="-2" attributes="0"/>
-                                                  <Component id="txtNombrePro2" min="-2" pref="515" max="-2" attributes="0"/>
+                                                  <Component id="txtCNA" min="-2" pref="515" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -5259,7 +5257,7 @@
                           <Component id="jLabel136" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtNombrePro2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCNA" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="botonActualizar1" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -5276,11 +5274,11 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                          <Component id="jSutilid1" min="-2" pref="24" max="-2" attributes="0"/>
+                                          <Component id="spinnerCantidad" min="-2" pref="24" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                          <Component id="almacen1" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="comboDistribuidor" min="-2" pref="25" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
@@ -5311,7 +5309,7 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtNombrePro2">
+                <Component class="javax.swing.JTextField" name="txtCNA">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI Semibold" size="18" style="0"/>
@@ -5329,7 +5327,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombrePro2KeyReleased"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCNAKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel137">
@@ -5415,7 +5413,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="tablaBusCP1">
+                    <Component class="javax.swing.JTable" name="tablaComprar">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="fb" green="fb" red="fb" type="rgb"/>
@@ -5426,13 +5424,6 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="33" green="33" red="33" type="rgb"/>
                         </Property>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="3" rowCount="0">
-                            <Column editable="false" title="Codigo" type="java.lang.Object"/>
-                            <Column editable="false" title="Nombre" type="java.lang.Object"/>
-                            <Column editable="false" title="RFC" type="java.lang.Object"/>
-                          </Table>
-                        </Property>
                         <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
@@ -5441,25 +5432,25 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="tablaBusCP = new javax.swing.JTable(){&#xa;public boolean isCellEditable(int rowIndex, int colIndex){&#xa;           return false;&#xa;}&#xa;};"/>
+                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable(){&#xa;public boolean isCellEditable(int rowIndex, int colIndex){&#xa;           return false;&#xa;}&#xa;}"/>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JSpinner" name="jSutilid1">
+                <Component class="javax.swing.JSpinner" name="spinnerCantidad">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Calibri" size="18" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                      <SpinnerModel initial="0.0" minimum="0.0" numberType="java.lang.Float" stepSize="1.0" type="number"/>
+                      <SpinnerModel initial="1" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
                     </Property>
                     <Property name="opaque" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSutilid1StateChanged"/>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jSutilid1validar"/>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="spinnerCantidadStateChanged"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="spinnerCantidadvalidar"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel88">
@@ -5478,7 +5469,7 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="almacen1">
+                <Component class="javax.swing.JComboBox" name="comboDistribuidor">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Calibri" size="18" style="0"/>
@@ -5491,7 +5482,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="almacen1MouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="comboDistribuidorMouseClicked"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

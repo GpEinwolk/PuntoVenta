@@ -32,8 +32,7 @@ public final class BuscarProductos extends javax.swing.JDialog {
     Conexion conn = new Conexion();
     Connection cn = conn.getConnection();
     TableRowSorter<TableModel> tr;
-    DefaultTableModel modelo = new DefaultTableModel();
-
+    
    
     
     public BuscarProductos(java.awt.Frame parent, boolean modal) {
@@ -45,6 +44,8 @@ public final class BuscarProductos extends javax.swing.JDialog {
     }
 
     void tablaProductos() {
+        DefaultTableModel modelo = new DefaultTableModel();
+
         String datos[] = new String[5];
 
         modelo.addColumn("Codigo");

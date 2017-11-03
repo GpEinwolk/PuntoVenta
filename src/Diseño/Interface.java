@@ -44,6 +44,8 @@ public final class Interface extends javax.swing.JFrame {
         mostrarTablaModificar();
         mostrarComboProductoMod();
         comboAlmacen();
+        mostrarDistribuidor();
+        mostrarCompras();
         modelCP = (DefaultTableModel) tablaBusCP.getModel();
     }
 
@@ -392,7 +394,6 @@ public final class Interface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         masterPanel = new javax.swing.JPanel();
         jPrincipal = new javax.swing.JPanel();
         jBcorteCaja = new javax.swing.JButton();
@@ -603,17 +604,21 @@ public final class Interface extends javax.swing.JFrame {
         tablaBusCP = new javax.swing.JTable();
         jPAinv = new javax.swing.JPanel();
         jLabel136 = new javax.swing.JLabel();
-        txtNombrePro2 = new javax.swing.JTextField();
+        txtCNA = new javax.swing.JTextField();
         jLabel137 = new javax.swing.JLabel();
         txtID6 = new javax.swing.JLabel();
         jLabel149 = new javax.swing.JLabel();
         jLabel150 = new javax.swing.JLabel();
         botonActualizar1 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        tablaBusCP1 = new javax.swing.JTable();
-        jSutilid1 = new javax.swing.JSpinner();
+        tablaComprar = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        spinnerCantidad = new javax.swing.JSpinner();
         jLabel88 = new javax.swing.JLabel();
-        almacen1 = new javax.swing.JComboBox<>();
+        comboDistribuidor = new javax.swing.JComboBox<>();
         jLabel68 = new javax.swing.JLabel();
         jPAinvC = new javax.swing.JPanel();
         jLabel140 = new javax.swing.JLabel();
@@ -1864,7 +1869,7 @@ public final class Interface extends javax.swing.JFrame {
         almacen.setForeground(new java.awt.Color(51, 51, 51));
         almacen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                almacenMouseClicked(evt);
+                almacen(evt);
             }
         });
 
@@ -2965,13 +2970,13 @@ public final class Interface extends javax.swing.JFrame {
         jLabel136.setText("Codigo/Nombre del Producto/Codigo Alternativo");
         jLabel136.setOpaque(true);
 
-        txtNombrePro2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        txtNombrePro2.setForeground(new java.awt.Color(51, 51, 51));
-        txtNombrePro2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtNombrePro2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        txtNombrePro2.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCNA.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        txtCNA.setForeground(new java.awt.Color(51, 51, 51));
+        txtCNA.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCNA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        txtCNA.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNombrePro2KeyReleased(evt);
+                txtCNAKeyReleased(evt);
             }
         });
 
@@ -3010,45 +3015,24 @@ public final class Interface extends javax.swing.JFrame {
             }
         });
 
-        tablaBusCP = new javax.swing.JTable(){
-            public boolean isCellEditable(int rowIndex, int colIndex){
-                return false;
-            }
-        };
-        tablaBusCP1.setBackground(new java.awt.Color(251, 251, 251));
-        tablaBusCP1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tablaBusCP1.setForeground(new java.awt.Color(51, 51, 51));
-        tablaBusCP1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        tablaComprar.setBackground(new java.awt.Color(251, 251, 251));
+        tablaComprar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tablaComprar.setForeground(new java.awt.Color(51, 51, 51));
+        tablaComprar.setGridColor(new java.awt.Color(255, 255, 255));
+        tablaComprar.setSelectionBackground(new java.awt.Color(62, 226, 141));
+        jScrollPane5.setViewportView(tablaComprar);
 
-            },
-            new String [] {
-                "Codigo", "Nombre", "RFC"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tablaBusCP1.setGridColor(new java.awt.Color(255, 255, 255));
-        tablaBusCP1.setSelectionBackground(new java.awt.Color(62, 226, 141));
-        jScrollPane5.setViewportView(tablaBusCP1);
-
-        jSutilid1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jSutilid1.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 1.0f));
-        jSutilid1.setOpaque(false);
-        jSutilid1.addChangeListener(new javax.swing.event.ChangeListener() {
+        spinnerCantidad.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        spinnerCantidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        spinnerCantidad.setOpaque(false);
+        spinnerCantidad.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSutilid1StateChanged(evt);
+                spinnerCantidadStateChanged(evt);
             }
         });
-        jSutilid1.addKeyListener(new java.awt.event.KeyAdapter() {
+        spinnerCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jSutilid1validar(evt);
+                spinnerCantidadvalidar(evt);
             }
         });
 
@@ -3059,11 +3043,11 @@ public final class Interface extends javax.swing.JFrame {
         jLabel88.setText("Cantidad");
         jLabel88.setOpaque(true);
 
-        almacen1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        almacen1.setForeground(new java.awt.Color(51, 51, 51));
-        almacen1.addMouseListener(new java.awt.event.MouseAdapter() {
+        comboDistribuidor.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        comboDistribuidor.setForeground(new java.awt.Color(51, 51, 51));
+        comboDistribuidor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                almacen1MouseClicked(evt);
+                comboDistribuidorMouseClicked(evt);
             }
         });
 
@@ -3096,14 +3080,14 @@ public final class Interface extends javax.swing.JFrame {
                                             .addGroup(jPAinvLayout.createSequentialGroup()
                                                 .addGap(233, 233, 233)
                                                 .addComponent(jLabel88, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jSutilid1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(spinnerCantidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPAinvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(almacen1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(comboDistribuidor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jLabel68, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPAinvLayout.createSequentialGroup()
                                         .addGap(233, 233, 233)
-                                        .addComponent(txtNombrePro2, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtCNA, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(botonActualizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -3121,7 +3105,7 @@ public final class Interface extends javax.swing.JFrame {
                 .addComponent(jLabel136)
                 .addGap(10, 10, 10)
                 .addGroup(jPAinvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombrePro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCNA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonActualizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPAinvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAinvLayout.createSequentialGroup()
@@ -3135,10 +3119,10 @@ public final class Interface extends javax.swing.JFrame {
                                 .addComponent(jLabel88))
                             .addGroup(jPAinvLayout.createSequentialGroup()
                                 .addGap(31, 31, 31)
-                                .addComponent(jSutilid1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(spinnerCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPAinvLayout.createSequentialGroup()
                                 .addGap(31, 31, 31)
-                                .addComponent(almacen1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(comboDistribuidor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(7, 7, 7)))
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3552,23 +3536,23 @@ public final class Interface extends javax.swing.JFrame {
                 txtModPrecio.setText(tablaDatosModificar.getValueAt(fila, 5).toString());
                 jSModUtilid.setValue(Float.parseFloat(tablaDatosModificar.getValueAt(fila, 6).toString()));
                 txtModArea.setText(tablaDatosModificar.getValueAt(fila, 7).toString());
-                if("pza".equals(tablaDatosModificar.getValueAt(fila, 8).toString())){
-                unidadMod.setSelectedIndex(0);
-                }else{
-                unidadMod.setSelectedIndex(1);
+                if ("pza".equals(tablaDatosModificar.getValueAt(fila, 8).toString())) {
+                    unidadMod.setSelectedIndex(0);
+                } else {
+                    unidadMod.setSelectedIndex(1);
                 }
-                if(tablaDatosModificar.getValueAt(fila, 9).toString()!=null){
+                if (tablaDatosModificar.getValueAt(fila, 9).toString() != null) {
                     txtModcodigoA.setText(tablaDatosModificar.getValueAt(fila, 9).toString());
-                }else{
-                txtModcodigoA.setText("");
-                }                
+                } else {
+                    txtModcodigoA.setText("");
+                }
                 garantMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 10));
                 almacenMod.setSelectedItem(tablaDatosModificar.getValueAt(fila, 11));
 
             } catch (NumberFormatException e) {
                 System.out.println("Error");
                 System.out.println(e.getMessage());
-                
+
             }
 
         }
@@ -3819,10 +3803,6 @@ public final class Interface extends javax.swing.JFrame {
         alm.setVisible(true);
     }//GEN-LAST:event_agregarAlmacenActionPerformed
 
-    private void almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenMouseClicked
-
-    }//GEN-LAST:event_almacenMouseClicked
-
     private void agregarGarantiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarGarantiaActionPerformed
         Interface inter = new Interface();
         Garant gant = new Garant(inter, true);
@@ -3873,7 +3853,7 @@ public final class Interface extends javax.swing.JFrame {
             if (comboRFC.getSelectedIndex() == 0) {
                 txtRFCPro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????######AAA")));
                 System.out.println("Persona Fisica");
-                
+
             } else {
                 System.out.println("Persona Moral");
                 txtRFCPro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????######AA-A")));
@@ -3885,12 +3865,12 @@ public final class Interface extends javax.swing.JFrame {
 
     private void changeRFCC(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_changeRFCC
         // TODO add your handling code here:
-        
-                try {
+
+        try {
             if (comboRFCC.getSelectedIndex() == 0) {
                 txtRFCCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????######AAA")));
                 System.out.println("Persona Fisica");
-                
+
             } else {
                 System.out.println("Persona Moral");
                 txtRFCCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????######AA-A")));
@@ -3907,30 +3887,121 @@ public final class Interface extends javax.swing.JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         jPcontenedor.removeAll();
         jPcontenedor.add(jPAinv);
-              jPcontenedor.updateUI();
+        jPcontenedor.updateUI();
         jPcontenedor.repaint();
-        
+        mostrarCompras();
+
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
-    private void txtNombrePro2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePro2KeyReleased
+    private void txtCNAKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCNAKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombrePro2KeyReleased
+        String filtro = "(?i)" + txtCNA.getText();
+        if (!filtro.equals("")) {
+            tr.setRowFilter(RowFilter.regexFilter(filtro));
+        } else {
+            tr.setRowFilter(null);
+        }
+    }//GEN-LAST:event_txtCNAKeyReleased
 
     private void botonActualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizar1ActionPerformed
         // TODO add your handling code here:
+        String clipro = "SELECT nombreC,idclipro FROM clipro";
+        String producto = "SELECT codigo,idproducto FROM producto";
+        String insert = "";
+        Statement cp;
+        System.out.println();
+        String nombreC = (String) comboDistribuidor.getSelectedItem();
+        int idclipro = 0;
+        int idproducto = 0;
+        try {
+            String codigo = (String) tablaComprar.getValueAt(tablaComprar.getSelectedRow(), 0);
+            try {
+                cp = cn.createStatement();
+                ResultSet rc = cp.executeQuery(clipro);
+                while (rc.next()) {
+                    if (nombreC.equals(rc.getString("nombreC"))) {
+                        idclipro = rc.getInt("idclipro");
+                    }
+                }
+                cp = cn.createStatement();
+                rc = cp.executeQuery(producto);
+                while (rc.next()) {
+                    if (codigo.equals(rc.getString("codigo"))) {
+                        idproducto = rc.getInt("idproducto");
+                    }
+                }
+            } catch (SQLException ex) {
+                System.out.println((char) 27 + "[31m" + ex.getMessage());
+            }
+            insert = "INSERT INTO compra (idcompra, cantidad, fecha, producto_idproducto, clipro_idclipro) "
+                    + "VALUES (NULL, '" + spinnerCantidad.getValue() + "', CURRENT_TIMESTAMP,'" + idproducto + "', '" + idclipro + "');";
+        } catch (Exception e) {
+            System.out.println((char) 27 + "[31m" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Producto no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
+        }
+        try {
+            PreparedStatement pps;
+            pps = cn.prepareStatement(insert);
+            pps.executeUpdate();
+            ImageIcon icon = new ImageIcon("src/img/cart (5).png");
+            JOptionPane.showMessageDialog(null, "Se realizo la compra con exito", "Mensaje", JOptionPane.OK_OPTION, icon);
+        } catch (SQLException ex) {
+            System.out.println((char) 27 + "[31m" + ex.getMessage());
+        }
+        tablaComprar.removeAll();
+        tr.setRowFilter(null);
+        txtCNA.setText("");
+        mostrarCompras();
     }//GEN-LAST:event_botonActualizar1ActionPerformed
+    private void mostrarCompras() {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Codigo Alterno");
+        modelo.addColumn("Existencia");
+        String sql = "SELECT codigo,nombre,codigoA,stock FROM producto";
+        Statement st;
+        try {
+            tablaComprar.setModel(modelo);
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                modelo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
+            }
+            tr = new TableRowSorter<>(modelo);
+            tablaComprar.setRowSorter(tr);
+        } catch (SQLException ex) {
+            Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-    private void jSutilid1validar(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSutilid1validar
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jSutilid1validar
+    }
 
-    private void jSutilid1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSutilid1StateChanged
+    private void mostrarDistribuidor() {
+        comboDistribuidor.removeAllItems();
+        String sql = "SELECT nombreC FROM clipro WHERE tipo = '2'";
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                comboDistribuidor.addItem(rs.getString("nombreC"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void spinnerCantidadvalidar(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_spinnerCantidadvalidar
         // TODO add your handling code here:
-    }//GEN-LAST:event_jSutilid1StateChanged
+    }//GEN-LAST:event_spinnerCantidadvalidar
 
-    private void almacen1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacen1MouseClicked
+    private void spinnerCantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerCantidadStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_almacen1MouseClicked
+    }//GEN-LAST:event_spinnerCantidadStateChanged
+
+    private void comboDistribuidorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboDistribuidorMouseClicked
+        // TODO add your handling code here:
+        mostrarDistribuidor();
+    }//GEN-LAST:event_comboDistribuidorMouseClicked
 
     private void botonActualizar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizar3ActionPerformed
         // TODO add your handling code here:
@@ -3941,10 +4012,10 @@ public final class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombrePro4KeyReleased
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-       jPcontenedor.removeAll();
-       jPcontenedor.add(jPAinvC);
-       jPcontenedor.updateUI();
-       jPcontenedor.repaint();
+        jPcontenedor.removeAll();
+        jPcontenedor.add(jPAinvC);
+        jPcontenedor.updateUI();
+        jPcontenedor.repaint();
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
@@ -3991,15 +4062,14 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JButton agregarAlmacen;
     private javax.swing.JButton agregarGarantia;
     private javax.swing.JComboBox<String> almacen;
-    private javax.swing.JComboBox<String> almacen1;
     private javax.swing.JComboBox<String> almacenMod;
     private javax.swing.JMenuItem añadirUsuario;
     private javax.swing.JButton botonActualizar;
     private javax.swing.JButton botonActualizar1;
     private javax.swing.JButton botonActualizar3;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenuItem clieAgre;
     private javax.swing.JMenuItem clieMod;
+    private javax.swing.JComboBox<String> comboDistribuidor;
     private javax.swing.JComboBox<String> comboRFC;
     private javax.swing.JComboBox<String> comboRFCC;
     private javax.swing.JButton eliminar;
@@ -4190,7 +4260,6 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JSpinner jSutilid;
-    private javax.swing.JSpinner jSutilid1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel jUsuarioA;
@@ -4203,11 +4272,13 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem provMod;
     private javax.swing.JMenuItem serAgre;
     private javax.swing.JMenuItem serMod;
+    private javax.swing.JSpinner spinnerCantidad;
     public static javax.swing.JTable tablaBusCP;
-    public static javax.swing.JTable tablaBusCP1;
     public static javax.swing.JTable tablaBusCP3;
+    public static javax.swing.JTable tablaComprar;
     private javax.swing.JTable tablaDatosModificar;
     private javax.swing.JTable tablaDatosProducto;
+    private javax.swing.JTextField txtCNA;
     private javax.swing.JFormattedTextField txtCPPro;
     private javax.swing.JFormattedTextField txtCPcliente;
     private javax.swing.JTextField txtCalleCliente;
@@ -4245,7 +4316,6 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombreC;
     private javax.swing.JTextField txtNombrePro;
     private javax.swing.JTextField txtNombrePro1;
-    private javax.swing.JTextField txtNombrePro2;
     private javax.swing.JTextField txtNombrePro4;
     private javax.swing.JTextField txtPDPro;
     private javax.swing.JTextField txtPDcliente;

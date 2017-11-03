@@ -3,34 +3,8 @@ package Diseño;
 import static Diseño.Ventas.conn;
 import static Diseño.Ventas.model;
 import static Diseño.Ventas.tablaVenta;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.PRStream;
-import com.itextpdf.text.pdf.PdfDictionary;
-import com.itextpdf.text.pdf.PdfName;
-import com.itextpdf.text.pdf.PdfObject;
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.PdfStamper;
-import java.awt.print.PrinterJob;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.print.Doc;
-import javax.print.DocFlavor;
-import javax.print.DocPrintJob;
-import javax.print.PrintException;
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
-import javax.print.SimpleDoc;
-import javax.print.attribute.AttributeSet;
-import javax.print.attribute.HashAttributeSet;
-import javax.print.attribute.HashPrintRequestAttributeSet;
-import javax.print.attribute.PrintRequestAttributeSet;
-import javax.print.attribute.standard.ColorSupported;
-import javax.print.attribute.standard.PrinterName;
-import java.io.FileOutputStream;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,7 +15,6 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -50,8 +23,6 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
 
 public class Cobrar extends javax.swing.JDialog {
 
@@ -892,10 +863,8 @@ public class Cobrar extends javax.swing.JDialog {
         try {
             JRTableModelDataSource datasource = new JRTableModelDataSource(model);
             String reportSource = tipo + ".jrxml";
-            System.out.println(tipo + ".jrxml");
             JasperReport jr = JasperCompileManager.compileReport(reportSource);
             Map<String, Object> params = new HashMap<>();
-            System.out.println(Ventas.nTicket);
             params.put("nTicket", Ventas.nTicket);
             params.put("nombreUsuario", Ventas.Usuario);
             params.put("tipoPago", tipoPago);
@@ -903,10 +872,10 @@ public class Cobrar extends javax.swing.JDialog {
             JasperPrint jp = JasperFillManager.fillReport(jr, params, datasource);
             switch (tipo) {
                 case "ticket":
-                    JasperPrintManager.printReport(jp, true);
+                    JasperPrintManager.printReport(jp, false);
                     break;
                 case "hoja":
-                    JasperPrintManager.printReport(jp, true);
+                    JasperPrintManager.printReport(jp, false);
                     break;
                 default:
                     JasperExportManager.exportReportToPdfFile(jp, tipo + ".pdf");
@@ -957,13 +926,6 @@ public class Cobrar extends javax.swing.JDialog {
     }
     private void cobroHojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobroHojaActionPerformed
         cobro("hoja");
-        try {
-            imprimir("hoja");
-        } catch (IOException ex) {
-            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PrintException ex) {
-            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_cobroHojaActionPerformed
 
     void cobroMixto() {
@@ -978,58 +940,6 @@ public class Cobrar extends javax.swing.JDialog {
             jLabel35.setText("Falta:");
             cambio = cambio * (-1);
             jLabel33.setText(String.valueOf(cambio));
-        }
-    }
-
-    private void imprimir(String Tipo) throws FileNotFoundException, IOException, PrintException {
-        FileInputStream inputStream = null;
-        String tipo = Tipo + ".pdf";
-        System.out.println(tipo);
-        try {
-            inputStream = new FileInputStream(tipo);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //Formato de Documento
-        DocFlavor docFormat = DocFlavor.INPUT_STREAM.AUTOSENSE;
-        //Lectura de Documento
-        Doc document = new SimpleDoc(inputStream, docFormat, null);
-        PrinterJob job = PrinterJob.getPrinterJob();
-        job.printDialog();
-        String impresora = job.getPrintService().getName();
-        //Nombre de la impresora
-        String printerName = impresora;
-        //Inclusion del nombre de impresora y sus atributos
-        AttributeSet attributeSet = new HashAttributeSet();
-        attributeSet.add(new PrinterName(printerName, null));
-        attributeSet = new HashAttributeSet();
-        //Soporte de color o no
-        attributeSet.add(ColorSupported.NOT_SUPPORTED);
-        //Busqueda de la impresora por el nombre asignado en attributeSet
-        PrintService[] services = PrintServiceLookup.lookupPrintServices(docFormat, attributeSet);
-        //En caso de que tengamos varias impresoras configuradas
-        PrintService myPrinter = null;
-        for (int i = 0; i < services.length; i++) {
-            if (services[i].getName().equals(printerName)) {
-                myPrinter = services[i];
-                System.out.println("Imprimiendo en : " + services[i].getName());
-                break;
-            }
-        }
-
-        DocPrintJob printJob = myPrinter.createPrintJob();
-        try {
-            //Envio a la impresora
-            PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
-            printJob.print(document, aset);
-        } catch (PrintException ex) {
-            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            inputStream.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Cobrar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
@@ -1101,13 +1011,7 @@ public class Cobrar extends javax.swing.JDialog {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cobrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cobrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cobrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Cobrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
@@ -1175,20 +1079,5 @@ public class Cobrar extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 
-    private void editarPDF() throws IOException, DocumentException {
-        String src = "archivo.pdf";
-        String dest = "archivo-edit.pdf";
-        PdfReader reader = new PdfReader(src);
-        PdfDictionary dict = reader.getPageN(1);
-        PdfObject object = dict.getDirectObject(PdfName.CONTENTS);
-        if (object instanceof PRStream) {
-            PRStream stream = (PRStream) object;
-            byte[] data = PdfReader.getStreamBytes(stream);
-            stream.setData(new String(data).replace("Titulo", "Grupo Einwolk").getBytes());
-        }
-        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(dest));
-        stamper.close();
-        reader.close();
-    }
 
 }
