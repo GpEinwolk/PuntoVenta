@@ -46,6 +46,7 @@ public final class Interface extends javax.swing.JFrame {
         comboAlmacen();
         mostrarDistribuidor();
         mostrarCompras();
+        mostrarUsuarios();
         modelCP = (DefaultTableModel) tablaBusCP.getModel();
     }
 
@@ -394,6 +395,7 @@ public final class Interface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         masterPanel = new javax.swing.JPanel();
         jPrincipal = new javax.swing.JPanel();
         jBcorteCaja = new javax.swing.JButton();
@@ -445,12 +447,12 @@ public final class Interface extends javax.swing.JFrame {
         jPdatos = new javax.swing.JPanel();
         jLabel56 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboUsuario = new javax.swing.JComboBox<>();
+        corteFecha = new com.toedter.calendar.JDateChooser();
+        rbEspecifico = new javax.swing.JRadioButton();
+        rbCdia = new javax.swing.JRadioButton();
+        rbCm = new javax.swing.JRadioButton();
+        comboCortes = new javax.swing.JComboBox<>();
         jLabel57 = new javax.swing.JLabel();
         jLabel75 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -1104,24 +1106,47 @@ public final class Interface extends javax.swing.JFrame {
         jLabel58.setForeground(new java.awt.Color(255, 255, 255));
         jLabel58.setText("Ver corte de la fecha:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboUsuario.setToolTipText("");
+        comboUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboUsuarioMouseClicked(evt);
+            }
+        });
 
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("Especifico");
-        jRadioButton1.setContentAreaFilled(false);
+        buttonGroup1.add(rbEspecifico);
+        rbEspecifico.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        rbEspecifico.setForeground(new java.awt.Color(255, 255, 255));
+        rbEspecifico.setText("Especifico");
+        rbEspecifico.setContentAreaFilled(false);
+        rbEspecifico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                group1(evt);
+            }
+        });
 
-        jRadioButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Corte por Dia");
-        jRadioButton2.setContentAreaFilled(false);
+        buttonGroup1.add(rbCdia);
+        rbCdia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        rbCdia.setForeground(new java.awt.Color(255, 255, 255));
+        rbCdia.setText("Corte por Dia");
+        rbCdia.setContentAreaFilled(false);
+        rbCdia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                group1(evt);
+            }
+        });
 
-        jRadioButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton3.setText("Corte por Mes");
-        jRadioButton3.setContentAreaFilled(false);
+        buttonGroup1.add(rbCm);
+        rbCm.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        rbCm.setForeground(new java.awt.Color(255, 255, 255));
+        rbCm.setText("Corte por Mes");
+        rbCm.setContentAreaFilled(false);
+        rbCm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                group1(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCortes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel57.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel57.setForeground(new java.awt.Color(255, 255, 255));
@@ -1136,21 +1161,21 @@ public final class Interface extends javax.swing.JFrame {
                     .addGroup(jPdatosLayout.createSequentialGroup()
                         .addComponent(jLabel56)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(59, 59, 59)
-                        .addComponent(jRadioButton1)
+                        .addComponent(rbEspecifico)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2)
+                        .addComponent(rbCdia)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton3))
+                        .addComponent(rbCm))
                     .addGroup(jPdatosLayout.createSequentialGroup()
                         .addComponent(jLabel58)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(corteFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel57)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(comboCortes, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         jPdatosLayout.setVerticalGroup(
@@ -1158,21 +1183,21 @@ public final class Interface extends javax.swing.JFrame {
             .addGroup(jPdatosLayout.createSequentialGroup()
                 .addGroup(jPdatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPdatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton1)
-                        .addComponent(jRadioButton2)
-                        .addComponent(jRadioButton3))
+                        .addComponent(rbEspecifico)
+                        .addComponent(rbCdia)
+                        .addComponent(rbCm))
                     .addGroup(jPdatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel56, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(comboUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPdatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel57, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPdatosLayout.createSequentialGroup()
                         .addGroup(jPdatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPdatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(corteFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboCortes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 5, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -3976,6 +4001,22 @@ public final class Interface extends javax.swing.JFrame {
 
     }
 
+    private void mostrarUsuarios() {
+
+        comboUsuario.removeAllItems();
+        String sql = "SELECT nombre FROM usuario WHERE nivel = '2'";
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                comboUsuario.addItem(rs.getString("nombre"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     private void mostrarDistribuidor() {
         comboDistribuidor.removeAllItems();
         String sql = "SELECT nombreC FROM clipro WHERE tipo = '2'";
@@ -4022,6 +4063,25 @@ public final class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void comboUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboUsuarioMouseClicked
+        // TODO add your handling code here:
+        mostrarUsuarios();
+    }//GEN-LAST:event_comboUsuarioMouseClicked
+
+    private void group1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_group1
+        // TODO add your handling code here:
+        if (rbEspecifico.isSelected()) {
+            comboCortes.setEnabled(true);
+            corteFecha.setEnabled(true);
+        } else if (rbCdia.isSelected()) {
+            comboCortes.setEnabled(false);
+            corteFecha.setEnabled(false);
+        } else if (rbCm.isSelected()) {
+            comboCortes.setEnabled(false);
+            corteFecha.setEnabled(false);
+        }
+    }//GEN-LAST:event_group1
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -4067,11 +4127,15 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JButton botonActualizar;
     private javax.swing.JButton botonActualizar1;
     private javax.swing.JButton botonActualizar3;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenuItem clieAgre;
     private javax.swing.JMenuItem clieMod;
+    private javax.swing.JComboBox<String> comboCortes;
     private javax.swing.JComboBox<String> comboDistribuidor;
     private javax.swing.JComboBox<String> comboRFC;
     private javax.swing.JComboBox<String> comboRFCC;
+    private javax.swing.JComboBox<String> comboUsuario;
+    private com.toedter.calendar.JDateChooser corteFecha;
     private javax.swing.JButton eliminar;
     private javax.swing.JComboBox<String> estadoCliente;
     private javax.swing.JComboBox<String> estadoPro;
@@ -4080,10 +4144,7 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> giroCliente;
     private javax.swing.JComboBox<String> giroPro;
     private javax.swing.JButton jBcorteCaja;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
@@ -4242,9 +4303,6 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JPanel jPmodificarCP;
     private javax.swing.JPanel jPproveedor;
     private javax.swing.JPanel jPrincipal;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JSpinner jSModUtilid;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -4270,6 +4328,9 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JMenuItem prodAgre;
     private javax.swing.JMenuItem provAgre;
     private javax.swing.JMenuItem provMod;
+    private javax.swing.JRadioButton rbCdia;
+    private javax.swing.JRadioButton rbCm;
+    private javax.swing.JRadioButton rbEspecifico;
     private javax.swing.JMenuItem serAgre;
     private javax.swing.JMenuItem serMod;
     private javax.swing.JSpinner spinnerCantidad;
