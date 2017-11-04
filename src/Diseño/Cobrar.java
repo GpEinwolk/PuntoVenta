@@ -835,7 +835,7 @@ public class Cobrar extends javax.swing.JDialog {
     private void cobro(String tipo) {
         switch ((String) jCobro.getSelectedItem()) {
             case "Tarjeta":
-                crearReporte("Tarjeta", tipo, Double.parseDouble(jLabel9.getText()));
+                crearReporte("Tarjeta", tipo, Double.parseDouble(jLabel9.getText()),0.00,Double.parseDouble(jLabel9.getText()));
                 cobrar();
                 break;
             case "Mixto":
@@ -843,7 +843,7 @@ public class Cobrar extends javax.swing.JDialog {
                     ImageIcon ua = new ImageIcon("src/img/error (2).png");
                     JOptionPane.showMessageDialog(null, "Falta: $" + jLabel35.getText(), "Mensaje", JOptionPane.OK_OPTION, ua);
                 } else {
-                    crearReporte("Mixto", tipo, Double.parseDouble(jLabel36.getText()));
+                    crearReporte("Mixto", tipo, Double.parseDouble(jLabel36.getText()), Double.parseDouble(jLabel33.getText()), (Double.parseDouble(jTextField1.getText())+Double.parseDouble(jTextField2.getText())));
                     cobrar();
                 }
                 break;
@@ -852,14 +852,14 @@ public class Cobrar extends javax.swing.JDialog {
                     ImageIcon ua = new ImageIcon("src/img/error (2).png");
                     JOptionPane.showMessageDialog(null, "Falta: $" + jLabel13.getText(), "Mensaje", JOptionPane.OK_OPTION, ua);
                 } else {
-                    crearReporte("Efectivo", tipo, Double.parseDouble(jLabel2.getText()));
+                    crearReporte("Efectivo", tipo, Double.parseDouble(jLabel2.getText()), Double.parseDouble(jLabel13.getText()), Double.parseDouble(jTextField3.getText()));
                     cobrar();
                 }
                 break;
         }
     }
 
-    private void crearReporte(String tipoPago, String tipo, double total) {
+    private void crearReporte(String tipoPago, String tipo, double total, double cambio, double pago) {
         try {
             JRTableModelDataSource datasource = new JRTableModelDataSource(model);
             String reportSource = tipo + ".jrxml";
@@ -869,6 +869,8 @@ public class Cobrar extends javax.swing.JDialog {
             params.put("nombreUsuario", Ventas.Usuario);
             params.put("tipoPago", tipoPago);
             params.put("total", total);
+            params.put("efectivo",pago);
+            params.put("cambio",cambio);
             JasperPrint jp = JasperFillManager.fillReport(jr, params, datasource);
             switch (tipo) {
                 case "ticket":
