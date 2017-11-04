@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,6 +50,7 @@ public final class Interface extends javax.swing.JFrame {
         mostrarDistribuidor();
         mostrarCompras();
         mostrarUsuarios();
+        comboCorte();
         modelCP = (DefaultTableModel) tablaBusCP.getModel();
     }
 
@@ -242,10 +246,8 @@ public final class Interface extends javax.swing.JFrame {
                 String index2 = Integer.toString(almacen.getSelectedIndex() + 1);
                 String uniM = "";
                 if (unidadM.getSelectedIndex() == 0) {
-                    System.out.println(unidadM.getSelectedIndex());
                     uniM = "pza";
                 } else {
-                    System.out.println(unidadM.getSelectedIndex());
                     uniM = "kg";
                 }
 
@@ -1107,9 +1109,20 @@ public final class Interface extends javax.swing.JFrame {
         jLabel58.setText("Ver corte de la fecha:");
 
         comboUsuario.setToolTipText("");
+        comboUsuario.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                usuarioChange(evt);
+            }
+        });
         comboUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comboUsuarioMouseClicked(evt);
+            }
+        });
+
+        corteFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                corteFechaPropertyChange(evt);
             }
         });
 
@@ -1145,8 +1158,6 @@ public final class Interface extends javax.swing.JFrame {
                 group1(evt);
             }
         });
-
-        comboCortes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel57.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel57.setForeground(new java.awt.Color(255, 255, 255));
@@ -1201,6 +1212,9 @@ public final class Interface extends javax.swing.JFrame {
                         .addGap(0, 5, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        Date date = new Date();
+        corteFecha.setDate(date);
 
         jLabel75.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel75.setForeground(new java.awt.Color(255, 255, 255));
@@ -3678,9 +3692,7 @@ public final class Interface extends javax.swing.JFrame {
         } else {
             int cp = 0;
             if ("".equals(txtCPPro.getText())) {
-                System.out.println(txtCPPro.getText() + "asdf");
             } else {
-                System.out.println(txtCPPro.getText() + "holi");
                 cp = Integer.parseInt(txtCPPro.getText());
             }
             int Nint = 0;
@@ -3877,10 +3889,8 @@ public final class Interface extends javax.swing.JFrame {
         try {
             if (comboRFC.getSelectedIndex() == 0) {
                 txtRFCPro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????######AAA")));
-                System.out.println("Persona Fisica");
 
             } else {
-                System.out.println("Persona Moral");
                 txtRFCPro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????######AA-A")));
             }
         } catch (ParseException ex) {
@@ -3894,10 +3904,8 @@ public final class Interface extends javax.swing.JFrame {
         try {
             if (comboRFCC.getSelectedIndex() == 0) {
                 txtRFCCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????######AAA")));
-                System.out.println("Persona Fisica");
 
             } else {
-                System.out.println("Persona Moral");
                 txtRFCCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("????######AA-A")));
             }
         } catch (ParseException ex) {
@@ -3934,7 +3942,6 @@ public final class Interface extends javax.swing.JFrame {
         String producto = "SELECT codigo,idproducto FROM producto";
         String insert = "";
         Statement cp;
-        System.out.println();
         String nombreC = (String) comboDistribuidor.getSelectedItem();
         int idclipro = 0;
         int idproducto = 0;
@@ -4013,7 +4020,7 @@ public final class Interface extends javax.swing.JFrame {
                 comboUsuario.addItem(rs.getString("nombre"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println((char) 27 + "[31m" + ex.getMessage());
         }
     }
 
@@ -4028,7 +4035,7 @@ public final class Interface extends javax.swing.JFrame {
                 comboDistribuidor.addItem(rs.getString("nombreC"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println((char) 27 + "[31m" + ex.getMessage());
         }
     }
     private void spinnerCantidadvalidar(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_spinnerCantidadvalidar
@@ -4067,7 +4074,41 @@ public final class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
         mostrarUsuarios();
     }//GEN-LAST:event_comboUsuarioMouseClicked
+    private void comboCorte() {
+        DateFormat df = new SimpleDateFormat("dd-MM-YYYY");
+        String fecha = df.format(corteFecha.getDate());
+        comboCortes.removeAllItems();
+        Statement st;
+        int idUsuario = 0;
 
+        String usuario = "SELECT nombre,idusuario FROM usuario WHERE nombre= '"
+                + comboUsuario.getSelectedItem() + "' AND nivel = '2'";
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(usuario);
+            while (rs.next()) {
+                idUsuario = rs.getInt("idusuario");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        String sql = "SELECT TIME(fechaEnt),TIME(fechaSal),DATE_FORMAT(fechaSal, \"%d-%m-%Y\" ) FROM login WHERE usuario_idusuario = '"
+                + idUsuario + "' AND DATE_FORMAT(fechaSal, \"%d-%m-%Y\" )='"+ fecha + "'";
+
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                comboCortes.addItem("(" + rs.getString("TIME(fechaEnt)") + ")-(" + rs.getString("TIME(fechaSal)") + ")");
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println((char) 27 + "[31m"+ex);
+        }
+    }
     private void group1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_group1
         // TODO add your handling code here:
         if (rbEspecifico.isSelected()) {
@@ -4081,6 +4122,16 @@ public final class Interface extends javax.swing.JFrame {
             corteFecha.setEnabled(false);
         }
     }//GEN-LAST:event_group1
+
+    private void usuarioChange(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_usuarioChange
+        // TODO add your handling code here:
+        comboCorte();
+    }//GEN-LAST:event_usuarioChange
+
+    private void corteFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_corteFechaPropertyChange
+        // TODO add your handling code here:
+        comboCorte();
+    }//GEN-LAST:event_corteFechaPropertyChange
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -4387,5 +4438,4 @@ public final class Interface extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> unidadM;
     private javax.swing.JComboBox<String> unidadMod;
     // End of variables declaration//GEN-END:variables
-
 }
