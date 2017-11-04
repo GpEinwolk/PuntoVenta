@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte de Venta" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7445c8f6-6fb7-4c52-87de-f7ec8d42f6f8">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="265"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
@@ -18,6 +18,8 @@
 	<parameter name="nombreUsuario" class="java.lang.String"/>
 	<parameter name="tipoPago" class="java.lang.String"/>
 	<parameter name="total" class="java.lang.String"/>
+	<parameter name="efectivo" class="java.lang.String"/>
+	<parameter name="cambio" class="java.lang.String"/>
 	<field name="Codigo" class="java.lang.String"/>
 	<field name="Nombre" class="java.lang.String"/>
 	<field name="Cantidad" class="java.lang.String"/>
@@ -30,7 +32,7 @@
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="572" height="95" backcolor="#000000" uuid="247d1d7d-8de0-46ca-af9b-f9030577ef81"/>
 				<image>
-					<reportElement x="0" y="-1" width="572" height="95" uuid="a7abc60a-9e29-4f7e-8081-714f278847ce"/>
+					<reportElement x="0" y="0" width="572" height="95" uuid="a7abc60a-9e29-4f7e-8081-714f278847ce"/>
 					<imageExpression><![CDATA["src\\img\\LOGO BLANCO.png"]]></imageExpression>
 				</image>
 			</frame>
@@ -130,7 +132,7 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="54" splitType="Stretch">
+		<band height="77" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="17a58d03-eb23-46b2-a1a6-8a754c07f47c"/>
 				<graphicElement>
@@ -153,6 +155,22 @@
 				<reportElement x="369" y="12" width="100" height="20" uuid="657b2d53-7810-4812-a0f0-e03bf6726c2b"/>
 				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="252" y="32" width="100" height="20" uuid="acdb7377-1c88-414d-ba1f-4f424f15d5f5"/>
+				<text><![CDATA[Su pago:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="369" y="32" width="100" height="20" uuid="6ed0bd74-3bda-4f47-9543-caf9115c8b6a"/>
+				<textFieldExpression><![CDATA[$P{efectivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="369" y="51" width="100" height="20" uuid="aa9ee72f-97b5-41d8-9fae-0b070573ea6d"/>
+				<textFieldExpression><![CDATA[$P{cambio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="252" y="52" width="100" height="20" uuid="f60a7b53-0bb4-4149-86de-a4bf2b799ced"/>
+				<text><![CDATA[Cambio:]]></text>
+			</staticText>
 		</band>
 	</columnFooter>
 	<pageFooter>
