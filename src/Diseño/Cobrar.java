@@ -830,7 +830,7 @@ public class Cobrar extends javax.swing.JDialog {
     }//GEN-LAST:event_jCobroActionPerformed
 
     private void btCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCobrarActionPerformed
-        cobro("hoja");
+        cobro("reporte");
     }//GEN-LAST:event_btCobrarActionPerformed
     private void cobro(String tipo) {
         switch ((String) jCobro.getSelectedItem()) {

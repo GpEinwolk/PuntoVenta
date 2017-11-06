@@ -1159,6 +1159,12 @@ public final class Interface extends javax.swing.JFrame {
             }
         });
 
+        comboCortes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboCortesItemStateChanged(evt);
+            }
+        });
+
         jLabel57.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel57.setForeground(new java.awt.Color(255, 255, 255));
         jLabel57.setText("Cortes:");
@@ -4094,14 +4100,13 @@ public final class Interface extends javax.swing.JFrame {
             Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        String sql = "SELECT TIME(fechaEnt),TIME(fechaSal),DATE_FORMAT(fechaSal, \"%d-%m-%Y\" ) FROM login WHERE usuario_idusuario = '"
+        String sql = "SELECT TIME(fechaEnt),TIME(fechaSal),DATE_FORMAT(fechaSal, \"%d-%m-%Y\" ),DATE_FORMAT(fechaSal, \"%H\" )-DATE_FORMAT(fechaEnt, \"%H\" )AS horas FROM login WHERE usuario_idusuario = '"
                 + idUsuario + "' AND DATE_FORMAT(fechaSal, \"%d-%m-%Y\" )='"+ fecha + "'";
-
         try {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                comboCortes.addItem("(" + rs.getString("TIME(fechaEnt)") + ")-(" + rs.getString("TIME(fechaSal)") + ")");
+                comboCortes.addItem("(" + rs.getString("TIME(fechaEnt)") + ")-(" + rs.getString("TIME(fechaSal)") + ")"+"    Horas: "+(rs.getInt("horas")));
 
             }
 
@@ -4132,6 +4137,10 @@ public final class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
         comboCorte();
     }//GEN-LAST:event_corteFechaPropertyChange
+
+    private void comboCortesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCortesItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCortesItemStateChanged
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

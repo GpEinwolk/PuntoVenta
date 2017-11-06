@@ -543,13 +543,12 @@ public final class Ventas extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int fila = tablaVenta.getRowCount();
-        String query = "SELECT COUNT(*) FROM venta";
+        String query = "SELECT ventacol FROM venta ORDER BY ventacol DESC LIMIT 1";
         Statement st;
         int count = 0;                
         try {
             st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            
+            ResultSet rs = st.executeQuery(query);            
             while (rs.next()) {
                     count = rs.getInt(1);
             }
