@@ -2,7 +2,9 @@ package Diseño;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -307,24 +309,47 @@ public class AgregarUser extends javax.swing.JDialog {
     }//GEN-LAST:event_atrasActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-       String combo = jComboNIVEL.getSelectedItem().toString();
-     int nivel = 0;
-      if (combo.equals("Administrador")) {
+       String valorPass = new String(txtPass.getPassword());
+        if(txtNombre.getText().equals("")||txtAP.getText().equals("")||txtAM.getText().equals("")||txtUser.getText().equals("")||valorPass.equals("")){
+           nv = new ImageIcon("src/img/users (6).png");
+             JOptionPane.showMessageDialog(null,"Debe llenar todos los campos","Mensaje",JOptionPane.OK_OPTION,nv);
+       }else{
+        String user = txtUser.getText();
+       boolean exist = false;
+       String sql = "SELECT user FROM usuario WHERE user = '"+user+"'";
+       Statement st;            
+         try {
+             st = cn.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             while (rs.next()) {
+                 if(user.equals(rs.getString(1))){
+                     nv = new ImageIcon("src/img/users (6).png");
+                     JOptionPane.showMessageDialog(null,"Ya existe un usuario con el mismo nombre","Mensaje",JOptionPane.OK_OPTION,nv);
+                     exist=true;
+                     }
+                 
+             }
+             if(exist == false){
+                 agregarUsuario(user,jComboNIVEL.getSelectedItem().toString(),valorPass);
+             }
+         } catch (SQLException ex) {
+             Logger.getLogger(AgregarUser.class.getName()).log(Level.SEVERE, null, ex);
+         }
+       }
+    }//GEN-LAST:event_agregarActionPerformed
+public void agregarUsuario(String user,String tipo,String valorPass){
+int nivel = 0;
+      if (tipo.equals("Administrador")) {
          nivel= 1;
         }else{
         nivel=2;
-        }   
-      String valorPass = new String(txtPass.getPassword());
-       if(txtNombre.getText().equals("")||txtAP.getText().equals("")||txtAM.getText().equals("")||txtUser.getText().equals("")||valorPass.equals("")){
-           nv = new ImageIcon("src/img/users (6).png");
-             JOptionPane.showMessageDialog(null,"Debe llenar todos los campos","Mensaje",JOptionPane.OK_OPTION,nv);
-       } else{
+        }
           try {
              PreparedStatement pps = cn.prepareStatement("INSERT INTO usuario(nombre,apP,apM,user,pass,nivel) VALUES(?,?,?,?,?,?)");
              pps.setString(1,txtNombre.getText());
              pps.setString(2,txtAP.getText());
              pps.setString(3,txtAM.getText());
-             pps.setString(4,txtUser.getText());
+             pps.setString(4,user);
              pps.setString(5,valorPass);
              pps.setInt(6,nivel);
              pps.executeUpdate();
@@ -338,9 +363,7 @@ public class AgregarUser extends javax.swing.JDialog {
          } catch (SQLException ex) {
              Logger.getLogger(AgregarUser.class.getName()).log(Level.SEVERE, null, ex);
          }     
-    }  
-    }//GEN-LAST:event_agregarActionPerformed
-
+}
     /**
      * @param args the command line arguments
      */
