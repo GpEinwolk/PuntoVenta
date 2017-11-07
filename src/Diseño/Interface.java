@@ -32,6 +32,11 @@ public final class Interface extends javax.swing.JFrame {
     DecimalFormat df = new DecimalFormat("#.00");
     DefaultTableModel modelCP;
     TableRowSorter<TableModel> tr;
+    java.util.Date date = new java.util.Date();
+    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+    java.text.SimpleDateFormat sdfM = new java.text.SimpleDateFormat("MM");
+    String dateDia = sdf.format(date);
+    String dateMes = sdfM.format(date);
 
     public Interface() {
         initComponents();
@@ -39,7 +44,6 @@ public final class Interface extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("Punto de Venta");
 
-        
         mostrarComboProducto();
         mostrarTablaProducto();
         mostrarTablaModificar();
@@ -1138,7 +1142,7 @@ public final class Interface extends javax.swing.JFrame {
         buttonGroup1.add(rbCdia);
         rbCdia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rbCdia.setForeground(new java.awt.Color(255, 255, 255));
-        rbCdia.setText("Corte por Dia");
+        rbCdia.setText("Corte del Dia");
         rbCdia.setContentAreaFilled(false);
         rbCdia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1149,7 +1153,7 @@ public final class Interface extends javax.swing.JFrame {
         buttonGroup1.add(rbCm);
         rbCm.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rbCm.setForeground(new java.awt.Color(255, 255, 255));
-        rbCm.setText("Corte por Mes");
+        rbCm.setText("Corte del Mes");
         rbCm.setContentAreaFilled(false);
         rbCm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4099,23 +4103,23 @@ public final class Interface extends javax.swing.JFrame {
         }
 
         String sql = "SELECT TIME(fechaEnt),TIME(fechaSal),DATE_FORMAT(fechaSal, \"%d-%m-%Y\" ),DATE_FORMAT(fechaSal, \"%H\" )-DATE_FORMAT(fechaEnt, \"%H\" )AS horas FROM login WHERE usuario_idusuario = '"
-                + idUsuario + "' AND DATE_FORMAT(fechaSal, \"%d-%m-%Y\" )='"+ fecha + "'";
+                + idUsuario + "' AND DATE_FORMAT(fechaSal, \"%d-%m-%Y\" )='" + fecha + "'";
         try {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                comboCortes.addItem("(" + rs.getString("TIME(fechaEnt)") + ")-(" + rs.getString("TIME(fechaSal)") + ")"+"    Horas: "+(rs.getInt("horas")));
+                comboCortes.addItem("(" + rs.getString("TIME(fechaEnt)") + ")-(" + rs.getString("TIME(fechaSal)") + ")" + "    Horas: " + (rs.getInt("horas")));
 
             }
 
         } catch (SQLException ex) {
-            System.out.println((char) 27 + "[31m"+ex);
+            System.out.println((char) 27 + "[31m" + ex);
         }
     }
-    private void group1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_group1
-        // TODO add your handling code here:
+
+    public int idUsuario() {
         Statement st;
-        int idUsuario = 0;
+        int id = 0;
 
         String usuario = "SELECT nombre,idusuario FROM usuario WHERE nombre= '"
                 + comboUsuario.getSelectedItem() + "' AND nivel = '2'";
@@ -4123,42 +4127,50 @@ public final class Interface extends javax.swing.JFrame {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(usuario);
             while (rs.next()) {
-                idUsuario = rs.getInt("idusuario");
+                id = rs.getInt("idusuario");
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
         }
-        java.util.Date date = new java.util.Date();
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-                java.text.SimpleDateFormat sdfM = new java.text.SimpleDateFormat("MM");
-                String fe = sdf.format(date);
-                String fmes = sdfM.format(date);
+
+        return id;
+
+    }
+
+    private void group1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_group1
+        // TODO add your handling code here:        
+        checkGroup();
+    }//GEN-LAST:event_group1
+
+    public void checkGroup() {
         if (rbEspecifico.isSelected()) {
             comboCortes.setEnabled(true);
             corteFecha.setEnabled(true);
+            comboCorte();
         } else if (rbCdia.isSelected()) {
             comboCortes.setEnabled(false);
             corteFecha.setEnabled(false);
-            String dia = "SELECT DATE_FORMAT(fechaSal,\"%Y-%m-%d\") AS fecha , (cantidad*precio)AS importe,formaP FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto WHERE DATE_FORMAT(fechaSal,\"%Y-%m-%d\") = '"+fe+"'AND idusuario ='"+idUsuario+"'";
+            String dia = "SELECT DATE_FORMAT(fechaSal,\"%Y-%m-%d\") AS fecha , (cantidad*precio)AS importe,formaP FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto WHERE DATE_FORMAT(fechaSal,\"%Y-%m-%d\") = '" + dateDia + "'AND idusuario ='" + idUsuario() + "'";
             consultar(dia);
         } else if (rbCm.isSelected()) {
             comboCortes.setEnabled(false);
             corteFecha.setEnabled(false);
-            String mes = "SELECT DATE_FORMAT(fechaSal,\"%m\")AS Mes , (cantidad*precio)AS importe,formaP FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto WHERE DATE_FORMAT(fechaSal,\"%m\") = '"+fmes+"' AND idusuario ='"+idUsuario+"'";
+            String mes = "SELECT DATE_FORMAT(fechaSal,\"%m\")AS Mes , (cantidad*precio)AS importe,formaP FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto WHERE DATE_FORMAT(fechaSal,\"%m\") = '" + dateMes + "' AND idusuario ='" + idUsuario() + "'";
             consultar(mes);
         }
-    }//GEN-LAST:event_group1
-public void consultar(String sql){
-    Statement st;
-    double efectivo = 0;
-    double tarjeta = 0;
-    double cancelada = 0;
+    }
+
+    public void consultar(String sql) {
+        Statement st;
+        double efectivo = 0;
+        double tarjeta = 0;
+        double cancelada = 0;
         try {
             st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql+"AND formaP = 'Efectivo'");
+            ResultSet rs = st.executeQuery(sql + "AND formaP = 'Efectivo'");
             while (rs.next()) {
-                efectivo=rs.getDouble(2)+efectivo;
+                efectivo = rs.getDouble(2) + efectivo;
             }
             jLabel52.setText(Double.toString(efectivo));
         } catch (SQLException ex) {
@@ -4166,9 +4178,9 @@ public void consultar(String sql){
         }
         try {
             st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql+"AND formaP = 'Tarjeta'");
+            ResultSet rs = st.executeQuery(sql + "AND formaP = 'Tarjeta'");
             while (rs.next()) {
-                tarjeta=rs.getDouble(2)+tarjeta;
+                tarjeta = rs.getDouble(2) + tarjeta;
             }
             jLabel65.setText(Double.toString(tarjeta));
         } catch (SQLException ex) {
@@ -4176,27 +4188,20 @@ public void consultar(String sql){
         }
         try {
             st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql+"AND cancelada = '1'");
+            ResultSet rs = st.executeQuery(sql + "AND cancelada = '1'");
             while (rs.next()) {
-                cancelada=rs.getDouble(2)+cancelada;
+                cancelada = rs.getDouble(2) + cancelada;
             }
             jLabel53.setText(Double.toString(cancelada));
         } catch (SQLException ex) {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }
         double total = (efectivo + tarjeta) - cancelada;
-    jLabel54.setText(Double.toString(total));
-}
+        jLabel54.setText(Double.toString(total));
+    }
     private void usuarioChange(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_usuarioChange
         // TODO add your handling code here:
-        if (rbEspecifico.isSelected()) {
-            comboCorte();
-        } else if (rbCdia.isSelected()) {
-            
-        } else if (rbCm.isSelected()) {
-            
-        }
-        
+       checkGroup();
     }//GEN-LAST:event_usuarioChange
 
     private void corteFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_corteFechaPropertyChange
@@ -4206,8 +4211,8 @@ public void consultar(String sql){
 
     private void comboCortesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCortesItemStateChanged
         // TODO add your handling code here:
-        
-        
+
+
     }//GEN-LAST:event_comboCortesItemStateChanged
 
     public static void main(String args[]) {
