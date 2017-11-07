@@ -75,33 +75,6 @@ public class Cobrar extends javax.swing.JDialog {
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jMixto = new javax.swing.JPanel();
-        jPef2 = new javax.swing.JPanel();
-        jPef8 = new javax.swing.JPanel();
-        jPef10 = new javax.swing.JPanel();
-        jPef11 = new javax.swing.JPanel();
-        jPanel19 = new javax.swing.JPanel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jPef3 = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jPef4 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPef5 = new javax.swing.JPanel();
-        jPanel15 = new javax.swing.JPanel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jPanel16 = new javax.swing.JPanel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(737, 524));
@@ -124,7 +97,7 @@ public class Cobrar extends javax.swing.JDialog {
         jLabel6.setText("Tipo de cobro");
 
         jCobro.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jCobro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Tarjeta", "Mixto" }));
+        jCobro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Tarjeta" }));
         jCobro.setToolTipText("");
         jCobro.setBorder(null);
         jCobro.addActionListener(new java.awt.event.ActionListener() {
@@ -494,290 +467,6 @@ public class Cobrar extends javax.swing.JDialog {
 
         jPContenedor.add(jPtarjeta, "card2");
 
-        jMixto.setBackground(new java.awt.Color(40, 41, 41));
-        jMixto.setMaximumSize(new java.awt.Dimension(464, 524));
-        jMixto.setMinimumSize(new java.awt.Dimension(464, 524));
-        jMixto.setPreferredSize(new java.awt.Dimension(464, 524));
-        jMixto.setLayout(new java.awt.GridBagLayout());
-
-        jPef2.setBackground(new java.awt.Color(40, 41, 41));
-        jPef2.setLayout(new javax.swing.BoxLayout(jPef2, javax.swing.BoxLayout.Y_AXIS));
-
-        jPef8.setBackground(new java.awt.Color(40, 41, 41));
-        jPef8.setLayout(new javax.swing.BoxLayout(jPef8, javax.swing.BoxLayout.Y_AXIS));
-
-        jPef10.setBackground(new java.awt.Color(40, 41, 41));
-        jPef10.setLayout(new javax.swing.BoxLayout(jPef10, javax.swing.BoxLayout.Y_AXIS));
-
-        jPef11.setBackground(new java.awt.Color(40, 41, 41));
-        jPef11.setLayout(new javax.swing.BoxLayout(jPef11, javax.swing.BoxLayout.Y_AXIS));
-
-        jPanel19.setBackground(new java.awt.Color(69, 69, 69));
-
-        jLabel36.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel36.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel36.setText(String.valueOf(Ventas.cobrar));
-        jLabel36.setMaximumSize(new java.awt.Dimension(84, 30));
-        jLabel36.setMinimumSize(new java.awt.Dimension(84, 30));
-        jLabel36.setPreferredSize(new java.awt.Dimension(84, 30));
-
-        jLabel37.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel37.setText("TOTAL:");
-        jLabel37.setMaximumSize(new java.awt.Dimension(84, 30));
-        jLabel37.setMinimumSize(new java.awt.Dimension(84, 30));
-        jLabel37.setPreferredSize(new java.awt.Dimension(84, 30));
-
-        jLabel38.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel38.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel38.setText("$");
-        jLabel38.setMaximumSize(new java.awt.Dimension(84, 30));
-        jLabel38.setMinimumSize(new java.awt.Dimension(84, 30));
-        jLabel38.setPreferredSize(new java.awt.Dimension(84, 30));
-
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                        .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        jPef11.add(jPanel19);
-
-        jPef10.add(jPef11);
-
-        jPef8.add(jPef10);
-
-        jPef2.add(jPef8);
-
-        jPef3.setLayout(new javax.swing.BoxLayout(jPef3, javax.swing.BoxLayout.Y_AXIS));
-
-        jPanel11.setBackground(new java.awt.Color(40, 41, 41));
-
-        jLabel16.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("N° Tarjeta:");
-        jLabel16.setName(""); // NOI18N
-
-        try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####-####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextField2.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        jPef3.add(jPanel11);
-
-        jPef2.add(jPef3);
-
-        jPef4.setBackground(new java.awt.Color(40, 41, 41));
-        jPef4.setLayout(new javax.swing.BoxLayout(jPef4, javax.swing.BoxLayout.Y_AXIS));
-
-        jPanel13.setBackground(new java.awt.Color(40, 41, 41));
-
-        jLabel21.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("Tarjeta:");
-        jLabel21.setName(""); // NOI18N
-
-        jLabel22.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("$");
-        jLabel22.setMaximumSize(new java.awt.Dimension(84, 30));
-        jLabel22.setMinimumSize(new java.awt.Dimension(84, 30));
-        jLabel22.setPreferredSize(new java.awt.Dimension(84, 30));
-
-        jTextField1.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jTextField1.setText("0.00");
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        jPef4.add(jPanel13);
-
-        jPef5.setBackground(new java.awt.Color(40, 41, 41));
-        jPef5.setLayout(new javax.swing.BoxLayout(jPef5, javax.swing.BoxLayout.Y_AXIS));
-
-        jPanel15.setBackground(new java.awt.Color(40, 41, 41));
-
-        jLabel26.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel26.setText("Efectivo:");
-        jLabel26.setName(""); // NOI18N
-
-        jLabel27.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel27.setText("$");
-        jLabel27.setMaximumSize(new java.awt.Dimension(84, 30));
-        jLabel27.setMinimumSize(new java.awt.Dimension(84, 30));
-        jLabel27.setPreferredSize(new java.awt.Dimension(84, 30));
-
-        jTextField2.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jTextField2.setText(String.valueOf(Ventas.cobrar));
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField2KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-
-        jPef5.add(jPanel15);
-
-        jPanel16.setBackground(new java.awt.Color(69, 69, 69));
-
-        jLabel33.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel33.setText("0.00");
-        jLabel33.setMaximumSize(new java.awt.Dimension(84, 30));
-        jLabel33.setMinimumSize(new java.awt.Dimension(84, 30));
-        jLabel33.setPreferredSize(new java.awt.Dimension(84, 30));
-
-        jLabel35.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel35.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel35.setText("Cambio:");
-        jLabel35.setMaximumSize(new java.awt.Dimension(84, 30));
-        jLabel35.setMinimumSize(new java.awt.Dimension(84, 30));
-        jLabel35.setPreferredSize(new java.awt.Dimension(84, 30));
-
-        jLabel34.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel34.setText("$");
-        jLabel34.setMaximumSize(new java.awt.Dimension(84, 30));
-        jLabel34.setMinimumSize(new java.awt.Dimension(84, 30));
-        jLabel34.setPreferredSize(new java.awt.Dimension(84, 30));
-
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                        .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        jPef5.add(jPanel16);
-
-        jPef4.add(jPef5);
-
-        jPef2.add(jPef4);
-
-        jMixto.add(jPef2, new java.awt.GridBagConstraints());
-
-        jPContenedor.add(jMixto, "card2");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -815,9 +504,6 @@ public class Cobrar extends javax.swing.JDialog {
             case "Tarjeta":
                 jPContenedor.add(jPtarjeta);
                 break;
-            case "Mixto":
-                jPContenedor.add(jMixto);
-                break;
 
             default:
                 jPContenedor.add(jPefectivo);
@@ -837,15 +523,6 @@ public class Cobrar extends javax.swing.JDialog {
             case "Tarjeta":
                 crearReporte("Tarjeta", tipo, Double.parseDouble(jLabel9.getText()),0.00,Double.parseDouble(jLabel9.getText()));
                 cobrar();
-                break;
-            case "Mixto":
-                if ("Falta:".equals(jLabel35.getText())) {
-                    ImageIcon ua = new ImageIcon("src/img/error (2).png");
-                    JOptionPane.showMessageDialog(null, "Falta: $" + jLabel35.getText(), "Mensaje", JOptionPane.OK_OPTION, ua);
-                } else {
-                    crearReporte("Mixto", tipo, Double.parseDouble(jLabel36.getText()), Double.parseDouble(jLabel33.getText()), (Double.parseDouble(jTextField1.getText())+Double.parseDouble(jTextField2.getText())));
-                    cobrar();
-                }
                 break;
             default:
                 if ("Falta:".equals(jLabel15.getText())) {
@@ -930,20 +607,6 @@ public class Cobrar extends javax.swing.JDialog {
         cobro("hoja");
     }//GEN-LAST:event_cobroHojaActionPerformed
 
-    void cobroMixto() {
-        float tarjeta = Float.parseFloat(jTextField1.getText());
-        float efectivo = Float.parseFloat(jTextField2.getText());
-        float pago = tarjeta + efectivo;
-        float cambio = pago - Ventas.cobrar;
-        if (pago >= Ventas.cobrar) {
-            jLabel35.setText("Cambio:");
-            jLabel33.setText(String.valueOf(cambio));
-        } else {
-            jLabel35.setText("Falta:");
-            cambio = cambio * (-1);
-            jLabel33.setText(String.valueOf(cambio));
-        }
-    }
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
         // TODO add your handling code here:
         float pago = Float.parseFloat(jTextField3.getText());
@@ -959,16 +622,6 @@ public class Cobrar extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jTextField3KeyReleased
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-        // TODO add your handling code here:
-        cobroMixto();
-    }//GEN-LAST:event_jTextField1KeyReleased
-
-    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
-        // TODO add your handling code here:
-        cobroMixto();
-    }//GEN-LAST:event_jTextField2KeyReleased
-
     private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
         // TODO add your handling code here:
         char caracter = evt.getKeyChar();
@@ -978,24 +631,6 @@ public class Cobrar extends javax.swing.JDialog {
             evt.consume();  // ignorar el evento de teclado
         }
     }//GEN-LAST:event_jTextField3KeyTyped
-
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-        // TODO add your handling code here:
-        char caracter = evt.getKeyChar();
-        if (((caracter < '0')
-                || (caracter > '9'))
-                && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
-            evt.consume();  // ignorar el evento de teclado
-        }
-    }//GEN-LAST:event_jTextField1KeyTyped
-
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (Character.isLetter(c)) {
-            evt.consume();  // ignorar el evento de teclado
-        }
-    }//GEN-LAST:event_jTextField2KeyTyped
 
     /**
      * @param args the command line arguments
@@ -1025,40 +660,22 @@ public class Cobrar extends javax.swing.JDialog {
     private javax.swing.JButton cobroTicket;
     private javax.swing.JComboBox<String> jCobro;
     private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jMixto;
     private javax.swing.JPanel jPContenedor;
     private javax.swing.JPanel jPMenu;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -1066,18 +683,9 @@ public class Cobrar extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPef;
     private javax.swing.JPanel jPef1;
-    private javax.swing.JPanel jPef10;
-    private javax.swing.JPanel jPef11;
-    private javax.swing.JPanel jPef2;
-    private javax.swing.JPanel jPef3;
-    private javax.swing.JPanel jPef4;
-    private javax.swing.JPanel jPef5;
     private javax.swing.JPanel jPef7;
-    private javax.swing.JPanel jPef8;
     private javax.swing.JPanel jPefectivo;
     private javax.swing.JPanel jPtarjeta;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 
