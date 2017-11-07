@@ -4116,6 +4116,8 @@ public final class Interface extends javax.swing.JFrame {
     }
     private void group1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_group1
         // TODO add your handling code here:
+        Date date = new Date();
+        System.out.println(date);
         if (rbEspecifico.isSelected()) {
             comboCortes.setEnabled(true);
             corteFecha.setEnabled(true);
@@ -4140,6 +4142,7 @@ public final class Interface extends javax.swing.JFrame {
 
     private void comboCortesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCortesItemStateChanged
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_comboCortesItemStateChanged
 
     public static void main(String args[]) {
