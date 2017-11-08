@@ -1530,6 +1530,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="group1"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="rbEspecifico.setSelected(true);"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JRadioButton" name="rbCdia">
                       <Properties>
@@ -1574,7 +1577,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="comboCortesItemStateChanged"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboCortesActionPerformed"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

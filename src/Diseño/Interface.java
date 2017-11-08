@@ -9,9 +9,8 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -37,8 +36,9 @@ public final class Interface extends javax.swing.JFrame {
     java.text.SimpleDateFormat sdfM = new java.text.SimpleDateFormat("MM");
     String dateDia = sdf.format(date);
     String dateMes = sdfM.format(date);
-
+    Vector idlogin;
     public Interface() {
+        idlogin = new Vector(10, 2);
         initComponents();
         InicioSesion log = new InicioSesion();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -57,7 +57,6 @@ public final class Interface extends javax.swing.JFrame {
     }
 
     public void cerrar() {
-
         Object[] opciones = {"Aceptar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(rootPane, "Desea cerrar la aplicacion", "Mensaje de Confirmacion",
                 JOptionPane.YES_NO_OPTION,
@@ -1161,9 +1160,9 @@ public final class Interface extends javax.swing.JFrame {
             }
         });
 
-        comboCortes.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboCortesItemStateChanged(evt);
+        comboCortes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCortesActionPerformed(evt);
             }
         });
 
@@ -1223,6 +1222,7 @@ public final class Interface extends javax.swing.JFrame {
 
         Date date = new Date();
         corteFecha.setDate(date);
+        rbEspecifico.setSelected(true);
 
         jLabel75.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel75.setForeground(new java.awt.Color(255, 255, 255));
@@ -4083,6 +4083,11 @@ public final class Interface extends javax.swing.JFrame {
         mostrarUsuarios();
     }//GEN-LAST:event_comboUsuarioMouseClicked
     private void comboCorte() {
+        if(idlogin.isEmpty()){
+        }else{
+        idlogin.clear();
+        }
+        
         DateFormat df = new SimpleDateFormat("dd-MM-YYYY");
         String fecha = df.format(corteFecha.getDate());
         comboCortes.removeAllItems();
@@ -4102,16 +4107,15 @@ public final class Interface extends javax.swing.JFrame {
             Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        String sql = "SELECT TIME(fechaEnt),TIME(fechaSal),DATE_FORMAT(fechaSal, \"%d-%m-%Y\" ),DATE_FORMAT(fechaSal, \"%H\" )-DATE_FORMAT(fechaEnt, \"%H\" )AS horas FROM login WHERE usuario_idusuario = '"
+        String sql = "SELECT TIME(fechaEnt),TIME(fechaSal),DATE_FORMAT(fechaSal, \"%d-%m-%Y\" ),DATE_FORMAT(fechaSal, \"%H\" )-DATE_FORMAT(fechaEnt, \"%H\" )AS horas,idlogin FROM login WHERE usuario_idusuario = '"
                 + idUsuario + "' AND DATE_FORMAT(fechaSal, \"%d-%m-%Y\" )='" + fecha + "'";
         try {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 comboCortes.addItem("(" + rs.getString("TIME(fechaEnt)") + ")-(" + rs.getString("TIME(fechaSal)") + ")" + "    Horas: " + (rs.getInt("horas")));
-
+                idlogin.addElement(rs.getInt("idlogin"));
             }
-
         } catch (SQLException ex) {
             System.out.println((char) 27 + "[31m" + ex);
         }
@@ -4129,11 +4133,9 @@ public final class Interface extends javax.swing.JFrame {
             while (rs.next()) {
                 id = rs.getInt("idusuario");
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return id;
 
     }
@@ -4207,14 +4209,21 @@ public final class Interface extends javax.swing.JFrame {
     private void corteFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_corteFechaPropertyChange
         // TODO add your handling code here:
         comboCorte();
+        corteEspecifico();
     }//GEN-LAST:event_corteFechaPropertyChange
 
-    private void comboCortesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCortesItemStateChanged
+    private void comboCortesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCortesActionPerformed
         // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_comboCortesItemStateChanged
-
+        corteEspecifico();
+    }//GEN-LAST:event_comboCortesActionPerformed
+public void corteEspecifico(){
+int id = comboCortes.getSelectedIndex();
+        if (idlogin.size()<=0){
+        
+        }else{
+        System.out.println(idlogin.elementAt(id));
+        }
+}
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
