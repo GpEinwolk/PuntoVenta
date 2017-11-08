@@ -37,10 +37,9 @@ public final class BuscarProductos extends javax.swing.JDialog {
     
     public BuscarProductos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
-        this.setTitle("Buscar un producto");
+        setTitle("Buscar un producto");
+        initComponents();        
         tablaProductos();
-
     }
 
     void tablaProductos() {
@@ -73,20 +72,7 @@ public final class BuscarProductos extends javax.swing.JDialog {
         }
         tr = new TableRowSorter<>(modelo);
         jTable1.setRowSorter(tr);
-        TableColumnModel columnModel = jTable1.getColumnModel();
-        for (int col = 0; col < jTable1.getColumnCount(); col++) {
-
-            int maxwidth = 0;
-            for (int row = 0; row < jTable1.getRowCount(); row++) {
-                TableCellRenderer rend = jTable1.getCellRenderer(row, col);
-                Object value = jTable1.getValueAt(row, col);
-                Component comp = rend.getTableCellRendererComponent(jTable1, value, false, false, row, col);
-                maxwidth = Math.max(comp.getPreferredSize().width, maxwidth);
-            }
-            TableColumn column = columnModel.getColumn(col);
-            column.setPreferredWidth(maxwidth);
-            pack();
-        }
+        
     }
 
     /**
@@ -100,7 +86,11 @@ public final class BuscarProductos extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
         jButton1 = new javax.swing.JButton();
         campo = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -245,49 +235,6 @@ public final class BuscarProductos extends javax.swing.JDialog {
            jButton1.doClick();
         }
     }//GEN-LAST:event_enterTabla
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                BuscarProductos dialog = new BuscarProductos((Ventas) new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField campo;

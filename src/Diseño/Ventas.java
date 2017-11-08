@@ -139,7 +139,11 @@ public final class Ventas extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tablaVenta = new javax.swing.JTable();
+        tablaVenta = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -290,11 +294,6 @@ public final class Ventas extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("CODIGO");
 
-        tablaVenta = new javax.swing.JTable(){
-            public boolean isCellEditable(int rowIndex, int colIndex){
-                return false;
-            }
-        };
         tablaVenta.setBackground(new java.awt.Color(251, 251, 251));
         tablaVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tablaVenta.setForeground(new java.awt.Color(51, 51, 51));
@@ -490,7 +489,7 @@ public final class Ventas extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        BuscarProductos bp = new BuscarProductos(this, false);
+        BuscarProductos bp = new BuscarProductos(this, true);
         bp.setVisible(true);
 
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -594,35 +593,6 @@ public final class Ventas extends javax.swing.JFrame {
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         setExtendedState(Ventas.CROSSHAIR_CURSOR);
     }//GEN-LAST:event_salirActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ventas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar;
     private javax.swing.JButton borrarProducto;
@@ -648,5 +618,4 @@ public final class Ventas extends javax.swing.JFrame {
     public static javax.swing.JTable tablaVenta;
     public static javax.swing.JTextField textBuscar;
     // End of variables declaration//GEN-END:variables
-
 }
