@@ -1301,7 +1301,7 @@ public final class Interface extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jLabel21)
                                             .addComponent(jPVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(jLabel75)
@@ -4153,12 +4153,12 @@ public final class Interface extends javax.swing.JFrame {
         } else if (rbCdia.isSelected()) {
             comboCortes.setEnabled(false);
             corteFecha.setEnabled(false);
-            String dia = "SELECT DATE_FORMAT(fechaSal,\"%Y-%m-%d\") AS fecha , (cantidad*precio)AS importe,formaP FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto WHERE DATE_FORMAT(fechaSal,\"%Y-%m-%d\") = '" + dateDia + "'AND idusuario ='" + idUsuario() + "'";
+            String dia = "SELECT DATE_FORMAT(fechaSal,\"%Y-%m-%d\") AS fecha , (cantidad*precio)-(cantidad*costo)AS ganancia,formaP FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto WHERE DATE_FORMAT(fechaSal,\"%Y-%m-%d\") = '" + dateDia + "'AND idusuario ='" + idUsuario() + "'";
             consultar(dia);
         } else if (rbCm.isSelected()) {
             comboCortes.setEnabled(false);
             corteFecha.setEnabled(false);
-            String mes = "SELECT DATE_FORMAT(fechaSal,\"%m\")AS Mes , (cantidad*precio)AS importe,formaP FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto WHERE DATE_FORMAT(fechaSal,\"%m\") = '" + dateMes + "' AND idusuario ='" + idUsuario() + "'";
+            String mes = "SELECT DATE_FORMAT(fechaSal,\"%m\")AS Mes , (cantidad*precio)-(cantidad*costo)AS ganancia,formaP FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto WHERE DATE_FORMAT(fechaSal,\"%m\") = '" + dateMes + "' AND idusuario ='" + idUsuario() + "'";
             consultar(mes);
         }
     }
@@ -4170,8 +4170,7 @@ public final class Interface extends javax.swing.JFrame {
         double cancelada = 0;
         try {
             st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql + "AND formaP = 'Efectivo' AND cancelada = '0'");
-            System.out.println(sql + "AND formaP = 'Efectivo'");
+            ResultSet rs = st.executeQuery(sql + " AND formaP = 'Efectivo' AND cancelada = '0'");
             while (rs.next()) {
                 efectivo = rs.getDouble(2) + efectivo;
             }
@@ -4181,8 +4180,7 @@ public final class Interface extends javax.swing.JFrame {
         }
         try {
             st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql + "AND formaP = 'Tarjeta' AND cancelada = '0'");
-            System.out.println(sql + "AND formaP = 'Tarjeta'");
+            ResultSet rs = st.executeQuery(sql + " AND formaP = 'Tarjeta' AND cancelada = '0'");
             while (rs.next()) {
                 tarjeta = rs.getDouble(2) + tarjeta;
             }
@@ -4193,7 +4191,6 @@ public final class Interface extends javax.swing.JFrame {
         try {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql + "AND cancelada = '1'");
-            System.out.println(sql + "AND cancelada = '1'");
             while (rs.next()) {
                 cancelada = rs.getDouble(2) + cancelada;
             }
@@ -4201,7 +4198,8 @@ public final class Interface extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }
-        double total = (efectivo + tarjeta) - cancelada;
+        double total = (efectivo + tarjeta);
+        jLabel47.setText(df.format(total));
         jLabel54.setText(df.format(total));
     }
     private void usuarioChange(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_usuarioChange
@@ -4223,10 +4221,7 @@ public void corteEspecifico(){
    int id = comboCortes.getSelectedIndex();
         if (idlogin.size()<=0){        
         }else{
-            String importeEfectivo = "SELECT (cantidad*precio) AS importe FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE idproducto = producto_idproducto AND login_idlogin='"+idlogin.elementAt(id)+"' AND formap = 'Efectivo'";
-            String importeTarjeta = "SELECT (cantidad*precio) AS importe FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE idproducto = producto_idproducto AND login_idlogin='"+idlogin.elementAt(id)+"' AND formap = 'Tarjeta'";
-            String cancelada = "SELECT (cantidad*precio) AS importe FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE idproducto = producto_idproducto AND login_idlogin='"+idlogin.elementAt(id)+"' AND cancelada = '0'";
-            String sql = "SELECT precio,(cantidad*precio) AS importe FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE idproducto = producto_idproducto AND login_idlogin='"+idlogin.elementAt(id)+"'";
+            String sql = "SELECT precio,(cantidad*precio)-(cantidad*costo) AS ganancia FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE idproducto = producto_idproducto AND login_idlogin='"+idlogin.elementAt(id)+"'";
             consultar(sql);
         }
 }

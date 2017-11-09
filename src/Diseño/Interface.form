@@ -518,7 +518,7 @@
                                                           <EmptySpace max="-2" attributes="0"/>
                                                           <Component id="jLabel43" min="-2" pref="26" max="-2" attributes="0"/>
                                                           <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="jLabel47" min="-2" pref="191" max="-2" attributes="0"/>
                                                       </Group>
                                                       <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
                                                       <Component id="jPVentas" min="-2" pref="459" max="-2" attributes="0"/>
