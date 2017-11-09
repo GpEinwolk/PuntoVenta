@@ -1222,7 +1222,7 @@ public final class Interface extends javax.swing.JFrame {
 
         Date date = new Date();
         corteFecha.setDate(date);
-        rbEspecifico.setSelected(true);
+        rbCdia.setSelected(true);
 
         jLabel75.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel75.setForeground(new java.awt.Color(255, 255, 255));
@@ -4170,7 +4170,8 @@ public final class Interface extends javax.swing.JFrame {
         double cancelada = 0;
         try {
             st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql + "AND formaP = 'Efectivo'");
+            ResultSet rs = st.executeQuery(sql + "AND formaP = 'Efectivo' AND cancelada = '0'");
+            System.out.println(sql + "AND formaP = 'Efectivo'");
             while (rs.next()) {
                 efectivo = rs.getDouble(2) + efectivo;
             }
@@ -4180,7 +4181,8 @@ public final class Interface extends javax.swing.JFrame {
         }
         try {
             st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql + "AND formaP = 'Tarjeta'");
+            ResultSet rs = st.executeQuery(sql + "AND formaP = 'Tarjeta' AND cancelada = '0'");
+            System.out.println(sql + "AND formaP = 'Tarjeta'");
             while (rs.next()) {
                 tarjeta = rs.getDouble(2) + tarjeta;
             }
@@ -4191,6 +4193,7 @@ public final class Interface extends javax.swing.JFrame {
         try {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql + "AND cancelada = '1'");
+            System.out.println(sql + "AND cancelada = '1'");
             while (rs.next()) {
                 cancelada = rs.getDouble(2) + cancelada;
             }
@@ -4199,7 +4202,7 @@ public final class Interface extends javax.swing.JFrame {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }
         double total = (efectivo + tarjeta) - cancelada;
-        jLabel54.setText(Double.toString(total));
+        jLabel54.setText(df.format(total));
     }
     private void usuarioChange(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_usuarioChange
         // TODO add your handling code here:
@@ -4217,11 +4220,14 @@ public final class Interface extends javax.swing.JFrame {
         corteEspecifico();
     }//GEN-LAST:event_comboCortesActionPerformed
 public void corteEspecifico(){
-int id = comboCortes.getSelectedIndex();
-        if (idlogin.size()<=0){
-        
+   int id = comboCortes.getSelectedIndex();
+        if (idlogin.size()<=0){        
         }else{
-        System.out.println(idlogin.elementAt(id));
+            String importeEfectivo = "SELECT (cantidad*precio) AS importe FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE idproducto = producto_idproducto AND login_idlogin='"+idlogin.elementAt(id)+"' AND formap = 'Efectivo'";
+            String importeTarjeta = "SELECT (cantidad*precio) AS importe FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE idproducto = producto_idproducto AND login_idlogin='"+idlogin.elementAt(id)+"' AND formap = 'Tarjeta'";
+            String cancelada = "SELECT (cantidad*precio) AS importe FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE idproducto = producto_idproducto AND login_idlogin='"+idlogin.elementAt(id)+"' AND cancelada = '0'";
+            String sql = "SELECT precio,(cantidad*precio) AS importe FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE idproducto = producto_idproducto AND login_idlogin='"+idlogin.elementAt(id)+"'";
+            consultar(sql);
         }
 }
     public static void main(String args[]) {
