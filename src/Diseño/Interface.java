@@ -457,6 +457,7 @@ public final class Interface extends javax.swing.JFrame {
         rbCm = new javax.swing.JRadioButton();
         comboCortes = new javax.swing.JComboBox<>();
         jLabel57 = new javax.swing.JLabel();
+        tUsuarios = new javax.swing.JCheckBox();
         jLabel75 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -1170,21 +1171,33 @@ public final class Interface extends javax.swing.JFrame {
         jLabel57.setForeground(new java.awt.Color(255, 255, 255));
         jLabel57.setText("Cortes:");
 
+        tUsuarios.setBackground(new java.awt.Color(40, 41, 41));
+        tUsuarios.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tUsuarios.setForeground(new java.awt.Color(255, 255, 255));
+        tUsuarios.setText("Todos los usuarios");
+        tUsuarios.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                tUsuariosItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPdatosLayout = new javax.swing.GroupLayout(jPdatos);
         jPdatos.setLayout(jPdatosLayout);
         jPdatosLayout.setHorizontalGroup(
             jPdatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPdatosLayout.createSequentialGroup()
-                .addGroup(jPdatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPdatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPdatosLayout.createSequentialGroup()
                         .addComponent(jLabel56)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tUsuarios)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rbEspecifico)
                         .addGap(18, 18, 18)
                         .addComponent(rbCdia)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rbCm))
                     .addGroup(jPdatosLayout.createSequentialGroup()
                         .addComponent(jLabel58)
@@ -1206,17 +1219,18 @@ public final class Interface extends javax.swing.JFrame {
                         .addComponent(rbCm))
                     .addGroup(jPdatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel56, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(comboUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(comboUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tUsuarios)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPdatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel57, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel57, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPdatosLayout.createSequentialGroup()
                         .addGroup(jPdatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPdatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(corteFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                             .addComponent(comboCortes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 5, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -1234,13 +1248,13 @@ public final class Interface extends javax.swing.JFrame {
         jTable1.setForeground(new java.awt.Color(51, 51, 51));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Fecha", "Producto", "Cantidad", "Importe", "Vendedor"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
@@ -1343,7 +1357,7 @@ public final class Interface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel76)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -4083,6 +4097,7 @@ public final class Interface extends javax.swing.JFrame {
         mostrarUsuarios();
     }//GEN-LAST:event_comboUsuarioMouseClicked
     private void comboCorte() {
+        
         if(idlogin.isEmpty()){
         }else{
         idlogin.clear();
@@ -4090,25 +4105,15 @@ public final class Interface extends javax.swing.JFrame {
         
         DateFormat df = new SimpleDateFormat("dd-MM-YYYY");
         String fecha = df.format(corteFecha.getDate());
+        String sql ="SELECT TIME(fechaEnt),TIME(fechaSal),DATE_FORMAT(fechaSal, \"%d-%m-%Y\" ),DATE_FORMAT(fechaSal, \"%H\" )-DATE_FORMAT(fechaEnt, \"%H\" )AS horas,idlogin FROM usuario INNER JOIN login ON idusuario = usuario_idusuario WHERE DATE_FORMAT(fechaSal, \"%d-%m-%Y\" )= '" + fecha + "'";
         comboCortes.removeAllItems();
         Statement st;
-        int idUsuario = 0;
-
-        String usuario = "SELECT nombre,idusuario FROM usuario WHERE nombre= '"
-                + comboUsuario.getSelectedItem() + "' AND nivel = '2'";
-        try {
-            st = cn.createStatement();
-            ResultSet rs = st.executeQuery(usuario);
-            while (rs.next()) {
-                idUsuario = rs.getInt("idusuario");
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+        if(tUsuarios.isSelected()){
+            sql = sql+"AND nivel = '2'";
+            }else{
+            sql =  sql+"AND usuario_idusuario = '"+ idUsuario() + "'";
+            
         }
-
-        String sql = "SELECT TIME(fechaEnt),TIME(fechaSal),DATE_FORMAT(fechaSal, \"%d-%m-%Y\" ),DATE_FORMAT(fechaSal, \"%H\" )-DATE_FORMAT(fechaEnt, \"%H\" )AS horas,idlogin FROM login WHERE usuario_idusuario = '"
-                + idUsuario + "' AND DATE_FORMAT(fechaSal, \"%d-%m-%Y\" )='" + fecha + "'";
         try {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -4146,28 +4151,42 @@ public final class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_group1
 
     public void checkGroup() {
+        String sql = "SELECT DATE_FORMAT(fechaSal,\"%Y-%m-%d\") AS fecha , (cantidad*precio)-(cantidad*costo)AS ganancia,formaP,producto.nombre,cantidad,(cantidad*precio) AS importe,usuario.nombre FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto";
         if (rbEspecifico.isSelected()) {
             comboCortes.setEnabled(true);
             corteFecha.setEnabled(true);
             comboCorte();
+            corteEspecifico();
         } else if (rbCdia.isSelected()) {
             comboCortes.setEnabled(false);
             corteFecha.setEnabled(false);
-            String dia = "SELECT DATE_FORMAT(fechaSal,\"%Y-%m-%d\") AS fecha , (cantidad*precio)-(cantidad*costo)AS ganancia,formaP FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto WHERE DATE_FORMAT(fechaSal,\"%Y-%m-%d\") = '" + dateDia + "'AND idusuario ='" + idUsuario() + "'";
+            String dia = sql + " WHERE DATE_FORMAT(fechaSal,\"%Y-%m-%d\") = '" + dateDia+"'" ;
+            if(tUsuarios.isSelected()){
+            
+            }else{
+            dia = dia +"AND idusuario ='" + idUsuario() + "'";
+            }
             consultar(dia);
         } else if (rbCm.isSelected()) {
             comboCortes.setEnabled(false);
             corteFecha.setEnabled(false);
-            String mes = "SELECT DATE_FORMAT(fechaSal,\"%m\")AS Mes , (cantidad*precio)-(cantidad*costo)AS ganancia,formaP FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto WHERE DATE_FORMAT(fechaSal,\"%m\") = '" + dateMes + "' AND idusuario ='" + idUsuario() + "'";
+            String mes = sql+" WHERE DATE_FORMAT(fechaSal,\"%m\") = '" + dateMes+"'";
+            if(tUsuarios.isSelected()){            
+            }else{
+            mes = mes +" AND idusuario ='" + idUsuario() + "' ";
+            }
             consultar(mes);
         }
     }
 
     public void consultar(String sql) {
         Statement st;
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         double efectivo = 0;
         double tarjeta = 0;
         double cancelada = 0;
+        modelo.setRowCount(0);
+        jTable1.setModel(modelo);
         try {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql + " AND formaP = 'Efectivo' AND cancelada = '0'");
@@ -4193,6 +4212,8 @@ public final class Interface extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(sql + "AND cancelada = '1'");
             while (rs.next()) {
                 cancelada = rs.getDouble(2) + cancelada;
+                modelo.addRow(new Object[]{rs.getString("fecha"), rs.getString("producto.nombre"), rs.getString("cantidad"), rs.getString("Importe"), rs.getString("usuario.nombre")});
+                
             }
             jLabel53.setText(Double.toString(cancelada));
         } catch (SQLException ex) {
@@ -4217,11 +4238,22 @@ public final class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
         corteEspecifico();
     }//GEN-LAST:event_comboCortesActionPerformed
+
+    private void tUsuariosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tUsuariosItemStateChanged
+        // TODO add your handling code here:
+        
+        if(tUsuarios.isSelected()){
+            comboUsuario.setEnabled(false);
+        }else{
+        comboUsuario.setEnabled(true);
+        }
+        checkGroup();
+    }//GEN-LAST:event_tUsuariosItemStateChanged
 public void corteEspecifico(){
    int id = comboCortes.getSelectedIndex();
         if (idlogin.size()<=0){        
         }else{
-            String sql = "SELECT precio,(cantidad*precio)-(cantidad*costo) AS ganancia FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE idproducto = producto_idproducto AND login_idlogin='"+idlogin.elementAt(id)+"'";
+            String sql = "SELECT DATE_FORMAT(fechaSal,\"%Y-%m-%d\") AS fecha , (cantidad*precio)-(cantidad*costo)AS ganancia,formaP,producto.nombre,cantidad,(cantidad*precio) AS importe,usuario.nombre FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto WHERE login_idlogin='"+idlogin.elementAt(id)+"'";
             consultar(sql);
         }
 }
@@ -4477,6 +4509,7 @@ public void corteEspecifico(){
     private javax.swing.JMenuItem serAgre;
     private javax.swing.JMenuItem serMod;
     private javax.swing.JSpinner spinnerCantidad;
+    private javax.swing.JCheckBox tUsuarios;
     public static javax.swing.JTable tablaBusCP;
     public static javax.swing.JTable tablaBusCP3;
     public static javax.swing.JTable tablaComprar;
