@@ -92,7 +92,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img/receipt (2).png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Realizar corte del dia"/>
+            <Property name="text" type="java.lang.String" value="Realizar corte de caja"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
@@ -185,7 +185,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img/receipt (2).png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Realizar corte de cajero"/>
+            <Property name="text" type="java.lang.String" value="Salidas y/o Gastos"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>

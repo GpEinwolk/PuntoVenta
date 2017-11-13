@@ -166,7 +166,7 @@ public final class Ventas extends javax.swing.JFrame {
         jBcorteCaja.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jBcorteCaja.setForeground(new java.awt.Color(255, 255, 255));
         jBcorteCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/receipt (2).png"))); // NOI18N
-        jBcorteCaja.setText("Realizar corte del dia");
+        jBcorteCaja.setText("Realizar corte de caja");
         jBcorteCaja.setBorder(null);
         jBcorteCaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBcorteCaja.setFocusPainted(false);
@@ -211,7 +211,7 @@ public final class Ventas extends javax.swing.JFrame {
         jBcorteCaja1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jBcorteCaja1.setForeground(new java.awt.Color(255, 255, 255));
         jBcorteCaja1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/receipt (2).png"))); // NOI18N
-        jBcorteCaja1.setText("Realizar corte de cajero");
+        jBcorteCaja1.setText("Salidas y/o Gastos");
         jBcorteCaja1.setBorder(null);
         jBcorteCaja1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBcorteCaja1.setFocusPainted(false);
