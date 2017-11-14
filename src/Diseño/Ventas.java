@@ -57,7 +57,7 @@ public final class Ventas extends javax.swing.JFrame {
             String datos[] = new String[5];
 
             try {
-                
+
                 st = cn.createStatement();
                 ResultSet rs = st.executeQuery(sql);
 
@@ -507,13 +507,13 @@ public final class Ventas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
     public static void vaciarCarrito() {
         try {
-            if(model.getRowCount()==0){
-            JOptionPane.showMessageDialog(null, "El carrito esta vacio", "Mensaje", JOptionPane.OK_OPTION);
-            }else{
-            model.setRowCount(0);
-            cobrar = 0;
-            jLabel1.setText("$" + String.valueOf(cobrar));
-            idProducto.removeAllElements();
+            if (model.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "El carrito esta vacio", "Mensaje", JOptionPane.OK_OPTION);
+            } else {
+                model.setRowCount(0);
+                cobrar = 0;
+                jLabel1.setText("$" + String.valueOf(cobrar));
+                idProducto.removeAllElements();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "El carrito esta vacio", "Mensaje", JOptionPane.OK_OPTION);
@@ -522,17 +522,17 @@ public final class Ventas extends javax.swing.JFrame {
     private void borrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarProductoActionPerformed
         // TODO add your handling code here:
         try {
-            if(model.getRowCount()==0){
-            JOptionPane.showMessageDialog(null, "El carrito esta vacio", "Mensaje", JOptionPane.OK_OPTION);
-            }else{
-            idProducto.removeElementAt(tablaVenta.getSelectedRow());
-            DefaultTableModel dtm = (DefaultTableModel) tablaVenta.getModel();
-            int canti = (int) dtm.getValueAt(tablaVenta.getSelectedRow(), 3);
-            float precio = Float.parseFloat((String) dtm.getValueAt(tablaVenta.getSelectedRow(), 2));
-            float quitarprecio = canti * precio;
-            cobrar = cobrar - quitarprecio;
-            jLabel1.setText("$" + String.valueOf(cobrar));
-            dtm.removeRow(tablaVenta.getSelectedRow());
+            if (model.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "El carrito esta vacio", "Mensaje", JOptionPane.OK_OPTION);
+            } else {
+                idProducto.removeElementAt(tablaVenta.getSelectedRow());
+                DefaultTableModel dtm = (DefaultTableModel) tablaVenta.getModel();
+                int canti = (int) dtm.getValueAt(tablaVenta.getSelectedRow(), 3);
+                float precio = Float.parseFloat((String) dtm.getValueAt(tablaVenta.getSelectedRow(), 2));
+                float quitarprecio = canti * precio;
+                cobrar = cobrar - quitarprecio;
+                jLabel1.setText("$" + String.valueOf(cobrar));
+                dtm.removeRow(tablaVenta.getSelectedRow());
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Producto no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
@@ -544,20 +544,20 @@ public final class Ventas extends javax.swing.JFrame {
         int fila = tablaVenta.getRowCount();
         String query = "SELECT ventacol FROM venta ORDER BY ventacol DESC LIMIT 1";
         Statement st;
-        int count = 0;                
+        int count = 0;
         try {
             st = cn.createStatement();
-            ResultSet rs = st.executeQuery(query);            
+            ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                    count = rs.getInt(1);
+                count = rs.getInt(1);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (count!=0){
-        count++;
-        }else{
-        count=1;
+        if (count != 0) {
+            count++;
+        } else {
+            count = 1;
         }
         if (fila != 0) {
             String[] insert = new String[fila];
@@ -584,6 +584,20 @@ public final class Ventas extends javax.swing.JFrame {
 
     private void jBcancelarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarVActionPerformed
         // TODO add your handling code here:
+        String sql = "SELECT nombre FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE login_idlogin = (SELECT idlogin FROM login ORDER BY idlogin DESC LIMIT 1)";
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                iniciarSesion iS = new iniciarSesion(this, true);
+                iS.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se han registrado ventas en este turno", "Mensaje", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jBcancelarVActionPerformed
 
     private void jBcorteCaja1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcorteCaja1ActionPerformed
