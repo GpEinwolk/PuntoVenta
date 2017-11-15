@@ -443,10 +443,10 @@ public final class Interface extends javax.swing.JFrame {
         jLabel71 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jLabel52 = new javax.swing.JLabel();
-        jLabel65 = new javax.swing.JLabel();
-        jLabel53 = new javax.swing.JLabel();
-        jLabel89 = new javax.swing.JLabel();
+        labelEfectivo = new javax.swing.JLabel();
+        labelTarjeta = new javax.swing.JLabel();
+        labelSalidas = new javax.swing.JLabel();
+        labelDevoluciones = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -466,7 +466,7 @@ public final class Interface extends javax.swing.JFrame {
         tUsuarios = new javax.swing.JCheckBox();
         jLabel75 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaDevoluciones = new javax.swing.JTable();
         jLabel76 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -1090,49 +1090,49 @@ public final class Interface extends javax.swing.JFrame {
         jPanel9.setBackground(new java.awt.Color(251, 251, 251));
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.Y_AXIS));
 
-        jLabel52.setBackground(new java.awt.Color(40, 41, 41));
-        jLabel52.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel52.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel52.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel52.setText("0.00");
-        jLabel52.setMaximumSize(new java.awt.Dimension(110, 23));
-        jLabel52.setMinimumSize(new java.awt.Dimension(110, 23));
-        jLabel52.setOpaque(true);
-        jLabel52.setPreferredSize(new java.awt.Dimension(110, 23));
-        jPanel9.add(jLabel52);
+        labelEfectivo.setBackground(new java.awt.Color(40, 41, 41));
+        labelEfectivo.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        labelEfectivo.setForeground(new java.awt.Color(0, 153, 0));
+        labelEfectivo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        labelEfectivo.setText("0.00");
+        labelEfectivo.setMaximumSize(new java.awt.Dimension(110, 23));
+        labelEfectivo.setMinimumSize(new java.awt.Dimension(110, 23));
+        labelEfectivo.setOpaque(true);
+        labelEfectivo.setPreferredSize(new java.awt.Dimension(110, 23));
+        jPanel9.add(labelEfectivo);
 
-        jLabel65.setBackground(new java.awt.Color(69, 69, 69));
-        jLabel65.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel65.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel65.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel65.setText("0.00");
-        jLabel65.setMaximumSize(new java.awt.Dimension(110, 23));
-        jLabel65.setMinimumSize(new java.awt.Dimension(110, 23));
-        jLabel65.setOpaque(true);
-        jLabel65.setPreferredSize(new java.awt.Dimension(110, 23));
-        jPanel9.add(jLabel65);
+        labelTarjeta.setBackground(new java.awt.Color(69, 69, 69));
+        labelTarjeta.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        labelTarjeta.setForeground(new java.awt.Color(0, 153, 0));
+        labelTarjeta.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        labelTarjeta.setText("0.00");
+        labelTarjeta.setMaximumSize(new java.awt.Dimension(110, 23));
+        labelTarjeta.setMinimumSize(new java.awt.Dimension(110, 23));
+        labelTarjeta.setOpaque(true);
+        labelTarjeta.setPreferredSize(new java.awt.Dimension(110, 23));
+        jPanel9.add(labelTarjeta);
 
-        jLabel53.setBackground(new java.awt.Color(40, 41, 41));
-        jLabel53.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel53.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel53.setText("0.00");
-        jLabel53.setMaximumSize(new java.awt.Dimension(110, 23));
-        jLabel53.setMinimumSize(new java.awt.Dimension(110, 23));
-        jLabel53.setOpaque(true);
-        jLabel53.setPreferredSize(new java.awt.Dimension(110, 23));
-        jPanel9.add(jLabel53);
+        labelSalidas.setBackground(new java.awt.Color(40, 41, 41));
+        labelSalidas.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        labelSalidas.setForeground(new java.awt.Color(204, 0, 0));
+        labelSalidas.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        labelSalidas.setText("0.00");
+        labelSalidas.setMaximumSize(new java.awt.Dimension(110, 23));
+        labelSalidas.setMinimumSize(new java.awt.Dimension(110, 23));
+        labelSalidas.setOpaque(true);
+        labelSalidas.setPreferredSize(new java.awt.Dimension(110, 23));
+        jPanel9.add(labelSalidas);
 
-        jLabel89.setBackground(new java.awt.Color(69, 69, 69));
-        jLabel89.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jLabel89.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel89.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel89.setText("0.00");
-        jLabel89.setMaximumSize(new java.awt.Dimension(110, 23));
-        jLabel89.setMinimumSize(new java.awt.Dimension(110, 23));
-        jLabel89.setOpaque(true);
-        jLabel89.setPreferredSize(new java.awt.Dimension(110, 23));
-        jPanel9.add(jLabel89);
+        labelDevoluciones.setBackground(new java.awt.Color(69, 69, 69));
+        labelDevoluciones.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        labelDevoluciones.setForeground(new java.awt.Color(204, 0, 0));
+        labelDevoluciones.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        labelDevoluciones.setText("0.00");
+        labelDevoluciones.setMaximumSize(new java.awt.Dimension(110, 23));
+        labelDevoluciones.setMinimumSize(new java.awt.Dimension(110, 23));
+        labelDevoluciones.setOpaque(true);
+        labelDevoluciones.setPreferredSize(new java.awt.Dimension(110, 23));
+        jPanel9.add(labelDevoluciones);
 
         jLabel54.setBackground(new java.awt.Color(40, 41, 41));
         jLabel54.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -1315,22 +1315,31 @@ public final class Interface extends javax.swing.JFrame {
         jLabel75.setForeground(new java.awt.Color(255, 255, 255));
         jLabel75.setText("Devoluciones:");
 
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setBackground(new java.awt.Color(251, 251, 251));
-        jTable1.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(51, 51, 51));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDevoluciones.setAutoCreateRowSorter(true);
+        tablaDevoluciones.setBackground(new java.awt.Color(251, 251, 251));
+        tablaDevoluciones.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
+        tablaDevoluciones.setForeground(new java.awt.Color(51, 51, 51));
+        tablaDevoluciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Fecha", "Producto", "Cantidad", "Importe", "Vendedor"
+                "Fecha", "Producto", "Cantidad", "Importe", "Vendedor", "Motivo"
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablaDevoluciones);
 
         jLabel76.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel76.setForeground(new java.awt.Color(255, 255, 255));
@@ -4222,7 +4231,7 @@ public final class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_group1
 
     public void checkGroup() {
-        String sql = "SELECT DATE_FORMAT(fechaSal,\"%Y-%m-%d\") AS fecha , (cantidad*precio)-(cantidad*costo)AS ganancia,formaP,producto.nombre,cantidad,(cantidad*precio) AS importe,usuario.nombre FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto";
+        String sql = "SELECT DATE_FORMAT(fechaSal,\"%Y-%m-%d\") AS fecha , (cantidad*precio)-(cantidad*costo)AS ganancia,formaP,producto.nombre,cantidad,(cantidad*precio) AS importe,usuario.nombre,motivo FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto";
         if (rbEspecifico.isSelected()) {
             comboCortes.setEnabled(true);
             corteFecha.setEnabled(true);
@@ -4252,19 +4261,19 @@ public final class Interface extends javax.swing.JFrame {
 
     public void consultar(String sql) {
         Statement st;
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tablaDevoluciones.getModel();
         double efectivo = 0;
         double tarjeta = 0;
         double cancelada = 0;
         modelo.setRowCount(0);
-        jTable1.setModel(modelo);
+        tablaDevoluciones.setModel(modelo);
         try {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql + " AND formaP = 'Efectivo' AND cancelada = '0'");
             while (rs.next()) {
                 efectivo = rs.getDouble(2) + efectivo;
             }
-            jLabel52.setText(Double.toString(efectivo));
+            labelEfectivo.setText(Double.toString(efectivo));
         } catch (SQLException ex) {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -4274,7 +4283,7 @@ public final class Interface extends javax.swing.JFrame {
             while (rs.next()) {
                 tarjeta = rs.getDouble(2) + tarjeta;
             }
-            jLabel65.setText(Double.toString(tarjeta));
+            labelTarjeta.setText(Double.toString(tarjeta));
         } catch (SQLException ex) {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -4283,10 +4292,10 @@ public final class Interface extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(sql + "AND cancelada = '1'");
             while (rs.next()) {
                 cancelada = rs.getDouble(2) + cancelada;
-                modelo.addRow(new Object[]{rs.getString("fecha"), rs.getString("producto.nombre"), rs.getString("cantidad"), rs.getString("Importe"), rs.getString("usuario.nombre")});
+                modelo.addRow(new Object[]{rs.getString("fecha"), rs.getString("producto.nombre"), rs.getString("cantidad"), rs.getString("Importe"), rs.getString("usuario.nombre"), rs.getString("motivo")});
                 
             }
-            jLabel53.setText(Double.toString(cancelada));
+            labelDevoluciones.setText(Double.toString(cancelada));
         } catch (SQLException ex) {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -4324,7 +4333,7 @@ public void corteEspecifico(){
    int id = comboCortes.getSelectedIndex();
         if (idlogin.size()<=0){        
         }else{
-            String sql = "SELECT DATE_FORMAT(fechaSal,\"%Y-%m-%d\") AS fecha , (cantidad*precio)-(cantidad*costo)AS ganancia,formaP,producto.nombre,cantidad,(cantidad*precio) AS importe,usuario.nombre FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto WHERE login_idlogin='"+idlogin.elementAt(id)+"'";
+            String sql = "SELECT DATE_FORMAT(fechaSal,\"%Y-%m-%d\") AS fecha , (cantidad*precio)-(cantidad*costo)AS ganancia,formaP,producto.nombre,cantidad,(cantidad*precio) AS importe,usuario.nombre,motivo FROM login INNER JOIN venta ON idlogin = login_idlogin INNER JOIN usuario ON usuario_idusuario = idusuario INNER JOIN producto ON producto_idproducto = idproducto WHERE login_idlogin='"+idlogin.elementAt(id)+"'";
             consultar(sql);
         }
 }
@@ -4472,8 +4481,6 @@ public void corteEspecifico(){
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
@@ -4485,7 +4492,6 @@ public void corteEspecifico(){
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
@@ -4509,7 +4515,6 @@ public void corteEspecifico(){
     private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel87;
     private javax.swing.JLabel jLabel88;
-    private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JMenu jMenu1;
@@ -4570,9 +4575,12 @@ public void corteEspecifico(){
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JSpinner jSutilid;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel jUsuarioA;
+    private javax.swing.JLabel labelDevoluciones;
+    private javax.swing.JLabel labelEfectivo;
+    private javax.swing.JLabel labelSalidas;
+    private javax.swing.JLabel labelTarjeta;
     private javax.swing.JPanel masterPanel;
     private javax.swing.JComboBox<String> paisCliente;
     private javax.swing.JComboBox<String> paisPro;
@@ -4592,6 +4600,7 @@ public void corteEspecifico(){
     public static javax.swing.JTable tablaComprar;
     private javax.swing.JTable tablaDatosModificar;
     private javax.swing.JTable tablaDatosProducto;
+    private javax.swing.JTable tablaDevoluciones;
     private javax.swing.JTextField txtCNA;
     private javax.swing.JFormattedTextField txtCPPro;
     private javax.swing.JFormattedTextField txtCPcliente;

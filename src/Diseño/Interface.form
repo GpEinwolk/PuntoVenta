@@ -1349,7 +1349,7 @@
                         <Property name="axis" type="int" value="1"/>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="jLabel52">
+                        <Component class="javax.swing.JLabel" name="labelEfectivo">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="29" green="29" red="28" type="rgb"/>
@@ -1374,7 +1374,7 @@
                             </Property>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel65">
+                        <Component class="javax.swing.JLabel" name="labelTarjeta">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="45" green="45" red="45" type="rgb"/>
@@ -1399,7 +1399,7 @@
                             </Property>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel53">
+                        <Component class="javax.swing.JLabel" name="labelSalidas">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="29" green="29" red="28" type="rgb"/>
@@ -1424,7 +1424,7 @@
                             </Property>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel89">
+                        <Component class="javax.swing.JLabel" name="labelDevoluciones">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="45" green="45" red="45" type="rgb"/>
@@ -1788,7 +1788,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable1">
+                    <Component class="javax.swing.JTable" name="tablaDevoluciones">
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1801,12 +1801,13 @@
                           <Color blue="33" green="33" red="33" type="rgb"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="5" rowCount="4">
-                            <Column editable="true" title="Fecha" type="java.lang.Object"/>
-                            <Column editable="true" title="Producto" type="java.lang.Object"/>
-                            <Column editable="true" title="Cantidad" type="java.lang.Object"/>
-                            <Column editable="true" title="Importe" type="java.lang.Object"/>
-                            <Column editable="true" title="Vendedor" type="java.lang.Object"/>
+                          <Table columnCount="6" rowCount="5">
+                            <Column editable="false" title="Fecha" type="java.lang.Object"/>
+                            <Column editable="false" title="Producto" type="java.lang.Object"/>
+                            <Column editable="false" title="Cantidad" type="java.lang.Object"/>
+                            <Column editable="false" title="Importe" type="java.lang.Object"/>
+                            <Column editable="false" title="Vendedor" type="java.lang.Object"/>
+                            <Column editable="false" title="Motivo" type="java.lang.Object"/>
                           </Table>
                         </Property>
                       </Properties>
