@@ -100,6 +100,7 @@ public class iniciarSesion extends javax.swing.JDialog {
         txtPass.setBackground(new java.awt.Color(40, 41, 41));
         txtPass.setForeground(new java.awt.Color(255, 255, 255));
         txtPass.setBorder(null);
+        txtPass.setCaretColor(new java.awt.Color(255, 255, 255));
         txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPassKeyPressed(evt);
@@ -212,9 +213,10 @@ public class iniciarSesion extends javax.swing.JDialog {
 
                 if (txtUser.getText().equals(user) && pass.equals(pas) && nivel.equals("1")) {
                     inc = 1;
-                   cancelarVenta cV = new cancelarVenta(this, true);
-                    cV.setVisible(true);
                     dispose();
+                    cancelarVenta cV = new cancelarVenta(this, true);
+                    cV.setVisible(true);
+                    
                 } else if (txtUser.getText().equals(user) && pass.equals(pas) && nivel.equals("2")) {
                     nv = new ImageIcon("src/img/users (6).png");
                     inc = 1;

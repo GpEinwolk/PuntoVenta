@@ -7,6 +7,7 @@ package Diseño;
 
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,44 +27,44 @@ public final class cancelarVenta extends javax.swing.JDialog {
 
     Conexion conn = new Conexion();
     Connection cn = conn.getConnection();
-    DefaultTableModel modelo = new DefaultTableModel();
+    
     TableRowSorter<TableModel> tr;
-    
-   
-    
+
     public cancelarVenta(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         setTitle("Cancelar ventas");
-        initComponents();        
+        initComponents();
         tablaVentas();
     }
 
     void tablaVentas() {
-        modelo.addColumn("Fecha");
-        modelo.addColumn("Producto");
-        modelo.addColumn("Cantidad");
-        modelo.addColumn("Importe");
-        modelo.addColumn("Número de venta");
-        modelo.addColumn("Forma de pago");
-
-        String sql = "SELECT fecha, nombre, cantidad, (cantidad*precio) AS importe, nventa, formaP FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE login_idlogin = ((SELECT idlogin FROM login ORDER BY idlogin DESC LIMIT 1)) ORDER BY fecha ASC";
+        DefaultTableModel modelo = (DefaultTableModel) tablaVentas.getModel();
+        modelo.setRowCount(0);
+        String sql = "SELECT fecha, nombre, cantidad, (cantidad*precio) AS importe, nventa, formaP, cancelada FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE login_idlogin = ((SELECT idlogin FROM login ORDER BY idlogin DESC LIMIT 1)) ORDER BY fecha ASC";
         Statement st;
+        String cancelada;
         try {
             tablaVentas.setModel(modelo);
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            
+      
             while (rs.next()) {
-                modelo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)});
+                if("1".equals(rs.getString(7))){
+                cancelada = "si";
+                }else{
+                cancelada = "no";
+                }
+                modelo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), cancelada});
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
         }
         tr = new TableRowSorter<>(modelo);
         tablaVentas.setRowSorter(tr);
-                
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,9 +101,17 @@ public final class cancelarVenta extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Fecha", "Producto", "Cantidad", "Importe", "Número de venta", "Forma de pago"
+                "Fecha", "Producto", "Cantidad", "Importe", "Número de venta", "Forma de pago", "Cancelada"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         panelScroll.setViewportView(tablaVentas);
 
         botonCancelar.setBackground(new java.awt.Color(46, 204, 113));
@@ -185,19 +194,26 @@ public final class cancelarVenta extends javax.swing.JDialog {
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         // TODO add your handling code here:
+
+        if ("".equals(campoMotivo.getText())) {
+            JOptionPane.showMessageDialog(null, "No ha escrito un motivo", "Mensaje", JOptionPane.OK_OPTION);
+        } else {
+            
+        DefaultTableModel dtm = (DefaultTableModel) tablaVentas.getModel();
+
+        int nventa = Integer.parseInt((String) dtm.getValueAt(tablaVentas.getSelectedRow(), 4));
+        String sql = "UPDATE venta SET cancelada = '1', motivo='"+campoMotivo.getText()+"' WHERE login_idlogin =(SELECT idlogin FROM login ORDER BY idlogin DESC LIMIT 1) AND nventa='" + nventa + "'";
+        PreparedStatement pps;
         try {
-            int row = tablaVentas.getSelectedRow();
-            DefaultTableModel dtm = (DefaultTableModel) tablaVentas.getModel();
-                int nventa = (int) dtm.getValueAt(tablaVentas.getSelectedRow(), 4);
-            if("".equals(campoMotivo.getText())){
-        JOptionPane.showMessageDialog(null, "No ha escrito un motivo", "Mensaje", JOptionPane.OK_OPTION);
-        }else{
-        JOptionPane.showMessageDialog(null, "Me ha dado hueva hacer el codigo", "Mensaje", JOptionPane.OK_OPTION);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Venta no seleccionada", "Mensaje", JOptionPane.OK_OPTION);
+            pps = cn.prepareStatement(sql);
+            pps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(cancelarVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        JOptionPane.showMessageDialog(null, "La venta se ha cancelado correctamente", "Mensaje", JOptionPane.OK_OPTION);
+        tablaVentas();
+        }
+
 
     }//GEN-LAST:event_botonCancelarActionPerformed
 
