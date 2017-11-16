@@ -3159,6 +3159,14 @@ public final class Interface extends javax.swing.JFrame {
         tablaComprar.setBackground(new java.awt.Color(251, 251, 251));
         tablaComprar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tablaComprar.setForeground(new java.awt.Color(51, 51, 51));
+        tablaComprar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo", "Nombre", "Codigo Alterno", "Existencias"
+            }
+        ));
         tablaComprar.setGridColor(new java.awt.Color(255, 255, 255));
         tablaComprar.setSelectionBackground(new java.awt.Color(62, 226, 141));
         jScrollPane5.setViewportView(tablaComprar);
@@ -4088,21 +4096,19 @@ public final class Interface extends javax.swing.JFrame {
         mostrarCompras();
     }//GEN-LAST:event_botonActualizar1ActionPerformed
     private void mostrarCompras() {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("Codigo");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Codigo Alterno");
-        modelo.addColumn("Existencia");
+        DefaultTableModel modelComprar = (DefaultTableModel) tablaComprar.getModel();
+        modelComprar.setRowCount(0);
+        tablaComprar.setModel(modelComprar);
         String sql = "SELECT codigo,nombre,codigoA,stock FROM producto";
         Statement st;
         try {
-            tablaComprar.setModel(modelo);
+            tablaComprar.setModel(modelComprar);
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                modelo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
+                modelComprar.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
             }
-            tr = new TableRowSorter<>(modelo);
+            tr = new TableRowSorter<>(modelComprar);
             tablaComprar.setRowSorter(tr);
         } catch (SQLException ex) {
             Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
