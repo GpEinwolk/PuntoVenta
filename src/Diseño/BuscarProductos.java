@@ -202,7 +202,7 @@ public final class BuscarProductos extends javax.swing.JDialog {
         String codigo = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0);
         Ventas.textBuscar.setText(codigo);
         this.dispose();
-        Ventas.agregar(codigo);
+        Ventas.agregar();
         } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Producto no seleccionado", "Mensaje", JOptionPane.OK_OPTION);
 
