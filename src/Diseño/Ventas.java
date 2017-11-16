@@ -195,7 +195,7 @@ public final class Ventas extends javax.swing.JFrame {
         jBcancelarV.setBackground(new java.awt.Color(30, 30, 30));
         jBcancelarV.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jBcancelarV.setForeground(new java.awt.Color(255, 255, 255));
-        jBcancelarV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/receipt (2).png"))); // NOI18N
+        jBcancelarV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cart (14).png"))); // NOI18N
         jBcancelarV.setText("Cancelar una Venta");
         jBcancelarV.setBorder(null);
         jBcancelarV.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -210,7 +210,7 @@ public final class Ventas extends javax.swing.JFrame {
         jBcorteCaja1.setBackground(new java.awt.Color(30, 30, 30));
         jBcorteCaja1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jBcorteCaja1.setForeground(new java.awt.Color(255, 255, 255));
-        jBcorteCaja1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/receipt (2).png"))); // NOI18N
+        jBcorteCaja1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/change (2).png"))); // NOI18N
         jBcorteCaja1.setText("Salidas y/o Gastos");
         jBcorteCaja1.setBorder(null);
         jBcorteCaja1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -440,7 +440,7 @@ public final class Ventas extends javax.swing.JFrame {
                         .addComponent(jButton5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(borrarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -462,7 +462,7 @@ public final class Ventas extends javax.swing.JFrame {
                     .addComponent(textBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+                .addComponent(jScrollPane2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

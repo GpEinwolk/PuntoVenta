@@ -1380,7 +1380,7 @@ public final class Interface extends javax.swing.JFrame {
                                         .addGroup(jPcorteCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jPcorteCajaLayout.createSequentialGroup()
                                                 .addComponent(jLabel19)
-                                                .addGap(294, 294, 294))
+                                                .addGap(285, 285, 285))
                                             .addGroup(jPcorteCajaLayout.createSequentialGroup()
                                                 .addGroup(jPcorteCajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                     .addComponent(jPdineroCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
