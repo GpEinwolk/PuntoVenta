@@ -4275,7 +4275,7 @@ public final class Interface extends javax.swing.JFrame {
         tablaDevoluciones.setModel(modelo);
         try {
             st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql + " AND formaP = 'Efectivo' AND cancelada = '0'");
+            ResultSet rs = st.executeQuery(sql + " AND formaP = 'Efectivo'");
             while (rs.next()) {
                 efectivo = rs.getDouble(2) + efectivo;
             }
@@ -4285,7 +4285,7 @@ public final class Interface extends javax.swing.JFrame {
         }
         try {
             st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql + " AND formaP = 'Tarjeta' AND cancelada = '0'");
+            ResultSet rs = st.executeQuery(sql + " AND formaP = 'Tarjeta'");
             while (rs.next()) {
                 tarjeta = rs.getDouble(2) + tarjeta;
             }
@@ -4306,8 +4306,8 @@ public final class Interface extends javax.swing.JFrame {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }
         double total = (efectivo + tarjeta);
-        jLabel47.setText(df.format(total));
-        jLabel54.setText(df.format(total));
+        jLabel47.setText(df.format(total-cancelada));
+        jLabel54.setText(df.format(total-cancelada));
     }
     private void usuarioChange(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_usuarioChange
         // TODO add your handling code here:
@@ -4327,7 +4327,6 @@ public final class Interface extends javax.swing.JFrame {
 
     private void tUsuariosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tUsuariosItemStateChanged
         // TODO add your handling code here:
-        
         if(tUsuarios.isSelected()){
             comboUsuario.setEnabled(false);
         }else{
