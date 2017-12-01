@@ -2,6 +2,7 @@ package Diseño;
 
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -156,6 +157,11 @@ public final class Ventas extends javax.swing.JFrame {
         labelTicket = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         jPrincipal.setBackground(new java.awt.Color(30, 30, 30));
@@ -607,6 +613,67 @@ public final class Ventas extends javax.swing.JFrame {
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         setExtendedState(Ventas.CROSSHAIR_CURSOR);
     }//GEN-LAST:event_salirActionPerformed
+public void cerrar() {
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        String sql = "UPDATE login SET fechaSal=CURRENT_TIMESTAMP, dineroSal="+dineroSal()+" WHERE idlogin= '"+idlogin()+"'";
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "Desea cerrar la aplicacion", "Mensaje de Confirmacion",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+
+            try {
+                System.out.println(sql);
+                PreparedStatement pps = cn.prepareStatement(sql);
+                pps.executeUpdate();
+                System.exit(0);
+            } catch (SQLException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+        }
+    }
+public double dineroSal(){
+    double salida=0;
+    String sqlSalida = "SELECT (cantidad*precio) AS importe FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE login_idlogin = '"+idlogin()+"'";
+    String sqlEntrada = "SELECT dineroEnt FROM login WHERE idlogin = '"+idlogin()+"'";
+    Statement st;
+        try {
+            st = cn.createStatement();       
+    ResultSet rs = st.executeQuery(sqlSalida);
+    while (rs.next()) {
+               salida = salida +rs.getDouble("importe");
+            }
+    ResultSet rs2 = st.executeQuery(sqlEntrada);
+    while (rs2.next()) {
+               salida = salida+rs2.getDouble("dineroEnt");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return salida;
+
+}
+public int idlogin(){
+    int idlogin = 0;
+    String sql="SELECT idlogin FROM login ORDER BY idlogin DESC LIMIT 1";
+    Statement st;
+        try {
+            st = cn.createStatement();       
+    ResultSet rs = st.executeQuery(sql);
+    while (rs.next()) {
+               idlogin = rs.getInt("idlogin");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+return idlogin;
+        }
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        cerrar();
+    }//GEN-LAST:event_formWindowClosing
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar;
     private javax.swing.JButton borrarProducto;

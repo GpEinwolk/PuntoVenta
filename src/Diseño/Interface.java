@@ -3648,10 +3648,10 @@ public final class Interface extends javax.swing.JFrame {
         rbCdia.setSelected(true);
         rbCdia.setSelected(true);
         rbCdia.setSelected(true);
-        Date date = new Date();
-        corteFecha.setDate(date);
-        Date date = new Date();
-        corteFecha.setDate(date);
+        Date date1 = new Date();
+        corteFecha1.setDate(date1);
+        Date date2 = new Date();
+        corteFecha3.setDate(date2);
 
         botonActualizar2.setBackground(new java.awt.Color(29, 184, 83));
         botonActualizar2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -3677,11 +3677,12 @@ public final class Interface extends javax.swing.JFrame {
                     .addGroup(jPreportLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPreportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPreportLayout.createSequentialGroup()
-                                .addComponent(jLabel143, javax.swing.GroupLayout.PREFERRED_SIZE, 966, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtID9, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPreportLayout.createSequentialGroup()
+                                .addGroup(jPreportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel143, javax.swing.GroupLayout.PREFERRED_SIZE, 966, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtID9, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPreportLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))

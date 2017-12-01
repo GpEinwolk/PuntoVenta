@@ -537,6 +537,7 @@ public class Cobrar extends javax.swing.JDialog {
     }
 
     private void crearReporte(String tipoPago, String tipo, double total, double cambio, double pago) {
+        String logo= "src/img/logoEmpresa.png";
         try {
             JRTableModelDataSource datasource = new JRTableModelDataSource(model);
             String reportSource = tipo + ".jrxml";
@@ -547,7 +548,8 @@ public class Cobrar extends javax.swing.JDialog {
             params.put("tipoPago", tipoPago);
             params.put("total", total);
             params.put("efectivo",pago);
-            params.put("cambio",cambio);
+            params.put("cambio",cambio);            
+            params.put("logo",logo);
             JasperPrint jp = JasperFillManager.fillReport(jr, params, datasource);
             switch (tipo) {
                 case "ticket":
