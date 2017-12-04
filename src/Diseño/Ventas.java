@@ -501,6 +501,7 @@ public final class Ventas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jBcorteCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcorteCajaActionPerformed
+        registrarSalida();
         InicioSesion login = new InicioSesion();
         setVisible(false);
         login.setVisible(true);
@@ -615,27 +616,28 @@ public final class Ventas extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 public void cerrar() {
         Object[] opciones = {"Aceptar", "Cancelar"};
-        String sql = "UPDATE login SET fechaSal=CURRENT_TIMESTAMP, dineroSal="+dineroSal()+" WHERE idlogin= '"+idlogin()+"'";
         int eleccion = JOptionPane.showOptionDialog(rootPane, "Desea cerrar la aplicacion", "Mensaje de Confirmacion",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
         if (eleccion == JOptionPane.YES_OPTION) {
-
-            try {
-                System.out.println(sql);
-                PreparedStatement pps = cn.prepareStatement(sql);
-                pps.executeUpdate();
-                System.exit(0);
-            } catch (SQLException ex) {
-                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+            registrarSalida();
+            System.exit(0);
         } else {
         }
     }
+public void registrarSalida(){
+String sql = "UPDATE login SET fechaSal=CURRENT_TIMESTAMP, dineroSal="+dineroSal()+" WHERE idlogin= '"+idlogin()+"'";
+try {
+                System.out.println(sql);
+                PreparedStatement pps = cn.prepareStatement(sql);
+                pps.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+}
+}
 public double dineroSal(){
     double salida=0;
-    String sqlSalida = "SELECT (cantidad*precio) AS importe FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE login_idlogin = '"+idlogin()+"'";
+    String sqlSalida = "SELECT (cantidad*precio) AS importe FROM producto INNER JOIN venta ON idproducto = producto_idproducto WHERE login_idlogin = '"+idlogin()+"' AND formaP = 'Efectivo' AND cancelada = '0'";
     String sqlEntrada = "SELECT dineroEnt FROM login WHERE idlogin = '"+idlogin()+"'";
     Statement st;
         try {

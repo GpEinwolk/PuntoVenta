@@ -530,6 +530,7 @@ public class Cobrar extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(null, "Falta: $" + jLabel13.getText(), "Mensaje", JOptionPane.OK_OPTION, ua);
                 } else {
                     crearReporte("Efectivo", tipo, Double.parseDouble(jLabel2.getText()), Double.parseDouble(jLabel13.getText()), Double.parseDouble(jTextField3.getText()));
+                    System.out.println(tipo);
                     cobrar();
                 }
                 break;

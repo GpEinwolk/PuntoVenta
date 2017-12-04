@@ -3890,6 +3890,11 @@ public final class Interface extends javax.swing.JFrame {
         jMenu3.setOpaque(true);
 
         jMenuItem13.setText("Reporte Perzonalizado");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem13);
 
         jMenuBar2.add(jMenu3);
@@ -4668,6 +4673,14 @@ public final class Interface extends javax.swing.JFrame {
     private void botonActualizar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonActualizar2ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        jPcontenedor.removeAll();
+        jPcontenedor.add(jPreport);
+        jPcontenedor.updateUI();
+        jPcontenedor.repaint();
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
 public void corteEspecifico(){
    int id = comboCortes.getSelectedIndex();
         if (idlogin.size()<=0){        
