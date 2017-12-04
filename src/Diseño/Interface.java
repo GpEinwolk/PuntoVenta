@@ -399,6 +399,9 @@ public final class Interface extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
         masterPanel = new javax.swing.JPanel();
         jPrincipal = new javax.swing.JPanel();
         jBcorteCaja = new javax.swing.JButton();
@@ -654,9 +657,8 @@ public final class Interface extends javax.swing.JFrame {
         rbCdia3 = new javax.swing.JRadioButton();
         rbCdia2 = new javax.swing.JRadioButton();
         rbEspecifico3 = new javax.swing.JRadioButton();
-        rbEspecifico1 = new javax.swing.JRadioButton();
-        rbCdia1 = new javax.swing.JRadioButton();
-        rbCm1 = new javax.swing.JRadioButton();
+        rbVentas = new javax.swing.JRadioButton();
+        rbCompras = new javax.swing.JRadioButton();
         corteFecha1 = new com.toedter.calendar.JDateChooser();
         jLabel65 = new javax.swing.JLabel();
         jLabel89 = new javax.swing.JLabel();
@@ -3488,7 +3490,7 @@ public final class Interface extends javax.swing.JFrame {
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         rbCdia3.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup1.add(rbCdia3);
+        buttonGroup4.add(rbCdia3);
         rbCdia3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rbCdia3.setForeground(new java.awt.Color(204, 204, 204));
         rbCdia3.setText("Todos los Clientes / Proveedores");
@@ -3500,7 +3502,7 @@ public final class Interface extends javax.swing.JFrame {
         });
 
         rbCdia2.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup1.add(rbCdia2);
+        buttonGroup3.add(rbCdia2);
         rbCdia2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rbCdia2.setForeground(new java.awt.Color(204, 204, 204));
         rbCdia2.setText("Actual");
@@ -3512,7 +3514,7 @@ public final class Interface extends javax.swing.JFrame {
         });
 
         rbEspecifico3.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup1.add(rbEspecifico3);
+        buttonGroup3.add(rbEspecifico3);
         rbEspecifico3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rbEspecifico3.setForeground(new java.awt.Color(204, 204, 204));
         rbEspecifico3.setText("Especifico");
@@ -3523,39 +3525,27 @@ public final class Interface extends javax.swing.JFrame {
             }
         });
 
-        rbEspecifico1.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(rbEspecifico1);
-        rbEspecifico1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        rbEspecifico1.setForeground(new java.awt.Color(255, 255, 255));
-        rbEspecifico1.setText("Ventas");
-        rbEspecifico1.setContentAreaFilled(false);
-        rbEspecifico1.addActionListener(new java.awt.event.ActionListener() {
+        rbVentas.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup2.add(rbVentas);
+        rbVentas.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        rbVentas.setForeground(new java.awt.Color(255, 255, 255));
+        rbVentas.setText("Ventas");
+        rbVentas.setContentAreaFilled(false);
+        rbVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbEspecifico1group1(evt);
+                rbVentasgroup1(evt);
             }
         });
 
-        rbCdia1.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(rbCdia1);
-        rbCdia1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        rbCdia1.setForeground(new java.awt.Color(255, 255, 255));
-        rbCdia1.setText("Invetario");
-        rbCdia1.setContentAreaFilled(false);
-        rbCdia1.addActionListener(new java.awt.event.ActionListener() {
+        rbCompras.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup2.add(rbCompras);
+        rbCompras.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        rbCompras.setForeground(new java.awt.Color(255, 255, 255));
+        rbCompras.setText("Compras");
+        rbCompras.setContentAreaFilled(false);
+        rbCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbCdia1group1(evt);
-            }
-        });
-
-        rbCm1.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(rbCm1);
-        rbCm1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        rbCm1.setForeground(new java.awt.Color(255, 255, 255));
-        rbCm1.setText("Compras");
-        rbCm1.setContentAreaFilled(false);
-        rbCm1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbCm1group1(evt);
+                rbComprasgroup1(evt);
             }
         });
 
@@ -3586,9 +3576,8 @@ public final class Interface extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbCdia1)
-                    .addComponent(rbEspecifico1)
-                    .addComponent(rbCm1))
+                    .addComponent(rbVentas)
+                    .addComponent(rbCompras))
                 .addGap(103, 103, 103)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -3617,14 +3606,12 @@ public final class Interface extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rbEspecifico1)
+                                .addComponent(rbVentas)
                                 .addGap(28, 28, 28))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(rbEspecifico3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbCdia1)
-                            .addComponent(rbCdia3)))
+                        .addComponent(rbCdia3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -3633,7 +3620,7 @@ public final class Interface extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(rbCm1))
+                        .addComponent(rbCompras))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3645,7 +3632,6 @@ public final class Interface extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        rbCdia.setSelected(true);
         rbCdia.setSelected(true);
         rbCdia.setSelected(true);
         Date date1 = new Date();
@@ -3714,7 +3700,7 @@ public final class Interface extends javax.swing.JFrame {
                 .addComponent(spinnerCantidad1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(botonActualizar2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(txtID9)
                 .addContainerGap())
         );
@@ -4622,17 +4608,13 @@ public final class Interface extends javax.swing.JFrame {
         checkGroup();
     }//GEN-LAST:event_tUsuariosItemStateChanged
 
-    private void rbCm1group1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCm1group1
+    private void rbComprasgroup1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbComprasgroup1
         // TODO add your handling code here:
-    }//GEN-LAST:event_rbCm1group1
+    }//GEN-LAST:event_rbComprasgroup1
 
-    private void rbCdia1group1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCdia1group1
+    private void rbVentasgroup1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbVentasgroup1
         // TODO add your handling code here:
-    }//GEN-LAST:event_rbCdia1group1
-
-    private void rbEspecifico1group1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEspecifico1group1
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbEspecifico1group1
+    }//GEN-LAST:event_rbVentasgroup1
 
     private void almacenMod1almacen(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenMod1almacen
         // TODO add your handling code here:
@@ -4737,6 +4719,9 @@ public void corteEspecifico(){
     private javax.swing.JButton botonActualizar2;
     private javax.swing.JButton botonActualizar3;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JMenuItem clieAgre;
     private javax.swing.JMenuItem clieMod;
     private javax.swing.JComboBox<String> comboCortes;
@@ -4947,14 +4932,13 @@ public void corteEspecifico(){
     private javax.swing.JMenuItem provAgre;
     private javax.swing.JMenuItem provMod;
     private javax.swing.JRadioButton rbCdia;
-    private javax.swing.JRadioButton rbCdia1;
     private javax.swing.JRadioButton rbCdia2;
     private javax.swing.JRadioButton rbCdia3;
     private javax.swing.JRadioButton rbCm;
-    private javax.swing.JRadioButton rbCm1;
+    private javax.swing.JRadioButton rbCompras;
     private javax.swing.JRadioButton rbEspecifico;
-    private javax.swing.JRadioButton rbEspecifico1;
     private javax.swing.JRadioButton rbEspecifico3;
+    private javax.swing.JRadioButton rbVentas;
     private javax.swing.JMenuItem serAgre;
     private javax.swing.JMenuItem serMod;
     private javax.swing.JSpinner spinnerCantidad;
