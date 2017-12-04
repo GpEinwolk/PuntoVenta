@@ -53,6 +53,8 @@ public final class Interface extends javax.swing.JFrame {
         mostrarCompras();
         mostrarUsuarios();
         comboCorte();
+        rbrEpecifico.setVisible(false);
+        rbActual.setVisible(false);
         modelCP = (DefaultTableModel) tablaBusCP.getModel();
     }
 
@@ -649,20 +651,20 @@ public final class Interface extends javax.swing.JFrame {
         jPreport = new javax.swing.JPanel();
         jLabel143 = new javax.swing.JLabel();
         txtID9 = new javax.swing.JLabel();
-        almacenMod1 = new javax.swing.JComboBox<>();
+        comboCliPro = new javax.swing.JComboBox<>();
         jLabel39 = new javax.swing.JLabel();
         spinnerCantidad1 = new javax.swing.JSpinner();
         jLabel42 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         rbCdia3 = new javax.swing.JRadioButton();
-        rbCdia2 = new javax.swing.JRadioButton();
-        rbEspecifico3 = new javax.swing.JRadioButton();
+        rbActual = new javax.swing.JRadioButton();
+        rbrEpecifico = new javax.swing.JRadioButton();
         rbVentas = new javax.swing.JRadioButton();
         rbCompras = new javax.swing.JRadioButton();
-        corteFecha1 = new com.toedter.calendar.JDateChooser();
+        reporteFecha1 = new com.toedter.calendar.JDateChooser();
         jLabel65 = new javax.swing.JLabel();
         jLabel89 = new javax.swing.JLabel();
-        corteFecha3 = new com.toedter.calendar.JDateChooser();
+        reporteFecha2 = new com.toedter.calendar.JDateChooser();
         botonActualizar2 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -3445,16 +3447,16 @@ public final class Interface extends javax.swing.JFrame {
         txtID9.setForeground(new java.awt.Color(40, 41, 41));
         txtID9.setText("0");
 
-        almacenMod1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        almacenMod1.setForeground(new java.awt.Color(51, 51, 51));
-        almacenMod1.addMouseListener(new java.awt.event.MouseAdapter() {
+        comboCliPro.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        comboCliPro.setForeground(new java.awt.Color(51, 51, 51));
+        comboCliPro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                almacenMod1almacen(evt);
+                comboCliProalmacen(evt);
             }
         });
-        almacenMod1.addActionListener(new java.awt.event.ActionListener() {
+        comboCliPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                almacenMod1ActionPerformed(evt);
+                comboCliProActionPerformed(evt);
             }
         });
 
@@ -3501,27 +3503,27 @@ public final class Interface extends javax.swing.JFrame {
             }
         });
 
-        rbCdia2.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup3.add(rbCdia2);
-        rbCdia2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        rbCdia2.setForeground(new java.awt.Color(204, 204, 204));
-        rbCdia2.setText("Actual");
-        rbCdia2.setContentAreaFilled(false);
-        rbCdia2.addActionListener(new java.awt.event.ActionListener() {
+        rbActual.setBackground(new java.awt.Color(204, 204, 204));
+        buttonGroup3.add(rbActual);
+        rbActual.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        rbActual.setForeground(new java.awt.Color(204, 204, 204));
+        rbActual.setText("Actual");
+        rbActual.setContentAreaFilled(false);
+        rbActual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbCdia2group1(evt);
+                rbActualgroup1(evt);
             }
         });
 
-        rbEspecifico3.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup3.add(rbEspecifico3);
-        rbEspecifico3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        rbEspecifico3.setForeground(new java.awt.Color(204, 204, 204));
-        rbEspecifico3.setText("Especifico");
-        rbEspecifico3.setContentAreaFilled(false);
-        rbEspecifico3.addActionListener(new java.awt.event.ActionListener() {
+        rbrEpecifico.setBackground(new java.awt.Color(204, 204, 204));
+        buttonGroup3.add(rbrEpecifico);
+        rbrEpecifico.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        rbrEpecifico.setForeground(new java.awt.Color(204, 204, 204));
+        rbrEpecifico.setText("Especifico");
+        rbrEpecifico.setContentAreaFilled(false);
+        rbrEpecifico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbEspecifico3group1(evt);
+                group3(evt);
             }
         });
 
@@ -3533,7 +3535,7 @@ public final class Interface extends javax.swing.JFrame {
         rbVentas.setContentAreaFilled(false);
         rbVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbVentasgroup1(evt);
+                rbGroup2(evt);
             }
         });
 
@@ -3545,13 +3547,13 @@ public final class Interface extends javax.swing.JFrame {
         rbCompras.setContentAreaFilled(false);
         rbCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbComprasgroup1(evt);
+                rbGroup2(evt);
             }
         });
 
-        corteFecha1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        reporteFecha1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                corteFecha1PropertyChange(evt);
+                reporteFecha1PropertyChange(evt);
             }
         });
 
@@ -3563,9 +3565,9 @@ public final class Interface extends javax.swing.JFrame {
         jLabel89.setForeground(new java.awt.Color(255, 255, 255));
         jLabel89.setText("Hasta");
 
-        corteFecha3.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        reporteFecha2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                corteFecha3PropertyChange(evt);
+                reporteFecha2PropertyChange(evt);
             }
         });
 
@@ -3581,21 +3583,21 @@ public final class Interface extends javax.swing.JFrame {
                 .addGap(103, 103, 103)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(rbEspecifico3)
+                        .addComponent(rbrEpecifico)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel65)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(corteFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(reporteFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(176, 176, 176)
                         .addComponent(rbCdia3)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(rbCdia2)
+                        .addComponent(rbActual)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel89)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(corteFecha3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(reporteFecha2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -3609,13 +3611,13 @@ public final class Interface extends javax.swing.JFrame {
                                 .addComponent(rbVentas)
                                 .addGap(28, 28, 28))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(rbEspecifico3)
+                                .addComponent(rbrEpecifico)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addComponent(rbCdia3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(corteFecha1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(reporteFecha1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -3625,19 +3627,21 @@ public final class Interface extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(corteFecha3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(reporteFecha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(rbCdia2)))
+                        .addComponent(rbActual)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         rbCdia.setSelected(true);
         rbCdia.setSelected(true);
         Date date1 = new Date();
-        corteFecha1.setDate(date1);
+        reporteFecha1.setDate(date1);
+        reporteFecha1.setVisible(false);
         Date date2 = new Date();
-        corteFecha3.setDate(date2);
+        reporteFecha2.setDate(date2);
+        reporteFecha2.setVisible(false);
 
         botonActualizar2.setBackground(new java.awt.Color(29, 184, 83));
         botonActualizar2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -3675,7 +3679,7 @@ public final class Interface extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPreportLayout.createSequentialGroup()
                 .addGap(355, 355, 355)
-                .addComponent(almacenMod1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(comboCliPro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(350, 350, 350))
             .addGroup(jPreportLayout.createSequentialGroup()
                 .addGap(414, 414, 414)
@@ -3693,7 +3697,7 @@ public final class Interface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel39)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(almacenMod1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboCliPro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel42)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -4608,33 +4612,21 @@ public final class Interface extends javax.swing.JFrame {
         checkGroup();
     }//GEN-LAST:event_tUsuariosItemStateChanged
 
-    private void rbComprasgroup1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbComprasgroup1
+    private void comboCliProalmacen(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCliProalmacen
         // TODO add your handling code here:
-    }//GEN-LAST:event_rbComprasgroup1
+    }//GEN-LAST:event_comboCliProalmacen
 
-    private void rbVentasgroup1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbVentasgroup1
+    private void reporteFecha1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_reporteFecha1PropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_rbVentasgroup1
+    }//GEN-LAST:event_reporteFecha1PropertyChange
 
-    private void almacenMod1almacen(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_almacenMod1almacen
+    private void rbActualgroup1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbActualgroup1
         // TODO add your handling code here:
-    }//GEN-LAST:event_almacenMod1almacen
+    }//GEN-LAST:event_rbActualgroup1
 
-    private void corteFecha1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_corteFecha1PropertyChange
+    private void reporteFecha2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_reporteFecha2PropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_corteFecha1PropertyChange
-
-    private void rbCdia2group1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCdia2group1
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbCdia2group1
-
-    private void corteFecha3PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_corteFecha3PropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_corteFecha3PropertyChange
-
-    private void rbEspecifico3group1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEspecifico3group1
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbEspecifico3group1
+    }//GEN-LAST:event_reporteFecha2PropertyChange
 
     private void spinnerCantidad1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerCantidad1StateChanged
         // TODO add your handling code here:
@@ -4648,9 +4640,9 @@ public final class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbCdia3group1
 
-    private void almacenMod1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_almacenMod1ActionPerformed
+    private void comboCliProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCliProActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_almacenMod1ActionPerformed
+    }//GEN-LAST:event_comboCliProActionPerformed
 
     private void botonActualizar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizar2ActionPerformed
         // TODO add your handling code here:
@@ -4663,7 +4655,52 @@ public final class Interface extends javax.swing.JFrame {
         jPcontenedor.updateUI();
         jPcontenedor.repaint();
     }//GEN-LAST:event_jMenuItem13ActionPerformed
-public void corteEspecifico(){
+
+    private void rbGroup2(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbGroup2
+        // TODO add your handling code here:
+        rbrEpecifico.setVisible(true);
+        rbActual.setVisible(true);
+        if (rbVentas.isSelected()) {
+            rbCdia3.setText("Todos los Clientes");
+            jLabel39.setText("Clientes");
+            mostrarClipro("SELECT nombreC FROM clipro WHERE tipo = 1");
+        }
+        if (rbCompras.isSelected()) {
+            rbCdia3.setText("Todos los Proveedores");
+            jLabel39.setText("Proveedores");
+            mostrarClipro("SELECT nombreC FROM clipro WHERE tipo = 2");
+        }
+        
+    }//GEN-LAST:event_rbGroup2
+
+    private void group3(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_group3
+        // TODO add your handling code here:
+        if (rbrEpecifico.isSelected()) {
+            reporteFecha1.setVisible(true);
+            reporteFecha2.setVisible(true);
+        }
+        if (rbActual.isSelected()) {
+            reporteFecha1.setVisible(false);
+            reporteFecha2.setVisible(false);
+        }
+    }//GEN-LAST:event_group3
+void mostrarClipro(String sql) {
+        comboCliPro.removeAllItems();
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                comboCliPro.addItem(rs.getString("nombreC"));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    public void corteEspecifico(){
    int id = comboCortes.getSelectedIndex();
         if (idlogin.size()<=0){        
         }else{
@@ -4712,7 +4749,6 @@ public void corteEspecifico(){
     private javax.swing.JButton agregarGarantia;
     private javax.swing.JComboBox<String> almacen;
     private javax.swing.JComboBox<String> almacenMod;
-    private javax.swing.JComboBox<String> almacenMod1;
     private javax.swing.JMenuItem añadirUsuario;
     private javax.swing.JButton botonActualizar;
     private javax.swing.JButton botonActualizar1;
@@ -4724,14 +4760,13 @@ public void corteEspecifico(){
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JMenuItem clieAgre;
     private javax.swing.JMenuItem clieMod;
+    private javax.swing.JComboBox<String> comboCliPro;
     private javax.swing.JComboBox<String> comboCortes;
     private javax.swing.JComboBox<String> comboDistribuidor;
     private javax.swing.JComboBox<String> comboRFC;
     private javax.swing.JComboBox<String> comboRFCC;
     private javax.swing.JComboBox<String> comboUsuario;
     private com.toedter.calendar.JDateChooser corteFecha;
-    private com.toedter.calendar.JDateChooser corteFecha1;
-    private com.toedter.calendar.JDateChooser corteFecha3;
     private javax.swing.JButton eliminar;
     private javax.swing.JComboBox<String> estadoCliente;
     private javax.swing.JComboBox<String> estadoPro;
@@ -4931,14 +4966,16 @@ public void corteEspecifico(){
     private javax.swing.JMenuItem prodAgre;
     private javax.swing.JMenuItem provAgre;
     private javax.swing.JMenuItem provMod;
+    private javax.swing.JRadioButton rbActual;
     private javax.swing.JRadioButton rbCdia;
-    private javax.swing.JRadioButton rbCdia2;
     private javax.swing.JRadioButton rbCdia3;
     private javax.swing.JRadioButton rbCm;
     private javax.swing.JRadioButton rbCompras;
     private javax.swing.JRadioButton rbEspecifico;
-    private javax.swing.JRadioButton rbEspecifico3;
     private javax.swing.JRadioButton rbVentas;
+    private javax.swing.JRadioButton rbrEpecifico;
+    private com.toedter.calendar.JDateChooser reporteFecha1;
+    private com.toedter.calendar.JDateChooser reporteFecha2;
     private javax.swing.JMenuItem serAgre;
     private javax.swing.JMenuItem serMod;
     private javax.swing.JSpinner spinnerCantidad;

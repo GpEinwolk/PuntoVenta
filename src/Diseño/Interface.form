@@ -5979,7 +5979,7 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="355" max="-2" attributes="0"/>
-                          <Component id="almacenMod1" max="32767" attributes="0"/>
+                          <Component id="comboCliPro" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="350" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -6001,7 +6001,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="almacenMod1" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="comboCliPro" min="-2" pref="25" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="jLabel42" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -6039,7 +6039,7 @@
                     <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="almacenMod1">
+                <Component class="javax.swing.JComboBox" name="comboCliPro">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Calibri" size="18" style="0"/>
@@ -6052,8 +6052,8 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="almacenMod1almacen"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="almacenMod1ActionPerformed"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="comboCliProalmacen"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboCliProActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -6130,11 +6130,11 @@
                               <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="rbEspecifico3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbrEpecifico" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jLabel65" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="corteFecha1" min="-2" pref="132" max="-2" attributes="0"/>
+                                      <Component id="reporteFecha1" min="-2" pref="132" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
@@ -6142,11 +6142,11 @@
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="rbCdia2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbActual" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jLabel89" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="corteFecha3" min="-2" pref="132" max="-2" attributes="0"/>
+                                      <Component id="reporteFecha2" min="-2" pref="132" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -6165,7 +6165,7 @@
                                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
-                                              <Component id="rbEspecifico3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="rbrEpecifico" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -6174,7 +6174,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="corteFecha1" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="reporteFecha1" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jLabel65" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -6188,12 +6188,12 @@
                                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel89" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
-                                          <Component id="corteFecha3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="reporteFecha2" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="rbCdia2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbActual" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
@@ -6226,7 +6226,7 @@
                         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="rbCdia.setSelected(true);"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JRadioButton" name="rbCdia2">
+                    <Component class="javax.swing.JRadioButton" name="rbActual">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -6244,13 +6244,13 @@
                         <Property name="contentAreaFilled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbCdia2group1"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbActualgroup1"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="rbCdia.setSelected(true);"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JRadioButton" name="rbEspecifico3">
+                    <Component class="javax.swing.JRadioButton" name="rbrEpecifico">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -6268,7 +6268,7 @@
                         <Property name="contentAreaFilled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbEspecifico3group1"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="group3"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JRadioButton" name="rbVentas">
@@ -6289,7 +6289,7 @@
                         <Property name="contentAreaFilled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbVentasgroup1"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbGroup2"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JRadioButton" name="rbCompras">
@@ -6310,15 +6310,15 @@
                         <Property name="contentAreaFilled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbComprasgroup1"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbGroup2"/>
                       </Events>
                     </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="corteFecha1">
+                    <Component class="com.toedter.calendar.JDateChooser" name="reporteFecha1">
                       <Events>
-                        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="corteFecha1PropertyChange"/>
+                        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="reporteFecha1PropertyChange"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Date date1 = new Date();&#xa;corteFecha1.setDate(date1);"/>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Date date1 = new Date();&#xa;reporteFecha1.setDate(date1);&#xa;reporteFecha1.setVisible(false);"/>
                       </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel65">
@@ -6343,12 +6343,12 @@
                         <Property name="text" type="java.lang.String" value="Hasta"/>
                       </Properties>
                     </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="corteFecha3">
+                    <Component class="com.toedter.calendar.JDateChooser" name="reporteFecha2">
                       <Events>
-                        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="corteFecha3PropertyChange"/>
+                        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="reporteFecha2PropertyChange"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Date date2 = new Date();&#xa;corteFecha3.setDate(date2);"/>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Date date2 = new Date();&#xa;reporteFecha2.setDate(date2);&#xa;reporteFecha2.setVisible(false);"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
