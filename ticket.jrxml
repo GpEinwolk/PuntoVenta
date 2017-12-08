@@ -2,13 +2,14 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ticket" language="groovy" pageWidth="135" pageHeight="842" columnWidth="131" leftMargin="2" rightMargin="2" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="eaa8bb3e-659f-4ca2-8abe-c05610e9bd50">
 	<property name="ireport.zoom" value="4.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="542"/>
+	<property name="ireport.y" value="40"/>
 	<parameter name="nTicket" class="java.lang.String"/>
 	<parameter name="nombreUsuario" class="java.lang.String"/>
 	<parameter name="tipoPago" class="java.lang.String"/>
 	<parameter name="total" class="java.lang.String"/>
 	<parameter name="efectivo" class="java.lang.String"/>
 	<parameter name="cambio" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
 	<field name="Nombre" class="java.lang.String"/>
 	<field name="Cantidad" class="java.lang.String"/>
 	<field name="Precio" class="java.lang.String"/>
@@ -19,7 +20,7 @@
 		<band height="29" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="131" height="29" uuid="1772a2b6-9c41-4bbf-9951-9b0cfa66bcc1"/>
-				<imageExpression><![CDATA["C:\\Users\\INER\\Documents\\NetBeansProjects\\PuntoVenta\\src\\img\\logoEmpresa.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>

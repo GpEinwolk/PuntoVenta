@@ -29,12 +29,16 @@ public class Cobrar extends javax.swing.JDialog {
     Connection cn = conn.getConnection();
     String[] venta;
     DefaultTableModel de;
+    boolean imprimir=true;
+    public static JasperPrint jp;
+    private final String logotipo = "/img/logoEmpresa.png";
 
     public Cobrar(java.awt.Frame parent, boolean modal, String[] insert) {
         super(parent, modal);
         initComponents();
         venta = insert;
         de = (DefaultTableModel) tablaVenta.getModel();
+        
 
     }
 
@@ -494,6 +498,7 @@ public class Cobrar extends javax.swing.JDialog {
 
     private void cobroTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobroTicketActionPerformed
         cobro("ticket");
+        imprimir=true;
     }//GEN-LAST:event_cobroTicketActionPerformed
 
     private void jCobroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCobroActionPerformed
@@ -516,12 +521,13 @@ public class Cobrar extends javax.swing.JDialog {
     }//GEN-LAST:event_jCobroActionPerformed
 
     private void btCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCobrarActionPerformed
-        cobro("reporte");
+        cobro("ticket");
+        imprimir=false;
     }//GEN-LAST:event_btCobrarActionPerformed
     private void cobro(String tipo) {
         switch ((String) jCobro.getSelectedItem()) {
             case "Tarjeta":
-                crearReporte("Tarjeta", tipo, Double.parseDouble(jLabel9.getText()),0.00,Double.parseDouble(jLabel9.getText()));
+                crearReporte("Tarjeta", tipo, Double.parseDouble(jLabel9.getText()), 0.00, Double.parseDouble(jLabel9.getText()));
                 cobrar();
                 break;
             default:
@@ -530,7 +536,6 @@ public class Cobrar extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(null, "Falta: $" + jLabel13.getText(), "Mensaje", JOptionPane.OK_OPTION, ua);
                 } else {
                     crearReporte("Efectivo", tipo, Double.parseDouble(jLabel2.getText()), Double.parseDouble(jLabel13.getText()), Double.parseDouble(jTextField3.getText()));
-                    System.out.println(tipo);
                     cobrar();
                 }
                 break;
@@ -538,36 +543,43 @@ public class Cobrar extends javax.swing.JDialog {
     }
 
     private void crearReporte(String tipoPago, String tipo, double total, double cambio, double pago) {
-        String logo= "src/img/logoEmpresa.png";
         try {
             JRTableModelDataSource datasource = new JRTableModelDataSource(model);
-            String reportSource = tipo + ".jrxml";
+            String reportSource = "/reportes/"+tipo + ".jrxml";
             JasperReport jr = JasperCompileManager.compileReport(reportSource);
             Map<String, Object> params = new HashMap<>();
+            String sql = "SELECT * FROM datosempresa";
+            Statement st;
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            params.clear();
+            while (rs.next()) {
+            params.put("nombreEmpresa", rs.getString(2));
+            params.put("direccion", rs.getString(3));
+            params.put("codigoPostal", rs.getString(4));
+            params.put("telefono", rs.getString(5));
+            params.put("rfc", rs.getString(6));
+            }
+            params.put("logo", this.getClass().getResourceAsStream(logotipo));
             params.put("nTicket", Ventas.nTicket);
             params.put("nombreUsuario", Ventas.Usuario);
             params.put("tipoPago", tipoPago);
             params.put("total", total);
-            params.put("efectivo",pago);
-            params.put("cambio",cambio);            
-            params.put("logo",logo);
-            JasperPrint jp = JasperFillManager.fillReport(jr, params, datasource);
-            switch (tipo) {
-                case "ticket":
-                    JasperPrintManager.printReport(jp, false);
-                    break;
-                case "hoja":
-                    JasperPrintManager.printReport(jp, false);
-                    break;
-                default:
-                    JasperExportManager.exportReportToPdfFile(jp, tipo + ".pdf");
-                    break;
-
+            params.put("efectivo", pago);
+            params.put("cambio", cambio);
+            jp = JasperFillManager.fillReport(jr, params, datasource);
+            if(imprimir==true){
+            JasperPrintManager.printReport(jp, false);
+            }else{
+            JasperExportManager.exportReportToPdfFile(jp, tipo + ".pdf");
             }
-            
+
         } catch (JRException e) {
             System.out.println(e);
             System.out.println(e.getMessage());
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -608,6 +620,7 @@ public class Cobrar extends javax.swing.JDialog {
     }
     private void cobroHojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobroHojaActionPerformed
         cobro("hoja");
+        imprimir=true;
     }//GEN-LAST:event_cobroHojaActionPerformed
 
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
@@ -669,6 +682,5 @@ public class Cobrar extends javax.swing.JDialog {
     private javax.swing.JPanel jPtarjeta;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
-
 
 }

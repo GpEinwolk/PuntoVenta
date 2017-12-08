@@ -1,5 +1,6 @@
 package Diseño;
 
+import static Diseño.Cobrar.jp;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperPrintManager;
 
 public final class Ventas extends javax.swing.JFrame {
 
@@ -371,6 +374,11 @@ public final class Ventas extends javax.swing.JFrame {
         jButton8.setMaximumSize(new java.awt.Dimension(90, 36));
         jButton8.setMinimumSize(new java.awt.Dimension(90, 36));
         jButton8.setPreferredSize(new java.awt.Dimension(90, 36));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setBackground(new java.awt.Color(52, 152, 219));
         jButton9.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -583,6 +591,9 @@ public final class Ventas extends javax.swing.JFrame {
 
     private void textBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscarKeyPressed
         // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_F2){
+           jButton9.doClick();
+        }
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             agregar();
             textBuscar.setText("");
@@ -675,6 +686,15 @@ return idlogin;
         // TODO add your handling code here:
         cerrar();
     }//GEN-LAST:event_formWindowClosing
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        try {
+            // TODO add your handling code here:
+            JasperPrintManager.printReport(jp, false);
+        } catch (JRException ex) {
+            Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar;

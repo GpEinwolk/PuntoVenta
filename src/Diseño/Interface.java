@@ -677,6 +677,9 @@ public final class Interface extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
         añadirUsuario = new javax.swing.JMenuItem();
+        jMenu10 = new javax.swing.JMenu();
+        cambiarDatos = new javax.swing.JMenuItem();
+        verDatos = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenu5 = new javax.swing.JMenu();
         prodAgre = new javax.swing.JMenuItem();
@@ -3776,6 +3779,28 @@ public final class Interface extends javax.swing.JFrame {
         jMenu8.add(añadirUsuario);
 
         jMenu2.add(jMenu8);
+
+        jMenu10.setText("Datos de la empresa");
+
+        cambiarDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user (1).png"))); // NOI18N
+        cambiarDatos.setText("Cambiar");
+        cambiarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cambiarDatosActionPerformed(evt);
+            }
+        });
+        jMenu10.add(cambiarDatos);
+
+        verDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user (1).png"))); // NOI18N
+        verDatos.setText("Ver");
+        verDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verDatosActionPerformed(evt);
+            }
+        });
+        jMenu10.add(verDatos);
+
+        jMenu2.add(jMenu10);
         jMenu2.add(jSeparator3);
 
         jMenu5.setText("Productos");
@@ -4684,6 +4709,14 @@ public final class Interface extends javax.swing.JFrame {
             reporteFecha2.setVisible(false);
         }
     }//GEN-LAST:event_group3
+
+    private void cambiarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarDatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cambiarDatosActionPerformed
+
+    private void verDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verDatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_verDatosActionPerformed
 void mostrarClipro(String sql) {
         comboCliPro.removeAllItems();
         Statement st;
@@ -4758,6 +4791,7 @@ void mostrarClipro(String sql) {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.JMenuItem cambiarDatos;
     private javax.swing.JMenuItem clieAgre;
     private javax.swing.JMenuItem clieMod;
     private javax.swing.JComboBox<String> comboCliPro;
@@ -4899,6 +4933,7 @@ void mostrarClipro(String sql) {
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -5035,5 +5070,6 @@ void mostrarClipro(String sql) {
     private javax.swing.JTextField txtcodigoA;
     private javax.swing.JComboBox<String> unidadM;
     private javax.swing.JComboBox<String> unidadMod;
+    private javax.swing.JMenuItem verDatos;
     // End of variables declaration//GEN-END:variables
 }

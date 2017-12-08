@@ -4,6 +4,11 @@ package Diseño;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +26,6 @@ public class InicioSesion extends javax.swing.JFrame {
   Connection cn = conn.getConnection();
   Icon ua; 
   Icon nv; 
-  
    
     public InicioSesion() {
         initComponents();
@@ -57,23 +61,18 @@ public class InicioSesion extends javax.swing.JFrame {
                                       
                     PreparedStatement pps = cn.prepareStatement("INSERT INTO login(usuario_idusuario)VALUES(?)");
                     pps.setString(1,id);
-                    pps.executeUpdate();
-                    
+                    pps.executeUpdate();                    
                     Interface inter = new Interface();
                     this.setVisible(false);
-                    inter.setVisible(true);
-                    
+                    inter.setVisible(true);                    
                     inc = 1;
-                    
-                 }else if(txtUser.getText().equals(user)&&pass.equals(pas)&&nivel.equals("2")){
-                    
+                 }else if(txtUser.getText().equals(user)&&pass.equals(pas)&&nivel.equals("2")){                    
                     PreparedStatement pps = cn.prepareStatement("INSERT INTO login(usuario_idusuario)VALUES(?)");
                     pps.setString(1,id);
                     pps.executeUpdate();
                     CorteCaja cc = new CorteCaja(Usuario);
                     this.setVisible(false);
-                    cc.setVisible(true);
-                    
+                    cc.setVisible(true);                    
                     inc = 1;
                  }                              
              } 
@@ -89,7 +88,7 @@ public class InicioSesion extends javax.swing.JFrame {
              Logger.getLogger(Garant.class.getName()).log(Level.SEVERE, null, ex);
          }     
     }
-  
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
