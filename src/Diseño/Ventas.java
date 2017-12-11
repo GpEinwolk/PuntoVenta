@@ -594,6 +594,10 @@ public final class Ventas extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_F2){
            jButton9.doClick();
         }
+        if (evt.getKeyCode() == KeyEvent.VK_F3){
+           jButton8.doClick();
+        }
+        
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             agregar();
             textBuscar.setText("");

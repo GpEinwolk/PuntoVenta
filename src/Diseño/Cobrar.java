@@ -545,7 +545,7 @@ public class Cobrar extends javax.swing.JDialog {
     private void crearReporte(String tipoPago, String tipo, double total, double cambio, double pago) {
         try {
             JRTableModelDataSource datasource = new JRTableModelDataSource(model);
-            String reportSource = "/reportes/"+tipo + ".jrxml";
+            String reportSource = tipo + ".jrxml";
             JasperReport jr = JasperCompileManager.compileReport(reportSource);
             Map<String, Object> params = new HashMap<>();
             String sql = "SELECT * FROM datosempresa";
