@@ -23,7 +23,6 @@ import javax.swing.table.TableRowSorter;
  * @author Daniel
  */
 public final class BuscarProductos extends javax.swing.JDialog {
-
     Conexion conn = new Conexion();
     Connection cn = conn.getConnection();
     TableRowSorter<TableModel> tr;
@@ -39,15 +38,12 @@ public final class BuscarProductos extends javax.swing.JDialog {
 
     void tablaProductos() {
         DefaultTableModel modelo = new DefaultTableModel();
-
         String datos[] = new String[5];
-
         modelo.addColumn("Codigo");
         modelo.addColumn("Nombre");
         modelo.addColumn("Precio");
         modelo.addColumn("Existencias");
         modelo.addColumn("Descripción");
-
         String sql = "SELECT codigo,nombre,precio,stock,espef FROM producto";
         Statement st;
         try {

@@ -40,16 +40,13 @@ public class InicioSesion extends javax.swing.JFrame {
 
     void inicioS(){
          String sql="SELECT user, pass, nivel,idusuario,nombre FROM usuario";
-        
         Statement st;   
-        
          try {
              st = cn.createStatement();
              ResultSet rs  = st.executeQuery(sql);
              char[] arrayC = txtPass.getPassword(); 
              String pass = new String(arrayC); 
              int inc = 0;
-            
              while (rs.next()) {
                  String user = rs.getString(1);
                  String pas = rs.getString(2);
@@ -133,9 +130,9 @@ public class InicioSesion extends javax.swing.JFrame {
         txtUser.setForeground(new java.awt.Color(255, 255, 255));
         txtUser.setBorder(null);
         txtUser.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUserActionPerformed(evt);
+        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUserKeyPressed(evt);
             }
         });
 
@@ -149,11 +146,6 @@ public class InicioSesion extends javax.swing.JFrame {
         txtPass.setForeground(new java.awt.Color(255, 255, 255));
         txtPass.setBorder(null);
         txtPass.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassActionPerformed(evt);
-            }
-        });
         txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPassKeyPressed(evt);
@@ -169,11 +161,6 @@ public class InicioSesion extends javax.swing.JFrame {
         iniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iniciarSesionActionPerformed(evt);
-            }
-        });
-        iniciarSesion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                iniciarSesionKeyPressed(evt);
             }
         });
 
@@ -254,9 +241,6 @@ public class InicioSesion extends javax.swing.JFrame {
     private void jPanel1ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jPanel1ComponentAdded
        
     }//GEN-LAST:event_jPanel1ComponentAdded
-    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
-   
-    }//GEN-LAST:event_txtUserActionPerformed
 
     private void iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionActionPerformed
        inicioS();
@@ -268,23 +252,21 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
-  
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+          if (evt.getKeyCode() == KeyEvent.VK_ENTER){
            iniciarSesion.doClick();
         }
     }//GEN-LAST:event_txtPassKeyPressed
 
-    private void iniciarSesionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_iniciarSesionKeyPressed
-       
-       
-            
-           
-     
-    }//GEN-LAST:event_iniciarSesionKeyPressed
-
-    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
+    private void txtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPassActionPerformed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if("".equals(txtPass.getText())){
+                txtPass.requestFocus();
+            }else{
+            iniciarSesion.doClick();
+            }
+        }
+    }//GEN-LAST:event_txtUserKeyPressed
 
     /**
      * @param args the command line arguments

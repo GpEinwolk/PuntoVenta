@@ -176,7 +176,6 @@ public final class Ventas extends javax.swing.JFrame {
         jBcorteCaja.setForeground(new java.awt.Color(255, 255, 255));
         jBcorteCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/receipt (2).png"))); // NOI18N
         jBcorteCaja.setText("Realizar corte de caja");
-        jBcorteCaja.setBorder(null);
         jBcorteCaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBcorteCaja.setFocusPainted(false);
         jBcorteCaja.setSelected(true);
@@ -206,7 +205,6 @@ public final class Ventas extends javax.swing.JFrame {
         jBcancelarV.setForeground(new java.awt.Color(255, 255, 255));
         jBcancelarV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cart (14).png"))); // NOI18N
         jBcancelarV.setText("Cancelar una Venta");
-        jBcancelarV.setBorder(null);
         jBcancelarV.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBcancelarV.setFocusPainted(false);
         jBcancelarV.setSelected(true);
@@ -220,8 +218,7 @@ public final class Ventas extends javax.swing.JFrame {
         jBcorteCaja1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jBcorteCaja1.setForeground(new java.awt.Color(255, 255, 255));
         jBcorteCaja1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/change (2).png"))); // NOI18N
-        jBcorteCaja1.setText("Salidas y/o Gastos");
-        jBcorteCaja1.setBorder(null);
+        jBcorteCaja1.setText("Salidas");
         jBcorteCaja1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBcorteCaja1.setFocusPainted(false);
         jBcorteCaja1.setSelected(true);
@@ -235,7 +232,6 @@ public final class Ventas extends javax.swing.JFrame {
         salir.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         salir.setForeground(new java.awt.Color(255, 255, 255));
         salir.setText("Minimizar");
-        salir.setBorder(null);
         salir.setFocusPainted(false);
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,7 +270,7 @@ public final class Ventas extends javax.swing.JFrame {
                 .addComponent(jBcorteCaja1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBcancelarV, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(salir)
                 .addContainerGap())
         );
@@ -329,7 +325,6 @@ public final class Ventas extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Cobrar");
-        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -340,7 +335,6 @@ public final class Ventas extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Vaciar carrito");
-        jButton5.setBorder(null);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -352,7 +346,6 @@ public final class Ventas extends javax.swing.JFrame {
         agregar.setForeground(new java.awt.Color(255, 255, 255));
         agregar.setMnemonic('a');
         agregar.setText("Agregar");
-        agregar.setBorder(null);
         agregar.setBorderPainted(false);
         agregar.setDefaultCapable(false);
         agregar.setMaximumSize(new java.awt.Dimension(90, 36));
@@ -368,7 +361,6 @@ public final class Ventas extends javax.swing.JFrame {
         jButton8.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("Reimprimir ultimo ticket");
-        jButton8.setBorder(null);
         jButton8.setBorderPainted(false);
         jButton8.setDefaultCapable(false);
         jButton8.setMaximumSize(new java.awt.Dimension(90, 36));
@@ -384,7 +376,6 @@ public final class Ventas extends javax.swing.JFrame {
         jButton9.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("Buscar");
-        jButton9.setBorder(null);
         jButton9.setBorderPainted(false);
         jButton9.setDefaultCapable(false);
         jButton9.setMaximumSize(new java.awt.Dimension(90, 36));
@@ -397,7 +388,6 @@ public final class Ventas extends javax.swing.JFrame {
         });
 
         textBuscar.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        textBuscar.setBorder(null);
         textBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         textBuscar.setMaximumSize(new java.awt.Dimension(90, 36));
         textBuscar.setMinimumSize(new java.awt.Dimension(90, 36));
@@ -411,7 +401,6 @@ public final class Ventas extends javax.swing.JFrame {
         borrarProducto.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         borrarProducto.setForeground(new java.awt.Color(255, 255, 255));
         borrarProducto.setText("Eliminar");
-        borrarProducto.setBorder(null);
         borrarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 borrarProductoActionPerformed(evt);
@@ -420,7 +409,6 @@ public final class Ventas extends javax.swing.JFrame {
 
         jSpinner1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-        jSpinner1.setBorder(null);
         jSpinner1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         labelTicket.setBackground(new java.awt.Color(251, 251, 251));
